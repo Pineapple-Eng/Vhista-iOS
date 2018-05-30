@@ -1,0 +1,72 @@
+
+/* Class = "UIButton"; normalTitle = "Upgrade"; ObjectID = "3B4-VS-w12"; */
+"3B4-VS-w12.normalTitle" = "Subscribirse";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "5OG-dM-qmN"; */
+"5OG-dM-qmN.normalTitle" = "Cancelar";
+
+/* Class = "UILabel"; text = "Vhista Monthly Subscription"; ObjectID = "7hk-Ip-qXS"; */
+"7hk-Ip-qXS.text" = "Subscripción Mensual de Vhista";
+
+/* Class = "UILabel"; text = "Length of Subscription"; ObjectID = "BKr-eC-jc0"; */
+"BKr-eC-jc0.text" = "Periodo de Subscripción";
+
+/* Class = "UILabel"; text = "Loading..."; ObjectID = "E0t-XS-UhJ"; */
+"E0t-XS-UhJ.text" = "Cargando...";
+
+/* Class = "UIButton"; normalTitle = "Close"; ObjectID = "GZv-fC-iXe"; */
+"GZv-fC-iXe.normalTitle" = "Cerrar";
+
+/* Class = "UILabel"; text = "Loading..."; ObjectID = "KZH-wL-v0Y"; */
+"KZH-wL-v0Y.text" = "Cargando...";
+
+/* Class = "UIButton"; normalTitle = "Subscribe!"; ObjectID = "KdN-GN-E0W"; */
+"KdN-GN-E0W.normalTitle" = "Subscribirme!";
+
+/* Class = "UILabel"; text = "Price"; ObjectID = "LMc-1L-CMw"; */
+"LMc-1L-CMw.text" = "Precio";
+
+/* Class = "UITextView"; text = "You can see our Terms of Use at: https://vhista.com/terms/ and our privacy policy in https://vhista.com/privacy/\n\nPayment will be charged to iTunes Account at confirmation of purchase. \n\nSubscription automatically renews unless auto-renew is turned off at least 24-hours before the end of the current period\n\nAccount will be charged for renewal within 24-hours prior to the end of the current period, and identify the cost of the renewal\n\nSubscriptions may be managed by the user and auto-renewal may be turned off by going to the\nuser’s Account Settings after purchase\n\nAny unused portion of a free trial period, if offered, will be forfeited when the user purchases a subscription to that publication, where applicable."; ObjectID = "Mta-fb-dAX"; */
+"Mta-fb-dAX.text" = "Puede ver nuestras Condiciones de uso en: https://vhista.com/terms/ y nuestra política de privacidad en https://vhista.com/privacy/\n\nEl pago se cargará a su cuenta de  iTunes al confirmar la compra.\n\nLa suscripción se renueva automáticamente a menos que se cancele la renovación automática por lo menos 24 horas antes del final del período actual \n\nLa cuenta se cargará para su renovación dentro de las 24 horas anteriores al final del período actual e identificará el costo de la renovación \n\nLas suscripciones pueden ser administradas por el usuario y la renovación automática puede ser desactivada accediendo a la configuración de la cuenta del \nusuario después de la compra \n\nCualquier parte no utilizada de un período de prueba gratuito, si se ofrece, se perderá cuando el usuario compra una suscripción a esa publicación, cuando corresponda.";
+
+/* Class = "UILabel"; text = "Price"; ObjectID = "OnU-Yr-YW7"; */
+"OnU-Yr-YW7.text" = "Precio";
+
+/* Class = "UILabel"; text = "You have reached the free deep image analysis limit. Subscribe to our monthly unlimited access!"; ObjectID = "Qnr-wc-sAU"; */
+"Qnr-wc-sAU.text" = "Has alcanzado el límite de análisis de imagen panorámico. ¡Suscríbete a nuestro acceso mensual ilimitado!";
+
+/* Class = "UILabel"; text = "Made with ❤️ in Colombia 🇨🇴"; ObjectID = "Vtc-fm-V0O"; */
+"Vtc-fm-V0O.text" = "Hecho con ❤️ en Colombia 🇨🇴";
+
+/* Class = "UILabel"; text = "Loading..."; ObjectID = "XMX-55-5ME"; */
+"XMX-55-5ME.text" = "Cargando...";
+
+/* Class = "UILabel"; text = "Length of Subscription"; ObjectID = "Yhc-ew-1zh"; */
+"Yhc-ew-1zh.text" = "Periodo de Subscripción";
+
+/* Class = "UILabel"; text = "Loading..."; ObjectID = "ban-ze-mB6"; */
+"ban-ze-mB6.text" = "Cargando...";
+
+/* Class = "UILabel"; text = "Loading..."; ObjectID = "c3y-Xn-pQ6"; */
+"c3y-Xn-pQ6.text" = "Cargando...";
+
+/* Class = "UILabel"; text = "Vhista Monthly Subscription"; ObjectID = "dsd-6U-NBD"; */
+"dsd-6U-NBD.text" = "Subscripción Mensual de Vhista";
+
+/* Class = "UILabel"; text = "Loading..."; ObjectID = "fF7-lf-v5O"; */
+"fF7-lf-v5O.text" = "Cargando...";
+
+/* Class = "UIButton"; normalTitle = "Restore"; ObjectID = "jKy-Ns-L92"; */
+"jKy-Ns-L92.normalTitle" = "Restaurar";
+
+/* Class = "UIButton"; normalTitle = "Deep Analysis"; ObjectID = "m58-gS-YDr"; */
+"m58-gS-YDr.normalTitle" = "Analisis Panorámico";
+
+/* Class = "UILabel"; text = "Service"; ObjectID = "nrm-R3-wRE"; */
+"nrm-R3-wRE.text" = "Servicio";
+
+/* Class = "UILabel"; text = "Service"; ObjectID = "pi0-vz-i2e"; */
+"pi0-vz-i2e.text" = "Servicio";
+
+/* Class = "UITextView"; text = "You can see our Terms of Use at: https://vhista.com/terms/ and our privacy policy in https://vhista.com/privacy/\n\nPayment will be charged to iTunes Account at confirmation of purchase. \n\nSubscription automatically renews unless auto-renew is turned off at least 24-hours before the end of the current period\n\nAccount will be charged for renewal within 24-hours prior to the end of the current period, and identify the cost of the renewal\n\nSubscriptions may be managed by the user and auto-renewal may be turned off by going to the\nuser’s Account Settings after purchase\n\nAny unused portion of a free trial period, if offered, will be forfeited when the user purchases a subscription to that publication, where applicable."; ObjectID = "tJZ-i1-oxn"; */
+"tJZ-i1-oxn.text" = "Puede ver nuestras Condiciones de uso en: https://vhista.com/terms/ y nuestra política de privacidad en https://vhista.com/privacy/\n\nEl pago se cargará a su cuenta de  iTunes al confirmar la compra.\n\nLa suscripción se renueva automáticamente a menos que se cancele la renovación automática por lo menos 24 horas antes del final del período actual \n\nLa cuenta se cargará para su renovación dentro de las 24 horas anteriores al final del período actual e identificará el costo de la renovación \n\nLas suscripciones pueden ser administradas por el usuario y la renovación automática puede ser desactivada accediendo a la configuración de la cuenta del \nusuario después de la compra \n\nCualquier parte no utilizada de un período de prueba gratuito, si se ofrece, se perderá cuando el usuario compra una suscripción a esa publicación, cuando corresponda.";

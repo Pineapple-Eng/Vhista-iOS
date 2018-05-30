@@ -1,0 +1,141 @@
+/* 
+  Localizable.strings
+  Vhista
+
+  Created by Juan David Cruz Serrano on 8/2/17.
+  Copyright © 2017 juandavidcruz. All rights reserved.
+*/
+
+"Greeting_Message"  = "Tap on the screen for a more accurate image analysis";
+
+"Processing_Image" = "Processing Image.";
+
+"No_Objects_Found" = "I have not found any objects in the image.";
+
+"Error_Getting_Objects" = "There was an error finding objects.";
+
+"Canceling_Processing" = "Canceling Processing";
+
+"Found_In_Picture" = "I Found: ";
+
+"Analizying_People" = "Analyzing People in the Image.";
+
+"No_People" = "I have not found faces in the image.";
+
+"Error_Getting_People" = "There was an error finding people.";
+
+"Number_People_Plural" = "There are XX people in the image.";
+
+"One_Person" = "There is a person in the image.";
+
+"First_Person" = "The first person ";
+
+"Next_Person" = "The next person ";
+
+"First_And_Only_Person" = "The person ";
+
+"Last_Person" = "The last person ";
+
+"Is_Male" = "is a man ";
+
+"Is_Female" = "is a woman ";
+
+"Has_Beard" = "with a beard, ";
+
+"Has_Mustache" = "who has a mustache, ";
+
+"Has_Glasses" = "who has glasses, ";
+
+"Is_Smiling" = "who is smiling.";
+
+"The_Person_Is" = "This person is ";
+
+"Angry" = "angry.";
+
+"Calm" = "calm.";
+
+"Confused" = "confused.";
+
+"Upset" = "upset.";
+
+"Happy" = "happy.";
+
+"Sad" = "sad.";
+
+"Surprised" = "surprised.";
+
+"One_Person" = " person";
+
+"Many_People" = " people";
+
+
+// Loading Texts
+
+"HUD_Processing_Image" = "Processing Image";
+
+"HUD_Reading_Response" = "Reading Response";
+
+"HUD_Processing_Response" = "Processing Response";
+
+"HUD_Searching_People" = "Searching People";
+
+"HUD_Describing_People" = "Describing People";
+
+// System
+
+"No_Camera" = "You need a device with a camera to use Vhista.";
+
+"Camera_Access" = "Camera Access";
+
+"No_Camera_Access" = "Previously you have denied the use of the camera and Vhista needs the camera to work. Touch the Go to Settings button below and activate the use of the camera.";
+
+"Go_To_Settings" = "Go to Settings";
+
+"Not_Reachable" = "You need internet access for this feature!";
+
+
+// Purchase
+
+"Subscribe_Title" = "Deep Analysis Limit Reached";
+
+"Subscribe_Message" = "Buy or restore %Title%. This %Price% monthly subscription will allow: %Description%";
+
+"Title_Nothing_To_Restore" = "Nothing to restore";
+
+"Message_Nothing_To_Restore" = "This subscription has not been purchased before with this Apple ID";
+
+"Title_Restore_Failed" = "Restore Failed";
+
+"Message_Restore_Failed" = "Could not restore purchase. Please try again later.";
+
+"Cancel_Action" = "Cancel";
+
+"Close_Action" = "Close";
+
+"Buy_Action" = "Buy Now!";
+
+"Restore_Action" = "Restore Purchase";
+
+"Monthly" = "Monthly";
+
+"Upgrade_Button_Title" = "Upgrade";
+
+"Show_Subscription_Button_Title" = "Subscription";
+
+"Title_Never_Purchased" = "Never Purchased";
+
+"Message_Never_Purchased" = "This subscription has never been purchased";
+
+"Title_Product_Expired" = "Subscription Expired";
+
+"Message_Product_Expired" = "This subscription is expired";
+
+
+// UI
+
+"Title_Button_Deep_Analysis" = "Deep Analysis";
+
+"Title_Button_Loading_Purchases" = "Showing Purchase Alerts";
+
+"Text_Subscription_Terms" = "You can see our Terms of Use at: https://vhista.com/terms/ and our privacy policy in https://vhista.com/privacy/\n\nPayment will be charged to iTunes Account at confirmation of purchase.\n\nSubscription automatically renews unless auto-renew is turned off at least 24-hours before the end of the current period\n\nAccount will be charged for renewal within 24-hours prior to the end of the current period, and identify the cost of the renewal\n\nSubscriptions may be managed by the user and auto-renewal may be turned off by going to the user’s Account Settings after purchase\n\nAny unused portion of a free trial period, if offered, will be forfeited when the user purchases a subscription to that publication, where applicable.";
+

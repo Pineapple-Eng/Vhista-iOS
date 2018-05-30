@@ -1,0 +1,144 @@
+/* 
+  Localizable.strings
+  Vhista
+
+  Created by Juan David Cruz Serrano on 8/2/17.
+  Copyright © 2017 juandavidcruz. All rights reserved.
+*/
+
+"Greeting_Message"  = "Toca la pantalla para tener un análisis de imagen más completo";
+
+"Processing_Image" = "Procesando Imagen.";
+
+"No_Objects_Found" = "No he encontrado objetos en la imagen.";
+
+"Error_Getting_Objects" = "Hubo un error al encontrar objetos.";
+
+"Canceling_Processing" = "Cancelando Procesamiento";
+
+"Found_In_Picture" = "Encontré en la imagen: ";
+
+"Analizying_People" = "Analizando Personas en la imagen.";
+
+"No_People" = "No he encontrado rostros en la imagen.";
+
+"Error_Getting_People" = "Hubo un error al encontrar personas.";
+
+"Number_People_Plural" = "Hay XX personas en la imagen.";
+
+"One_Person" = "Hay una persona en la imagen.";
+
+"First_Person" = "La primera persona ";
+
+"Next_Person" = "La siguiente persona ";
+
+"First_And_Only_Person" = "La persona ";
+
+"Last_Person" = "La ultima persona ";
+
+"Is_Male" = "es un hombre ";
+
+"Is_Female" = "es una mujer ";
+
+"Has_Beard" = "que tiene barba, ";
+
+"Has_Mustache" = "que tiene bigote, ";
+
+"Has_Glasses" = "que tiene gafas, ";
+
+"Is_Smiling" = "que está sonriendo.";
+
+"The_Person_Is" = "Esta persona está ";
+
+"Angry" = "brava.";
+
+"Calm" = "calmada.";
+
+"Confused" = "confundida.";
+
+"Upset" = "disgustada.";
+
+"Happy" = "feliz.";
+
+"Sad" = "triste.";
+
+"Surprised" = "sorprendida.";
+
+"One_Person" = " persona";
+
+"Many_People" = " personas";
+
+
+// Loading Texts
+
+"HUD_Processing_Image" = "Procesando Imagen";
+
+"HUD_Reading_Response" = "Leyendo Respuesta";
+
+"HUD_Processing_Response" = "Procesando Respuesta";
+
+"HUD_Searching_People" = "Buscando Personas";
+
+"HUD_Describing_People" = "Describiendo Personas";
+
+// System
+
+"No_Camera" = "Necesitas un dispositivo con cámara para usar Vhista.";
+
+"Camera_Access" = "Acceso a la Cámara";
+
+"No_Camera_Access" = "Anteriormente has negado el uso de la cámara y Vhista necesita de esta para funcionar. Toca sobre el boton de Ir a Ajustes presentado a continuación y activa el uso de la cámara.";
+
+"Go_To_Settings" = "Ir a Ajustes";
+
+"Cancel_Button_Title" = "Cancelar Procesamiento";
+
+"Not_Reachable" = "Se necesita acceso a internet para usar esta funcionalidad!";
+
+
+// Purchase
+
+"Subscribe_Title" = "Límite de Reconocimientos Superado";
+
+"Subscribe_Message" = "Compra o restaura %Title%. Esta subscripción mensual de %Price% te premitirá: %Description%";
+
+"Title_Nothing_To_Restore" = "Nada que restaurar";
+
+"Message_Nothing_To_Restore" = "Esta subscripción no ha sido comprada previamente con esta cuenta de Apple";
+
+"Title_Restore_Failed" = "Error al Restaurar";
+
+"Message_Restore_Failed" = "No se pudo restaurar la subscripción. Por favor intenta más tarde.";
+
+"Cancel_Action" = "Cancelar";
+
+"Close_Action" = "Cerrar";
+
+"Buy_Action" = "Comprar Ahora!";
+
+"Restore_Action" = "Restaurar Compra";
+
+"Monthly" = "Mensual";
+
+"Upgrade_Button_Title" = "Subscribirse";
+
+"Show_Subscription_Button_Title" = "Subscripción";
+
+"Title_Never_Purchased"= "Nunca Comprado";
+
+"Message_Never_Purchased" = "Esta subscripción nunca ha sido comprada";
+
+"Title_Product_Expired"= "Subscripción Vencida";
+
+"Message_Product_Expired"="Esta subscripción se encuentra vencida.";
+
+// UI
+
+"Title_Button_Deep_Analysis" = "Análisis Panoramico";
+
+"Title_Button_Loading_Purchases" = "Mostrando Alertas de Compra";
+
+"Text_Subscription_Terms" = "Puede ver nuestras Condiciones de uso en: https://vhista.com/terms/ y nuestra política de privacidad en https://vhista.com/privacy/\n\nEl pago se cargará a su cuenta de  iTunes al confirmar la compra.\n\nLa suscripción se renueva automáticamente a menos que se cancele la renovación automática por lo menos 24 horas antes del final del período actual \n\nLa cuenta se cargará para su renovación dentro de las 24 horas anteriores al final del período actual e identificará el costo de la renovación \n\nLas suscripciones pueden ser administradas por el usuario y la renovación automática puede ser desactivada accediendo a la configuración de la cuenta del \nusuario después de la compra \n\nCualquier parte no utilizada de un período de prueba gratuito, si se ofrece, se perderá cuando el usuario compra una suscripción a esa publicación, cuando corresponda.";
+
+
+
