@@ -29,8 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        //Verify Subscriptions
-        SubscriptionManager.shared.completeTransactions()
+        //Verify Subscriptions (Currently not receiving new subscriptions)
+        //SubscriptionManager.shared.completeTransactions()
         
         //Listen For Network Changes
         VhistaReachabilityManager.shared.startMonitoring()
@@ -66,6 +66,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         catch let error as NSError {
             print("Error: Could not setActive to true: \(error), \(error.userInfo)")
         }
+        
+        // Avoid Screen Dim
+        application.isIdleTimerDisabled = true
         
         return true
     }

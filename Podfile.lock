@@ -14,37 +14,37 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
-  - AWSCognito (2.6.18):
-    - AWSCore (= 2.6.18)
-  - AWSCognitoIdentityProvider (2.6.18):
+  - AWSCognito (2.6.23):
+    - AWSCore (= 2.6.23)
+  - AWSCognitoIdentityProvider (2.6.23):
     - AWSCognitoIdentityProviderASF (= 1.0.1)
-    - AWSCore (= 2.6.18)
+    - AWSCore (= 2.6.23)
   - AWSCognitoIdentityProviderASF (1.0.1)
-  - AWSCore (2.6.18)
-  - AWSRekognition (2.6.18):
-    - AWSCore (= 2.6.18)
-  - Crashlytics (3.10.1):
-    - Fabric (~> 1.7.5)
-  - Fabric (1.7.6)
-  - Firebase/Core (5.0.0):
+  - AWSCore (2.6.23)
+  - AWSRekognition (2.6.23):
+    - AWSCore (= 2.6.23)
+  - Crashlytics (3.10.4):
+    - Fabric (~> 1.7.9)
+  - Fabric (1.7.9)
+  - Firebase/Core (5.4.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 5.0.0)
-  - Firebase/CoreOnly (5.0.0):
-    - FirebaseCore (= 5.0.0)
-  - Firebase/RemoteConfig (5.0.0):
+    - FirebaseAnalytics (= 5.0.1)
+  - Firebase/CoreOnly (5.4.0):
+    - FirebaseCore (= 5.0.5)
+  - Firebase/RemoteConfig (5.4.0):
     - Firebase/Core
     - FirebaseRemoteConfig (= 3.0.0)
   - FirebaseABTesting (2.0.0):
     - FirebaseCore (~> 5.0)
     - Protobuf (~> 3.5)
-  - FirebaseAnalytics (5.0.0):
+  - FirebaseAnalytics (5.0.1):
     - FirebaseCore (~> 5.0)
     - FirebaseInstanceID (~> 3.0)
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - nanopb (~> 0.3)
-  - FirebaseCore (5.0.0):
+  - FirebaseCore (5.0.5):
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
-  - FirebaseInstanceID (3.0.0):
+  - FirebaseInstanceID (3.1.1):
     - FirebaseCore (~> 5.0)
   - FirebaseRemoteConfig (3.0.0):
     - FirebaseABTesting (~> 2.0)
@@ -61,7 +61,7 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
-  - Protobuf (3.5.0)
+  - Protobuf (3.6.0)
   - SwiftyStoreKit (0.13.2)
 
 DEPENDENCIES:
@@ -98,22 +98,22 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  AWSCognito: aab248bf535c2f33240d3e952d0af88332d36af7
-  AWSCognitoIdentityProvider: 5bcd75b23058acae6cb3e8c930a32ace40435ab2
+  AWSCognito: e71a92dd66d4023f6e80487aa1ddd7e0bdb10b25
+  AWSCognitoIdentityProvider: 605ea825077825717418e37fba27d5cd23958ea2
   AWSCognitoIdentityProviderASF: f94f1a502e72ef3d0a1de93e10bf7a79c8698118
-  AWSCore: 5594f02730a821907d155ac28e96593d1caa6f64
-  AWSRekognition: 0dd91bf70e632748c0cd6f6e054c6a90248d2e69
-  Crashlytics: aee1a064cbbf99b32efa3f056a5f458d846bc8ff
-  Fabric: f8d42c893bb187326a7968b62abe55c36a987a46
-  Firebase: 4bd804448ab2596794698773d41520a0af101e65
+  AWSCore: d56f69d7312e652e51c70f3b25e1687a5c2d06ca
+  AWSRekognition: 5f32c77081274316721c270bcc4677680e196dbe
+  Crashlytics: 915a7787b84f635fb2a81f92a90e265c2c413f76
+  Fabric: a2917d3895e4c1569b9c3170de7320ea1b1e6661
+  Firebase: d66f4f29c23f22d96808d9abc174d81d8eee968f
   FirebaseABTesting: 1f50b8d50f5e3469eea54e7463a7b7fe221d1f5e
-  FirebaseAnalytics: 19812b49fa5f283dd6b23edf8a14b5d477029ab8
-  FirebaseCore: e46e4babb9de298fb2f736958edcc6da1dc60d73
-  FirebaseInstanceID: 83e0040351565df711a5db3d8ebe5ea21aca998a
+  FirebaseAnalytics: b3628aea54c50464c32c393fb2ea032566e7ecc2
+  FirebaseCore: 42b3267233bd21a5abd54117ccc38ca3dd0f8e83
+  FirebaseInstanceID: f3f0657372592ecdfdfe2cac604a5a75758376a6
   FirebaseRemoteConfig: 3c57e4644bd6976b671ae0b725cd709f198bd1f5
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
+  Protobuf: 0fc0ad8bec688b2a3017a139953e01374fedbd5f
   SwiftyStoreKit: b7563505440a68c9d9fa70bc43d8a97015519409
 
 PODFILE CHECKSUM: 21a567d9bb9c01393c2e7385d2456ae76bc37a22

@@ -198,10 +198,11 @@ class CameraViewController: UIViewController {
             print("Network OK")
         }
         
-        if !SubscriptionManager.shared.checkDeepSubscription() {
-            self.performSegue(withIdentifier: "ShowUpgradeView", sender: nil)
-            return
-        }
+//        Subscription not Enabled
+//        if !SubscriptionManager.shared.checkDeepSubscription() {
+//            self.performSegue(withIdentifier: "ShowUpgradeView", sender: nil)
+//            return
+//        }
         
         processingImage = true
         UINotificationFeedbackGenerator().notificationOccurred(.success)
@@ -406,7 +407,10 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     func handleFaceLandmarks(request: VNRequest, error: Error?) {
         if processingImage { return }
         if let landmarksResults = request.results as? [VNFaceObservation] {
-            ClassificationsManager.shared.addPeopleToRead(faceObservations: landmarksResults)
+            let resultText = ClassificationsManager.shared.addPeopleToRead(faceObservations: landmarksResults)
+            if resultText != "" {
+                self.addStringToReadFace(stringRecognized: resultText, isProtected: true)
+            }
         }
     }
     

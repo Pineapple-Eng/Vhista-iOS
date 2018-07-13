@@ -17,7 +17,8 @@ extension NSObject {
         let CancelButtonSubscription = "hit_cancel_button_subscription"
         let BuyButtonSubscription = "hit_buy_button_subscription"
         let RestoreButtonSubscription = "hit_restore_button_subscription"
-        
+        let LandedAREnabled = "landed_ar_enabled_device"
+        let LandedARDisabled = "landed_ar_disabled_device"
     }
     
     func recordAnalytics(analyticsEventName: String, parameters: [String: NSObject]) {

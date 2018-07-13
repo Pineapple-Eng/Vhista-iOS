@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="9RG-CJ-oKt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="9RG-CJ-oKt">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -140,7 +140,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TransparentLogo" translatesAutoresizingMaskIntoConstraints="NO" id="UXU-0a-Guf">
-                                <rect key="frame" x="112" y="331" width="150" height="150"/>
+                                <rect key="frame" x="112.66666666666669" y="331" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="LOJ-YT-NfA"/>
                                     <constraint firstAttribute="height" constant="150" id="ZN1-Wa-Xyc"/>
@@ -254,32 +254,29 @@
                                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ffu-aO-O4g">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bt9-g4-3ef">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                        <accessibility key="accessibilityConfiguration" hint="Press this button to get a panoramic description of your surroundings" label="Deep Analysis Button"/>
-                                        <state key="normal" title="Deep Analysis">
-                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="makeDeepAnalysis:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dJY-nG-yqr"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Bt9-g4-3ef" secondAttribute="bottom" id="7ty-Ey-ULV"/>
                                     <constraint firstItem="Ffu-aO-O4g" firstAttribute="leading" secondItem="eYm-OD-GVy" secondAttribute="leading" id="82y-og-uRF"/>
                                     <constraint firstItem="FAh-QZ-KIM" firstAttribute="leading" secondItem="eYm-OD-GVy" secondAttribute="leading" id="BpP-pl-84F"/>
                                     <constraint firstAttribute="bottom" secondItem="Ffu-aO-O4g" secondAttribute="bottom" id="Loa-Id-jcZ"/>
                                     <constraint firstAttribute="trailing" secondItem="Ffu-aO-O4g" secondAttribute="trailing" id="NH6-yA-YI5"/>
                                     <constraint firstItem="Ffu-aO-O4g" firstAttribute="top" secondItem="eYm-OD-GVy" secondAttribute="top" id="b3a-CH-VKi"/>
-                                    <constraint firstItem="Bt9-g4-3ef" firstAttribute="leading" secondItem="eYm-OD-GVy" secondAttribute="leading" id="gYy-v3-sF0"/>
                                     <constraint firstAttribute="trailing" secondItem="FAh-QZ-KIM" secondAttribute="trailing" id="l0h-x1-at5"/>
-                                    <constraint firstAttribute="trailing" secondItem="Bt9-g4-3ef" secondAttribute="trailing" id="nLQ-oS-Ny6"/>
                                     <constraint firstAttribute="bottom" secondItem="FAh-QZ-KIM" secondAttribute="bottom" id="qRo-cI-fd3"/>
-                                    <constraint firstItem="Bt9-g4-3ef" firstAttribute="top" secondItem="eYm-OD-GVy" secondAttribute="top" id="yhf-An-vrw"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bt9-g4-3ef">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <accessibility key="accessibilityConfiguration" hint="Press this button to get a panoramic description of your surroundings" label="Deep Analysis Button"/>
+                                <state key="normal" title="Deep Analysis">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="makeDeepAnalysis:" destination="GOZ-GK-qBh" eventType="touchUpInside" id="LzG-AX-Az9"/>
+                                    <action selector="makeDeepAnalysis:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dJY-nG-yqr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -287,10 +284,14 @@
                             <constraint firstItem="6TA-En-mg4" firstAttribute="top" secondItem="4wM-gE-hjw" secondAttribute="top" id="9Ev-GS-7fs"/>
                             <constraint firstItem="6TA-En-mg4" firstAttribute="leading" secondItem="4wM-gE-hjw" secondAttribute="leading" id="JdL-0M-vAu"/>
                             <constraint firstItem="eYm-OD-GVy" firstAttribute="leading" secondItem="4wM-gE-hjw" secondAttribute="leading" id="Ngc-1O-zZ2"/>
+                            <constraint firstItem="Bt9-g4-3ef" firstAttribute="top" secondItem="4wM-gE-hjw" secondAttribute="top" id="UDV-Qs-Etu"/>
                             <constraint firstAttribute="trailing" secondItem="eYm-OD-GVy" secondAttribute="trailing" id="cmc-5o-EVC"/>
                             <constraint firstAttribute="trailing" secondItem="6TA-En-mg4" secondAttribute="trailing" id="d2R-Na-E6Z"/>
+                            <constraint firstItem="Bt9-g4-3ef" firstAttribute="leading" secondItem="4wM-gE-hjw" secondAttribute="leading" id="jfH-J3-zvp"/>
+                            <constraint firstAttribute="bottom" secondItem="Bt9-g4-3ef" secondAttribute="bottom" id="n3d-Zn-wZa"/>
                             <constraint firstAttribute="bottom" secondItem="eYm-OD-GVy" secondAttribute="bottom" id="sYa-yN-ciT"/>
                             <constraint firstAttribute="bottom" secondItem="6TA-En-mg4" secondAttribute="bottom" id="tAu-jX-n3b"/>
+                            <constraint firstAttribute="trailing" secondItem="Bt9-g4-3ef" secondAttribute="trailing" id="wC2-GV-CB7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="9dj-y7-ER9">
@@ -350,7 +351,7 @@
         <image name="TransparentLogo" width="150" height="233"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bWS-Hz-M6U"/>
-        <segue reference="mf8-pF-sd2"/>
+        <segue reference="ccV-g2-ehP"/>
+        <segue reference="832-2e-1X8"/>
     </inferredMetricsTieBreakers>
 </document>

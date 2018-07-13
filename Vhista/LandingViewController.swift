@@ -22,8 +22,14 @@ class LandingViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if ARConfiguration.isSupported, #available(iOS 11.3, *) {
+            recordAnalytics(analyticsEventName: AnalyticsConstants().LandedAREnabled, parameters: [
+                "language": global_language as NSObject
+                ])
             self.performSegue(withIdentifier: "GoToARHome", sender: nil)
         } else {
+            recordAnalytics(analyticsEventName: AnalyticsConstants().LandedARDisabled, parameters: [
+                "language": global_language as NSObject
+                ])
             self.performSegue(withIdentifier: "GoToNonARHome", sender: nil)
         }
     }

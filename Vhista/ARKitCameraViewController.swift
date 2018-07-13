@@ -27,6 +27,8 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
     var previousFrameTimeInterval = Date().timeIntervalSince1970
     
     //Still Image
+    private var persistentPixelBuffer: CVPixelBuffer?
+    
     var selectedImage: UIImage!
     
     @IBOutlet weak var selectedImageView: UIImageView!
@@ -37,6 +39,8 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
         super.viewDidLoad()
         setUpUI()
         setUpSceneView()
+        VhistaSpeechManager.shared.parentARController = self
+        VhistaSpeechManager.shared.sayGreetingMessage()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,17 +60,13 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
     }
     
     func setUpUI() {
+        
         textHistoryPicker.delegate = self
         textHistoryPicker.dataSource = self
         textHistoryPicker.isAccessibilityElement = false
         textHistoryPicker.isUserInteractionEnabled = false
         textHistoryPicker.accessibilityTraits = UIAccessibilityTraitNone
         textHistoryPicker.showsSelectionIndicator = false
-        
-        let blurEffect = UIBlurEffect(style: .dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = self.pickerContainerView.frame
-        self.view.insertSubview(blurEffectView, at: 1)
         
         loveTextField.isAccessibilityElement = false
         
@@ -75,12 +75,27 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
     func setUpSceneView() {
         
         sceneView.delegate = self
-        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
+        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         sceneView.session.delegate = self
         sceneView.showsStatistics = false
         let arScene = SCNScene()
         sceneView.scene = arScene
         
+    }
+    
+    override func viewDidLayoutSubviews() {
+        let blurEffect = UIBlurEffect(style: .dark)
+        let pickerVisualEffectView = UIVisualEffectView(effect: blurEffect)
+        pickerVisualEffectView.frame = self.pickerContainerView.frame
+        pickerVisualEffectView.tag = 99
+        for view in self.view.subviews {
+            if view.tag == 99 {
+                view.removeFromSuperview()
+            }
+        }
+        self.view.insertSubview(pickerVisualEffectView, at: 1)
+        
+        self.view.bringSubview(toFront: deepAnalysisButton)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -109,20 +124,22 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
         case .reachableViaWiFi:
             print("Network OK")
         }
-        
-        if !SubscriptionManager.shared.checkDeepSubscription() {
-            self.performSegue(withIdentifier: "ShowUpgradeView", sender: nil)
-            return
-        }
+
+//        Subscription not enabled
+//        if !SubscriptionManager.shared.checkDeepSubscription() {
+//            self.performSegue(withIdentifier: "ShowUpgradeView", sender: nil)
+//            return
+//        }
         
         processingImage = true
         UINotificationFeedbackGenerator().notificationOccurred(.success)
         
-        guard self.currentBuffer != nil else {
+        guard self.persistentPixelBuffer != nil else {
+            print("No Buffer \(String(describing: self.persistentPixelBuffer))")
             return
         }
         
-        if let currentImage = UIImage(pixelBuffer: self.currentBuffer!) {
+        if let currentImage = UIImage(pixelBuffer: self.persistentPixelBuffer!) {
             setImageForRekognition(image: currentImage)
         }
         
@@ -143,6 +160,9 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
         // Do not enqueue other buffers for processing while another Vision task is still running.
         // The camera stream has only a finite amount of buffers available; holding too many buffers for analysis would starve the camera.
+        
+        self.persistentPixelBuffer = frame.capturedImage
+        
         guard currentBuffer == nil, case .normal = frame.camera.trackingState else {
             return
         }
@@ -182,6 +202,10 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
         }
     }()
     
+    private lazy var facesClassificationRequest: VNDetectFaceRectanglesRequest = {
+        return VNDetectFaceRectanglesRequest(completionHandler: self.handleFaceLandmarks)
+    }()
+    
     // The pixel buffer being held for analysis; used to serialize Vision requests.
     private var currentBuffer: CVPixelBuffer?
     
@@ -198,8 +222,10 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
         visionQueue.async {
             do {
                 // Release the pixel buffer when done, allowing the next buffer to be processed.
-                defer { self.currentBuffer = nil }
-                try requestHandler.perform([self.classificationRequest])
+                defer {
+                    self.currentBuffer = nil
+                }
+                try requestHandler.perform([self.classificationRequest, self.facesClassificationRequest])
             } catch {
                 print("Error: Vision request failed with error \"\(error)\"")
             }
@@ -345,6 +371,16 @@ extension ARKitCameraViewController: UIPickerViewDelegate, UIPickerViewDataSourc
 // MARK: - Handle Reading of Identified Labels
 extension ARKitCameraViewController {
     
+    func handleFaceLandmarks(request: VNRequest, error: Error?) {
+        if processingImage { return }
+        if let landmarksResults = request.results as? [VNFaceObservation] {
+            let resultText = ClassificationsManager.shared.addPeopleToRead(faceObservations: landmarksResults)
+            if resultText != "" {
+                self.addStringToReadFace(stringRecognized: resultText, isProtected: true)
+            }
+        }
+    }
+    
     func addStringToRead(_ stringRecognized:String, _ distance:String, isProtected: Bool) {
         
         if !ClassificationsManager.shared.allowStringRecognized(stringRecognized: stringRecognized) { return }
@@ -421,7 +457,7 @@ extension ARKitCameraViewController: ARSCNViewDelegate {
                 planeNode.geometry = SCNPlane(width: CGFloat(anchor.extent.x), height: CGFloat(anchor.extent.z))
                 // transforming node
                 planeNode.position = SCNVector3(anchor.center.x, 0, anchor.center.z)
-                planeNode.geometry?.firstMaterial?.diffuse.contents = UIColor(red: 90/255, green: 200/255, blue: 250/255, alpha: 0.50)
+                planeNode.geometry?.firstMaterial?.diffuse.contents = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.35)
             }
         }
     }
@@ -452,8 +488,19 @@ extension ARKitCameraViewController {
     }
     
     func showSelectedImage() {
+        selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .right)
         selectedImageView.image = selectedImage
         selectedImageView.isHidden = false
+    }
+    
+    func finishedRekognitionAnalisis() {
+        print("🏁 Finished Rekognition Analysis")
+        DispatchQueue.main.async {
+            self.selectedImageView.isHidden = true
+            self.selectedImageView.image = nil
+        }
+        selectedImage = nil
+        processingImage = false
     }
     
 }

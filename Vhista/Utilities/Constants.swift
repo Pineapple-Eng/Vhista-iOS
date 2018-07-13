@@ -9,6 +9,6 @@
 import Foundation
 
 
-let inceptionV3RecognitionThreshold:Float = 0.015
+let inceptionV3RecognitionThreshold:Float = 0.30
 
 let frameRateInterval = 1.0
