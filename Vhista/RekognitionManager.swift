@@ -66,7 +66,7 @@ extension RekognitionManager {
             "language": global_language as NSObject
             ])
         
-        VhistaSpeechManager.shared.speakRekognition(stringToSpeak: NSLocalizedString("Processing_Image", comment: "The picture has been taken so we need to tell the user we are now going to process the image."))
+//        VhistaSpeechManager.shared.speakRekognition(stringToSpeak: NSLocalizedString("Processing_Image", comment: "The picture has been taken so we need to tell the user we are now going to process the image."))
         
         DispatchQueue.main.async {
             SwiftSpinner.show(NSLocalizedString("HUD_Processing_Image", comment: ""))

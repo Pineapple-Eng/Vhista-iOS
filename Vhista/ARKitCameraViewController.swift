@@ -40,12 +40,15 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
         setUpUI()
         setUpSceneView()
         VhistaSpeechManager.shared.parentARController = self
-        VhistaSpeechManager.shared.sayGreetingMessage()
+//        VhistaSpeechManager.shared.sayGreetingMessage()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
         if #available(iOS 11.3, *) {
@@ -54,7 +57,6 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
         } else {
             // Fallback on earlier versions
         }
-        
         // Run the view's session
         sceneView.session.run(configuration)
     }
@@ -67,6 +69,7 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
         textHistoryPicker.isUserInteractionEnabled = false
         textHistoryPicker.accessibilityTraits = UIAccessibilityTraitNone
         textHistoryPicker.showsSelectionIndicator = false
+        textHistoryPicker.shouldGroupAccessibilityChildren = false
         
         loveTextField.isAccessibilityElement = false
         
@@ -84,6 +87,7 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
     }
     
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         let blurEffect = UIBlurEffect(style: .dark)
         let pickerVisualEffectView = UIVisualEffectView(effect: blurEffect)
         pickerVisualEffectView.frame = self.pickerContainerView.frame
@@ -93,7 +97,16 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
                 view.removeFromSuperview()
             }
         }
+        
+        pickerVisualEffectView.translatesAutoresizingMaskIntoConstraints = false
+        let rigthAnchor = NSLayoutConstraint(item: pickerVisualEffectView, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1, constant: 0)
+        let leftAnchor = NSLayoutConstraint(item: pickerVisualEffectView, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1, constant: 0)
+        let heightAnchor = NSLayoutConstraint(item: pickerVisualEffectView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 240)
+        let bottomAnchor = NSLayoutConstraint(item: pickerVisualEffectView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1, constant: 0)
+        
         self.view.insertSubview(pickerVisualEffectView, at: 1)
+        
+        NSLayoutConstraint.activate([rigthAnchor, leftAnchor, heightAnchor, bottomAnchor])
         
         self.view.bringSubview(toFront: deepAnalysisButton)
     }
@@ -132,7 +145,6 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
 //        }
         
         processingImage = true
-        UINotificationFeedbackGenerator().notificationOccurred(.success)
         
         guard self.persistentPixelBuffer != nil else {
             print("No Buffer \(String(describing: self.persistentPixelBuffer))")
@@ -140,6 +152,7 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
         }
         
         if let currentImage = UIImage(pixelBuffer: self.persistentPixelBuffer!) {
+            UINotificationFeedbackGenerator().notificationOccurred(.success)
             setImageForRekognition(image: currentImage)
         }
         
@@ -273,8 +286,7 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
             addStringToRead(result, "", isProtected: false)
             return
         }
-        addStringToRead(result, ". Distance: \(String(format: "%.2f", hitTestResult.distance)) meters.", isProtected: false)
-        
+        addStringToRead(result, getLocalizedStringForDistance(hitTestResult.distance), isProtected: false)
     }
     
     // MARK: - AR Session Handling
@@ -349,6 +361,10 @@ extension ARKitCameraViewController: UIPickerViewDelegate, UIPickerViewDataSourc
         
         let label = (view as? UILabel) ?? UILabel()
         
+        label.isAccessibilityElement = false
+        label.isUserInteractionEnabled = false
+        label.accessibilityTraits = UIAccessibilityTraitNone
+        
         label.textColor = UIColor.white
         label.textAlignment = .center
         label.contentMode = UIViewContentMode.center
@@ -376,15 +392,15 @@ extension ARKitCameraViewController {
         if let landmarksResults = request.results as? [VNFaceObservation] {
             let resultText = ClassificationsManager.shared.addPeopleToRead(faceObservations: landmarksResults)
             if resultText != "" {
-                self.addStringToReadFace(stringRecognized: resultText, isProtected: true)
+                self.addStringToReadFace(stringRecognized: resultText, isProtected: false)
             }
         }
     }
     
-    func addStringToRead(_ stringRecognized:String, _ distance:String, isProtected: Bool) {
+    func addStringToRead(_ stringRecognized:String, _ distanceString:String, isProtected: Bool) {
         
         if !ClassificationsManager.shared.allowStringRecognized(stringRecognized: stringRecognized) { return }
-        
+        print(distanceString)
         let stringRecognizedTranslated = translateModelString(pString: stringRecognized, targetLanguage: global_language)
         
         ClassificationsManager.shared.lastRecognition = stringRecognized
@@ -396,7 +412,7 @@ extension ARKitCameraViewController {
             self.textHistoryPicker.reloadAllComponents()
         }
         
-        VhistaSpeechManager.shared.sayText(stringToSpeak: stringRecognizedTranslated + distance, isProtected: isProtected, rate: Float(globalRate))
+        VhistaSpeechManager.shared.sayText(stringToSpeak: stringRecognizedTranslated + distanceString, isProtected: isProtected, rate: Float(globalRate))
         
     }
     
@@ -488,7 +504,23 @@ extension ARKitCameraViewController {
     }
     
     func showSelectedImage() {
-        selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .right)
+        let currentDevice: UIDevice = UIDevice.current
+        let orientation: UIDeviceOrientation = currentDevice.orientation
+        
+        switch (orientation) {
+            case .portrait: selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .right)
+                break
+            case .landscapeRight: selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .down)
+                break
+            case .landscapeLeft: selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .up)
+                break
+            case .portraitUpsideDown: selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .left)
+                break
+            default: selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .right)
+                break
+        }
+        
+        
         selectedImageView.image = selectedImage
         selectedImageView.isHidden = false
     }

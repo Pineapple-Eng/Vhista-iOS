@@ -64,6 +64,7 @@
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m58-gS-YDr">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                        <accessibility key="accessibilityConfiguration" hint="Press this button to get a panoramic description of your surroundings" label="Deep Analysis"/>
                                         <state key="normal" title="Deep Analysis">
                                             <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -102,12 +103,22 @@
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="NWQ-Ye-62x">
                         <nil key="title"/>
-                        <button key="titleView" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="GFj-P4-Jux">
+                        <view key="titleView" contentMode="scaleToFill" id="n5a-Mr-Maa">
                             <rect key="frame" x="171.66666666666666" y="0.0" width="32" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <state key="normal" image="SmallTransparentLogo"/>
-                        </button>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SmallTransparentWhiteLogo" translatesAutoresizingMaskIntoConstraints="NO" id="k3r-M1-sys">
+                                    <rect key="frame" x="0.0" y="4" width="32" height="36"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="k3r-M1-sys" secondAttribute="trailing" id="4dB-nS-ZWR"/>
+                                <constraint firstAttribute="bottom" secondItem="k3r-M1-sys" secondAttribute="bottom" constant="4" id="ZNv-34-eEV"/>
+                                <constraint firstItem="k3r-M1-sys" firstAttribute="top" secondItem="n5a-Mr-Maa" secondAttribute="top" constant="4" id="cjs-vf-0Tn"/>
+                                <constraint firstItem="k3r-M1-sys" firstAttribute="leading" secondItem="n5a-Mr-Maa" secondAttribute="leading" id="ldT-UL-dC2"/>
+                            </constraints>
+                        </view>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
@@ -118,7 +129,6 @@
                         <outlet property="selectedImageView" destination="hFa-CU-NpX" id="HF0-Sk-JMD"/>
                         <outlet property="textHistoryPicker" destination="NEb-80-shd" id="hVo-eO-aed"/>
                         <outlet property="userInterfaceView" destination="M1i-1w-Ezs" id="9pj-Gf-Yw7"/>
-                        <outlet property="vhistaLogoButton" destination="GFj-P4-Jux" id="60B-Fx-fA3"/>
                         <segue destination="74y-tE-t8P" kind="show" identifier="ShowSubscriptionInfo" id="bWS-Hz-M6U"/>
                         <segue destination="XN5-zD-zT7" kind="show" identifier="ShowUpgradeView" id="mf8-pF-sd2"/>
                     </connections>
@@ -216,7 +226,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eYm-OD-GVy">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FAh-QZ-KIM">
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FAh-QZ-KIM">
                                         <rect key="frame" x="0.0" y="572" width="375" height="240"/>
                                         <subviews>
                                             <pickerView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qcI-2R-2du">
@@ -268,7 +278,7 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bt9-g4-3ef">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                <accessibility key="accessibilityConfiguration" hint="Press this button to get a panoramic description of your surroundings" label="Deep Analysis Button"/>
+                                <accessibility key="accessibilityConfiguration" hint="Press this button to get a panoramic description of your surroundings" label="Deep Analysis"/>
                                 <state key="normal" title="Deep Analysis">
                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -346,12 +356,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="SmallTransparentLogo" width="32" height="50"/>
         <image name="SmallTransparentWhiteLogo" width="32" height="50"/>
         <image name="TransparentLogo" width="150" height="233"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ccV-g2-ehP"/>
-        <segue reference="832-2e-1X8"/>
+        <segue reference="bWS-Hz-M6U"/>
+        <segue reference="mf8-pF-sd2"/>
     </inferredMetricsTieBreakers>
 </document>

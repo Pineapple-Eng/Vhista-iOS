@@ -68,7 +68,7 @@ class CameraViewController: UIViewController {
         setUpCamera()
         setUpUI()
         VhistaSpeechManager.shared.parentController = self
-        VhistaSpeechManager.shared.sayGreetingMessage()
+//        VhistaSpeechManager.shared.sayGreetingMessage()r
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -115,9 +115,16 @@ class CameraViewController: UIViewController {
         let blurEffect = UIBlurEffect(style: .dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = self.pickerContainerView.frame
+        blurEffectView.translatesAutoresizingMaskIntoConstraints = false
+        let rigthAnchor = NSLayoutConstraint(item: blurEffectView, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1, constant: 0)
+        let leftAnchor = NSLayoutConstraint(item: blurEffectView, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1, constant: 0)
+        let heightAnchor = NSLayoutConstraint(item: blurEffectView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 240)
+        let bottomAnchor = NSLayoutConstraint(item: blurEffectView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1, constant: 0)
+        
         self.view.insertSubview(blurEffectView, at: 1)
         
-        vhistaLogoButton.isAccessibilityElement = false
+        NSLayoutConstraint.activate([rigthAnchor, leftAnchor, heightAnchor, bottomAnchor])
+        
         loveTextField.isAccessibilityElement = false
         
         SwiftSpinner.useContainerView(userInterfaceView)
@@ -409,7 +416,7 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         if let landmarksResults = request.results as? [VNFaceObservation] {
             let resultText = ClassificationsManager.shared.addPeopleToRead(faceObservations: landmarksResults)
             if resultText != "" {
-                self.addStringToReadFace(stringRecognized: resultText, isProtected: true)
+                self.addStringToReadFace(stringRecognized: resultText, isProtected: false)
             }
         }
     }

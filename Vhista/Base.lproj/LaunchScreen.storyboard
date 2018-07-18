@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -27,9 +27,21 @@
                                     <constraint firstAttribute="width" constant="150" id="3m3-Xo-yWV"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🇨🇴" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SRD-S1-Fxs">
+                                <rect key="frame" x="159" y="607" width="56" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="56" id="Alv-Ti-Ist"/>
+                                    <constraint firstAttribute="height" constant="40" id="w7f-w9-BbN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="SRD-S1-Fxs" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="99O-p5-UUZ"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="SRD-S1-Fxs" secondAttribute="bottom" constant="20" id="pOK-WE-DiF"/>
                             <constraint firstItem="WGI-P4-RmP" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="uL0-Zz-qLe"/>
                             <constraint firstItem="WGI-P4-RmP" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="yam-a3-mJO"/>
                         </constraints>

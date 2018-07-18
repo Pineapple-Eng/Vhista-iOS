@@ -62,13 +62,15 @@ class VhistaSpeechManager: NSObject {
         }
         
         let speechUtterance = AVSpeechUtterance(string: stringToSpeak)
-        
+
         speechUtterance.voice = voice
         speechUtterance.rate = rate
-        
+
         stopSpeech(sender: stringToSpeak)
-        
+
         speechSynthesizer.speak(speechUtterance)
+        
+//        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, stringToSpeak)
         
     }
     

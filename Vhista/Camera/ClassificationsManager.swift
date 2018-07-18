@@ -42,15 +42,17 @@ class ClassificationsManager: NSObject {
             if stringRecognized.contains(",") {
                 let lastSplit = lastRecognition.split(separator: ",")
                 let currentSplit = stringRecognized.split(separator: ",")
-                if lastSplit.count > 1 && currentSplit.count > 1 {
-                    if lastSplit[0] == currentSplit[0] {
-                        return false
+                for splitString in currentSplit {
+                    for lastSplitString in lastSplit {
+                        if splitString == lastSplitString {
+                            return false
+                        }
                     }
                 }
             } else {
                 let lastSplit = lastRecognition.split(separator: ",")
-                if lastSplit.count > 1 {
-                    if lastSplit[0] == stringRecognized {
+                for lastSplitString in lastSplit {
+                    if stringRecognized == lastSplitString {
                         return false
                     }
                 }
@@ -58,8 +60,8 @@ class ClassificationsManager: NSObject {
         } else {
             if stringRecognized.contains(",") {
                 let currentSplit = stringRecognized.split(separator: ",")
-                if currentSplit.count > 1 {
-                    if lastRecognition == currentSplit[0] {
+                for splitString in currentSplit {
+                    if splitString == lastRecognition {
                         return false
                     }
                 }
