@@ -116,7 +116,11 @@
 
 "Restore_Action" = "Restore Purchase";
 
-"Monthly" = "Monthly";
+"Service" = "Service";
+
+"Monthly" = "Length of Subscription: Monthly";
+
+"Price" = "Price";
 
 "Upgrade_Button_Title" = "Upgrade";
 

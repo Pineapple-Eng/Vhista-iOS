@@ -118,7 +118,11 @@
 
 "Restore_Action" = "Restaurar Compra";
 
-"Monthly" = "Mensual";
+"Service" = "Servicio";
+
+"Monthly" = "Duracíon de la Subscripción: Mensual";
+
+"Price" = "Precio";
 
 "Upgrade_Button_Title" = "Subscribirse";
 

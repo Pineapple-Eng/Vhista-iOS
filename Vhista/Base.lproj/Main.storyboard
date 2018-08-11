@@ -119,6 +119,11 @@
                                 <constraint firstItem="k3r-M1-sys" firstAttribute="leading" secondItem="n5a-Mr-Maa" secondAttribute="leading" id="ldT-UL-dC2"/>
                             </constraints>
                         </view>
+                        <barButtonItem key="rightBarButtonItem" title="Subscribe" id="oQv-Id-w20">
+                            <connections>
+                                <action selector="hitUpgradeAction:" destination="BYZ-38-t0r" id="4rR-sU-qiI"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
@@ -322,6 +327,11 @@
                                 <constraint firstAttribute="bottom" secondItem="8fo-sv-cg7" secondAttribute="bottom" constant="4" id="u5C-hv-0hY"/>
                             </constraints>
                         </view>
+                        <barButtonItem key="rightBarButtonItem" title="Subscribe" id="feG-yb-xi5">
+                            <connections>
+                                <action selector="hitUpgradeAction:" destination="GOZ-GK-qBh" id="lSn-Fd-tLd"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="deepAnalysisButton" destination="Bt9-g4-3ef" id="6oX-7t-FTW"/>
@@ -360,7 +370,7 @@
         <image name="TransparentLogo" width="150" height="233"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bWS-Hz-M6U"/>
-        <segue reference="mf8-pF-sd2"/>
+        <segue reference="ccV-g2-ehP"/>
+        <segue reference="832-2e-1X8"/>
     </inferredMetricsTieBreakers>
 </document>

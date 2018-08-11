@@ -38,10 +38,9 @@ class SubscriptionInfoViewController: UIViewController {
         SubscriptionManager.shared.getProductForId(productId: "Vhista_Full", { (product) in
             if product != nil {
                 
-                self.serviceLabel.text = product!.localizedTitle
-                print(product!.localizedTitle)
+                self.serviceLabel.text = NSLocalizedString("Service", comment: "") + ": " + product!.localizedTitle
                 self.lengthLabel.text = NSLocalizedString("Monthly", comment: "")
-                self.priceLabel.text = product!.localizedPrice!
+                self.priceLabel.text = NSLocalizedString("Price", comment: "") + ": " + product!.localizedPrice!
                 
             } else {
             }

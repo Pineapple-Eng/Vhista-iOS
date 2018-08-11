@@ -27,7 +27,7 @@ class SubscriptionManager: NSObject {
     func checkDeepSubscription() -> Bool {
         let defaults = UserDefaults.standard
         let numberOfPictures = defaults.integer(forKey: "PicturesTaken")
-        if numberOfPictures <= 5 {
+        if numberOfPictures <= 2 {
             defaults.set(numberOfPictures + 1, forKey: "PicturesTaken")
             print("🔢 Number of pictures taken: " + String(numberOfPictures + 1))
             return true
@@ -51,7 +51,9 @@ class SubscriptionManager: NSObject {
                         SwiftyStoreKit.finishTransaction(purchase.transaction)
                     }
                     print("Purchased: \(purchase)")
-                    self.parent.didEndPurchaseProcess()
+                    if self.parent != nil {
+                        self.parent.didEndPurchaseProcess()
+                    }
                 }
             }
         }
@@ -60,6 +62,7 @@ class SubscriptionManager: NSObject {
     func isUserSubscribedToFullAccess() -> Bool {
         let defaults = UserDefaults.standard
         let isSubscribed = defaults.bool(forKey: "IsSubscribed")
+        print("SUBCRIBED: \(isSubscribed)")
         return isSubscribed
     }
     

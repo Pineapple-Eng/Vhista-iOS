@@ -47,13 +47,13 @@ class SubscriptionViewController: UIViewController {
     func getSubscriptionInfo() {
         SubscriptionManager.shared.getProductForId(productId: "Vhista_Full", { (product) in
             if product != nil {
-                self.serviceLabel.text = product!.localizedTitle
+                self.serviceLabel.text = NSLocalizedString("Service", comment: "") + ": " + product!.localizedTitle
                 self.lengthLabel.text = NSLocalizedString("Monthly", comment: "")
-                self.priceLabel.text = product!.localizedPrice!
+                self.priceLabel.text = NSLocalizedString("Price", comment: "") + ": " + product!.localizedPrice!
             } else {
-                self.serviceLabel.text = "Unlimited Deep Image Analysis"
+                self.serviceLabel.text = NSLocalizedString("Service", comment: "") + ": " + "Unlimited Deep Image Analysis"
                 self.lengthLabel.text = NSLocalizedString("Monthly", comment: "")
-                self.priceLabel.text = "3.99USD"
+                self.priceLabel.text = NSLocalizedString("Price", comment: "") + ": " + "3.99USD"
             }
         })
     }

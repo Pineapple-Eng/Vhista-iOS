@@ -111,6 +111,14 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
         self.view.bringSubview(toFront: deepAnalysisButton)
     }
     
+    @IBAction func hitUpgradeAction(_ sender: Any) {
+        if !SubscriptionManager.shared.isUserSubscribedToFullAccess() {
+            self.performSegue(withIdentifier: "ShowUpgradeView", sender: nil)
+        } else {
+            self.performSegue(withIdentifier: "ShowSubscriptionInfo", sender: nil)
+        }
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         // Pause the view's session
@@ -154,14 +162,6 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
             setImageForRekognition(image: currentImage)
         }
         
-    }
-    
-    @IBAction func hitUpgradeAction(_ sender: Any) {
-        if !SubscriptionManager.shared.isUserSubscribedToFullAccess() {
-            self.performSegue(withIdentifier: "ShowUpgradeView", sender: nil)
-        } else {
-            self.performSegue(withIdentifier: "ShowSubscriptionInfo", sender: nil)
-        }
     }
     
     // MARK: - ARSessionDelegate
