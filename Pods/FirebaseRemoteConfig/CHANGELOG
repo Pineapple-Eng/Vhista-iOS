@@ -1,3 +1,8 @@
+Version 3.0.1
+==================================
+- Bug fix for a memory leak bug.
+
+
 Version 3.0.0
 ==================================
 - Change the designated initializer for FIRRemoteConfigSettings to return a nonnull FIRRemoteConfigSettings object.

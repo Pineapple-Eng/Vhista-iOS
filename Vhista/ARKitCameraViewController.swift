@@ -137,22 +137,20 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
         case .reachableViaWiFi:
             print("Network OK")
         }
-
-//        Subscription not enabled
-//        if !SubscriptionManager.shared.checkDeepSubscription() {
-//            self.performSegue(withIdentifier: "ShowUpgradeView", sender: nil)
-//            return
-//        }
-        
-        processingImage = true
         
         guard self.persistentPixelBuffer != nil else {
             print("No Buffer \(String(describing: self.persistentPixelBuffer))")
             return
         }
         
+        if !SubscriptionManager.shared.checkDeepSubscription() {
+            self.performSegue(withIdentifier: "ShowUpgradeView", sender: nil)
+            return
+        }
+        
         if let currentImage = UIImage(pixelBuffer: self.persistentPixelBuffer!) {
             UINotificationFeedbackGenerator().notificationOccurred(.success)
+            processingImage = true
             setImageForRekognition(image: currentImage)
         }
         

@@ -205,11 +205,10 @@ class CameraViewController: UIViewController {
             print("Network OK")
         }
         
-//        Subscription not Enabled
-//        if !SubscriptionManager.shared.checkDeepSubscription() {
-//            self.performSegue(withIdentifier: "ShowUpgradeView", sender: nil)
-//            return
-//        }
+        if !SubscriptionManager.shared.checkDeepSubscription() {
+            self.performSegue(withIdentifier: "ShowUpgradeView", sender: nil)
+            return
+        }
         
         processingImage = true
         UINotificationFeedbackGenerator().notificationOccurred(.success)
