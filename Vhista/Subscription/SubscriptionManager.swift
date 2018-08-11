@@ -27,7 +27,7 @@ class SubscriptionManager: NSObject {
     func checkDeepSubscription() -> Bool {
         let defaults = UserDefaults.standard
         let numberOfPictures = defaults.integer(forKey: "PicturesTaken")
-        if numberOfPictures <= 2 {
+        if numberOfPictures <= 5 {
             defaults.set(numberOfPictures + 1, forKey: "PicturesTaken")
             print("🔢 Number of pictures taken: " + String(numberOfPictures + 1))
             return true

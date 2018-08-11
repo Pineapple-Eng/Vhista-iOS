@@ -23,6 +23,9 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
     
     @IBOutlet weak var deepAnalysisButton: UIButton!
     
+    @IBOutlet weak var upgradeButtonItem: UIBarButtonItem!
+    
+    
     // ARSession Frame
     var previousFrameTimeInterval = Date().timeIntervalSince1970
     
@@ -45,6 +48,12 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        VhistaSpeechManager.shared.blockAllSpeech = false
+        if SubscriptionManager.shared.isUserSubscribedToFullAccess() {
+            upgradeButtonItem.title = NSLocalizedString("Show_Subscription_Button_Title", comment: "")
+        } else {
+            upgradeButtonItem.title = NSLocalizedString("Upgrade_Button_Title", comment: "")
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -72,6 +81,10 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
         textHistoryPicker.shouldGroupAccessibilityChildren = false
         
         loveTextField.isAccessibilityElement = false
+        
+        if SubscriptionManager.shared.isUserSubscribedToFullAccess() {
+            upgradeButtonItem.title = NSLocalizedString("Show_Subscription_Button_Title", comment: "")
+        }
         
     }
     

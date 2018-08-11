@@ -37,7 +37,7 @@ class CameraViewController: UIViewController {
     
     @IBOutlet weak var deepAnalysisButton: UIButton!
     
-    @IBOutlet weak var upgradeButton: UIButton!
+    @IBOutlet weak var upgradeButtonItem: UIBarButtonItem!
     
     let shapeLayer = CAShapeLayer()
     
@@ -72,11 +72,12 @@ class CameraViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         VhistaSpeechManager.shared.blockAllSpeech = false
         if SubscriptionManager.shared.isUserSubscribedToFullAccess() {
-//            upgradeButton.setTitle(NSLocalizedString("Show_Subscription_Button_Title", comment: ""), for: .normal)
+            upgradeButtonItem.title = NSLocalizedString("Show_Subscription_Button_Title", comment: "")
         } else {
-//            upgradeButton.setTitle(NSLocalizedString("Upgrade_Button_Title", comment: ""), for: .normal)
+            upgradeButtonItem.title = NSLocalizedString("Upgrade_Button_Title", comment: "")
         }
     }
     
@@ -130,7 +131,7 @@ class CameraViewController: UIViewController {
         SwiftSpinner.useContainerView(userInterfaceView)
         
         if SubscriptionManager.shared.isUserSubscribedToFullAccess() {
-//            upgradeButton.setTitle(NSLocalizedString("Show_Subscription_Button_Title", comment: ""), for: .normal)
+            upgradeButtonItem.title = NSLocalizedString("Show_Subscription_Button_Title", comment: "")
         }
         
     }

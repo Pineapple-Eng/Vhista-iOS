@@ -133,6 +133,7 @@
                         <outlet property="pickerContainerView" destination="iT5-nx-aRb" id="svr-Pt-GP4"/>
                         <outlet property="selectedImageView" destination="hFa-CU-NpX" id="HF0-Sk-JMD"/>
                         <outlet property="textHistoryPicker" destination="NEb-80-shd" id="hVo-eO-aed"/>
+                        <outlet property="upgradeButtonItem" destination="oQv-Id-w20" id="coi-Kg-oPz"/>
                         <outlet property="userInterfaceView" destination="M1i-1w-Ezs" id="9pj-Gf-Yw7"/>
                         <segue destination="74y-tE-t8P" kind="show" identifier="ShowSubscriptionInfo" id="bWS-Hz-M6U"/>
                         <segue destination="XN5-zD-zT7" kind="show" identifier="ShowUpgradeView" id="mf8-pF-sd2"/>
@@ -340,6 +341,7 @@
                         <outlet property="sceneView" destination="6TA-En-mg4" id="s58-jf-p4g"/>
                         <outlet property="selectedImageView" destination="Ffu-aO-O4g" id="BIq-Qi-dx6"/>
                         <outlet property="textHistoryPicker" destination="qcI-2R-2du" id="mFp-0D-49C"/>
+                        <outlet property="upgradeButtonItem" destination="feG-yb-xi5" id="bDu-Rg-XeS"/>
                         <segue destination="XN5-zD-zT7" kind="show" identifier="ShowUpgradeView" id="832-2e-1X8"/>
                         <segue destination="74y-tE-t8P" kind="show" identifier="ShowSubscriptionInfo" id="ccV-g2-ehP"/>
                     </connections>
@@ -370,7 +372,7 @@
         <image name="TransparentLogo" width="150" height="233"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ccV-g2-ehP"/>
-        <segue reference="832-2e-1X8"/>
+        <segue reference="bWS-Hz-M6U"/>
+        <segue reference="mf8-pF-sd2"/>
     </inferredMetricsTieBreakers>
 </document>
