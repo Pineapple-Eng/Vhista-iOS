@@ -99,7 +99,8 @@ class SubscriptionManager: NSObject {
                 if purchase.needsFinishTransaction {
                     SwiftyStoreKit.finishTransaction(purchase.transaction)
                 }
-                self.verifySubscription(productId: productId)
+                self.verifySubscription(productId: productId) { (subscribed:Bool?) in
+                }
             } else {
                 // purchase error
                 self.parent.didEndPurchaseProcess()
@@ -107,7 +108,7 @@ class SubscriptionManager: NSObject {
         }
     }
     
-    func verifySubscription(productId: String) {
+    func verifySubscription(productId: String, _ completition: @escaping (_ subscribed: Bool?) -> ()) {
         let appleValidator = AppleReceiptValidator(service: .production, sharedSecret: AppleReceiptValidatorSecret)
         SwiftyStoreKit.verifyReceipt(using: appleValidator) { result in
             
@@ -120,45 +121,60 @@ class SubscriptionManager: NSObject {
                 switch purchaseResult {
                 case .purchased(let expiryDate, let receiptItems):
                     print("Product is valid until \(expiryDate) with receipt items: \(receiptItems)")
-                    VhistaSpeechManager.shared.blockAllSpeech = false
                     defaults.set(true, forKey: "IsSubscribed")
-                    self.parent.didEndPurchaseProcess()
+                    if self.parent != nil {
+                       self.parent.didEndPurchaseProcess()
+                        VhistaSpeechManager.shared.blockAllSpeech = false
+                    }
+                    completition(true)
                 case .expired(let expiryDate, let receiptItems):
                     print("Product is expired since \(expiryDate) with receipt items: \(receiptItems)")
                     defaults.set(false, forKey: "IsSubscribed")
-                    let alert = UIAlertController(title: NSLocalizedString("Title_Product_Expired", comment: ""), message: NSLocalizedString("Message_Product_Expired", comment: ""), preferredStyle: .alert)
                     
-                    let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: { (alertAction) in
+                    if self.parent != nil {
+                        let alert = UIAlertController(title: NSLocalizedString("Title_Product_Expired", comment: ""), message: NSLocalizedString("Message_Product_Expired", comment: ""), preferredStyle: .alert)
+                        
+                        let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: { (alertAction) in
+                            self.parent.didEndPurchaseProcess()
+                        })
+                        
+                        alert.addAction(actionClose)
+                        
+                        self.parent.present(alert, animated: true, completion: nil)
                         self.parent.didEndPurchaseProcess()
-                    })
+                    }
                     
-                    alert.addAction(actionClose)
-                    
-                    self.parent.present(alert, animated: true, completion: nil)
-                    self.parent.didEndPurchaseProcess()
+                    completition(false)
                 case .notPurchased:
                     print("This product has never been purchased")
                     defaults.set(false, forKey: "IsSubscribed")
-                    let alert = UIAlertController(title: NSLocalizedString("Title_Never_Purchased", comment: ""), message: NSLocalizedString("Message_Never_Purchased", comment: ""), preferredStyle: .alert)
                     
-                    let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: { (alertAction) in
+                    if self.parent != nil {
+                        let alert = UIAlertController(title: NSLocalizedString("Title_Never_Purchased", comment: ""), message: NSLocalizedString("Message_Never_Purchased", comment: ""), preferredStyle: .alert)
+                        
+                        let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: { (alertAction) in
+                            self.parent.didEndPurchaseProcess()
+                        })
+                        
+                        alert.addAction(actionClose)
+                        
+                        self.parent.present(alert, animated: true, completion: nil)
                         self.parent.didEndPurchaseProcess()
-                    })
+                    }
                     
-                    alert.addAction(actionClose)
-                    
-                    self.parent.present(alert, animated: true, completion: nil)
-                    self.parent.didEndPurchaseProcess()
+                    completition(false)
                 }
                 
             } else {
                 // receipt verification error
-                self.verifyTestSubscription(productId: productId)
+                self.verifyTestSubscription(productId: productId) { (subscribed:Bool?) in
+                    completition(subscribed)
+                }
             }
         }
     }
     
-    func verifyTestSubscription(productId: String) {
+    func verifyTestSubscription(productId: String, _ completition: @escaping (_ subscribed: Bool?) -> ()) {
         let appleValidator = AppleReceiptValidator(service: .sandbox, sharedSecret: AppleReceiptValidatorSecret)
         SwiftyStoreKit.verifyReceipt(using: appleValidator) { result in
             
@@ -171,40 +187,56 @@ class SubscriptionManager: NSObject {
                 switch purchaseResult {
                 case .purchased(let expiryDate, let receiptItems):
                     print("Product is valid until \(expiryDate) with receipt items: \(receiptItems)")
-                    VhistaSpeechManager.shared.blockAllSpeech = false
                     defaults.set(true, forKey: "IsSubscribed")
-                    self.parent.didEndPurchaseProcess()
+                    if self.parent != nil {
+                        self.parent.didEndPurchaseProcess()
+                        VhistaSpeechManager.shared.blockAllSpeech = false
+                    }
+                    completition(true)
                 case .expired(let expiryDate, let receiptItems):
                     print("Product is expired since \(expiryDate) with receipt items: \(receiptItems)")
                     defaults.set(false, forKey: "IsSubscribed")
-                    let alert = UIAlertController(title: NSLocalizedString("Title_Product_Expired", comment: ""), message: NSLocalizedString("Message_Product_Expired", comment: ""), preferredStyle: .alert)
                     
-                    let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: { (alertAction) in
+                    if self.parent != nil {
+                        let alert = UIAlertController(title: NSLocalizedString("Title_Product_Expired", comment: ""), message: NSLocalizedString("Message_Product_Expired", comment: ""), preferredStyle: .alert)
+                        
+                        let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: { (alertAction) in
+                            self.parent.didEndPurchaseProcess()
+                        })
+                        
+                        alert.addAction(actionClose)
+                        
+                        self.parent.present(alert, animated: true, completion: nil)
                         self.parent.didEndPurchaseProcess()
-                    })
+                    }
                     
-                    alert.addAction(actionClose)
-                    
-                    self.parent.present(alert, animated: true, completion: nil)
-                    self.parent.didEndPurchaseProcess()
+                    completition(false)
                 case .notPurchased:
                     print("This product has never been purchased")
                     defaults.set(false, forKey: "IsSubscribed")
-                    let alert = UIAlertController(title: NSLocalizedString("Title_Never_Purchased", comment: ""), message: NSLocalizedString("Message_Never_Purchased", comment: ""), preferredStyle: .alert)
                     
-                    let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: { (alertAction) in
+                    if self.parent != nil {
+                        let alert = UIAlertController(title: NSLocalizedString("Title_Never_Purchased", comment: ""), message: NSLocalizedString("Message_Never_Purchased", comment: ""), preferredStyle: .alert)
+                        
+                        let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: { (alertAction) in
+                            self.parent.didEndPurchaseProcess()
+                        })
+                        
+                        alert.addAction(actionClose)
+                        
+                        self.parent.present(alert, animated: true, completion: nil)
                         self.parent.didEndPurchaseProcess()
-                    })
+                    }
                     
-                    alert.addAction(actionClose)
-                    
-                    self.parent.present(alert, animated: true, completion: nil)
-                    self.parent.didEndPurchaseProcess()
+                    completition(false)
                 }
                 
             } else {
                 // receipt verification error
-                self.parent.didEndPurchaseProcess()
+                if self.parent != nil {
+                    self.parent.didEndPurchaseProcess()
+                }
+                completition(nil)
             }
         }
     }
@@ -227,7 +259,8 @@ class SubscriptionManager: NSObject {
             }
             else if results.restoredPurchases.count > 0 {
                 print("Restore Success: \(results.restoredPurchases)")
-                self.verifySubscription(productId: "Vhista_Full")
+                self.verifySubscription(productId: "Vhista_Full") { (subscribed:Bool?) in
+                }
             }
             else {
                 print("Nothing to Restore")

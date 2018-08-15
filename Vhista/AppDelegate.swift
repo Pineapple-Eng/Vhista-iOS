@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Verify Subscriptions
         SubscriptionManager.shared.completeTransactions()
+        SubscriptionManager.shared.verifySubscription(productId: "Vhista_Full") { (subscribed) in }
         
         //Listen For Network Changes
         VhistaReachabilityManager.shared.startMonitoring()

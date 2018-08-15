@@ -21,6 +21,24 @@ class LandingViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        if launchedBefore  {
+            continueToApp()
+        } else {
+            let alertPrivacy = UIAlertController(title: NSLocalizedString("TITLE_ALERT_PRIVACY", comment: ""), message: NSLocalizedString("MESSAGE_ALERT_PRIVACY", comment: ""), preferredStyle: .alert)
+            
+            let actionClose = UIAlertAction(title: NSLocalizedString("CONTINUE", comment: ""), style: .default) { (action) in
+                self.continueToApp()
+            }
+            alertPrivacy.addAction(actionClose)
+            
+            self.present(alertPrivacy, animated: true)
+            UserDefaults.standard.set(true, forKey: "launchedBefore")
+        }
+    }
+    
+    func continueToApp() {
         if ARConfiguration.isSupported, #available(iOS 11.3, *) {
             recordAnalytics(analyticsEventName: AnalyticsConstants().LandedAREnabled, parameters: [
                 "language": global_language as NSObject

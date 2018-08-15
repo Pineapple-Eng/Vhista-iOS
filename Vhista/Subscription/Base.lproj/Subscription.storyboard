@@ -61,7 +61,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KtP-7s-OI3">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <accessibility key="accessibilityConfiguration" hint="By clicking this button you can subscribe to our unlimited access" label="Subscribe Button"/>
+                                        <accessibility key="accessibilityConfiguration" hint="By selecting this button you can subscribe to our unlimited access" label="Subscribe Button"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="rvA-f4-CyW"/>
                                         </constraints>

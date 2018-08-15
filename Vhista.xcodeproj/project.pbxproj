@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0DCC7D5621238DFE00601C68 /* Subscription.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DCC7D5821238DFE00601C68 /* Subscription.storyboard */; };
 		0DF120FB211F507500177FC5 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0DF120FA211F507400177FC5 /* Inceptionv3.mlmodel */; };
 		2B2C62431F6B2CCC00E9BAF7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B2C62421F6B2CCC00E9BAF7 /* StoreKit.framework */; };
 		2B38F4761F32E8850083DBDB /* RekognitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B38F4751F32E8850083DBDB /* RekognitionManager.swift */; };
@@ -29,7 +30,6 @@
 		63342CE220B0BEC500E397E6 /* ObjectAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63342CE120B0BEC500E397E6 /* ObjectAnalysis.swift */; };
 		63342CE420B0BF4700E397E6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63342CE320B0BF4700E397E6 /* Constants.swift */; };
 		6393B097204E06EF0040A6CF /* SubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6393B096204E06EF0040A6CF /* SubscriptionViewController.swift */; };
-		6393B099204E07E80040A6CF /* Subscription.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6393B098204E07E80040A6CF /* Subscription.storyboard */; };
 		6393B09B204E11A60040A6CF /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6393B09A204E11A60040A6CF /* UIViewController+Extensions.swift */; };
 		6393B09D204E2D280040A6CF /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6393B09C204E2D280040A6CF /* UIView+Extensions.swift */; };
 		6393B09F204F0E660040A6CF /* CGImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6393B09E204F0E660040A6CF /* CGImage+Extensions.swift */; };
@@ -44,6 +44,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0DCC7D5721238DFE00601C68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Subscription.storyboard; sourceTree = "<group>"; };
+		0DCC7D5A21238E0200601C68 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Subscription.strings"; sourceTree = "<group>"; };
 		0DF120FA211F507400177FC5 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = Inceptionv3.mlmodel; path = ../../../Models/Inceptionv3.mlmodel; sourceTree = "<group>"; };
 		2AA84037E5C3EBBFFB8DBA7A /* Pods-Vhista.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vhista.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Vhista/Pods-Vhista.debug.xcconfig"; sourceTree = "<group>"; };
 		2B2C62421F6B2CCC00E9BAF7 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -71,7 +73,6 @@
 		63342CE120B0BEC500E397E6 /* ObjectAnalysis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ObjectAnalysis.swift; path = ObjectAnalysis/ObjectAnalysis.swift; sourceTree = "<group>"; };
 		63342CE320B0BF4700E397E6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Utilities/Constants.swift; sourceTree = "<group>"; };
 		6393B096204E06EF0040A6CF /* SubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SubscriptionViewController.swift; path = Subscription/SubscriptionViewController.swift; sourceTree = "<group>"; };
-		6393B098204E07E80040A6CF /* Subscription.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Subscription.storyboard; path = Subscription/Subscription.storyboard; sourceTree = "<group>"; };
 		6393B09A204E11A60040A6CF /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+Extensions.swift"; path = "Utilities/UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		6393B09C204E2D280040A6CF /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+Extensions.swift"; path = "Utilities/UIView+Extensions.swift"; sourceTree = "<group>"; };
 		6393B09E204F0E660040A6CF /* CGImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CGImage+Extensions.swift"; path = "Utilities/CGImage+Extensions.swift"; sourceTree = "<group>"; };
@@ -110,7 +111,7 @@
 				2B3EDA191F6E05B900C97A41 /* SubscriptionInfoViewController.swift */,
 				2BA01FCC1F6B47A700E1BD11 /* SubscriptionManager.swift */,
 				6393B096204E06EF0040A6CF /* SubscriptionViewController.swift */,
-				6393B098204E07E80040A6CF /* Subscription.storyboard */,
+				0DCC7D5821238DFE00601C68 /* Subscription.storyboard */,
 			);
 			name = Subscription;
 			sourceTree = "<group>";
@@ -327,7 +328,7 @@
 				2B75038B1F31936E007D4AFF /* Assets.xcassets in Resources */,
 				2B7503891F31936E007D4AFF /* Main.storyboard in Resources */,
 				2B9638BB1F328E42008DBBCF /* pad_confirm.aif in Resources */,
-				6393B099204E07E80040A6CF /* Subscription.storyboard in Resources */,
+				0DCC7D5621238DFE00601C68 /* Subscription.storyboard in Resources */,
 				63342CDA20B0BE6F00E397E6 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,6 +441,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		0DCC7D5821238DFE00601C68 /* Subscription.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0DCC7D5721238DFE00601C68 /* Base */,
+				0DCC7D5A21238E0200601C68 /* es-419 */,
+			);
+			name = Subscription.storyboard;
+			path = Subscription;
+			sourceTree = "<group>";
+		};
 		2B416BC71F6F28030029CB5A /* Info.plist */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -6,6 +6,16 @@
   Copyright © 2017 juandavidcruz. All rights reserved.
 */
 
+// Landing
+
+"TITLE_ALERT_PRIVACY" = "Información Importante";
+
+"MESSAGE_ALERT_PRIVACY" = "Vhista Inc no guarda, no visualiza, no observa, no almacena, no modifica y no tiene registro de ninguna foto tomada con esta aplicación. Tu privacidad es prioridad para nosotros.";
+
+"CONTINUE" = "Continuar";
+
+// General
+
 "Greeting_Message"  = "Toca la pantalla para tener un análisis de imagen más completo";
 
 "Processing_Image" = "Procesando Imagen.";
