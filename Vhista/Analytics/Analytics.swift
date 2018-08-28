@@ -19,6 +19,9 @@ extension NSObject {
         let RestoreButtonSubscription = "hit_restore_button_subscription"
         let LandedAREnabled = "landed_ar_enabled_device"
         let LandedARDisabled = "landed_ar_disabled_device"
+        let PictureNotSubscribed = "error_picture_unsubscribed"
+        let PictureSubscribed = "took_picture_subscribed"
+        let PictureFree = "took_free_picture"
     }
     
     func recordAnalytics(analyticsEventName: String, parameters: [String: NSObject]) {

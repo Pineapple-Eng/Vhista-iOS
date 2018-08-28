@@ -20,23 +20,22 @@ extension NSObject {
         let sourceImage = pImage
         
         let image = AWSRekognitionImage()
-        image!.bytes = UIImageJPEGRepresentation(sourceImage, 0.35)
+        image!.bytes = UIImageJPEGRepresentation(sourceImage, 0.45)
         
         let request = AWSRekognitionDetectFacesRequest()
         
         request!.attributes = ["ALL"]
         request!.image = image
         
-        rekognitionClient.detectFaces(request!, completionHandler: { (response:AWSRekognitionDetectFacesResponse?, error:Error?) in
-            
-            if (error == nil) {
+        rekognitionClient.detectFaces(request!) { (response, error) in
+            if response != nil {
+                print(response!)
                 completition(response!.faceDetails)
             } else {
-                print("Error:😀" + error!.localizedDescription)
+                print("Error:😀" + (error?.localizedDescription ?? "No Error Message"))
                 completition(nil)
             }
-            
-        })
+        }
         
     }
     

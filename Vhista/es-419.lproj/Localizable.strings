@@ -84,6 +84,9 @@
 
 "Deep_Analysis_Deactivated_Message" = "Actualmente este servicio no está disponible, intente de nuevo más tarde.";
 
+"AR_Session_Failed_Title" = "La sesión de AR falló";
+
+"Restart_Session" = "Reiniciar Sesión";
 
 // Loading Texts
 

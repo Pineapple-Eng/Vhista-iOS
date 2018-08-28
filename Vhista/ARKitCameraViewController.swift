@@ -198,6 +198,28 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
         
         self.persistentPixelBuffer = frame.capturedImage
         
+        
+//        Working "" flash solution.
+//        let luminosity = frame.lightEstimate?.ambientIntensity
+//        let device = AVCaptureDevice.default(for: .video)!
+//        if device.hasTorch, device.isTorchAvailable {
+//            do {
+//                try device.lockForConfiguration()
+//                if let lumens = luminosity, lumens < flashLumens {
+//                    device.torchMode = .on
+//                } else {
+//                    if device.isTorchActive {
+//                        device.torchMode = .off
+//                    }
+//                }
+//                device.unlockForConfiguration()
+//            } catch {
+//                print("\(error)")
+//            }
+//        }
+        
+        
+        
         guard currentBuffer == nil, case .normal = frame.camera.trackingState else {
             return
         }
@@ -335,7 +357,7 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
         // Filter out optional error messages.
         let errorMessage = messages.compactMap({ $0 }).joined(separator: "\n")
         DispatchQueue.main.async {
-            self.displayErrorMessage(title: "The AR session failed.", message: errorMessage)
+            self.displayErrorMessage(title: NSLocalizedString("AR_Session_Failed_Title", comment: ""), message: errorMessage)
         }
     }
     
@@ -507,9 +529,13 @@ extension ARKitCameraViewController {
     private func displayErrorMessage(title: String, message: String) {
         // Present an alert informing about the error that has occurred.
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let restartAction = UIAlertAction(title: "Restart Session", style: .default) { _ in
+        let restartAction = UIAlertAction(title: NSLocalizedString("Restart_Session", comment: ""), style: .default) { _ in
             alertController.dismiss(animated: true, completion: nil)
-            self.restartSession()
+            if !self.checkCameraPermissions() {
+                return
+            } else {
+                self.restartSession()
+            }
         }
         alertController.addAction(restartAction)
         present(alertController, animated: true, completion: nil)
@@ -520,29 +546,30 @@ extension ARKitCameraViewController {
 extension ARKitCameraViewController {
     
     func setImageForRekognition(image: UIImage) {
+        
         selectedImage = image
+        
+        let currentDevice: UIDevice = UIDevice.current
+        let orientation: UIDeviceOrientation = currentDevice.orientation
+        
+        switch (orientation) {
+        case .portrait: selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .right)
+            break
+        case .landscapeRight: selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .down)
+            break
+        case .landscapeLeft: selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .up)
+            break
+        case .portraitUpsideDown: selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .left)
+            break
+        default: selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .right)
+            break
+        }
+        
         RekognitionManager.shared.startProcessing(_sender: selectedImage)
         showSelectedImage()
     }
     
     func showSelectedImage() {
-        let currentDevice: UIDevice = UIDevice.current
-        let orientation: UIDeviceOrientation = currentDevice.orientation
-        
-        switch (orientation) {
-            case .portrait: selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .right)
-                break
-            case .landscapeRight: selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .down)
-                break
-            case .landscapeLeft: selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .up)
-                break
-            case .portraitUpsideDown: selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .left)
-                break
-            default: selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .right)
-                break
-        }
-        
-        
         selectedImageView.image = selectedImage
         selectedImageView.isHidden = false
     }

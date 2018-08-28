@@ -34,6 +34,7 @@ class ConfigurationManager: NSObject {
             if status == .success {
                 print("Config fetched!")
                 self.remoteConfig.activateFetched()
+                print(self.remoteConfig["deep_analysis_enabled"].boolValue)
                 completition(self.remoteConfig["deep_analysis_enabled"].boolValue)
             } else {
                 print("Config not fetched")

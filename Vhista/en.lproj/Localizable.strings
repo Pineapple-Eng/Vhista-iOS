@@ -84,6 +84,10 @@
 
 "Deep_Analysis_Deactivated_Message" = "Currently this service is unavailable, please try again later.";
 
+"AR_Session_Failed_Title" = "The AR session failed";
+
+"Restart_Session" = "Restart Session";
+
 // Loading Texts
 
 "HUD_Processing_Image" = "Processing Image";

@@ -29,12 +29,21 @@ class SubscriptionManager: NSObject {
         let numberOfPictures = defaults.integer(forKey: "PicturesTaken")
         if numberOfPictures <= 5 {
             defaults.set(numberOfPictures + 1, forKey: "PicturesTaken")
+            recordAnalytics(analyticsEventName: AnalyticsConstants().PictureFree, parameters: [
+                "language": global_language as NSObject
+                ])
             print("🔢 Number of pictures taken: " + String(numberOfPictures + 1))
             return true
         } else {
             if isUserSubscribedToFullAccess() {
+                recordAnalytics(analyticsEventName: AnalyticsConstants().PictureSubscribed, parameters: [
+                    "language": global_language as NSObject
+                    ])
                 return true
             } else {
+                recordAnalytics(analyticsEventName: AnalyticsConstants().PictureNotSubscribed, parameters: [
+                    "language": global_language as NSObject
+                    ])
                 return false
             }
         }
