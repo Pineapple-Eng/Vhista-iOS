@@ -78,6 +78,12 @@
 
 "Many_People" = " personas";
 
+// Error Handling
+
+"Deep_Analysis_Deactivated_Title" = "Servicio no disponible";
+
+"Deep_Analysis_Deactivated_Message" = "Actualmente este servicio no está disponible, intente de nuevo más tarde.";
+
 
 // Loading Texts
 

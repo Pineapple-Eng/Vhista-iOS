@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0DB8A87D2134F3FB0005D168 /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB8A87C2134F3FB0005D168 /* ConfigurationManager.swift */; };
+		0DB8A87F2134F6670005D168 /* RemoteConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0DB8A87E2134F6670005D168 /* RemoteConfig.plist */; };
 		0DCC7D5621238DFE00601C68 /* Subscription.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DCC7D5821238DFE00601C68 /* Subscription.storyboard */; };
 		0DF120FB211F507500177FC5 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0DF120FA211F507400177FC5 /* Inceptionv3.mlmodel */; };
 		2B2C62431F6B2CCC00E9BAF7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B2C62421F6B2CCC00E9BAF7 /* StoreKit.framework */; };
@@ -44,6 +46,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0DB8A87C2134F3FB0005D168 /* ConfigurationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConfigurationManager.swift; path = Utilities/ConfigurationManager.swift; sourceTree = "<group>"; };
+		0DB8A87E2134F6670005D168 /* RemoteConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfig.plist; sourceTree = "<group>"; };
 		0DCC7D5721238DFE00601C68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Subscription.storyboard; sourceTree = "<group>"; };
 		0DCC7D5A21238E0200601C68 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Subscription.strings"; sourceTree = "<group>"; };
 		0DF120FA211F507400177FC5 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = Inceptionv3.mlmodel; path = ../../../Models/Inceptionv3.mlmodel; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 				2B75038A1F31936E007D4AFF /* Assets.xcassets */,
 				2B75038C1F31936E007D4AFF /* LaunchScreen.storyboard */,
 				9A9AFD651F48CD5E00172469 /* Localizable.strings */,
+				0DB8A87E2134F6670005D168 /* RemoteConfig.plist */,
 				63342CD920B0BE6F00E397E6 /* GoogleService-Info.plist */,
 				2B416BC71F6F28030029CB5A /* Info.plist */,
 				2B9638B71F328E31008DBBCF /* SupportingFiles */,
@@ -211,6 +216,7 @@
 				6393B09E204F0E660040A6CF /* CGImage+Extensions.swift */,
 				63CB612A20AA2503004982EF /* UIImage+Extensions.swift */,
 				9A7AEDDC20FBD26D00430A25 /* DistanceManager.swift */,
+				0DB8A87C2134F3FB0005D168 /* ConfigurationManager.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -329,6 +335,7 @@
 				2B7503891F31936E007D4AFF /* Main.storyboard in Resources */,
 				2B9638BB1F328E42008DBBCF /* pad_confirm.aif in Resources */,
 				0DCC7D5621238DFE00601C68 /* Subscription.storyboard in Resources */,
+				0DB8A87F2134F6670005D168 /* RemoteConfig.plist in Resources */,
 				63342CDA20B0BE6F00E397E6 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -418,6 +425,7 @@
 				63342CD820B0BE0900E397E6 /* SecureConstants.swift in Sources */,
 				6393B09D204E2D280040A6CF /* UIView+Extensions.swift in Sources */,
 				63342CE020B0BEBC00E397E6 /* FaceAnalysis.swift in Sources */,
+				0DB8A87D2134F3FB0005D168 /* ConfigurationManager.swift in Sources */,
 				6393B09B204E11A60040A6CF /* UIViewController+Extensions.swift in Sources */,
 				9A7AEDDD20FBD26D00430A25 /* DistanceManager.swift in Sources */,
 				2B3EDA1A1F6E05B900C97A41 /* SubscriptionInfoViewController.swift in Sources */,

@@ -144,36 +144,47 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
             return
         }
         
-        switch VhistaReachabilityManager.shared.networkStatus {
-        case .notReachable:
-            VhistaSpeechManager.shared.sayText(stringToSpeak: NSLocalizedString("Not_Reachable", comment: "Let the user know there is no internet access"), isProtected: true, rate: globalRate)
-            UINotificationFeedbackGenerator().notificationOccurred(.error)
-            return
-        case .unknown:
-            VhistaSpeechManager.shared.sayText(stringToSpeak: NSLocalizedString("Not_Reachable", comment: "Let the user know there is no internet access"), isProtected: true, rate: globalRate)
-            UINotificationFeedbackGenerator().notificationOccurred(.error)
-            return
-        case .reachableViaWWAN:
-            print("Network OK")
-        case .reachableViaWiFi:
-            print("Network OK")
-        }
-        
-        guard self.persistentPixelBuffer != nil else {
-            print("No Buffer \(String(describing: self.persistentPixelBuffer))")
-            return
-        }
-        
-        if !SubscriptionManager.shared.checkDeepSubscription() {
-            self.performSegue(withIdentifier: "ShowUpgradeView", sender: nil)
-            return
-        }
-        
-        if let currentImage = UIImage(pixelBuffer: self.persistentPixelBuffer!) {
-            UINotificationFeedbackGenerator().notificationOccurred(.success)
-            processingImage = true
-            setImageForRekognition(image: currentImage)
-        }
+        ConfigurationManager.shared.serverAllowsRecognition({ (allowed) in
+            
+            if allowed {
+                
+                switch VhistaReachabilityManager.shared.networkStatus {
+                case .notReachable:
+                    VhistaSpeechManager.shared.sayText(stringToSpeak: NSLocalizedString("Not_Reachable", comment: "Let the user know there is no internet access"), isProtected: true, rate: globalRate)
+                    UINotificationFeedbackGenerator().notificationOccurred(.error)
+                    return
+                case .unknown:
+                    VhistaSpeechManager.shared.sayText(stringToSpeak: NSLocalizedString("Not_Reachable", comment: "Let the user know there is no internet access"), isProtected: true, rate: globalRate)
+                    UINotificationFeedbackGenerator().notificationOccurred(.error)
+                    return
+                case .reachableViaWWAN:
+                    print("Network OK")
+                case .reachableViaWiFi:
+                    print("Network OK")
+                }
+                
+                guard self.persistentPixelBuffer != nil else {
+                    print("No Buffer \(String(describing: self.persistentPixelBuffer))")
+                    return
+                }
+                
+                if !SubscriptionManager.shared.checkDeepSubscription() {
+                    self.performSegue(withIdentifier: "ShowUpgradeView", sender: nil)
+                    return
+                }
+                
+                if let currentImage = UIImage(pixelBuffer: self.persistentPixelBuffer!) {
+                    UINotificationFeedbackGenerator().notificationOccurred(.success)
+                    processingImage = true
+                    self.setImageForRekognition(image: currentImage)
+                }
+                
+            } else {
+                self.showErrorAlertView(title: NSLocalizedString("Deep_Analysis_Deactivated_Title", comment: ""), message: NSLocalizedString("Deep_Analysis_Deactivated_Message", comment: ""))
+                return
+            }
+            
+        })
         
     }
     
