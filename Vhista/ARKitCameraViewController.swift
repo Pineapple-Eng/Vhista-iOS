@@ -272,6 +272,11 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
     // Run the Vision+ML classifier on the current image buffer.
     /// - Tag: ClassifyCurrentImage
     private func classifyCurrentImage() {
+        
+        if currentBuffer == nil {
+            return
+        }
+        
         // Most computer vision tasks are not rotation agnostic so it is important to pass in the orientation of the image with respect to device.
         let orientation = CGImagePropertyOrientation(UIDevice.current.orientation)
         
