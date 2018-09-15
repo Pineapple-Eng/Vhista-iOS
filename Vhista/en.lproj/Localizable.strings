@@ -24,6 +24,8 @@
 
 "Error_Getting_Objects" = "There was an error finding objects.";
 
+"LAST_RECOGNITION" = "Last recognition: ";
+
 "Canceling_Processing" = "Canceling Processing";
 
 "Found_In_Picture" = "I Found: ";
@@ -161,6 +163,11 @@
 "Title_Button_Loading_Purchases" = "Showing Purchase Alerts";
 
 "Text_Subscription_Terms" = "You can see our Terms of Use at: https://vhista.com/terms/ and our privacy policy in https://vhista.com/privacy/\n\nPayment will be charged to iTunes Account at confirmation of purchase.\n\nSubscription automatically renews unless auto-renew is turned off at least 24-hours before the end of the current period\n\nAccount will be charged for renewal within 24-hours prior to the end of the current period, and identify the cost of the renewal\n\nSubscriptions may be managed by the user and auto-renewal may be turned off by going to the user’s Account Settings after purchase\n\nAny unused portion of a free trial period, if offered, will be forfeited when the user purchases a subscription to that publication, where applicable.";
+
+"Upgrade_Button_Accessibility_Hint" = "Press this button to show the purchase screen where you will be able to subscribe to Vhista for unlimited access.";
+
+"Subscription_Button_Accessibility_Hint" = "Press this button to learn about and manage your Vhista subscription.";
+
 
 // Distances
 

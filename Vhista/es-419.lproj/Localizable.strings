@@ -24,6 +24,8 @@
 
 "Error_Getting_Objects" = "Hubo un error al encontrar objetos.";
 
+"LAST_RECOGNITION" = "Último reconocimiento: ";
+
 "Canceling_Processing" = "Cancelando Procesamiento";
 
 "Found_In_Picture" = "Encontré en la imagen: ";
@@ -162,6 +164,10 @@
 "Title_Button_Loading_Purchases" = "Mostrando Alertas de Compra";
 
 "Text_Subscription_Terms" = "Puede ver nuestras Condiciones de uso en: https://vhista.com/terms/ y nuestra política de privacidad en https://vhista.com/privacy/\n\nEl pago se cargará a su cuenta de  iTunes al confirmar la compra.\n\nLa suscripción se renueva automáticamente a menos que se cancele la renovación automática por lo menos 24 horas antes del final del período actual \n\nLa cuenta se cargará para su renovación dentro de las 24 horas anteriores al final del período actual e identificará el costo de la renovación \n\nLas suscripciones pueden ser administradas por el usuario y la renovación automática puede ser desactivada accediendo a la configuración de la cuenta del \nusuario después de la compra \n\nCualquier parte no utilizada de un período de prueba gratuito, si se ofrece, se perderá cuando el usuario compra una suscripción a esa publicación, cuando corresponda.";
+
+"Upgrade_Button_Accessibility_Hint" = "Presione este botón para mostrar la pantalla de compra donde usted podrá suscribirse a Vhista para obtener acceso ilimitado.";
+
+"Subscription_Button_Accessibility_Hint" = "Presione este botón para conocer y administrar su suscripción a Vhista.";
 
 // Distances
 

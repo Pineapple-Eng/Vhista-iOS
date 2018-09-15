@@ -51,8 +51,10 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
         VhistaSpeechManager.shared.blockAllSpeech = false
         if SubscriptionManager.shared.isUserSubscribedToFullAccess() {
             upgradeButtonItem.title = NSLocalizedString("Show_Subscription_Button_Title", comment: "")
+            upgradeButtonItem.accessibilityHint = NSLocalizedString("Subscription_Button_Accessibility_Hint", comment: "")
         } else {
             upgradeButtonItem.title = NSLocalizedString("Upgrade_Button_Title", comment: "")
+            upgradeButtonItem.accessibilityHint = NSLocalizedString("Upgrade_Button_Accessibility_Hint", comment: "")
         }
     }
     
@@ -76,7 +78,7 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
         textHistoryPicker.dataSource = self
         textHistoryPicker.isAccessibilityElement = false
         textHistoryPicker.isUserInteractionEnabled = false
-        textHistoryPicker.accessibilityTraits = UIAccessibilityTraitNone
+        textHistoryPicker.accessibilityTraits = UIAccessibilityTraits.none
         textHistoryPicker.showsSelectionIndicator = false
         textHistoryPicker.shouldGroupAccessibilityChildren = false
         
@@ -91,7 +93,7 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
     func setUpSceneView() {
         
         sceneView.delegate = self
-        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
+        sceneView.debugOptions = [SCNDebugOptions.showFeaturePoints]
         sceneView.session.delegate = self
         sceneView.showsStatistics = false
         let arScene = SCNScene()
@@ -121,7 +123,7 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
         
         NSLayoutConstraint.activate([rigthAnchor, leftAnchor, heightAnchor, bottomAnchor])
         
-        self.view.bringSubview(toFront: deepAnalysisButton)
+        self.view.bringSubviewToFront(deepAnalysisButton)
     }
     
     @IBAction func hitUpgradeAction(_ sender: Any) {
@@ -412,13 +414,14 @@ extension ARKitCameraViewController: UIPickerViewDelegate, UIPickerViewDataSourc
         
         label.isAccessibilityElement = false
         label.isUserInteractionEnabled = false
-        label.accessibilityTraits = UIAccessibilityTraitNone
+        label.accessibilityTraits = UIAccessibilityTraits.none
+        label.accessibilityLabel = NSLocalizedString("LAST_RECOGNITION", comment: "") + ClassificationsManager.shared.recognitionsAsText[row]
         
         label.textColor = UIColor.white
         label.textAlignment = .center
-        label.contentMode = UIViewContentMode.center
+        label.contentMode = UIView.ContentMode.center
         label.font = UIFont.boldSystemFont(ofSize: 50)
-        label.attributedText =  NSAttributedString(string: ClassificationsManager.shared.recognitionsAsText[row], attributes: [NSAttributedStringKey.strokeWidth:-3.0, NSAttributedStringKey.strokeColor: UIColor(white: 0.0, alpha: 0.9)])
+        label.attributedText =  NSAttributedString(string: ClassificationsManager.shared.recognitionsAsText[row], attributes: [NSAttributedString.Key.strokeWidth:-3.0, NSAttributedString.Key.strokeColor: UIColor(white: 0.0, alpha: 0.9)])
         
         label.adjustsFontSizeToFitWidth = true
         

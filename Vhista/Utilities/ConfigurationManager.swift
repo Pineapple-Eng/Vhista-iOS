@@ -27,7 +27,7 @@ class ConfigurationManager: NSObject {
     func serverAllowsRecognition(_ completition: @escaping (_ allowed: Bool) -> ()) {
        
         // Enable for development purposes only.
-        remoteConfig.configSettings = RemoteConfigSettings(developerModeEnabled: true)
+//        remoteConfig.configSettings = RemoteConfigSettings(developerModeEnabled: true)
         remoteConfig.setDefaults(fromPlist: "RemoteConfig")
         
         remoteConfig.fetch { (status, error) in

@@ -76,8 +76,10 @@ class CameraViewController: UIViewController {
         VhistaSpeechManager.shared.blockAllSpeech = false
         if SubscriptionManager.shared.isUserSubscribedToFullAccess() {
             upgradeButtonItem.title = NSLocalizedString("Show_Subscription_Button_Title", comment: "")
+            upgradeButtonItem.accessibilityHint = NSLocalizedString("Subscription_Button_Accessibility_Hint", comment: "")
         } else {
             upgradeButtonItem.title = NSLocalizedString("Upgrade_Button_Title", comment: "")
+            upgradeButtonItem.accessibilityHint = NSLocalizedString("Upgrade_Button_Accessibility_Hint", comment: "")
         }
     }
     
@@ -110,7 +112,7 @@ class CameraViewController: UIViewController {
         textHistoryPicker.dataSource = self
         textHistoryPicker.isAccessibilityElement = false
         textHistoryPicker.isUserInteractionEnabled = false
-        textHistoryPicker.accessibilityTraits = UIAccessibilityTraitNone
+        textHistoryPicker.accessibilityTraits = UIAccessibilityTraits.none
         textHistoryPicker.showsSelectionIndicator = false
         
         let blurEffect = UIBlurEffect(style: .dark)
@@ -262,11 +264,13 @@ extension CameraViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         
         let label = (view as? UILabel) ?? UILabel()
         
+        label.accessibilityLabel = NSLocalizedString("LAST_RECOGNITION", comment: "") + ClassificationsManager.shared.recognitionsAsText[row]
+        
         label.textColor = UIColor.white
         label.textAlignment = .center
-        label.contentMode = UIViewContentMode.center
+        label.contentMode = UIView.ContentMode.center
         label.font = UIFont.boldSystemFont(ofSize: 50)
-        label.attributedText =  NSAttributedString(string: ClassificationsManager.shared.recognitionsAsText[row], attributes: [NSAttributedStringKey.strokeWidth:-3.0, NSAttributedStringKey.strokeColor: UIColor(white: 0.0, alpha: 0.9)])
+        label.attributedText =  NSAttributedString(string: ClassificationsManager.shared.recognitionsAsText[row], attributes: [NSAttributedString.Key.strokeWidth:-3.0, NSAttributedString.Key.strokeColor: UIColor(white: 0.0, alpha: 0.9)])
         
         label.adjustsFontSizeToFitWidth = true
         
@@ -368,7 +372,7 @@ extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         
         var requestOptions:[VNImageOption: Any] = [:]
         
-        if let cameraIntrinsicData = CMGetAttachment(sampleBuffer, kCMSampleBufferAttachmentKey_CameraIntrinsicMatrix, nil) {
+        if let cameraIntrinsicData = CMGetAttachment(sampleBuffer, key: kCMSampleBufferAttachmentKey_CameraIntrinsicMatrix, attachmentModeOut: nil) {
             requestOptions = [.cameraIntrinsics: cameraIntrinsicData]
         }
         
@@ -480,7 +484,7 @@ extension CameraViewController: AVCapturePhotoCaptureDelegate {
             print(error!.localizedDescription)
             return
         }
-        selectedImage = UIImage(cgImage: (photo.cgImageRepresentation()?.takeUnretainedValue())!, scale: 1.0, orientation: UIImageOrientation.right)
+        selectedImage = UIImage(cgImage: (photo.cgImageRepresentation()?.takeUnretainedValue())!, scale: 1.0, orientation: UIImage.Orientation.right)
         RekognitionManager.shared.startProcessing(_sender: selectedImage)
         showSelectedImage()
     }

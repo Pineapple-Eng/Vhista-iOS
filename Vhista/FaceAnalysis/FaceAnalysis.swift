@@ -20,7 +20,7 @@ extension NSObject {
         let sourceImage = pImage
         
         let image = AWSRekognitionImage()
-        image!.bytes = UIImageJPEGRepresentation(sourceImage, 0.45)
+        image!.bytes = sourceImage.jpegData(compressionQuality: 0.45)
         
         let request = AWSRekognitionDetectFacesRequest()
         

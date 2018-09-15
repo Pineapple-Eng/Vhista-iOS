@@ -72,7 +72,7 @@ extension RekognitionManager {
             SwiftSpinner.show(NSLocalizedString("HUD_Processing_Image", comment: ""))
         }
         
-        takenImage = _sender as! UIImage
+        takenImage = _sender as? UIImage
         
         playLoadingSound()
         

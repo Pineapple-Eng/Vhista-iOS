@@ -21,8 +21,8 @@ extension UIViewController {
             let alert: UIAlertController = UIAlertController(title: NSLocalizedString("Camera_Access", comment: ""), message: NSLocalizedString("No_Camera_Access", comment: ""), preferredStyle: .alert)
             
             let button: UIAlertAction = UIAlertAction(title: NSLocalizedString("Go_To_Settings", comment: ""), style: .default, handler: { (action:UIAlertAction) in
-                if UIApplication.shared.canOpenURL(URL(string: UIApplicationOpenSettingsURLString)!) {
-                    UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: { (completition) in
+                if UIApplication.shared.canOpenURL(URL(string: UIApplication.openSettingsURLString)!) {
+                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: { (completition) in
                     })
                 }
             })
@@ -41,4 +41,9 @@ extension UIViewController {
         
     }
     
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

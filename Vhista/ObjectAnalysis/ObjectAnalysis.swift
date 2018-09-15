@@ -19,7 +19,7 @@ extension NSObject {
         let sourceImage = pImage
         
         let image = AWSRekognitionImage()
-        image!.bytes = UIImageJPEGRepresentation(sourceImage, 0.35)
+        image!.bytes = sourceImage.jpegData(compressionQuality: 0.35)
         
         let request = AWSRekognitionDetectLabelsRequest()
         
