@@ -146,16 +146,29 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
             return
         }
         
+        guard self.persistentPixelBuffer != nil else {
+            print("No Buffer \(String(describing: self.persistentPixelBuffer))")
+            return
+        }
+        
+        RekognitionManager.shared.playLoadingSound()
+        VhistaSpeechManager.shared.stopSpeech(sender: sender)
+        VhistaSpeechManager.shared.blockAllSpeech =  true
+        
         ConfigurationManager.shared.serverAllowsRecognition({ (allowed) in
             
             if allowed {
                 
                 switch VhistaReachabilityManager.shared.networkStatus {
                 case .notReachable:
+                    RekognitionManager.shared.backToDefaults()
+                    VhistaSpeechManager.shared.blockAllSpeech =  false
                     VhistaSpeechManager.shared.sayText(stringToSpeak: NSLocalizedString("Not_Reachable", comment: "Let the user know there is no internet access"), isProtected: true, rate: globalRate)
                     UINotificationFeedbackGenerator().notificationOccurred(.error)
                     return
                 case .unknown:
+                    RekognitionManager.shared.backToDefaults()
+                    VhistaSpeechManager.shared.blockAllSpeech =  false
                     VhistaSpeechManager.shared.sayText(stringToSpeak: NSLocalizedString("Not_Reachable", comment: "Let the user know there is no internet access"), isProtected: true, rate: globalRate)
                     UINotificationFeedbackGenerator().notificationOccurred(.error)
                     return
@@ -165,12 +178,9 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
                     print("Network OK")
                 }
                 
-                guard self.persistentPixelBuffer != nil else {
-                    print("No Buffer \(String(describing: self.persistentPixelBuffer))")
-                    return
-                }
-                
                 if !SubscriptionManager.shared.checkDeepSubscription() {
+                    RekognitionManager.shared.backToDefaults()
+                    VhistaSpeechManager.shared.blockAllSpeech =  false
                     self.performSegue(withIdentifier: "ShowUpgradeView", sender: nil)
                     return
                 }
@@ -182,6 +192,8 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
                 }
                 
             } else {
+                RekognitionManager.shared.backToDefaults()
+                VhistaSpeechManager.shared.blockAllSpeech =  false
                 self.showErrorAlertView(title: NSLocalizedString("Deep_Analysis_Deactivated_Title", comment: ""), message: NSLocalizedString("Deep_Analysis_Deactivated_Message", comment: ""))
                 return
             }

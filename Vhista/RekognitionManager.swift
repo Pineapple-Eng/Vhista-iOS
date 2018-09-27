@@ -68,15 +68,14 @@ extension RekognitionManager {
         
 //        VhistaSpeechManager.shared.speakRekognition(stringToSpeak: NSLocalizedString("Processing_Image", comment: "The picture has been taken so we need to tell the user we are now going to process the image."))
         
-        DispatchQueue.main.async {
-            SwiftSpinner.show(NSLocalizedString("HUD_Processing_Image", comment: ""))
-        }
         
         takenImage = _sender as? UIImage
         
-        playLoadingSound()
         
         detectLabelsWithImage(pImage: takenImage, { (resultLabels:[AWSRekognitionLabel]?) in
+            
+            VhistaSpeechManager.shared.blockAllSpeech =  false
+            
             if resultLabels != nil {
                 
                 if resultLabels!.count == 0 {
@@ -341,6 +340,11 @@ extension RekognitionManager {
 extension RekognitionManager {
     
     func playLoadingSound() {
+        
+        DispatchQueue.main.async {
+            SwiftSpinner.show(NSLocalizedString("HUD_Processing_Image", comment: ""))
+        }
+        
         let url = Bundle.main.url(forResource: "pad_confirm", withExtension: "aif")!
         
         do {
