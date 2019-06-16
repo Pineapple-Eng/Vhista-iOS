@@ -177,7 +177,7 @@ class CameraViewController: UIViewController {
 
     private func updatePreviewLayer(layer: AVCaptureConnection, orientation: AVCaptureVideoOrientation) {
         layer.videoOrientation = orientation
-        layer.videoPreviewLayer.videoGravity = .resizeAspectFill
+        layer.videoPreviewLayer?.videoGravity = .resizeAspectFill
         cameraView.frame = self.view.bounds
     }
 
@@ -200,14 +200,7 @@ class CameraViewController: UIViewController {
         }
 
         switch VhistaReachabilityManager.shared.networkStatus {
-        case .notReachable:
-            VhistaSpeechManager.shared.sayText(stringToSpeak: NSLocalizedString("Not_Reachable",
-                                                                                comment: "Let the user know there is no internet access"),
-                                               isProtected: true,
-                                               rate: globalRate)
-            UINotificationFeedbackGenerator().notificationOccurred(.error)
-            return
-        case .unknown:
+        case .notReachable, .unknown:
             VhistaSpeechManager.shared.sayText(stringToSpeak: NSLocalizedString("Not_Reachable",
                                                                                 comment: "Let the user know there is no internet access"),
                                                isProtected: true,
@@ -218,6 +211,9 @@ class CameraViewController: UIViewController {
             print("Network OK")
         case .reachableViaWiFi:
             print("Network OK")
+        @unknown default:
+            print("Network Unknown")
+            return
         }
 
         if !SubscriptionManager.shared.checkDeepSubscription() {

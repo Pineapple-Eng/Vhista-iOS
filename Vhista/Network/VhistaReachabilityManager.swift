@@ -34,12 +34,11 @@ class VhistaReachabilityManager: NSObject {
                 print("🌐 Reachable WWAN")
             case .reachableViaWiFi:
                 print("🌐 Reachable WiFi")
+            @unknown default:
+                print("🌐 Default Unknown")
             }
-
             self.networkStatus = status
-
         }
         AFNetworkReachabilityManager.shared().startMonitoring()
     }
-
 }

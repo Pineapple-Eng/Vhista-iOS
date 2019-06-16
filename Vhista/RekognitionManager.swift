@@ -59,7 +59,7 @@ class RekognitionManager: NSObject {
 
 extension RekognitionManager {
 
-    func startProcessing (_ sender: Any) {
+    func startProcessing (_ sender: UIImage?) {
 
         recordAnalytics(analyticsEventName: AnalyticsConstants.TakenPicture, parameters: [
             "language": globalLanguage as NSObject
@@ -67,7 +67,7 @@ extension RekognitionManager {
 
 //        VhistaSpeechManager.shared.speakRekognition(stringToSpeak: NSLocalizedString("Processing_Image", comment: ""))
 
-        takenImage = sender as? UIImage
+        takenImage = sender
 
         detectLabelsWithImage(pImage: takenImage, { (resultLabels: [AWSRekognitionLabel]?) in
 
