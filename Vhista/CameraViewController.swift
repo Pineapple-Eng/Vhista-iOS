@@ -244,7 +244,6 @@ class CameraViewController: UIViewController {
 
             settings.isAutoStillImageStabilizationEnabled = true
             stillImageOutput.capturePhoto(with: settings, delegate: self)
-
         }
     }
 

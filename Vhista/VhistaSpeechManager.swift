@@ -33,7 +33,8 @@ class VhistaSpeechManager: NSObject {
         for availableVoice in AVSpeechSynthesisVoice.speechVoices() {
             if (availableVoice.language == AVSpeechSynthesisVoice.currentLanguageCode()) &&
                 (availableVoice.quality == AVSpeechSynthesisVoiceQuality.enhanced) {
-                // If you have found the enhanced version of the currently selected language voice amongst your available voices... Usually there's only one selected.
+                // If you have found the enhanced version of the currently selected language voice amongst your available voices
+                // Usually there's only one selected.
                 self.voice = availableVoice
                 print("\(availableVoice.name) selected as voice for uttering speeches. Quality: \(availableVoice.quality.rawValue)")
             } else if availableVoice.language == AVSpeechSynthesisVoice.currentLanguageCode() {
@@ -62,7 +63,10 @@ class VhistaSpeechManager: NSObject {
     }()
 
     func sayGreetingMessage() {
-        sayText(stringToSpeak: NSLocalizedString("Greeting_Message", comment: "The first message the user hears everytime he/she opens the app, usually a Short Intro to the app."), isProtected: true, rate: Float(globalRate))
+        sayText(stringToSpeak: NSLocalizedString("Greeting_Message",
+                                                 comment: "The first message the user hears everytime he/she opens the app, usually a Short Intro to the app."),
+                isProtected: true,
+                rate: Float(globalRate))
     }
 
     func sayText(stringToSpeak: String, isProtected: Bool, rate: Float) {

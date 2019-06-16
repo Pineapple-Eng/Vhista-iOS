@@ -33,28 +33,18 @@ class RekognitionManager: NSObject {
     }
 
     static let shared: RekognitionManager = {
-
         let instance = RekognitionManager()
-
         return instance
     }()
 
     func backToDefaults () {
-
         DispatchQueue.main.async {
-
             SwiftSpinner.hide()
-
             self.pauseLoadingSound()
-
             self.resultFaces = nil
-
             self.errorGettingFaces = nil
-
         }
-
     }
-
 }
 
 extension RekognitionManager {
