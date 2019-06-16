@@ -9,21 +9,19 @@
 import Foundation
 import Firebase
 
-
 extension UIViewController {
-    
-    struct AnalyticsConstants {
-        let TakenPicture = "taken_picture"
+
+    static struct AnalyticsConstants {
+        static let TakenPicture = "taken_picture"
     }
-    
+
     func recordAnalytics(analyticsEventName: String, parameters: [String: NSObject]) {
         DispatchQueue.main.async {
-            
+
             print("Send Analytics: " + analyticsEventName)
-            Analytics.logEvent(analyticsEventName, parameters:parameters )
-            
+            Analytics.logEvent(analyticsEventName, parameters: parameters )
+
         }
     }
-    
-    
+
 }

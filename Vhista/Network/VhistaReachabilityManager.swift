@@ -10,19 +10,19 @@ import UIKit
 import AFNetworking
 
 class VhistaReachabilityManager: NSObject {
-    
+
     var networkStatus = AFNetworkReachabilityStatus.unknown
-    
+
     // MARK: - Initialization Method
     override init() {
         super.init()
     }
-    
+
     static let shared: VhistaReachabilityManager = {
         let instance = VhistaReachabilityManager()
         return instance
     }()
-    
+
     func startMonitoring() {
         AFNetworkReachabilityManager.shared().setReachabilityStatusChange { (status: AFNetworkReachabilityStatus) -> Void in
             switch status {
@@ -35,9 +35,9 @@ class VhistaReachabilityManager: NSObject {
             case .reachableViaWiFi:
                 print("🌐 Reachable WiFi")
             }
-            
+
             self.networkStatus = status
-            
+
         }
         AFNetworkReachabilityManager.shared().startMonitoring()
     }

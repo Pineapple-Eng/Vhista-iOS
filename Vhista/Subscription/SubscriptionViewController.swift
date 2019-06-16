@@ -10,21 +10,20 @@ import UIKit
 import StoreKit
 
 class SubscriptionViewController: UIViewController {
-    
+
     @IBOutlet weak var serviceLabel: UILabel!
-    
+
     @IBOutlet weak var subscriptionDescTextView: UITextView!
-    
+
     @IBOutlet weak var lengthLabel: UILabel!
-    
+
     @IBOutlet weak var priceLabel: UILabel!
-    
+
     @IBOutlet weak var buyButton: UIButton!
-    
+
     @IBOutlet weak var restoreButton: UIButton!
-    
+
 //    @IBOutlet weak var loadingPurchaseView: UIView!
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,18 +31,18 @@ class SubscriptionViewController: UIViewController {
         setUpUI()
         getSubscriptionInfo()
     }
-    
+
     override func viewDidLayoutSubviews() {
         //TextView Scrolling Fix
         subscriptionDescTextView.setContentOffset(CGPoint.zero, animated: false)
     }
-    
+
     func setUpUI() {
-        
+
         subscriptionDescTextView.text = NSLocalizedString("Text_Subscription_Terms", comment: "")
-        
+
     }
-    
+
     func getSubscriptionInfo() {
         SubscriptionManager.shared.getProductForId(productId: "Vhista_Full", { (product) in
             if product != nil {
@@ -57,33 +56,32 @@ class SubscriptionViewController: UIViewController {
             }
         })
     }
-    
+
     @IBAction func acceptBuy(_ sender: Any) {
         deactivateBuyButtons()
-        self.recordAnalyticsViewController(analyticsEventName: AnalyticsConstants().BuyButtonSubscription, parameters: [
-            "language": global_language as NSObject
+        self.recordAnalyticsViewController(analyticsEventName: AnalyticsConstants.BuyButtonSubscription, parameters: [
+            "language": globalLanguage as NSObject
             ])
         SubscriptionManager.shared.purchaseSKProductWithID(productId: "Vhista_Full")
-        
+
     }
-    
+
     @IBAction func restoreSubscription(_ sender: Any) {
         deactivateBuyButtons()
-        self.recordAnalyticsViewController(analyticsEventName: AnalyticsConstants().RestoreButtonSubscription, parameters: [
-            "language": global_language as NSObject
+        self.recordAnalyticsViewController(analyticsEventName: AnalyticsConstants.RestoreButtonSubscription, parameters: [
+            "language": globalLanguage as NSObject
             ])
         SubscriptionManager.shared.restoreSubscriptions()
     }
-    
+
     @IBAction func cancelSubscription(_ sender: Any) {
         deactivateBuyButtons()
-        self.recordAnalyticsViewController(analyticsEventName: AnalyticsConstants().CancelButtonSubscription, parameters: [
-            "language": global_language as NSObject
+        self.recordAnalyticsViewController(analyticsEventName: AnalyticsConstants.CancelButtonSubscription, parameters: [
+            "language": globalLanguage as NSObject
             ])
         self.didEndPurchaseProcess()
     }
-    
-    
+
     func activateBuyButtons() {
 //        loadingPurchaseView.isHidden = true
         buyButton.isEnabled = true
@@ -91,7 +89,7 @@ class SubscriptionViewController: UIViewController {
         restoreButton.isEnabled = true
         restoreButton.isAccessibilityElement = true
     }
-    
+
     func deactivateBuyButtons() {
 //        loadingPurchaseView.isHidden = false
         buyButton.isEnabled = false
@@ -99,12 +97,11 @@ class SubscriptionViewController: UIViewController {
         restoreButton.isEnabled = false
         restoreButton.isAccessibilityElement = false
     }
-    
+
     func didEndPurchaseProcess() {
         activateBuyButtons()
         self.navigationController?.popViewController(animated: true)
     }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

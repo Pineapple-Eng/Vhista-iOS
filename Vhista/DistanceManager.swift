@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension UIViewController {
-    
+
     func getLocalizedStringForDistance(_ distance: CGFloat) -> String {
         if distance < 1.0 {
             return String(format: "%.0f", distance*100) + " " + NSLocalizedString("CENTIMETERS", comment: "")
@@ -19,9 +19,9 @@ extension UIViewController {
             if stringMeters.hasSuffix(".0") {
                 return  stringMeters.split(separator: ".")[0] + " " + NSLocalizedString("METERS", comment: "")
             }
-            
-            return stringMeters.replacingOccurrences(of: ".", with: " " + NSLocalizedString("POINT", comment:"") + " ") + " " + NSLocalizedString("METERS", comment: "")
+
+            return stringMeters.replacingOccurrences(of: ".", with: " " + NSLocalizedString("POINT", comment: "") + " ") + " " + NSLocalizedString("METERS", comment: "")
         }
     }
-    
+
 }

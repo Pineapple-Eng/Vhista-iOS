@@ -6,21 +6,21 @@ target 'Vhista' do
   use_frameworks!
 
   # Pods for Vhista
-   pod 'AFNetworking'
-   pod 'AWSCognito'
-   pod 'AWSCognitoIdentityProvider'
-   pod 'AWSRekognition'
+  pod 'AFNetworking'
+  pod 'AWSCognito'
+  pod 'AWSCognitoIdentityProvider'
+  pod 'AWSRekognition'
    
   # Firebase Pods
-   pod 'Firebase/Core'
-   pod 'Firebase/RemoteConfig'
+  pod 'Firebase/Core'
+  pod 'Firebase/RemoteConfig'
    
   # Crash Support Pods
   pod 'Fabric'
   pod 'Crashlytics'
 
   # Subscription Pods
-   pod 'SwiftyStoreKit'
+  pod 'SwiftyStoreKit'
 
 end
 

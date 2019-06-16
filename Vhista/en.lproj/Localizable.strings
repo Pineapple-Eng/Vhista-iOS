@@ -10,7 +10,7 @@
 
 "TITLE_ALERT_PRIVACY" = "Important Information";
 
-"MESSAGE_ALERT_PRIVACY" = "Vhista Inc does not save, does not visualize, does not observe, does not store, does not modify and has no record of any photo taken with this application. Your privacy is a priority for us.";
+"MESSAGE_ALERT_PRIVACY" = "Vhista Inc does not have access to, does not modify and has no record of any photo taken with this application. Your privacy is a priority for us.";
 
 "CONTINUE" = "Continue";
 

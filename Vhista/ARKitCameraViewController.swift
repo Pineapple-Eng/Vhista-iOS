@@ -11,32 +11,33 @@ import SpriteKit
 import ARKit
 import Vision
 
-class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, ARSessionDelegate {
-    
+class ARKitCameraViewController:
+UIViewController,
+UIGestureRecognizerDelegate,
+ARSessionDelegate {
+
     @IBOutlet weak var sceneView: ARSCNView!
-    
+
     @IBOutlet weak var pickerContainerView: UIView!
-    
+
     @IBOutlet weak var textHistoryPicker: UIPickerView!
-    
+
     @IBOutlet weak var loveTextField: UILabel!
-    
+
     @IBOutlet weak var deepAnalysisButton: UIButton!
-    
+
     @IBOutlet weak var upgradeButtonItem: UIBarButtonItem!
-    
-    
+
     // ARSession Frame
     var previousFrameTimeInterval = Date().timeIntervalSince1970
-    
+
     //Still Image
     private var persistentPixelBuffer: CVPixelBuffer?
-    
+
     var selectedImage: UIImage!
-    
+
     @IBOutlet weak var selectedImageView: UIImageView!
-    
-    
+
     // MARK: - View controller lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +46,7 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
         VhistaSpeechManager.shared.parentARController = self
 //        VhistaSpeechManager.shared.sayGreetingMessage()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         VhistaSpeechManager.shared.blockAllSpeech = false
@@ -57,7 +58,7 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
             upgradeButtonItem.accessibilityHint = NSLocalizedString("Upgrade_Button_Accessibility_Hint", comment: "")
         }
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // Create a session configuration
@@ -71,9 +72,9 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
         // Run the view's session
         sceneView.session.run(configuration)
     }
-    
+
     func setUpUI() {
-        
+
         textHistoryPicker.delegate = self
         textHistoryPicker.dataSource = self
         textHistoryPicker.isAccessibilityElement = false
@@ -81,51 +82,73 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
         textHistoryPicker.accessibilityTraits = UIAccessibilityTraits.none
         textHistoryPicker.showsSelectionIndicator = false
         textHistoryPicker.shouldGroupAccessibilityChildren = false
-        
+
         loveTextField.isAccessibilityElement = false
-        
+
         if SubscriptionManager.shared.isUserSubscribedToFullAccess() {
             upgradeButtonItem.title = NSLocalizedString("Show_Subscription_Button_Title", comment: "")
         }
-        
+
     }
-    
+
     func setUpSceneView() {
-        
+
         sceneView.delegate = self
         sceneView.debugOptions = [SCNDebugOptions.showFeaturePoints]
         sceneView.session.delegate = self
         sceneView.showsStatistics = false
         let arScene = SCNScene()
         sceneView.scene = arScene
-        
+
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let blurEffect = UIBlurEffect(style: .dark)
         let pickerVisualEffectView = UIVisualEffectView(effect: blurEffect)
         pickerVisualEffectView.frame = self.pickerContainerView.frame
         pickerVisualEffectView.tag = 99
-        for view in self.view.subviews {
-            if view.tag == 99 {
-                view.removeFromSuperview()
-            }
+        for view in self.view.subviews where view.tag == 99 {
+            view.removeFromSuperview()
         }
-        
+
         pickerVisualEffectView.translatesAutoresizingMaskIntoConstraints = false
-        let rigthAnchor = NSLayoutConstraint(item: pickerVisualEffectView, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1, constant: 0)
-        let leftAnchor = NSLayoutConstraint(item: pickerVisualEffectView, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1, constant: 0)
-        let heightAnchor = NSLayoutConstraint(item: pickerVisualEffectView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 240)
-        let bottomAnchor = NSLayoutConstraint(item: pickerVisualEffectView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1, constant: 0)
-        
+        let rigthAnchor = NSLayoutConstraint(item: pickerVisualEffectView,
+                                             attribute: .trailing,
+                                             relatedBy: .equal,
+                                             toItem: self.view,
+                                             attribute: .trailing,
+                                             multiplier: 1,
+                                             constant: 0)
+        let leftAnchor = NSLayoutConstraint(item: pickerVisualEffectView,
+                                            attribute: .leading,
+                                            relatedBy: .equal,
+                                            toItem: self.view,
+                                            attribute: .leading,
+                                            multiplier: 1,
+                                            constant: 0)
+        let heightAnchor = NSLayoutConstraint(item: pickerVisualEffectView,
+                                              attribute: .height,
+                                              relatedBy: .equal,
+                                              toItem: nil,
+                                              attribute: .height,
+                                              multiplier: 1,
+                                              constant: 240)
+        let bottomAnchor = NSLayoutConstraint(item: pickerVisualEffectView,
+                                              attribute: .bottom,
+                                              relatedBy: .equal,
+                                              toItem: self.view,
+                                              attribute: .bottom,
+                                              multiplier: 1,
+                                              constant: 0)
+
         self.view.insertSubview(pickerVisualEffectView, at: 1)
-        
+
         NSLayoutConstraint.activate([rigthAnchor, leftAnchor, heightAnchor, bottomAnchor])
-        
+
         self.view.bringSubviewToFront(deepAnalysisButton)
     }
-    
+
     @IBAction func hitUpgradeAction(_ sender: Any) {
         if !SubscriptionManager.shared.isUserSubscribedToFullAccess() {
             self.performSegue(withIdentifier: "ShowUpgradeView", sender: nil)
@@ -133,43 +156,49 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
             self.performSegue(withIdentifier: "ShowSubscriptionInfo", sender: nil)
         }
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         // Pause the view's session
         sceneView.session.pause()
     }
-    
+
     @IBAction func makeDeepAnalysis(_ sender: Any) {
-        
+
         if !checkCameraPermissions() {
             return
         }
-        
+
         guard self.persistentPixelBuffer != nil else {
             print("No Buffer \(String(describing: self.persistentPixelBuffer))")
             return
         }
-        
+
         RekognitionManager.shared.playLoadingSound()
         VhistaSpeechManager.shared.stopSpeech(sender: sender)
         VhistaSpeechManager.shared.blockAllSpeech =  true
-        
+
         ConfigurationManager.shared.serverAllowsRecognition({ (allowed) in
-            
+
             if allowed {
-                
+
                 switch VhistaReachabilityManager.shared.networkStatus {
                 case .notReachable:
                     RekognitionManager.shared.backToDefaults()
                     VhistaSpeechManager.shared.blockAllSpeech =  false
-                    VhistaSpeechManager.shared.sayText(stringToSpeak: NSLocalizedString("Not_Reachable", comment: "Let the user know there is no internet access"), isProtected: true, rate: globalRate)
+                    VhistaSpeechManager.shared.sayText(stringToSpeak: NSLocalizedString("Not_Reachable",
+                                                                                        comment: "Let the user know there is no internet access"),
+                                                       isProtected: true,
+                                                       rate: globalRate)
                     UINotificationFeedbackGenerator().notificationOccurred(.error)
                     return
                 case .unknown:
                     RekognitionManager.shared.backToDefaults()
                     VhistaSpeechManager.shared.blockAllSpeech =  false
-                    VhistaSpeechManager.shared.sayText(stringToSpeak: NSLocalizedString("Not_Reachable", comment: "Let the user know there is no internet access"), isProtected: true, rate: globalRate)
+                    VhistaSpeechManager.shared.sayText(stringToSpeak: NSLocalizedString("Not_Reachable",
+                                                                                        comment: "Let the user know there is no internet access"),
+                                                       isProtected: true,
+                                                       rate: globalRate)
                     UINotificationFeedbackGenerator().notificationOccurred(.error)
                     return
                 case .reachableViaWWAN:
@@ -177,42 +206,42 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
                 case .reachableViaWiFi:
                     print("Network OK")
                 }
-                
+
                 if !SubscriptionManager.shared.checkDeepSubscription() {
                     RekognitionManager.shared.backToDefaults()
                     VhistaSpeechManager.shared.blockAllSpeech =  false
                     self.performSegue(withIdentifier: "ShowUpgradeView", sender: nil)
                     return
                 }
-                
+
                 if let currentImage = UIImage(pixelBuffer: self.persistentPixelBuffer!) {
                     UINotificationFeedbackGenerator().notificationOccurred(.success)
                     processingImage = true
                     self.setImageForRekognition(image: currentImage)
                 }
-                
+
             } else {
                 RekognitionManager.shared.backToDefaults()
                 VhistaSpeechManager.shared.blockAllSpeech =  false
-                self.showErrorAlertView(title: NSLocalizedString("Deep_Analysis_Deactivated_Title", comment: ""), message: NSLocalizedString("Deep_Analysis_Deactivated_Message", comment: ""))
+                self.showErrorAlertView(title: NSLocalizedString("Deep_Analysis_Deactivated_Title", comment: ""),
+                                        message: NSLocalizedString("Deep_Analysis_Deactivated_Message", comment: ""))
                 return
             }
-            
+
         })
-        
+
     }
-    
+
     // MARK: - ARSessionDelegate
-    
+
     // Pass camera frames received from ARKit to Vision (when not already processing one)
     /// - Tag: ConsumeARFrames
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
         // Do not enqueue other buffers for processing while another Vision task is still running.
         // The camera stream has only a finite amount of buffers available; holding too many buffers for analysis would starve the camera.
-        
+
         self.persistentPixelBuffer = frame.capturedImage
-        
-        
+
 //        Working "" flash solution.
 //        let luminosity = frame.lightEstimate?.ambientIntensity
 //        let device = AVCaptureDevice.default(for: .video)!
@@ -231,27 +260,25 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
 //                print("\(error)")
 //            }
 //        }
-        
-        
-        
+
         guard currentBuffer == nil, case .normal = frame.camera.trackingState else {
             return
         }
-        
+
         let frameTimestamp = Date().timeIntervalSince1970
-        if (previousFrameTimeInterval.advanced(by: frameRateInterval) >= frameTimestamp) {
+        if previousFrameTimeInterval.advanced(by: frameRateInterval) >= frameTimestamp {
             return
         } else {
             previousFrameTimeInterval = frameTimestamp
         }
-        
+
         // Retain the image buffer for Vision processing.
         self.currentBuffer = frame.capturedImage
         classifyCurrentImage()
     }
-    
+
     // MARK: - Vision classification
-    
+
     // Vision classification request and model
     /// - Tag: ClassificationRequest
     private lazy var classificationRequest: VNCoreMLRequest = {
@@ -261,39 +288,39 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
             let request = VNCoreMLRequest(model: model, completionHandler: { [weak self] request, error in
                 self?.processClassifications(for: request, error: error)
             })
-            
+
             // Crop input images to square area at center, matching the way the ML model was trained.
             request.imageCropAndScaleOption = .centerCrop
-            
+
 //            request.usesCPUOnly = true
-            
+
             return request
         } catch {
             fatalError("Failed to load Vision ML model: \(error)")
         }
     }()
-    
+
     private lazy var facesClassificationRequest: VNDetectFaceRectanglesRequest = {
         return VNDetectFaceRectanglesRequest(completionHandler: self.handleFaceLandmarks)
     }()
-    
+
     // The pixel buffer being held for analysis; used to serialize Vision requests.
     private var currentBuffer: CVPixelBuffer?
-    
+
     // Queue for dispatching vision classification requests
     private let visionQueue = DispatchQueue(label: "com.juandavidcruz.Vhista.ARKitVision.serialVisionQueue")
-    
+
     // Run the Vision+ML classifier on the current image buffer.
     /// - Tag: ClassifyCurrentImage
     private func classifyCurrentImage() {
-        
+
         if currentBuffer == nil {
             return
         }
-        
+
         // Most computer vision tasks are not rotation agnostic so it is important to pass in the orientation of the image with respect to device.
         let orientation = CGImagePropertyOrientation(UIDevice.current.orientation)
-        
+
         let requestHandler = VNImageRequestHandler(cvPixelBuffer: currentBuffer!, orientation: orientation)
         visionQueue.async {
             do {
@@ -307,7 +334,7 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
             }
         }
     }
-    
+
     // Handle completion of the Vision request and choose results to display.
     /// - Tag: ProcessClassifications
     func processClassifications(for request: VNRequest, error: Error?) {
@@ -316,8 +343,10 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
             return
         }
         // The `results` will always be `VNClassificationObservation`s, as specified by the Core ML model in this project.
-        let classifications = results as! [VNClassificationObservation]
-        
+        guard let classifications = results as? [VNClassificationObservation] else {
+            return
+        }
+
         // Classification results
         var identifierString = ""
         var confidence: VNConfidence = 0.0
@@ -330,12 +359,12 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
             identifierString = ""
             confidence = 0
         }
-        
+
         DispatchQueue.main.async { [weak self] in
             self?.displayClassifierResults(identifierString, confidence: confidence)
         }
     }
-    
+
     // Show the classification results in the UI.
     private func displayClassifierResults(_ result: String, confidence: VNConfidence) {
         guard !result.isEmpty else {
@@ -343,7 +372,7 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
         }
         let message = String(format: "Detected \(result) with %.2f", confidence * 100) + "% confidence"
         print(message)
-        
+
         let hitTestResults = sceneView.hitTest(sceneView.center, types: .featurePoint)
         guard let hitTestResult = hitTestResults.first else {
             addStringToRead(result, "", isProtected: false)
@@ -351,39 +380,39 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
         }
         addStringToRead(result, getLocalizedStringForDistance(hitTestResult.distance), isProtected: false)
     }
-    
+
     // MARK: - AR Session Handling
-    
+
     func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
         switch camera.trackingState {
-        case .notAvailable, .limited: break;
-        case .normal: break;
+        case .notAvailable, .limited: break
+        case .normal: break
             // Unhide content after successful relocalization.
 //            setOverlaysHidden(false)
         }
     }
-    
+
     func session(_ session: ARSession, didFailWithError error: Error) {
         guard error is ARError else { return }
-        
+
         let errorWithInfo = error as NSError
         let messages = [
             errorWithInfo.localizedDescription,
             errorWithInfo.localizedFailureReason,
             errorWithInfo.localizedRecoverySuggestion
         ]
-        
+
         // Filter out optional error messages.
         let errorMessage = messages.compactMap({ $0 }).joined(separator: "\n")
         DispatchQueue.main.async {
             self.displayErrorMessage(title: NSLocalizedString("AR_Session_Failed_Title", comment: ""), message: errorMessage)
         }
     }
-    
+
     func sessionWasInterrupted(_ session: ARSession) {
 //        setOverlaysHidden(true)
     }
-    
+
     func sessionShouldAttemptRelocalization(_ session: ARSession) -> Bool {
         /*
          Allow the session to attempt to resume after an interruption.
@@ -393,7 +422,7 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
          */
         return true
     }
-    
+
     private func restartSession() {
         guard let sceneView = self.view as? ARSKView else {
             return
@@ -406,51 +435,53 @@ class ARKitCameraViewController: UIViewController, UIGestureRecognizerDelegate, 
         }
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
-    
+
 }
 
 // MARK: - Labels UIPickerView
 extension ARKitCameraViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    
+
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return ClassificationsManager.shared.recognitionsAsText.count
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        
+
         let label = (view as? UILabel) ?? UILabel()
-        
+
         label.isAccessibilityElement = false
         label.isUserInteractionEnabled = false
         label.accessibilityTraits = UIAccessibilityTraits.none
         label.accessibilityLabel = NSLocalizedString("LAST_RECOGNITION", comment: "") + ClassificationsManager.shared.recognitionsAsText[row]
-        
+
         label.textColor = UIColor.white
         label.textAlignment = .center
         label.contentMode = UIView.ContentMode.center
         label.font = UIFont.boldSystemFont(ofSize: 50)
-        label.attributedText =  NSAttributedString(string: ClassificationsManager.shared.recognitionsAsText[row], attributes: [NSAttributedString.Key.strokeWidth:-3.0, NSAttributedString.Key.strokeColor: UIColor(white: 0.0, alpha: 0.9)])
-        
+        label.attributedText =  NSAttributedString(string: ClassificationsManager.shared.recognitionsAsText[row],
+                                                   attributes: [
+                                                    NSAttributedString.Key.strokeWidth: -3.0,
+                                                    NSAttributedString.Key.strokeColor: UIColor(white: 0.0, alpha: 0.9)])
+
         label.adjustsFontSizeToFitWidth = true
-        
+
         return label
-        
+
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 50.0
     }
-    
-}
 
+}
 
 // MARK: - Handle Reading of Identified Labels
 extension ARKitCameraViewController {
-    
+
     func handleFaceLandmarks(request: VNRequest, error: Error?) {
         if processingImage { return }
         if let landmarksResults = request.results as? [VNFaceObservation] {
@@ -460,13 +491,13 @@ extension ARKitCameraViewController {
             }
         }
     }
-    
-    func addStringToRead(_ stringRecognized:String, _ distanceString:String, isProtected: Bool) {
-        
+
+    func addStringToRead(_ stringRecognized: String, _ distanceString: String, isProtected: Bool) {
+
         if !ClassificationsManager.shared.allowStringRecognized(stringRecognized: stringRecognized) { return }
         print(distanceString)
-        let stringRecognizedTranslated = translateModelString(pString: stringRecognized, targetLanguage: global_language)
-        
+        let stringRecognizedTranslated = translateModelString(pString: stringRecognized, targetLanguage: globalLanguage)
+
         ClassificationsManager.shared.lastRecognition = stringRecognized
         ClassificationsManager.shared.recognitionsAsText.insert(stringRecognizedTranslated, at: 0)
         if ClassificationsManager.shared.recognitionsAsText.count == 3 {
@@ -475,13 +506,15 @@ extension ARKitCameraViewController {
         DispatchQueue.main.async {
             self.textHistoryPicker.reloadAllComponents()
         }
-        
-        VhistaSpeechManager.shared.sayText(stringToSpeak: stringRecognizedTranslated + distanceString, isProtected: isProtected, rate: Float(globalRate))
-        
+
+        VhistaSpeechManager.shared.sayText(stringToSpeak: stringRecognizedTranslated + distanceString,
+                                           isProtected: isProtected,
+                                           rate: Float(globalRate))
+
     }
-    
-    func addStringToReadFace(stringRecognized:String, isProtected: Bool) {
-        
+
+    func addStringToReadFace(stringRecognized: String, isProtected: Bool) {
+
         ClassificationsManager.shared.lastRecognition = stringRecognized
         ClassificationsManager.shared.recognitionsAsText.insert(stringRecognized, at: 0)
         if ClassificationsManager.shared.recognitionsAsText.count == 3 {
@@ -490,18 +523,18 @@ extension ARKitCameraViewController {
         DispatchQueue.main.async {
             self.textHistoryPicker.reloadAllComponents()
         }
-        
+
         VhistaSpeechManager.shared.sayText(stringToSpeak: stringRecognized, isProtected: isProtected, rate: Float(globalRate))
-        
+
     }
-    
+
 }
 
 // MARK: - Handle ARSCNView Delegate Methods
 extension ARKitCameraViewController: ARSCNViewDelegate {
-    
+
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-        
+
         let anchorNode = SCNNode()
         let planeNode = SCNNode()
         if let anchor = anchor as? ARPlaneAnchor {
@@ -509,12 +542,12 @@ extension ARKitCameraViewController: ARSCNViewDelegate {
             // transforming node
             planeNode.position = SCNVector3(anchor.center.x, 0, anchor.center.z)
             planeNode.geometry?.firstMaterial?.diffuse.contents = UIColor(red: 90/255, green: 200/255, blue: 250/255, alpha: 0.50)
-            planeNode.eulerAngles = SCNVector3(-Float.pi/2,0,0)
+            planeNode.eulerAngles = SCNVector3(-Float.pi/2, 0, 0)
         }
         anchorNode.addChildNode(planeNode)
         return anchorNode
     }
-    
+
 //    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
 //
 //        guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
@@ -530,7 +563,7 @@ extension ARKitCameraViewController: ARSCNViewDelegate {
 //        planeNode.position = SCNVector3(x,y,z)
 //        node.addChildNode(planeNode)
 //    }
-    
+
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
         if let anchor = anchor as? ARPlaneAnchor {
             if let planeNode = node.childNodes.first {
@@ -541,7 +574,7 @@ extension ARKitCameraViewController: ARSCNViewDelegate {
             }
         }
     }
-    
+
 }
 
 // MARK: - Error Handling
@@ -562,38 +595,37 @@ extension ARKitCameraViewController {
     }
 }
 
-
 extension ARKitCameraViewController {
-    
+
     func setImageForRekognition(image: UIImage) {
-        
+
         selectedImage = image
-        
+
         let currentDevice: UIDevice = UIDevice.current
         let orientation: UIDeviceOrientation = currentDevice.orientation
-        
-        switch (orientation) {
-        case .portrait: selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .right)
-            break
-        case .landscapeRight: selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .down)
-            break
-        case .landscapeLeft: selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .up)
-            break
-        case .portraitUpsideDown: selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .left)
-            break
-        default: selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .right)
-            break
+
+        switch orientation {
+        case .portrait:
+            selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .right)
+        case .landscapeRight:
+            selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .down)
+        case .landscapeLeft:
+            selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .up)
+        case .portraitUpsideDown:
+            selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .left)
+        default:
+            selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .right)
         }
-        
-        RekognitionManager.shared.startProcessing(_sender: selectedImage)
+
+        RekognitionManager.shared.startProcessing(selectedImage)
         showSelectedImage()
     }
-    
+
     func showSelectedImage() {
         selectedImageView.image = selectedImage
         selectedImageView.isHidden = false
     }
-    
+
     func finishedRekognitionAnalisis() {
         print("🏁 Finished Rekognition Analysis")
         DispatchQueue.main.async {
@@ -603,6 +635,4 @@ extension ARKitCameraViewController {
         selectedImage = nil
         processingImage = false
     }
-    
 }
-

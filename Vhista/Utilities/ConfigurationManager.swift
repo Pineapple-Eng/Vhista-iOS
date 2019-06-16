@@ -11,25 +11,25 @@ import Firebase
 import DeviceCheck
 
 class ConfigurationManager: NSObject {
-    
+
     let remoteConfig = RemoteConfig.remoteConfig()
-    
+
     // MARK: - Initialization Method
     override init() {
         super.init()
     }
-    
+
     static let shared: ConfigurationManager = {
         let instance = ConfigurationManager()
         return instance
     }()
-    
-    func serverAllowsRecognition(_ completition: @escaping (_ allowed: Bool) -> ()) {
-       
+
+    func serverAllowsRecognition(_ completition: @escaping (_ allowed: Bool) -> Void) {
+
         // Enable for development purposes only.
 //        remoteConfig.configSettings = RemoteConfigSettings(developerModeEnabled: true)
         remoteConfig.setDefaults(fromPlist: "RemoteConfig")
-        
+
         remoteConfig.fetch { (status, error) in
             if status == .success {
                 print("Config fetched!")
@@ -42,7 +42,7 @@ class ConfigurationManager: NSObject {
                 completition(true)
             }
         }
-        
+
     }
-    
+
 }

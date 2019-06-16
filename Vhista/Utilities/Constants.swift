@@ -9,7 +9,7 @@
 import Foundation
 import CoreGraphics
 
-let inceptionV3RecognitionThreshold:Float = 0.30
+let inceptionV3RecognitionThreshold: Float = 0.30
 
 let frameRateInterval = 1.0
 

@@ -11,44 +11,44 @@ import SwiftyStoreKit
 import StoreKit
 
 class SubscriptionManager: NSObject {
-    
+
     var parent: SubscriptionViewController!
-    
+
     // MARK: - Initialization Method
     override init() {
         super.init()
     }
-    
+
     static let shared: SubscriptionManager = {
         let instance = SubscriptionManager()
         return instance
     }()
-    
+
     func checkDeepSubscription() -> Bool {
         let defaults = UserDefaults.standard
         let numberOfPictures = defaults.integer(forKey: "PicturesTaken")
         if numberOfPictures <= 5 {
             defaults.set(numberOfPictures + 1, forKey: "PicturesTaken")
-            recordAnalytics(analyticsEventName: AnalyticsConstants().PictureFree, parameters: [
-                "language": global_language as NSObject
+            recordAnalytics(analyticsEventName: AnalyticsConstants.PictureFree, parameters: [
+                "language": globalLanguage as NSObject
                 ])
             print("🔢 Number of pictures taken: " + String(numberOfPictures + 1))
             return true
         } else {
             if isUserSubscribedToFullAccess() {
-                recordAnalytics(analyticsEventName: AnalyticsConstants().PictureSubscribed, parameters: [
-                    "language": global_language as NSObject
+                recordAnalytics(analyticsEventName: AnalyticsConstants.PictureSubscribed, parameters: [
+                    "language": globalLanguage as NSObject
                     ])
                 return true
             } else {
-                recordAnalytics(analyticsEventName: AnalyticsConstants().PictureNotSubscribed, parameters: [
-                    "language": global_language as NSObject
+                recordAnalytics(analyticsEventName: AnalyticsConstants.PictureNotSubscribed, parameters: [
+                    "language": globalLanguage as NSObject
                     ])
                 return false
             }
         }
     }
-    
+
     func completeTransactions() {
         SwiftyStoreKit.completeTransactions(atomically: true) { purchases in
             for purchase in purchases {
@@ -67,15 +67,15 @@ class SubscriptionManager: NSObject {
             }
         }
     }
-    
+
     func isUserSubscribedToFullAccess() -> Bool {
         let defaults = UserDefaults.standard
         let isSubscribed = defaults.bool(forKey: "IsSubscribed")
         print("SUBCRIBED: \(isSubscribed)")
         return isSubscribed
     }
-    
-    func getProductForId(productId:String,_ completition: @escaping (_ success: SKProduct?) -> ()) {
+
+    func getProductForId(productId: String, _ completition: @escaping (_ success: SKProduct?) -> Void) {
         SwiftyStoreKit.retrieveProductsInfo([productId]) { result in
             if let product = result.retrievedProducts.first {
                 completition(product)
@@ -90,9 +90,9 @@ class SubscriptionManager: NSObject {
             }
         }
     }
-    
+
     func purchaseSKProductWithID (productId: String) {
-        getProductForId(productId: productId) { (product:SKProduct?) in
+        getProductForId(productId: productId) { (product: SKProduct?) in
             if product != nil {
                 self.purchaseProduct(product: product!, productId: productId)
             } else {
@@ -100,7 +100,7 @@ class SubscriptionManager: NSObject {
             }
         }
     }
-    
+
     func purchaseProduct (product: SKProduct, productId: String) {
         SwiftyStoreKit.purchaseProduct(product) { (result: PurchaseResult) in
             if case .success(let purchase) = result {
@@ -108,7 +108,7 @@ class SubscriptionManager: NSObject {
                 if purchase.needsFinishTransaction {
                     SwiftyStoreKit.finishTransaction(purchase.transaction)
                 }
-                self.verifySubscription(productId: productId) { (subscribed:Bool?) in
+                self.verifySubscription(productId: productId) { (_: Bool?) in
                 }
             } else {
                 // purchase error
@@ -116,11 +116,11 @@ class SubscriptionManager: NSObject {
             }
         }
     }
-    
-    func verifySubscription(productId: String, _ completition: @escaping (_ subscribed: Bool?) -> ()) {
-        let appleValidator = AppleReceiptValidator(service: .production, sharedSecret: AppleReceiptValidatorSecret)
+
+    func verifySubscription(productId: String, _ completition: @escaping (_ subscribed: Bool?) -> Void) {
+        let appleValidator = AppleReceiptValidator(service: .production, sharedSecret: appleReceiptValidatorSecret)
         SwiftyStoreKit.verifyReceipt(using: appleValidator) { result in
-            
+
             if case .success(let receipt) = result {
                 let purchaseResult = SwiftyStoreKit.verifySubscription(
                     ofType: .autoRenewable,
@@ -139,54 +139,58 @@ class SubscriptionManager: NSObject {
                 case .expired(let expiryDate, let receiptItems):
                     print("Product is expired since \(expiryDate) with receipt items: \(receiptItems)")
                     defaults.set(false, forKey: "IsSubscribed")
-                    
+
                     if self.parent != nil {
-                        let alert = UIAlertController(title: NSLocalizedString("Title_Product_Expired", comment: ""), message: NSLocalizedString("Message_Product_Expired", comment: ""), preferredStyle: .alert)
-                        
-                        let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: { (alertAction) in
+                        let alert = UIAlertController(title: NSLocalizedString("Title_Product_Expired", comment: ""),
+                                                      message: NSLocalizedString("Message_Product_Expired", comment: ""),
+                                                      preferredStyle: .alert)
+
+                        let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: { (_) in
                             self.parent.didEndPurchaseProcess()
                         })
-                        
+
                         alert.addAction(actionClose)
-                        
+
                         self.parent.present(alert, animated: true, completion: nil)
                         self.parent.didEndPurchaseProcess()
                     }
-                    
+
                     completition(false)
                 case .notPurchased:
                     print("This product has never been purchased")
                     defaults.set(false, forKey: "IsSubscribed")
-                    
+
                     if self.parent != nil {
-                        let alert = UIAlertController(title: NSLocalizedString("Title_Never_Purchased", comment: ""), message: NSLocalizedString("Message_Never_Purchased", comment: ""), preferredStyle: .alert)
-                        
-                        let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: { (alertAction) in
+                        let alert = UIAlertController(title: NSLocalizedString("Title_Never_Purchased", comment: ""),
+                                                      message: NSLocalizedString("Message_Never_Purchased", comment: ""),
+                                                      preferredStyle: .alert)
+
+                        let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: { (_) in
                             self.parent.didEndPurchaseProcess()
                         })
-                        
+
                         alert.addAction(actionClose)
-                        
+
                         self.parent.present(alert, animated: true, completion: nil)
                         self.parent.didEndPurchaseProcess()
                     }
-                    
+
                     completition(false)
                 }
-                
+
             } else {
                 // receipt verification error
-                self.verifyTestSubscription(productId: productId) { (subscribed:Bool?) in
+                self.verifyTestSubscription(productId: productId) { (subscribed: Bool?) in
                     completition(subscribed)
                 }
             }
         }
     }
-    
-    func verifyTestSubscription(productId: String, _ completition: @escaping (_ subscribed: Bool?) -> ()) {
-        let appleValidator = AppleReceiptValidator(service: .sandbox, sharedSecret: AppleReceiptValidatorSecret)
+
+    func verifyTestSubscription(productId: String, _ completition: @escaping (_ subscribed: Bool?) -> Void) {
+        let appleValidator = AppleReceiptValidator(service: .sandbox, sharedSecret: appleReceiptValidatorSecret)
         SwiftyStoreKit.verifyReceipt(using: appleValidator) { result in
-            
+
             if case .success(let receipt) = result {
                 let purchaseResult = SwiftyStoreKit.verifySubscription(
                     ofType: .autoRenewable,
@@ -205,41 +209,45 @@ class SubscriptionManager: NSObject {
                 case .expired(let expiryDate, let receiptItems):
                     print("Product is expired since \(expiryDate) with receipt items: \(receiptItems)")
                     defaults.set(false, forKey: "IsSubscribed")
-                    
+
                     if self.parent != nil {
-                        let alert = UIAlertController(title: NSLocalizedString("Title_Product_Expired", comment: ""), message: NSLocalizedString("Message_Product_Expired", comment: ""), preferredStyle: .alert)
-                        
-                        let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: { (alertAction) in
+                        let alert = UIAlertController(title: NSLocalizedString("Title_Product_Expired", comment: ""),
+                                                      message: NSLocalizedString("Message_Product_Expired", comment: ""),
+                                                      preferredStyle: .alert)
+
+                        let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: { (_) in
                             self.parent.didEndPurchaseProcess()
                         })
-                        
+
                         alert.addAction(actionClose)
-                        
+
                         self.parent.present(alert, animated: true, completion: nil)
                         self.parent.didEndPurchaseProcess()
                     }
-                    
+
                     completition(false)
                 case .notPurchased:
                     print("This product has never been purchased")
                     defaults.set(false, forKey: "IsSubscribed")
-                    
+
                     if self.parent != nil {
-                        let alert = UIAlertController(title: NSLocalizedString("Title_Never_Purchased", comment: ""), message: NSLocalizedString("Message_Never_Purchased", comment: ""), preferredStyle: .alert)
-                        
-                        let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: { (alertAction) in
+                        let alert = UIAlertController(title: NSLocalizedString("Title_Never_Purchased", comment: ""),
+                                                      message: NSLocalizedString("Message_Never_Purchased", comment: ""),
+                                                      preferredStyle: .alert)
+
+                        let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: { (_) in
                             self.parent.didEndPurchaseProcess()
                         })
-                        
+
                         alert.addAction(actionClose)
-                        
+
                         self.parent.present(alert, animated: true, completion: nil)
                         self.parent.didEndPurchaseProcess()
                     }
-                    
+
                     completition(false)
                 }
-                
+
             } else {
                 // receipt verification error
                 if self.parent != nil {
@@ -249,44 +257,44 @@ class SubscriptionManager: NSObject {
             }
         }
     }
-    
+
     func restoreSubscriptions() {
         SwiftyStoreKit.restorePurchases(atomically: true) { results in
             if results.restoreFailedPurchases.count > 0 {
                 print("Restore Failed: \(results.restoreFailedPurchases)")
-                
-                let alert = UIAlertController(title: NSLocalizedString("Title_Restore_Failed", comment: ""), message: NSLocalizedString("Message_Restore_Failed", comment: ""), preferredStyle: .alert)
-                
-                let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: { (alertAction) in
+
+                let alert = UIAlertController(title: NSLocalizedString("Title_Restore_Failed", comment: ""),
+                                              message: NSLocalizedString("Message_Restore_Failed", comment: ""),
+                                              preferredStyle: .alert)
+
+                let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: { (_) in
                     self.parent.didEndPurchaseProcess()
                 })
-                
+
                 alert.addAction(actionClose)
-                
+
                 self.parent.present(alert, animated: true, completion: nil)
-                
-            }
-            else if results.restoredPurchases.count > 0 {
+
+            } else if results.restoredPurchases.count > 0 {
                 print("Restore Success: \(results.restoredPurchases)")
-                self.verifySubscription(productId: "Vhista_Full") { (subscribed:Bool?) in
+                self.verifySubscription(productId: "Vhista_Full") { (_: Bool?) in
                 }
-            }
-            else {
+            } else {
                 print("Nothing to Restore")
-                
-                let alert = UIAlertController(title: NSLocalizedString("Title_Nothing_To_Restore", comment: ""), message: NSLocalizedString("Message_Nothing_To_Restore", comment: ""), preferredStyle: .alert)
-                
-                let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: { (alertAction) in
+
+                let alert = UIAlertController(title: NSLocalizedString("Title_Nothing_To_Restore", comment: ""),
+                                              message: NSLocalizedString("Message_Nothing_To_Restore", comment: ""),
+                                              preferredStyle: .alert)
+
+                let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: { (_) in
                     self.parent.didEndPurchaseProcess()
                 })
-                
+
                 alert.addAction(actionClose)
-                
+
                 self.parent.present(alert, animated: true, completion: nil)
-                
-                
+
             }
         }
     }
 }
-

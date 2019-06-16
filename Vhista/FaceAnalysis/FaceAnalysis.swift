@@ -12,21 +12,20 @@ import AVFoundation
 import AWSCore
 import AWSRekognition
 
-
 extension NSObject {
-    func faceAnalysisWithImage (pImage: UIImage,_ completition: @escaping (_ success: [AWSRekognitionFaceDetail]?) -> ()) {
-        
+    func faceAnalysisWithImage (pImage: UIImage, _ completition: @escaping (_ success: [AWSRekognitionFaceDetail]?) -> Void) {
+
         let rekognitionClient = AWSRekognition.default()
         let sourceImage = pImage
-        
+
         let image = AWSRekognitionImage()
         image!.bytes = sourceImage.jpegData(compressionQuality: 0.45)
-        
+
         let request = AWSRekognitionDetectFacesRequest()
-        
+
         request!.attributes = ["ALL"]
         request!.image = image
-        
+
         rekognitionClient.detectFaces(request!) { (response, error) in
             if response != nil {
                 print(response!)
@@ -36,8 +35,7 @@ extension NSObject {
                 completition(nil)
             }
         }
-        
-    }
-    
-}
 
+    }
+
+}

@@ -1,0 +1,10 @@
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Carthage
+  - Pods
+type_name:
+  min_length: 2 # only warning
+identifier_name:
+  min_length: 2
+line_length: 150
+disabled_rules:
+  - cyclomatic_complexity
