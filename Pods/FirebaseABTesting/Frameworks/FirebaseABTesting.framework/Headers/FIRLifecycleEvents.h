@@ -3,18 +3,23 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /// Default event name for when an experiment is set.
-extern NSString *const FIRSetExperimentEventName;
+extern NSString *const FIRSetExperimentEventName NS_SWIFT_NAME(DefaultSetExperimentEventName);
 /// Default event name for when an experiment is activated.
-extern NSString *const FIRActivateExperimentEventName;
+extern NSString *const FIRActivateExperimentEventName
+    NS_SWIFT_NAME(DefaultActivateExperimentEventName);
 /// Default event name for when an experiment is cleared.
-extern NSString *const FIRClearExperimentEventName;
+extern NSString *const FIRClearExperimentEventName
+    NS_SWIFT_NAME(DefaultClearExperimentEventName);
 /// Default event name for when an experiment times out for being activated.
-extern NSString *const FIRTimeoutExperimentEventName;
+extern NSString *const FIRTimeoutExperimentEventName
+    NS_SWIFT_NAME(DefaultTimeoutExperimentEventName);
 /// Default event name for when an experiment is expired as it reaches the end of TTL.
-extern NSString *const FIRExpireExperimentEventName;
+extern NSString *const FIRExpireExperimentEventName
+    NS_SWIFT_NAME(DefaultExpireExperimentEventName);
 
 /// An Experiment Lifecycle Event Object that specifies the name of the experiment event to be
 /// logged by Firebase Analytics.
+NS_SWIFT_NAME(LifecycleEvents)
 @interface FIRLifecycleEvents : NSObject
 
 /// Event name for when an experiment is set. It is default to FIRSetExperimentEventName and can be

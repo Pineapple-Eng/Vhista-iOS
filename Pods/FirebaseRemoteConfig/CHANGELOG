@@ -1,6 +1,18 @@
+Version 4.0.0
+==================================
+- FirebaseAnalytics is no longer a hard dependency in the RemoteConfig pod. If you were installing Remote Config via pod ''Firebase/RemoteConfig'', you should add 'pod 'Firebase/Analytics'' to the Podfile to maintain full RemoteConfig functionality. If you previously have 'pod 'Firebase/Core'' in the Podfile, no change is necessary. No major changes to functionality.
+
+Version 3.1.0
+==================================
+- Internal changes to support the new version of Firebase Performance SDK.
+
+Version 3.0.2
+==================================
+- Bug fixes.
+
 Version 3.0.1
 ==================================
-- Bug fix for a memory leak bug.
+- Bug fix for a memory leak bug. (#488)
 
 
 Version 3.0.0

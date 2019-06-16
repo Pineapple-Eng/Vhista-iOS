@@ -59,7 +59,7 @@ public protocol PaymentTransaction {
 }
 
 // Add PaymentTransaction conformance to SKPaymentTransaction
-extension SKPaymentTransaction : PaymentTransaction { }
+extension SKPaymentTransaction: PaymentTransaction { }
 
 // Products information
 public struct RetrieveResults {
@@ -139,6 +139,8 @@ public struct ReceiptItem {
     public let cancellationDate: Date?
 
     public let isTrialPeriod: Bool
+    
+    public let isInIntroOfferPeriod: Bool
 }
 
 // Error when managing receipt

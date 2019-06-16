@@ -12,6 +12,7 @@ extern const ABTExperimentPayload_ExperimentOverflowPolicy FIRDefaultExperimentO
 
 /// This class is for Firebase services to handle experiments updates to Firebase Analytics.
 /// Experiments can be set, cleared and updated through this controller.
+NS_SWIFT_NAME(ExperimentController)
 @interface FIRExperimentController : NSObject
 
 /// Returns the FIRExperimentController singleton.

@@ -187,10 +187,17 @@ static BOOL HasEmbeddedMobileProvision() {
       ![enableSandboxCheck boolValue]) {
     return NO;
   }
-
-  NSURL *appStoreReceiptURL = [NSBundle mainBundle].appStoreReceiptURL;
-  NSString *appStoreReceiptFileName = appStoreReceiptURL.lastPathComponent;
-  return [appStoreReceiptFileName isEqualToString:kFIRAIdentitySandboxReceiptFileName];
+// The #else is for pre Xcode 9 where @available is not yet implemented.
+#if __has_builtin(__builtin_available)
+  if (@available(iOS 7.0, *)) {
+#else
+  if ([[UIDevice currentDevice].systemVersion integerValue] >= 7) {
+#endif
+    NSURL *appStoreReceiptURL = [NSBundle mainBundle].appStoreReceiptURL;
+    NSString *appStoreReceiptFileName = appStoreReceiptURL.lastPathComponent;
+    return [appStoreReceiptFileName isEqualToString:kFIRAIdentitySandboxReceiptFileName];
+  }
+  return NO;
 }
 
 + (BOOL)isSimulator {
@@ -238,6 +245,18 @@ static BOOL HasEmbeddedMobileProvision() {
 #elif TARGET_OS_OSX
   return NO;
 #endif
+}
+
++ (BOOL)isIOS7OrHigher {
+#if __has_builtin(__builtin_available)
+  if (@available(iOS 7.0, *)) {
+#else
+  if ([[UIDevice currentDevice].systemVersion integerValue] >= 7) {
+#endif
+      return YES;
+    }
+
+    return NO;
 }
 
 @end
