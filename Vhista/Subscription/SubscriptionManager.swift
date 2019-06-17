@@ -27,7 +27,7 @@ class SubscriptionManager: NSObject {
     func checkDeepSubscription() -> Bool {
         let defaults = UserDefaults.standard
         let numberOfPictures = defaults.integer(forKey: "PicturesTaken")
-        if numberOfPictures <= 5 {
+        if numberOfPictures < 5 {
             defaults.set(numberOfPictures + 1, forKey: "PicturesTaken")
             recordAnalytics(analyticsEventName: AnalyticsConstants.PictureFree, parameters: [
                 "language": globalLanguage as NSObject
