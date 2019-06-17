@@ -14,9 +14,6 @@
 /* Class = "UIButton"; accessibilityHint = "By clicking this button you can subscribe to our unlimited access"; ObjectID = "KtP-7s-OI3"; */
 "KtP-7s-OI3.accessibilityHint" = "Al tocar este botón, usted puede suscribirse a nuestro acceso ilimitado";
 
-/* Class = "UIButton"; accessibilityLabel = "Subscribe Button"; ObjectID = "KtP-7s-OI3"; */
-"KtP-7s-OI3.accessibilityLabel" = "Botón para Subscribirse";
-
 /* Class = "UIButton"; normalTitle = "Subscribe!"; ObjectID = "KtP-7s-OI3"; */
 "KtP-7s-OI3.normalTitle" = "Subscribirme!";
 
@@ -32,6 +29,9 @@
 /* Class = "UIButton"; normalTitle = "Restore Purchase"; ObjectID = "ad5-Ud-HeS"; */
 "ad5-Ud-HeS.normalTitle" = "Restaurar Compra";
 
+/* Class = "UIButton"; accessibilityHint = "By selecting this button you can restore unlimited access, if previously purchased and in active state"; ObjectID = "ad5-Ud-HeS"; */
+"ad5-Ud-HeS.accessibilityHint" = "Al seleccionar este botón, puede restaurar el acceso ilimitado, si se compró anteriormente y está en estado activo";
+
 /* Class = "UILabel"; text = "You have reached the free deep image analysis limit. Subscribe to our monthly unlimited access!"; ObjectID = "bLb-Sv-t2C"; */
 "bLb-Sv-t2C.text" = "Has alcanzado el límite de análisis de imágenes panorámicas gratuitas. ¡Suscríbete a nuestro acceso ilimitado mensual!";
 
@@ -43,3 +43,10 @@
 
 /* Class = "UILabel"; text = "Loading..."; ObjectID = "tkg-zY-0lI"; */
 "tkg-zY-0lI.text" = "Cargando...";
+
+/* Class = "UIButton"; normalTitle = "Get 5 More Free Images!"; ObjectID = "dcM-Sk-fk2"; */
+"dcM-Sk-fk2.normalTitle" = "Obtener 5 Imagenes Gratis";
+
+/* Class = "UIButton"; accessibilityHint = "By selecting this button you get 5 more free deep analysis images."; ObjectID = "dcM-Sk-fk2"; */
+"dcM-Sk-fk2.accessibilityHint" = "Al seleccionar este botón, obtendrá 5 imágenes gratis de análisis panorámico";
+

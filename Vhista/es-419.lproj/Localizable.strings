@@ -157,6 +157,10 @@
 
 "Message_Product_Expired"="Esta subscripción se encuentra vencida.";
 
+"Free_Subscription_Confirmation_Title" = "Has obtenido 5 imagenes más!";
+
+"Free_Subscription_Confirmation_Body" = "Muchas gracias por usar Vhista. Queremos que la tecnología sea accessible a todos, por esto, siempre que quieras, te regalaremos 5 imagenes más. Sin embargo, puedes subscribirte, para que así podamos seguir trabajando en Vhista y muchos projectos más.";
+
 // UI
 
 "Title_Button_Deep_Analysis" = "Análisis Panoramico";

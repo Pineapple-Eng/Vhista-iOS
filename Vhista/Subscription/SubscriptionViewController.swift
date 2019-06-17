@@ -23,6 +23,8 @@ class SubscriptionViewController: UIViewController {
 
     @IBOutlet weak var restoreButton: UIButton!
 
+    @IBOutlet weak var freeButton: UIButton!
+
 //    @IBOutlet weak var loadingPurchaseView: UIView!
 
     override func viewDidLoad() {
@@ -72,6 +74,20 @@ class SubscriptionViewController: UIViewController {
             "language": globalLanguage as NSObject
             ])
         SubscriptionManager.shared.restoreSubscriptions()
+    }
+
+    @IBAction func getFreeSubscription(_ sender: Any) {
+        let alertController = UIAlertController(title: NSLocalizedString("Free_Subscription_Confirmation_Title", comment: ""),
+                                                message: NSLocalizedString("Free_Subscription_Confirmation_Body", comment: ""),
+                                                preferredStyle: .alert)
+        let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""),
+                                        style: .default) { (_) in
+                                            let defaults = UserDefaults.standard
+                                            defaults.set(5, forKey: "PicturesTaken")
+                                            self.didEndPurchaseProcess()
+        }
+        alertController.addAction(actionClose)
+        self.present(alertController, animated: true, completion: nil)
     }
 
     @IBAction func cancelSubscription(_ sender: Any) {
