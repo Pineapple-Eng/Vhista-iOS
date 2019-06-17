@@ -79,8 +79,8 @@ class SubscriptionViewController: UIViewController {
     @IBAction func getFreeSubscription(_ sender: Any) {
         let defaults = UserDefaults.standard
         let numberOfPictures = defaults.integer(forKey: "PicturesTaken")
-        if numberOfPictures <= 5 {
-            showAlertTrialRemaining(numberOfPictures)
+        if numberOfPictures < 5 {
+            showAlertTrialRemaining(5 - numberOfPictures)
             return
         }
         let alertController = UIAlertController(title: NSLocalizedString("Free_Subscription_Confirmation_Title", comment: ""),
@@ -88,7 +88,7 @@ class SubscriptionViewController: UIViewController {
                                                 preferredStyle: .alert)
         let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""),
                                         style: .default) { (_) in
-                                            defaults.set(5, forKey: "PicturesTaken")
+                                            defaults.set(0, forKey: "PicturesTaken")
                                             self.didEndPurchaseProcess()
         }
         alertController.addAction(actionClose)
@@ -96,7 +96,11 @@ class SubscriptionViewController: UIViewController {
     }
 
     func showAlertTrialRemaining(_ remainingImages: Int) {
-        let title = NSLocalizedString("Free_Subscription_Still_On_Trial", comment: "").replacingOccurrences(of: "#", with: "\(remainingImages)")
+        var localizedStringId = "Free_Subscription_Still_On_Trial"
+        if remainingImages == 1 {
+            localizedStringId = "Free_Subscription_Still_On_Trial_Single"
+        }
+        let title = NSLocalizedString(localizedStringId, comment: "").replacingOccurrences(of: "#", with: "\(remainingImages)")
         let alertController = UIAlertController(title: title,
                                                 message: NSLocalizedString("Free_Subscription_Still_On_Trial_Body", comment: ""),
                                                 preferredStyle: .alert)

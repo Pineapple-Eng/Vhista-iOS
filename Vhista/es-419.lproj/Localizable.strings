@@ -163,7 +163,9 @@
 
 "Free_Subscription_Still_On_Trial" = "Aún tienes # imágenes gratis";
 
-"Free_Subscription_Still_On_Trial_Body" = "Para poder obtener 5 imagenes gratis, primero debes usar las  imagenes gratuitas que ya tienes.";
+"Free_Subscription_Still_On_Trial_Single" = "Aún tienes # imágen gratis";
+
+"Free_Subscription_Still_On_Trial_Body" = "Para poder obtener 5 imagenes gratis más, primero debes usar las  imagenes gratuitas que ya tienes.";
 
 // UI
 
