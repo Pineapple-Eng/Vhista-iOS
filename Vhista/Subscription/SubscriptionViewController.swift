@@ -77,15 +77,31 @@ class SubscriptionViewController: UIViewController {
     }
 
     @IBAction func getFreeSubscription(_ sender: Any) {
+        let defaults = UserDefaults.standard
+        let numberOfPictures = defaults.integer(forKey: "PicturesTaken")
+        if numberOfPictures <= 5 {
+            showAlertTrialRemaining(numberOfPictures)
+            return
+        }
         let alertController = UIAlertController(title: NSLocalizedString("Free_Subscription_Confirmation_Title", comment: ""),
                                                 message: NSLocalizedString("Free_Subscription_Confirmation_Body", comment: ""),
                                                 preferredStyle: .alert)
         let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""),
                                         style: .default) { (_) in
-                                            let defaults = UserDefaults.standard
                                             defaults.set(5, forKey: "PicturesTaken")
                                             self.didEndPurchaseProcess()
         }
+        alertController.addAction(actionClose)
+        self.present(alertController, animated: true, completion: nil)
+    }
+
+    func showAlertTrialRemaining(_ remainingImages: Int) {
+        let title = NSLocalizedString("Free_Subscription_Still_On_Trial", comment: "").replacingOccurrences(of: "#", with: "\(remainingImages)")
+        let alertController = UIAlertController(title: title,
+                                                message: NSLocalizedString("Free_Subscription_Still_On_Trial_Body", comment: ""),
+                                                preferredStyle: .alert)
+        let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""),
+                                        style: .default, handler: nil)
         alertController.addAction(actionClose)
         self.present(alertController, animated: true, completion: nil)
     }

@@ -157,7 +157,11 @@
 
 "Free_Subscription_Confirmation_Title" = "You have obtained 5 more images!";
 
-"Free_Subscription_Confirmation_Body" = "Thank you very much for using Vhista. We want technology to be accessible to everyone, so, whenever you want, we will give you 5 more images. However, you can subscribe, so that we can continue working on Vhista and many other cool projects.";
+"Free_Subscription_Confirmation_Body" = "Thank you very much for using Vhista. We want technology to be accessible to everyone, so, whenever you want, we will give you 5 more images. However, you can subscribe so that we can continue working on Vhista and many other cool projects.";
+
+"Free_Subscription_Still_On_Trial" = "You still have # free images";
+
+"Free_Subscription_Still_On_Trial_Body" = "In order to get 5 free images, you must first use the free images that you already have.";
 
 
 // UI
