@@ -44,12 +44,12 @@ class LandingViewController: UIViewController {
     func continueToApp() {
         if ARConfiguration.isSupported, #available(iOS 11.3, *) {
             recordAnalytics(analyticsEventName: AnalyticsConstants.LandedAREnabled, parameters: [
-                "language": globalLanguage as NSObject
+                "language": globalLanguage
                 ])
             self.performSegue(withIdentifier: "GoToARHome", sender: nil)
         } else {
             recordAnalytics(analyticsEventName: AnalyticsConstants.LandedARDisabled, parameters: [
-                "language": globalLanguage as NSObject
+                "language": globalLanguage
                 ])
             self.performSegue(withIdentifier: "GoToNonARHome", sender: nil)
         }

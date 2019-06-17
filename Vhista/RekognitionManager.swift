@@ -52,7 +52,7 @@ extension RekognitionManager {
     func startProcessing (_ sender: UIImage?) {
 
         recordAnalytics(analyticsEventName: AnalyticsConstants.TakenPicture, parameters: [
-            "language": globalLanguage as NSObject
+            "language": globalLanguage
             ])
 
 //        VhistaSpeechManager.shared.speakRekognition(stringToSpeak: NSLocalizedString("Processing_Image", comment: ""))
@@ -109,8 +109,8 @@ extension RekognitionManager {
         }
 
         self.recordAnalytics(analyticsEventName: "labels_processed", parameters: [
-            "language": globalLanguage as NSObject,
-            "count": labels.count as NSObject
+            "language": globalLanguage,
+            "count": "\(labels.count)"
             ])
 
         var arrayLabels = [String]()
@@ -229,8 +229,8 @@ extension RekognitionManager {
         }
 
         recordAnalytics(analyticsEventName: "faces_processed", parameters: [
-            "language": globalLanguage as NSObject,
-            "count": faces.count as NSObject
+            "language": globalLanguage,
+            "count": "\(faces.count)"
             ])
 
         var stringResonse: String = ""

@@ -62,7 +62,7 @@ class SubscriptionViewController: UIViewController {
     @IBAction func acceptBuy(_ sender: Any) {
         deactivateBuyButtons()
         self.recordAnalyticsViewController(analyticsEventName: AnalyticsConstants.BuyButtonSubscription, parameters: [
-            "language": globalLanguage as NSObject
+            "language": globalLanguage
             ])
         SubscriptionManager.shared.purchaseSKProductWithID(productId: "Vhista_Full")
 
@@ -71,14 +71,18 @@ class SubscriptionViewController: UIViewController {
     @IBAction func restoreSubscription(_ sender: Any) {
         deactivateBuyButtons()
         self.recordAnalyticsViewController(analyticsEventName: AnalyticsConstants.RestoreButtonSubscription, parameters: [
-            "language": globalLanguage as NSObject
+            "language": globalLanguage
             ])
         SubscriptionManager.shared.restoreSubscriptions()
     }
 
     @IBAction func getFreeSubscription(_ sender: Any) {
+        recordAnalytics(analyticsEventName: AnalyticsConstants.RequestedMoreFreeImages, parameters: [
+            "language": globalLanguage
+            ])
         let defaults = UserDefaults.standard
         let numberOfPictures = defaults.integer(forKey: "PicturesTaken")
+        let totalPictures = defaults.integer(forKey: "TotalPicturesTaken")
         if numberOfPictures < 5 {
             showAlertTrialRemaining(5 - numberOfPictures)
             return
@@ -89,6 +93,10 @@ class SubscriptionViewController: UIViewController {
         let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""),
                                         style: .default) { (_) in
                                             defaults.set(0, forKey: "PicturesTaken")
+                                            self.recordAnalytics(analyticsEventName: AnalyticsConstants.GrantedMoreFreeImages, parameters: [
+                                                "language": globalLanguage,
+                                                "totalPictures": "\(totalPictures)"
+                                                ])
                                             self.didEndPurchaseProcess()
         }
         alertController.addAction(actionClose)
@@ -113,7 +121,7 @@ class SubscriptionViewController: UIViewController {
     @IBAction func cancelSubscription(_ sender: Any) {
         deactivateBuyButtons()
         self.recordAnalyticsViewController(analyticsEventName: AnalyticsConstants.CancelButtonSubscription, parameters: [
-            "language": globalLanguage as NSObject
+            "language": globalLanguage
             ])
         self.didEndPurchaseProcess()
     }

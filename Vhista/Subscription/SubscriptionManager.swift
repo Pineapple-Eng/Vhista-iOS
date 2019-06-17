@@ -27,22 +27,25 @@ class SubscriptionManager: NSObject {
     func checkDeepSubscription() -> Bool {
         let defaults = UserDefaults.standard
         let numberOfPictures = defaults.integer(forKey: "PicturesTaken")
+        let totalPictures = defaults.integer(forKey: "TotalPicturesTaken")
         if numberOfPictures < 5 {
             defaults.set(numberOfPictures + 1, forKey: "PicturesTaken")
+            defaults.set(totalPictures + 1, forKey: "TotalPicturesTaken")
             recordAnalytics(analyticsEventName: AnalyticsConstants.PictureFree, parameters: [
-                "language": globalLanguage as NSObject
+                "language": globalLanguage
                 ])
             print("🔢 Number of pictures taken: " + String(numberOfPictures + 1))
             return true
         } else {
             if isUserSubscribedToFullAccess() {
+                defaults.set(totalPictures + 1, forKey: "TotalPicturesTaken")
                 recordAnalytics(analyticsEventName: AnalyticsConstants.PictureSubscribed, parameters: [
-                    "language": globalLanguage as NSObject
+                    "language": globalLanguage
                     ])
                 return true
             } else {
                 recordAnalytics(analyticsEventName: AnalyticsConstants.PictureNotSubscribed, parameters: [
-                    "language": globalLanguage as NSObject
+                    "language": globalLanguage
                     ])
                 return false
             }

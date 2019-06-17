@@ -21,9 +21,11 @@ extension NSObject {
         static let PictureNotSubscribed = "error_picture_unsubscribed"
         static let PictureSubscribed = "took_picture_subscribed"
         static let PictureFree = "took_free_picture"
+        static let RequestedMoreFreeImages = "requested_more_free_images"
+        static let GrantedMoreFreeImages = "granted_more_free_images"
     }
 
-    func recordAnalytics(analyticsEventName: String, parameters: [String: NSObject]) {
+    func recordAnalytics(analyticsEventName: String, parameters: [String: String]) {
         DispatchQueue.main.async {
             print("Send Analytics: " + analyticsEventName)
             Analytics.logEvent(analyticsEventName, parameters: parameters )
@@ -33,7 +35,7 @@ extension NSObject {
 }
 
 extension UIViewController {
-    func recordAnalyticsViewController(analyticsEventName: String, parameters: [String: NSObject]) {
+    func recordAnalyticsViewController(analyticsEventName: String, parameters: [String: String]) {
         DispatchQueue.main.async {
             print("Send Analytics: " + analyticsEventName)
             Analytics.logEvent(analyticsEventName, parameters: parameters )
