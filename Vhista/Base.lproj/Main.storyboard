@@ -237,7 +237,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bt9-g4-3ef">
-                                        <rect key="frame" x="0.0" y="88" width="375" height="594"/>
+                                        <rect key="frame" x="0.0" y="88" width="375" height="30"/>
                                         <accessibility key="accessibilityConfiguration" hint="Press this button to get a panoramic description of your surroundings" label="Deep Analysis"/>
                                         <state key="normal" title="Deep Analysis">
                                             <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -247,12 +247,10 @@
                                             <action selector="makeDeepAnalysis:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dJY-nG-yqr"/>
                                         </connections>
                                     </button>
-                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sxf-5T-nUb">
-                                        <rect key="frame" x="0.0" y="682" width="375" height="130"/>
+                                    <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sxf-5T-nUb">
+                                        <rect key="frame" x="0.0" y="705.33333333333337" width="375" height="106.66666666666663"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="130" id="X3y-RA-O2i"/>
-                                        </constraints>
                                         <connections>
                                             <segue destination="tne-YQ-mkO" kind="embed" identifier="ShowRecognizedContentView" id="9bc-Ie-Gz3"/>
                                         </connections>
@@ -263,14 +261,10 @@
                                     <constraint firstItem="Ffu-aO-O4g" firstAttribute="leading" secondItem="eYm-OD-GVy" secondAttribute="leading" id="82y-og-uRF"/>
                                     <constraint firstAttribute="bottom" secondItem="Ffu-aO-O4g" secondAttribute="bottom" id="Loa-Id-jcZ"/>
                                     <constraint firstAttribute="trailing" secondItem="Ffu-aO-O4g" secondAttribute="trailing" id="NH6-yA-YI5"/>
-                                    <constraint firstItem="Sxf-5T-nUb" firstAttribute="leading" secondItem="eYm-OD-GVy" secondAttribute="leading" id="SPV-j2-4qO"/>
                                     <constraint firstItem="Bt9-g4-3ef" firstAttribute="top" secondItem="eYm-OD-GVy" secondAttribute="top" constant="88" id="Yn6-wJ-zhM"/>
-                                    <constraint firstAttribute="trailing" secondItem="Sxf-5T-nUb" secondAttribute="trailing" id="Z3B-qi-JPq"/>
                                     <constraint firstItem="Ffu-aO-O4g" firstAttribute="top" secondItem="eYm-OD-GVy" secondAttribute="top" id="b3a-CH-VKi"/>
                                     <constraint firstAttribute="trailing" secondItem="Bt9-g4-3ef" secondAttribute="trailing" id="gZe-6W-xsD"/>
                                     <constraint firstItem="Bt9-g4-3ef" firstAttribute="leading" secondItem="eYm-OD-GVy" secondAttribute="leading" id="knE-E8-8wk"/>
-                                    <constraint firstItem="Sxf-5T-nUb" firstAttribute="top" secondItem="Bt9-g4-3ef" secondAttribute="bottom" id="lq9-TA-7yT"/>
-                                    <constraint firstAttribute="bottom" secondItem="Sxf-5T-nUb" secondAttribute="bottom" id="xgZ-LD-KV5"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -344,7 +338,7 @@
             <objects>
                 <viewController id="tne-YQ-mkO" customClass="RecognizedContentViewController" customModule="Vhista" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BuC-8H-ReT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="106.66666666666663"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>

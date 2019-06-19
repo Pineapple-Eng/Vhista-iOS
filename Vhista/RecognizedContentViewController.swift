@@ -18,25 +18,22 @@ class RecognizedContentViewController: UIViewController {
 
     static let recognizedObjectsLabelVerticalSpacing: CGFloat = 16.0
 
+    static let timeIntervalAnimateHeightChange: TimeInterval = 0.25
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
+        setUpBackground()
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setUpBackground()
     }
 
     func updateWithText(_ text: String) {
-        let attributedString = NSAttributedString(string: text,
-                                                  attributes: [
-                                                    NSAttributedString.Key.strokeWidth: -3.0,
-                                                    NSAttributedString.Key.strokeColor: UIColor(white: 0.0, alpha: 0.9)])
         recognizedObjectsLabel.accessibilityLabel = NSLocalizedString("LAST_RECOGNITION", comment: "") + text
-        DispatchQueue.main.async {
-            self.recognizedObjectsLabel.attributedText = attributedString
-        }
+        recognizedObjectsLabel.text = text
+        DispatchQueue.main.async { self.view.layoutIfNeeded() }
     }
 }
 
@@ -51,7 +48,7 @@ extension RecognizedContentViewController {
     func setUpRecognizedLabel() {
         recognizedObjectsLabel = UILabel()
         recognizedObjectsLabel.textColor = .white
-        recognizedObjectsLabel.numberOfLines = 0
+        recognizedObjectsLabel.numberOfLines = .zero
         recognizedObjectsLabel.textAlignment = .center
         recognizedObjectsLabel.lineBreakMode = .byWordWrapping
         recognizedObjectsLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
@@ -90,11 +87,11 @@ extension RecognizedContentViewController {
     }
 
     static func calculateHeightForText(text: String, width: CGFloat, safeAreaHeight: CGFloat) -> CGFloat {
-        let label: UILabel = UILabel(frame: CGRect(x: 0,
-                                                  y: 0,
-                                                  width: width,
-                                                  height: CGFloat.greatestFiniteMagnitude))
-        label.numberOfLines = 0
+        let label: UILabel = UILabel(frame: CGRect(x: .zero,
+                                                   y: .zero,
+                                                   width: width,
+                                                   height: CGFloat.greatestFiniteMagnitude))
+        label.numberOfLines = .zero
         label.lineBreakMode = .byWordWrapping
         label.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         label.text = text

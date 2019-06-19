@@ -18,6 +18,7 @@ ARSessionDelegate {
 
     @IBOutlet weak var sceneView: ARSCNView!
 
+    var recognizedContentViewHeightContraint: NSLayoutConstraint!
     @IBOutlet weak var recognizedContentView: UIView!
 
     @IBOutlet weak var deepAnalysisButton: UIButton!
@@ -76,22 +77,28 @@ ARSessionDelegate {
             upgradeButtonItem.title = NSLocalizedString("Show_Subscription_Button_Title", comment: "")
         }
 
+        recognizedContentViewHeightContraint = recognizedContentView.heightAnchor.constraint(equalToConstant: .zero)
         recognizedContentView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            recognizedContentViewHeightContraint,
+            recognizedContentView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            recognizedContentView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            recognizedContentView.leftAnchor.constraint(equalTo: view.leftAnchor)
+            ])
     }
 
     func setUpSceneView() {
-
         sceneView.delegate = self
         sceneView.debugOptions = [SCNDebugOptions.showFeaturePoints]
         sceneView.session.delegate = self
         sceneView.showsStatistics = false
         let arScene = SCNScene()
         sceneView.scene = arScene
-
     }
 
     override func viewDidLayoutSubviews() {
         self.view.bringSubviewToFront(deepAnalysisButton)
+        recognizedContentView.translatesAutoresizingMaskIntoConstraints = false
     }
 
     @IBAction func hitUpgradeAction(_ sender: Any) {
@@ -546,10 +553,8 @@ extension ARKitCameraViewController {
         let height = RecognizedContentViewController.calculateHeightForText(text: text,
                                                                             width: recognizedContentView.frame.width,
                                                                             safeAreaHeight: self.view.safeAreaInsets.bottom)
-        NSLayoutConstraint.activate([
-            recognizedContentView.heightAnchor.constraint(equalToConstant: height)
-            ])
-        UIView.animate(withDuration: 1.0,
+        recognizedContentViewHeightContraint.constant = height
+        UIView.animate(withDuration: RecognizedContentViewController.timeIntervalAnimateHeightChange,
                        animations: { self.view.layoutIfNeeded() },
                        completion: nil)
     }
