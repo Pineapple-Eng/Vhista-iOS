@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D95531E22B9FC6E00B17581 /* RecognizedContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D95531D22B9FC6E00B17581 /* RecognizedContentViewController.swift */; };
 		0DB8A87D2134F3FB0005D168 /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB8A87C2134F3FB0005D168 /* ConfigurationManager.swift */; };
 		0DB8A87F2134F6670005D168 /* RemoteConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0DB8A87E2134F6670005D168 /* RemoteConfig.plist */; };
 		0DCC7D5621238DFE00601C68 /* Subscription.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DCC7D5821238DFE00601C68 /* Subscription.storyboard */; };
@@ -46,6 +47,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D95531D22B9FC6E00B17581 /* RecognizedContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedContentViewController.swift; sourceTree = "<group>"; };
 		0DB8A87C2134F3FB0005D168 /* ConfigurationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConfigurationManager.swift; path = Utilities/ConfigurationManager.swift; sourceTree = "<group>"; };
 		0DB8A87E2134F6670005D168 /* RemoteConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfig.plist; sourceTree = "<group>"; };
 		0DCC7D5721238DFE00601C68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Subscription.storyboard; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				6393B0A0204F0FF70040A6CF /* ARKitCameraViewController.swift */,
 				2B38F4751F32E8850083DBDB /* RekognitionManager.swift */,
 				6393B0A5204F23920040A6CF /* ClassificationsManager.swift */,
+				0D95531D22B9FC6E00B17581 /* RecognizedContentViewController.swift */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				6393B0A4204F10F80040A6CF /* LandingViewController.swift in Sources */,
 				63CB612B20AA2503004982EF /* UIImage+Extensions.swift in Sources */,
 				6393B09F204F0E660040A6CF /* CGImage+Extensions.swift in Sources */,
+				0D95531E22B9FC6E00B17581 /* RecognizedContentViewController.swift in Sources */,
 				2BA01FCD1F6B47A700E1BD11 /* SubscriptionManager.swift in Sources */,
 				63342CE220B0BEC500E397E6 /* ObjectAnalysis.swift in Sources */,
 				2B38F4761F32E8850083DBDB /* RekognitionManager.swift in Sources */,

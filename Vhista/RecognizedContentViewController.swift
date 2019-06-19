@@ -1,0 +1,104 @@
+//
+//  RecognizedContentViewController.swift
+//  Vhista
+//
+//  Created by Juan David Cruz Serrano on 6/18/19.
+//  Copyright © 2019 juandavidcruz. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+class RecognizedContentViewController: UIViewController {
+
+    var recognizedObjectsLabel = UILabel()
+
+    static let bgEffectViewTag = 101
+    static let bgEffectViewCornerRadius: CGFloat = 20.0
+
+    static let recognizedObjectsLabelVerticalSpacing: CGFloat = 16.0
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setUpUI()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setUpBackground()
+    }
+
+    func updateWithText(_ text: String) {
+        let attributedString = NSAttributedString(string: text,
+                                                  attributes: [
+                                                    NSAttributedString.Key.strokeWidth: -3.0,
+                                                    NSAttributedString.Key.strokeColor: UIColor(white: 0.0, alpha: 0.9)])
+        recognizedObjectsLabel.accessibilityLabel = NSLocalizedString("LAST_RECOGNITION", comment: "") + text
+        DispatchQueue.main.async {
+            self.recognizedObjectsLabel.attributedText = attributedString
+        }
+    }
+}
+
+extension RecognizedContentViewController {
+    func setUpUI() {
+        // General View
+        self.view.backgroundColor = .clear
+        // Components
+        setUpRecognizedLabel()
+    }
+
+    func setUpRecognizedLabel() {
+        recognizedObjectsLabel = UILabel()
+        recognizedObjectsLabel.textColor = .white
+        recognizedObjectsLabel.numberOfLines = 0
+        recognizedObjectsLabel.textAlignment = .center
+        recognizedObjectsLabel.lineBreakMode = .byWordWrapping
+        recognizedObjectsLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        recognizedObjectsLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(recognizedObjectsLabel)
+        NSLayoutConstraint.activate([
+            recognizedObjectsLabel.topAnchor.constraint(equalTo: view.topAnchor),
+            recognizedObjectsLabel.leftAnchor.constraint(equalTo: view.leftAnchor),
+            recognizedObjectsLabel.rightAnchor.constraint(equalTo: view.rightAnchor),
+            recognizedObjectsLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            ])
+    }
+
+    func setUpBackground() {
+        guard let view = self.view else {
+            return
+        }
+        let blurEffect = UIBlurEffect(style: .dark)
+        let pickerVisualEffectView = UIVisualEffectView(effect: blurEffect)
+        pickerVisualEffectView.frame = self.view.frame
+        pickerVisualEffectView.tag = RecognizedContentViewController.bgEffectViewTag
+        for view in self.view.subviews where view.tag == RecognizedContentViewController.bgEffectViewTag {
+            view.removeFromSuperview()
+        }
+        self.view.insertSubview(pickerVisualEffectView, at: .zero)
+        pickerVisualEffectView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            pickerVisualEffectView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            pickerVisualEffectView.heightAnchor.constraint(equalTo: view.heightAnchor),
+            pickerVisualEffectView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            pickerVisualEffectView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            ])
+        pickerVisualEffectView.clipsToBounds = true
+        pickerVisualEffectView.layer.cornerRadius = RecognizedContentViewController.bgEffectViewCornerRadius
+        pickerVisualEffectView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+    }
+
+    static func calculateHeightForText(text: String, width: CGFloat, safeAreaHeight: CGFloat) -> CGFloat {
+        let label: UILabel = UILabel(frame: CGRect(x: 0,
+                                                  y: 0,
+                                                  width: width,
+                                                  height: CGFloat.greatestFiniteMagnitude))
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        label.text = text
+        label.sizeToFit()
+        return label.frame.height + recognizedObjectsLabelVerticalSpacing * 2 + safeAreaHeight
+    }
+}

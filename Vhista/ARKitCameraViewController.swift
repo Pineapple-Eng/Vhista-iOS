@@ -18,11 +18,7 @@ ARSessionDelegate {
 
     @IBOutlet weak var sceneView: ARSCNView!
 
-    @IBOutlet weak var pickerContainerView: UIView!
-
-    @IBOutlet weak var textHistoryPicker: UIPickerView!
-
-    @IBOutlet weak var loveTextField: UILabel!
+    @IBOutlet weak var recognizedContentView: UIView!
 
     @IBOutlet weak var deepAnalysisButton: UIButton!
 
@@ -38,13 +34,15 @@ ARSessionDelegate {
 
     @IBOutlet weak var selectedImageView: UIImageView!
 
+    // Recognized Content View
+    var recognizedContentViewController: RecognizedContentViewController?
+
     // MARK: - View controller lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
         setUpSceneView()
         VhistaSpeechManager.shared.parentARController = self
-//        VhistaSpeechManager.shared.sayGreetingMessage()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -74,21 +72,11 @@ ARSessionDelegate {
     }
 
     func setUpUI() {
-
-        textHistoryPicker.delegate = self
-        textHistoryPicker.dataSource = self
-        textHistoryPicker.isAccessibilityElement = false
-        textHistoryPicker.isUserInteractionEnabled = false
-        textHistoryPicker.accessibilityTraits = UIAccessibilityTraits.none
-        textHistoryPicker.showsSelectionIndicator = false
-        textHistoryPicker.shouldGroupAccessibilityChildren = false
-
-        loveTextField.isAccessibilityElement = false
-
         if SubscriptionManager.shared.isUserSubscribedToFullAccess() {
             upgradeButtonItem.title = NSLocalizedString("Show_Subscription_Button_Title", comment: "")
         }
 
+        recognizedContentView.translatesAutoresizingMaskIntoConstraints = false
     }
 
     func setUpSceneView() {
@@ -103,49 +91,6 @@ ARSessionDelegate {
     }
 
     override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        let blurEffect = UIBlurEffect(style: .dark)
-        let pickerVisualEffectView = UIVisualEffectView(effect: blurEffect)
-        pickerVisualEffectView.frame = self.pickerContainerView.frame
-        pickerVisualEffectView.tag = 99
-        for view in self.view.subviews where view.tag == 99 {
-            view.removeFromSuperview()
-        }
-
-        pickerVisualEffectView.translatesAutoresizingMaskIntoConstraints = false
-        let rigthAnchor = NSLayoutConstraint(item: pickerVisualEffectView,
-                                             attribute: .trailing,
-                                             relatedBy: .equal,
-                                             toItem: self.view,
-                                             attribute: .trailing,
-                                             multiplier: 1,
-                                             constant: 0)
-        let leftAnchor = NSLayoutConstraint(item: pickerVisualEffectView,
-                                            attribute: .leading,
-                                            relatedBy: .equal,
-                                            toItem: self.view,
-                                            attribute: .leading,
-                                            multiplier: 1,
-                                            constant: 0)
-        let heightAnchor = NSLayoutConstraint(item: pickerVisualEffectView,
-                                              attribute: .height,
-                                              relatedBy: .equal,
-                                              toItem: nil,
-                                              attribute: .height,
-                                              multiplier: 1,
-                                              constant: 240)
-        let bottomAnchor = NSLayoutConstraint(item: pickerVisualEffectView,
-                                              attribute: .bottom,
-                                              relatedBy: .equal,
-                                              toItem: self.view,
-                                              attribute: .bottom,
-                                              multiplier: 1,
-                                              constant: 0)
-
-        self.view.insertSubview(pickerVisualEffectView, at: 1)
-
-        NSLayoutConstraint.activate([rigthAnchor, leftAnchor, heightAnchor, bottomAnchor])
-
         self.view.bringSubviewToFront(deepAnalysisButton)
     }
 
@@ -154,6 +99,12 @@ ARSessionDelegate {
             self.performSegue(withIdentifier: "ShowUpgradeView", sender: nil)
         } else {
             self.performSegue(withIdentifier: "ShowSubscriptionInfo", sender: nil)
+        }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowRecognizedContentView" {
+            recognizedContentViewController = segue.destination as? RecognizedContentViewController
         }
     }
 
@@ -432,47 +383,6 @@ ARSessionDelegate {
 
 }
 
-// MARK: - Labels UIPickerView
-extension ARKitCameraViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return ClassificationsManager.shared.recognitionsAsText.count
-    }
-
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-
-        let label = (view as? UILabel) ?? UILabel()
-
-        label.isAccessibilityElement = false
-        label.isUserInteractionEnabled = false
-        label.accessibilityTraits = UIAccessibilityTraits.none
-        label.accessibilityLabel = NSLocalizedString("LAST_RECOGNITION", comment: "") + ClassificationsManager.shared.recognitionsAsText[row]
-
-        label.textColor = UIColor.white
-        label.textAlignment = .center
-        label.contentMode = UIView.ContentMode.center
-        label.font = UIFont.boldSystemFont(ofSize: 50)
-        label.attributedText =  NSAttributedString(string: ClassificationsManager.shared.recognitionsAsText[row],
-                                                   attributes: [
-                                                    NSAttributedString.Key.strokeWidth: -3.0,
-                                                    NSAttributedString.Key.strokeColor: UIColor(white: 0.0, alpha: 0.9)])
-
-        label.adjustsFontSizeToFitWidth = true
-
-        return label
-
-    }
-
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return 50.0
-    }
-
-}
-
 // MARK: - Handle Reading of Identified Labels
 extension ARKitCameraViewController {
 
@@ -487,7 +397,6 @@ extension ARKitCameraViewController {
     }
 
     func addStringToRead(_ stringRecognized: String, _ distanceString: String, isProtected: Bool) {
-
         if !ClassificationsManager.shared.allowStringRecognized(stringRecognized: stringRecognized) { return }
         print(distanceString)
         let stringRecognizedTranslated = translateModelString(pString: stringRecognized, targetLanguage: globalLanguage)
@@ -497,31 +406,30 @@ extension ARKitCameraViewController {
         if ClassificationsManager.shared.recognitionsAsText.count == 3 {
             ClassificationsManager.shared.recognitionsAsText.remove(at: 2)
         }
-        DispatchQueue.main.async {
-            self.textHistoryPicker.reloadAllComponents()
+        guard let text = ClassificationsManager.shared.recognitionsAsText.first else {
+            return
         }
+        updateRecognizedContentView(text: text)
 
-        VhistaSpeechManager.shared.sayText(stringToSpeak: stringRecognizedTranslated + distanceString,
+        VhistaSpeechManager.shared.sayText(stringToSpeak: text + distanceString,
                                            isProtected: isProtected,
                                            rate: Float(globalRate))
-
     }
 
     func addStringToReadFace(stringRecognized: String, isProtected: Bool) {
-
         ClassificationsManager.shared.lastRecognition = stringRecognized
         ClassificationsManager.shared.recognitionsAsText.insert(stringRecognized, at: 0)
         if ClassificationsManager.shared.recognitionsAsText.count == 3 {
             ClassificationsManager.shared.recognitionsAsText.removeLast()
         }
-        DispatchQueue.main.async {
-            self.textHistoryPicker.reloadAllComponents()
+        guard let text = ClassificationsManager.shared.recognitionsAsText.first else {
+            return
         }
+        updateRecognizedContentView(text: text)
 
         VhistaSpeechManager.shared.sayText(stringToSpeak: stringRecognized, isProtected: isProtected, rate: Float(globalRate))
 
     }
-
 }
 
 // MARK: - Handle ARSCNView Delegate Methods
@@ -628,5 +536,21 @@ extension ARKitCameraViewController {
         }
         selectedImage = nil
         processingImage = false
+    }
+}
+
+// MARK: - Update Recognized Content View
+extension ARKitCameraViewController {
+    func updateRecognizedContentView(text: String) {
+        recognizedContentViewController?.updateWithText(text)
+        let height = RecognizedContentViewController.calculateHeightForText(text: text,
+                                                                            width: recognizedContentView.frame.width,
+                                                                            safeAreaHeight: self.view.safeAreaInsets.bottom)
+        NSLayoutConstraint.activate([
+            recognizedContentView.heightAnchor.constraint(equalToConstant: height)
+            ])
+        UIView.animate(withDuration: 1.0,
+                       animations: { self.view.layoutIfNeeded() },
+                       completion: nil)
     }
 }
