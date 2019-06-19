@@ -18,12 +18,16 @@ ARSessionDelegate {
 
     @IBOutlet weak var sceneView: ARSCNView!
 
+    // Recognized Content View
     var recognizedContentViewHeightContraint: NSLayoutConstraint!
     @IBOutlet weak var recognizedContentView: UIView!
+    var recognizedContentViewController: RecognizedContentViewController?
 
     @IBOutlet weak var deepAnalysisButton: UIButton!
 
     @IBOutlet weak var upgradeButtonItem: UIBarButtonItem!
+
+    @IBOutlet weak var bottomToolbar: UIToolbar!
 
     // ARSession Frame
     var previousFrameTimeInterval = Date().timeIntervalSince1970
@@ -34,9 +38,6 @@ ARSessionDelegate {
     var selectedImage: UIImage!
 
     @IBOutlet weak var selectedImageView: UIImageView!
-
-    // Recognized Content View
-    var recognizedContentViewController: RecognizedContentViewController?
 
     // MARK: - View controller lifecycle
     override func viewDidLoad() {
@@ -77,13 +78,28 @@ ARSessionDelegate {
             upgradeButtonItem.title = NSLocalizedString("Show_Subscription_Button_Title", comment: "")
         }
 
+        bottomToolbar.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            bottomToolbar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            bottomToolbar.rightAnchor.constraint(equalTo: view.rightAnchor),
+            bottomToolbar.leftAnchor.constraint(equalTo: view.leftAnchor)
+            ])
+
         recognizedContentViewHeightContraint = recognizedContentView.heightAnchor.constraint(equalToConstant: .zero)
         recognizedContentView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             recognizedContentViewHeightContraint,
-            recognizedContentView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            recognizedContentView.bottomAnchor.constraint(equalTo: bottomToolbar.topAnchor),
             recognizedContentView.rightAnchor.constraint(equalTo: view.rightAnchor),
             recognizedContentView.leftAnchor.constraint(equalTo: view.leftAnchor)
+            ])
+
+        deepAnalysisButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            deepAnalysisButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            deepAnalysisButton.bottomAnchor.constraint(equalTo: recognizedContentView.topAnchor),
+            deepAnalysisButton.rightAnchor.constraint(equalTo: view.rightAnchor),
+            deepAnalysisButton.leftAnchor.constraint(equalTo: view.leftAnchor)
             ])
     }
 
@@ -550,12 +566,14 @@ extension ARKitCameraViewController {
 extension ARKitCameraViewController {
     func updateRecognizedContentView(text: String) {
         recognizedContentViewController?.updateWithText(text)
-        let height = RecognizedContentViewController.calculateHeightForText(text: text,
-                                                                            width: recognizedContentView.frame.width,
-                                                                            safeAreaHeight: self.view.safeAreaInsets.bottom)
-        recognizedContentViewHeightContraint.constant = height
-        UIView.animate(withDuration: RecognizedContentViewController.timeIntervalAnimateHeightChange,
-                       animations: { self.view.layoutIfNeeded() },
-                       completion: nil)
+        DispatchQueue.main.async {
+            let height = RecognizedContentViewController.calculateHeightForText(text: text,
+                                                                                width: self.recognizedContentView.frame.width,
+                                                                                safeAreaHeight: self.view.safeAreaInsets.bottom)
+            self.recognizedContentViewHeightContraint.constant = height
+            UIView.animate(withDuration: RecognizedContentViewController.timeIntervalAnimateHeightChange,
+                           animations: { self.view.layoutIfNeeded() },
+                           completion: nil)
+        }
     }
 }

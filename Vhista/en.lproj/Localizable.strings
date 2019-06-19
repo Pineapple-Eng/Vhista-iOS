@@ -117,6 +117,8 @@
 
 // Purchase
 
+"Subscribe_Nav_Title" = "Upgrade Vhista";
+
 "Subscribe_Title" = "Deep Analysis Limit Reached";
 
 "Subscribe_Message" = "Buy or restore %Title%. This %Price% monthly subscription will allow: %Description%";

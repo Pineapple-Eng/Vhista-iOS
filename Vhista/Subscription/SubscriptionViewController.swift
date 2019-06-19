@@ -40,9 +40,8 @@ class SubscriptionViewController: UIViewController {
     }
 
     func setUpUI() {
-
+        self.title = NSLocalizedString("Subscribe_Nav_Title", comment: "")
         subscriptionDescTextView.text = NSLocalizedString("Text_Subscription_Terms", comment: "")
-
     }
 
     func getSubscriptionInfo() {
@@ -54,9 +53,13 @@ class SubscriptionViewController: UIViewController {
             } else {
                 self.serviceLabel.text = NSLocalizedString("Service", comment: "") + ": " + "Unlimited Deep Image Analysis"
                 self.lengthLabel.text = NSLocalizedString("Monthly", comment: "")
-                self.priceLabel.text = NSLocalizedString("Price", comment: "") + ": " + "3.99USD"
+                self.priceLabel.text = NSLocalizedString("Price", comment: "") + ": " + "Error Loading Price"
             }
         })
+    }
+
+    @IBAction func dismissView(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
 
     @IBAction func acceptBuy(_ sender: Any) {
@@ -144,7 +147,7 @@ class SubscriptionViewController: UIViewController {
 
     func didEndPurchaseProcess() {
         activateBuyButtons()
-        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

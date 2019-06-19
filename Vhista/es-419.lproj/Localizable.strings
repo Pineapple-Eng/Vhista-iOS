@@ -119,6 +119,8 @@
 
 // Purchase
 
+"Subscribe_Nav_Title" = "Subscribirse a Vhista";
+
 "Subscribe_Title" = "Límite de Reconocimientos Superado";
 
 "Subscribe_Message" = "Compra o restaura %Title%. Esta subscripción mensual de %Price% te premitirá: %Description%";

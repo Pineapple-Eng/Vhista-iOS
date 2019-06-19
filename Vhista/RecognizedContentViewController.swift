@@ -26,14 +26,13 @@ class RecognizedContentViewController: UIViewController {
         setUpBackground()
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-    }
-
     func updateWithText(_ text: String) {
         recognizedObjectsLabel.accessibilityLabel = NSLocalizedString("LAST_RECOGNITION", comment: "") + text
-        recognizedObjectsLabel.text = text
-        DispatchQueue.main.async { self.view.layoutIfNeeded() }
+
+        DispatchQueue.main.async {
+            self.recognizedObjectsLabel.text = text
+            self.view.layoutIfNeeded()
+        }
     }
 }
 

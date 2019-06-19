@@ -172,7 +172,7 @@
                     </view>
                     <connections>
                         <segue destination="os2-QV-UVw" kind="presentation" identifier="GoToNonARHome" modalTransitionStyle="crossDissolve" id="Whn-qZ-8oT"/>
-                        <segue destination="bhi-7P-eRL" kind="presentation" identifier="GoToARHome" modalTransitionStyle="crossDissolve" id="tBB-tg-VIi"/>
+                        <segue destination="GOZ-GK-qBh" kind="presentation" identifier="GoToARHome" modalTransitionStyle="crossDissolve" id="Qe0-ET-JuY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wBi-fV-9ub" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -196,23 +196,6 @@
             </objects>
             <point key="canvasLocation" x="-1223" y="236"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Sja-yN-tPP">
-            <objects>
-                <navigationController id="bhi-7P-eRL" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="yke-rd-CEK">
-                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="GOZ-GK-qBh" kind="relationship" relationship="rootViewController" id="Wbn-IB-6pj"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="O0H-gl-GRr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1223" y="-771"/>
-        </scene>
         <!--Kit Camera View Controller-->
         <scene sceneID="qBf-Oh-K0f">
             <objects>
@@ -230,54 +213,53 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
                             </arscnView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eYm-OD-GVy">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ffu-aO-O4g">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                <subviews>
-                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ffu-aO-O4g">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bt9-g4-3ef">
-                                        <rect key="frame" x="0.0" y="88" width="375" height="30"/>
-                                        <accessibility key="accessibilityConfiguration" hint="Press this button to get a panoramic description of your surroundings" label="Deep Analysis"/>
-                                        <state key="normal" title="Deep Analysis">
-                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bt9-g4-3ef">
+                                <rect key="frame" x="0.0" y="88" width="375" height="565"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration" hint="Press this button to get a panoramic description of your surroundings" label="Deep Analysis"/>
+                                <state key="normal" title="Deep Analysis">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="makeDeepAnalysis:" destination="GOZ-GK-qBh" eventType="touchUpInside" id="LzG-AX-Az9"/>
+                                    <action selector="makeDeepAnalysis:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dJY-nG-yqr"/>
+                                </connections>
+                            </button>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="jKu-Ib-g3j">
+                                <rect key="frame" x="0.0" y="763" width="375" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Nn4-V8-9b2"/>
+                                    <barButtonItem title="Subscribe" id="feG-yb-xi5">
                                         <connections>
-                                            <action selector="makeDeepAnalysis:" destination="GOZ-GK-qBh" eventType="touchUpInside" id="LzG-AX-Az9"/>
-                                            <action selector="makeDeepAnalysis:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dJY-nG-yqr"/>
+                                            <action selector="hitUpgradeAction:" destination="GOZ-GK-qBh" id="lSn-Fd-tLd"/>
                                         </connections>
-                                    </button>
-                                    <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sxf-5T-nUb">
-                                        <rect key="frame" x="0.0" y="705.33333333333337" width="375" height="106.66666666666663"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <connections>
-                                            <segue destination="tne-YQ-mkO" kind="embed" identifier="ShowRecognizedContentView" id="9bc-Ie-Gz3"/>
-                                        </connections>
-                                    </containerView>
-                                </subviews>
+                                    </barButtonItem>
+                                </items>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </toolbar>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sxf-5T-nUb">
+                                <rect key="frame" x="0.0" y="661" width="375" height="107"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="Ffu-aO-O4g" firstAttribute="leading" secondItem="eYm-OD-GVy" secondAttribute="leading" id="82y-og-uRF"/>
-                                    <constraint firstAttribute="bottom" secondItem="Ffu-aO-O4g" secondAttribute="bottom" id="Loa-Id-jcZ"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ffu-aO-O4g" secondAttribute="trailing" id="NH6-yA-YI5"/>
-                                    <constraint firstItem="Bt9-g4-3ef" firstAttribute="top" secondItem="eYm-OD-GVy" secondAttribute="top" constant="88" id="Yn6-wJ-zhM"/>
-                                    <constraint firstItem="Ffu-aO-O4g" firstAttribute="top" secondItem="eYm-OD-GVy" secondAttribute="top" id="b3a-CH-VKi"/>
-                                    <constraint firstAttribute="trailing" secondItem="Bt9-g4-3ef" secondAttribute="trailing" id="gZe-6W-xsD"/>
-                                    <constraint firstItem="Bt9-g4-3ef" firstAttribute="leading" secondItem="eYm-OD-GVy" secondAttribute="leading" id="knE-E8-8wk"/>
-                                </constraints>
-                            </view>
+                                <connections>
+                                    <segue destination="tne-YQ-mkO" kind="embed" identifier="ShowRecognizedContentView" id="9bc-Ie-Gz3"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="eYm-OD-GVy" firstAttribute="top" secondItem="4wM-gE-hjw" secondAttribute="top" id="0vL-ND-Fb4"/>
                             <constraint firstItem="6TA-En-mg4" firstAttribute="top" secondItem="4wM-gE-hjw" secondAttribute="top" id="9Ev-GS-7fs"/>
+                            <constraint firstItem="Ffu-aO-O4g" firstAttribute="leading" secondItem="4wM-gE-hjw" secondAttribute="leading" id="HKA-HC-S6j"/>
                             <constraint firstItem="6TA-En-mg4" firstAttribute="leading" secondItem="4wM-gE-hjw" secondAttribute="leading" id="JdL-0M-vAu"/>
-                            <constraint firstItem="eYm-OD-GVy" firstAttribute="leading" secondItem="4wM-gE-hjw" secondAttribute="leading" id="Ngc-1O-zZ2"/>
-                            <constraint firstAttribute="trailing" secondItem="eYm-OD-GVy" secondAttribute="trailing" id="cmc-5o-EVC"/>
+                            <constraint firstAttribute="trailing" secondItem="Ffu-aO-O4g" secondAttribute="trailing" id="aQJ-7o-DVs"/>
                             <constraint firstAttribute="trailing" secondItem="6TA-En-mg4" secondAttribute="trailing" id="d2R-Na-E6Z"/>
-                            <constraint firstAttribute="bottom" secondItem="eYm-OD-GVy" secondAttribute="bottom" id="sYa-yN-ciT"/>
+                            <constraint firstAttribute="bottom" secondItem="Ffu-aO-O4g" secondAttribute="bottom" id="qor-Vd-94o"/>
                             <constraint firstAttribute="bottom" secondItem="6TA-En-mg4" secondAttribute="bottom" id="tAu-jX-n3b"/>
+                            <constraint firstItem="Ffu-aO-O4g" firstAttribute="top" secondItem="4wM-gE-hjw" secondAttribute="top" id="wiw-bP-GYH"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="9dj-y7-ER9">
@@ -297,20 +279,16 @@
                                 <constraint firstAttribute="bottom" secondItem="8fo-sv-cg7" secondAttribute="bottom" constant="4" id="u5C-hv-0hY"/>
                             </constraints>
                         </view>
-                        <barButtonItem key="rightBarButtonItem" title="Subscribe" id="feG-yb-xi5">
-                            <connections>
-                                <action selector="hitUpgradeAction:" destination="GOZ-GK-qBh" id="lSn-Fd-tLd"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bottomToolbar" destination="jKu-Ib-g3j" id="20e-AZ-pwo"/>
                         <outlet property="deepAnalysisButton" destination="Bt9-g4-3ef" id="6oX-7t-FTW"/>
                         <outlet property="recognizedContentView" destination="Sxf-5T-nUb" id="VLZ-yZ-Cmi"/>
                         <outlet property="sceneView" destination="6TA-En-mg4" id="s58-jf-p4g"/>
                         <outlet property="selectedImageView" destination="Ffu-aO-O4g" id="BIq-Qi-dx6"/>
                         <outlet property="upgradeButtonItem" destination="feG-yb-xi5" id="bDu-Rg-XeS"/>
-                        <segue destination="XN5-zD-zT7" kind="show" identifier="ShowUpgradeView" id="832-2e-1X8"/>
-                        <segue destination="74y-tE-t8P" kind="show" identifier="ShowSubscriptionInfo" id="ccV-g2-ehP"/>
+                        <segue destination="XN5-zD-zT7" kind="presentation" identifier="ShowUpgradeView" id="832-2e-1X8"/>
+                        <segue destination="74y-tE-t8P" kind="presentation" identifier="ShowSubscriptionInfo" id="ccV-g2-ehP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DfH-IE-l8u" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -338,7 +316,7 @@
             <objects>
                 <viewController id="tne-YQ-mkO" customClass="RecognizedContentViewController" customModule="Vhista" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BuC-8H-ReT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="106.66666666666663"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="107"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
