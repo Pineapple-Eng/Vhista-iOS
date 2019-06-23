@@ -23,5 +23,4 @@ extension UIViewController {
             return stringMeters.replacingOccurrences(of: ".", with: " " + NSLocalizedString("POINT", comment: "") + " ") + " " + NSLocalizedString("METERS", comment: "")
         }
     }
-
 }

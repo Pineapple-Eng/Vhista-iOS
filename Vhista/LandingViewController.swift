@@ -42,17 +42,11 @@ class LandingViewController: UIViewController {
     }
 
     func continueToApp() {
-        if ARConfiguration.isSupported, #available(iOS 11.3, *) {
-            recordAnalytics(analyticsEventName: AnalyticsConstants.LandedAREnabled, parameters: [
-                "language": globalLanguage
-                ])
-            self.performSegue(withIdentifier: "GoToARHome", sender: nil)
-        } else {
-            recordAnalytics(analyticsEventName: AnalyticsConstants.LandedARDisabled, parameters: [
-                "language": globalLanguage
-                ])
-            self.performSegue(withIdentifier: "GoToNonARHome", sender: nil)
-        }
+        let eventName = arEnabled ? AnalyticsConstants.LandedAREnabled:AnalyticsConstants.LandedARDisabled
+        recordAnalytics(analyticsEventName: eventName, parameters: [
+            "language": globalLanguage
+            ])
+        self.performSegue(withIdentifier: "GoToARHome", sender: nil)
     }
 
     override func didReceiveMemoryWarning() {

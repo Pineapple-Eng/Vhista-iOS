@@ -10,13 +10,11 @@ import UIKit
 import SpriteKit
 import ARKit
 import Vision
+import AVFoundation
 
 class ARKitCameraViewController:
 UIViewController,
-UIGestureRecognizerDelegate,
-ARSessionDelegate {
-
-    @IBOutlet weak var sceneView: ARSCNView!
+UIGestureRecognizerDelegate {
 
     // Logo View
     var logoView: UIView!
@@ -32,12 +30,27 @@ ARSessionDelegate {
 
     @IBOutlet weak var bottomToolbar: UIToolbar!
 
-    // ARSession Frame
-    var previousFrameTimeInterval = Date().timeIntervalSince1970
+    // -- Non AR Camera --
+    var captureSession: AVCaptureSession!
+    var videoLayer: AVCaptureVideoPreviewLayer!
+    var cameraView: UIView!
+    var captureQueue: DispatchQueue!
+    var stillImageOutput: AVCapturePhotoOutput!
+    var shapeLayer: CAShapeLayer!
+    // -- / Non AR Camera --
 
+    // -- AR Camera --
+    var sceneView: ARSCNView!
+    var previousFrameTimeInterval: TimeInterval!
     //Still Image
-    private var persistentPixelBuffer: CVPixelBuffer?
+    var persistentPixelBuffer: CVPixelBuffer?
+    // The pixel buffer being held for analysis; used to serialize Vision requests.
+    var currentBuffer: CVPixelBuffer?
+    // -- / AR Camera --
 
+
+    // Queue for dispatching vision classification requests
+    private let visionQueue = DispatchQueue(label: "com.juandavidcruz.Vhista.ARKitVision.serialVisionQueue")
     var selectedImage: UIImage!
 
     @IBOutlet weak var selectedImageView: UIImageView!
@@ -46,7 +59,11 @@ ARSessionDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
-        setUpSceneView()
+        if arEnabled {
+            setUpSceneView()
+        } else {
+            setUpCamera()
+        }
         VhistaSpeechManager.shared.parentARController = self
     }
 
@@ -64,66 +81,28 @@ ARSessionDelegate {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        // Create a session configuration
-        let configuration = ARWorldTrackingConfiguration()
-        if #available(iOS 11.3, *) {
-            print("Activating vertical plane detection")
-            configuration.planeDetection = .vertical
+        if arEnabled {
+            arCameraViewDidAppear()
         } else {
-            // Fallback on earlier versions
+            nonARCameraViewDidAppear()
         }
-        // Run the view's session
-        sceneView.session.run(configuration)
     }
 
     func setUpUI() {
         if SubscriptionManager.shared.isUserSubscribedToFullAccess() {
             upgradeButtonItem.title = NSLocalizedString("Show_Subscription_Button_Title", comment: "")
         }
-
-        bottomToolbar.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            bottomToolbar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            bottomToolbar.rightAnchor.constraint(equalTo: view.rightAnchor),
-            bottomToolbar.leftAnchor.constraint(equalTo: view.leftAnchor)
-            ])
-
-        recognizedContentViewHeightContraint = recognizedContentView.heightAnchor.constraint(equalToConstant: .zero)
-        recognizedContentView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            recognizedContentViewHeightContraint,
-            recognizedContentView.bottomAnchor.constraint(equalTo: bottomToolbar.topAnchor),
-            recognizedContentView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            recognizedContentView.leftAnchor.constraint(equalTo: view.leftAnchor)
-            ])
-
-        deepAnalysisButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            deepAnalysisButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            deepAnalysisButton.bottomAnchor.constraint(equalTo: recognizedContentView.topAnchor),
-            deepAnalysisButton.rightAnchor.constraint(equalTo: view.rightAnchor),
-            deepAnalysisButton.leftAnchor.constraint(equalTo: view.leftAnchor)
-            ])
-
         logoView = LogoView(frame: .zero)
-        logoView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(logoView)
-        NSLayoutConstraint.activate(LogoView.getViewLayoutConstraints(logoView: logoView,
-                                                                      parentView: self.view))
-    }
-
-    func setUpSceneView() {
-        sceneView.delegate = self
-        sceneView.debugOptions = [SCNDebugOptions.showFeaturePoints]
-        sceneView.session.delegate = self
-        sceneView.showsStatistics = false
-        let arScene = SCNScene()
-        sceneView.scene = arScene
+        setUpUIConstraints()
     }
 
     override func viewDidLayoutSubviews() {
         self.view.bringSubviewToFront(deepAnalysisButton)
         recognizedContentView.translatesAutoresizingMaskIntoConstraints = false
+        if !arEnabled {
+            updateNonARCameraConnectionOrientationAndFrame()
+        }
     }
 
     @IBAction func hitUpgradeAction(_ sender: Any) {
@@ -142,12 +121,15 @@ ARSessionDelegate {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        VhistaSpeechManager.shared.stopSpeech(sender: self)
+        VhistaSpeechManager.shared.blockAllSpeech = true
         // Pause the view's session
-        sceneView.session.pause()
+        if arEnabled {
+            sceneView.session.pause()
+        }
     }
 
     @IBAction func makeDeepAnalysis(_ sender: Any) {
-
         if !checkCameraPermissions() {
             return
         }
@@ -191,12 +173,11 @@ ARSessionDelegate {
                     return
                 }
 
-                if let currentImage = UIImage(pixelBuffer: self.persistentPixelBuffer!) {
-                    UINotificationFeedbackGenerator().notificationOccurred(.success)
-                    processingImage = true
-                    self.setImageForRekognition(image: currentImage)
+                if arEnabled {
+                    self.processARImageAnalysis()
+                } else {
+                    self.processNonARImageAnalysis()
                 }
-
             } else {
                 RekognitionManager.shared.backToDefaults()
                 VhistaSpeechManager.shared.blockAllSpeech =  false
@@ -204,58 +185,10 @@ ARSessionDelegate {
                                         message: NSLocalizedString("Deep_Analysis_Deactivated_Message", comment: ""))
                 return
             }
-
         })
-
-    }
-
-    // MARK: - ARSessionDelegate
-
-    // Pass camera frames received from ARKit to Vision (when not already processing one)
-    /// - Tag: ConsumeARFrames
-    func session(_ session: ARSession, didUpdate frame: ARFrame) {
-        // Do not enqueue other buffers for processing while another Vision task is still running.
-        // The camera stream has only a finite amount of buffers available; holding too many buffers for analysis would starve the camera.
-
-        self.persistentPixelBuffer = frame.capturedImage
-
-//        Working "" flash solution.
-//        let luminosity = frame.lightEstimate?.ambientIntensity
-//        let device = AVCaptureDevice.default(for: .video)!
-//        if device.hasTorch, device.isTorchAvailable {
-//            do {
-//                try device.lockForConfiguration()
-//                if let lumens = luminosity, lumens < flashLumens {
-//                    device.torchMode = .on
-//                } else {
-//                    if device.isTorchActive {
-//                        device.torchMode = .off
-//                    }
-//                }
-//                device.unlockForConfiguration()
-//            } catch {
-//                print("\(error)")
-//            }
-//        }
-
-        guard currentBuffer == nil, case .normal = frame.camera.trackingState else {
-            return
-        }
-
-        let frameTimestamp = Date().timeIntervalSince1970
-        if previousFrameTimeInterval.advanced(by: frameRateInterval) >= frameTimestamp {
-            return
-        } else {
-            previousFrameTimeInterval = frameTimestamp
-        }
-
-        // Retain the image buffer for Vision processing.
-        self.currentBuffer = frame.capturedImage
-        classifyCurrentImage()
     }
 
     // MARK: - Vision classification
-
     // Vision classification request and model
     /// - Tag: ClassificationRequest
     private lazy var classificationRequest: VNCoreMLRequest = {
@@ -281,24 +214,7 @@ ARSessionDelegate {
         return VNDetectFaceRectanglesRequest(completionHandler: self.handleFaceLandmarks)
     }()
 
-    // The pixel buffer being held for analysis; used to serialize Vision requests.
-    private var currentBuffer: CVPixelBuffer?
-
-    // Queue for dispatching vision classification requests
-    private let visionQueue = DispatchQueue(label: "com.juandavidcruz.Vhista.ARKitVision.serialVisionQueue")
-
-    // Run the Vision+ML classifier on the current image buffer.
-    /// - Tag: ClassifyCurrentImage
-    private func classifyCurrentImage() {
-
-        if currentBuffer == nil {
-            return
-        }
-
-        // Most computer vision tasks are not rotation agnostic so it is important to pass in the orientation of the image with respect to device.
-        let orientation = CGImagePropertyOrientation(UIDevice.current.orientation)
-
-        let requestHandler = VNImageRequestHandler(cvPixelBuffer: currentBuffer!, orientation: orientation)
+    func runVisionQueueWithRequestHandler(_ requestHandler: VNImageRequestHandler) {
         visionQueue.async {
             do {
                 // Release the pixel buffer when done, allowing the next buffer to be processed.
@@ -350,69 +266,17 @@ ARSessionDelegate {
         let message = String(format: "Detected \(result) with %.2f", confidence * 100) + "% confidence"
         print(message)
 
-        let hitTestResults = sceneView.hitTest(sceneView.center, types: .featurePoint)
-        guard let hitTestResult = hitTestResults.first else {
-            addStringToRead(result, "", isProtected: false)
-            return
-        }
-        addStringToRead(result, getLocalizedStringForDistance(hitTestResult.distance), isProtected: false)
-    }
-
-    // MARK: - AR Session Handling
-
-    func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
-        switch camera.trackingState {
-        case .notAvailable, .limited: break
-        case .normal: break
-            // Unhide content after successful relocalization.
-//            setOverlaysHidden(false)
-        }
-    }
-
-    func session(_ session: ARSession, didFailWithError error: Error) {
-        guard error is ARError else { return }
-
-        let errorWithInfo = error as NSError
-        let messages = [
-            errorWithInfo.localizedDescription,
-            errorWithInfo.localizedFailureReason,
-            errorWithInfo.localizedRecoverySuggestion
-        ]
-
-        // Filter out optional error messages.
-        let errorMessage = messages.compactMap({ $0 }).joined(separator: "\n")
-        DispatchQueue.main.async {
-            self.displayErrorMessage(title: NSLocalizedString("AR_Session_Failed_Title", comment: ""), message: errorMessage)
-        }
-    }
-
-    func sessionWasInterrupted(_ session: ARSession) {
-//        setOverlaysHidden(true)
-    }
-
-    func sessionShouldAttemptRelocalization(_ session: ARSession) -> Bool {
-        /*
-         Allow the session to attempt to resume after an interruption.
-         This process may not succeed, so the app must be prepared
-         to reset the session if the relocalizing status continues
-         for a long time -- see `escalateFeedback` in `StatusViewController`.
-         */
-        return true
-    }
-
-    private func restartSession() {
-        guard let sceneView = self.view as? ARSKView else {
-            return
-        }
-        let configuration = ARWorldTrackingConfiguration()
-        if #available(iOS 11.3, *) {
-            configuration.planeDetection = .vertical
+        if arEnabled {
+            let hitTestResults = sceneView.hitTest(sceneView.center, types: .featurePoint)
+            guard let hitTestResult = hitTestResults.first else {
+                addStringToRead(result, "", isProtected: false)
+                return
+            }
+            addStringToRead(result, getLocalizedStringForDistance(hitTestResult.distance), isProtected: false)
         } else {
-            // Fallback on earlier versions
+            addStringToRead(result, "", isProtected: false)
         }
-        sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
-
 }
 
 // MARK: - Handle Reading of Identified Labels
@@ -428,9 +292,8 @@ extension ARKitCameraViewController {
         }
     }
 
-    func addStringToRead(_ stringRecognized: String, _ distanceString: String, isProtected: Bool) {
+    func addStringToRead(_ stringRecognized: String, _ distanceString: String = "", isProtected: Bool) {
         if !ClassificationsManager.shared.allowStringRecognized(stringRecognized: stringRecognized) { return }
-        print(distanceString)
         let stringRecognizedTranslated = translateModelString(pString: stringRecognized, targetLanguage: globalLanguage)
 
         ClassificationsManager.shared.lastRecognition = stringRecognized
@@ -461,71 +324,6 @@ extension ARKitCameraViewController {
 
         VhistaSpeechManager.shared.sayText(stringToSpeak: stringRecognized, isProtected: isProtected, rate: Float(globalRate))
 
-    }
-}
-
-// MARK: - Handle ARSCNView Delegate Methods
-extension ARKitCameraViewController: ARSCNViewDelegate {
-
-    func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-
-        let anchorNode = SCNNode()
-        let planeNode = SCNNode()
-        if let anchor = anchor as? ARPlaneAnchor {
-            planeNode.geometry = SCNPlane(width: CGFloat(anchor.extent.x), height: CGFloat(anchor.extent.z))
-            // transforming node
-            planeNode.position = SCNVector3(anchor.center.x, 0, anchor.center.z)
-            planeNode.geometry?.firstMaterial?.diffuse.contents = UIColor(red: 90/255, green: 200/255, blue: 250/255, alpha: 0.50)
-            planeNode.eulerAngles = SCNVector3(-Float.pi/2, 0, 0)
-        }
-        anchorNode.addChildNode(planeNode)
-        return anchorNode
-    }
-
-//    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-//
-//        guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
-//
-//        let width = CGFloat(planeAnchor.extent.x)
-//        let height = CGFloat(planeAnchor.extent.y)
-//        let plane = SCNPlane(width: width, height: height)
-//        plane.materials.first?.diffuse.contents = UIColor.white
-//        let planeNode = SCNNode(geometry: plane)
-//        let x = CGFloat(planeAnchor.center.x)
-//        let y = CGFloat(planeAnchor.center.y)
-//        let z = CGFloat(planeAnchor.center.z)
-//        planeNode.position = SCNVector3(x,y,z)
-//        node.addChildNode(planeNode)
-//    }
-
-    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-        if let anchor = anchor as? ARPlaneAnchor {
-            if let planeNode = node.childNodes.first {
-                planeNode.geometry = SCNPlane(width: CGFloat(anchor.extent.x), height: CGFloat(anchor.extent.z))
-                // transforming node
-                planeNode.position = SCNVector3(anchor.center.x, 0, anchor.center.z)
-                planeNode.geometry?.firstMaterial?.diffuse.contents = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.35)
-            }
-        }
-    }
-
-}
-
-// MARK: - Error Handling
-extension ARKitCameraViewController {
-    private func displayErrorMessage(title: String, message: String) {
-        // Present an alert informing about the error that has occurred.
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let restartAction = UIAlertAction(title: NSLocalizedString("Restart_Session", comment: ""), style: .default) { _ in
-            alertController.dismiss(animated: true, completion: nil)
-            if !self.checkCameraPermissions() {
-                return
-            } else {
-                self.restartSession()
-            }
-        }
-        alertController.addAction(restartAction)
-        present(alertController, animated: true, completion: nil)
     }
 }
 
@@ -584,5 +382,23 @@ extension ARKitCameraViewController {
                            animations: { self.view.layoutIfNeeded() },
                            completion: nil)
         }
+    }
+}
+
+// MARK: - Error Handling
+extension ARKitCameraViewController {
+    func displayErrorMessage(title: String, message: String) {
+        // Present an alert informing about the error that has occurred.
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let restartAction = UIAlertAction(title: NSLocalizedString("Restart_Session", comment: ""), style: .default) { _ in
+            alertController.dismiss(animated: true, completion: nil)
+            if !self.checkCameraPermissions() {
+                return
+            } else {
+                self.restartSession()
+            }
+        }
+        alertController.addAction(restartAction)
+        present(alertController, animated: true, completion: nil)
     }
 }

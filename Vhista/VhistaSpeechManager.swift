@@ -13,8 +13,6 @@ var processingImage = false
 
 class VhistaSpeechManager: NSObject {
 
-    var parentController: CameraViewController?
-
     var parentARController: ARKitCameraViewController?
 
     //Speech Synthesizer
@@ -140,9 +138,6 @@ extension VhistaSpeechManager: AVSpeechSynthesizerDelegate {
                 RekognitionManager.shared.nextIsFinish = false
                 RekognitionManager.shared.backToDefaults()
                 self.playingProtectedContent = false
-                if let parentVC = self.parentController {
-                    parentVC.finishedRekognitionAnalisis()
-                }
                 if let parentVCAR = self.parentARController {
                     parentVCAR.finishedRekognitionAnalisis()
                 }

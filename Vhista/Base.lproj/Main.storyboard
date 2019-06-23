@@ -9,141 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Camera View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="CameraViewController" customModule="Vhista" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DzF-P9-iKd">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M1i-1w-Ezs">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iT5-nx-aRb">
-                                        <rect key="frame" x="0.0" y="572" width="375" height="240"/>
-                                        <subviews>
-                                            <pickerView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NEb-80-shd">
-                                                <rect key="frame" x="8" y="0.0" width="359" height="162"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <accessibility key="accessibilityConfiguration">
-                                                    <accessibilityTraits key="traits" notEnabled="YES"/>
-                                                </accessibility>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="162" id="JX0-L2-9BD"/>
-                                                </constraints>
-                                            </pickerView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Made with ❤️ in Colombia 🇨🇴" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vtc-fm-V0O">
-                                                <rect key="frame" x="8" y="182" width="359" height="18"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="Vtc-fm-V0O" firstAttribute="leading" secondItem="iT5-nx-aRb" secondAttribute="leading" constant="8" id="Kg9-bn-fJX"/>
-                                            <constraint firstItem="NEb-80-shd" firstAttribute="top" secondItem="iT5-nx-aRb" secondAttribute="top" id="NUI-fo-4Cr"/>
-                                            <constraint firstAttribute="trailing" secondItem="Vtc-fm-V0O" secondAttribute="trailing" constant="8" id="Q1g-8x-q2O"/>
-                                            <constraint firstItem="NEb-80-shd" firstAttribute="leading" secondItem="iT5-nx-aRb" secondAttribute="leading" constant="8" id="RFT-Md-BjW"/>
-                                            <constraint firstAttribute="height" constant="240" id="aS7-S4-sh8"/>
-                                            <constraint firstAttribute="trailing" secondItem="NEb-80-shd" secondAttribute="trailing" constant="8" id="i78-uW-erj"/>
-                                            <constraint firstItem="Vtc-fm-V0O" firstAttribute="top" secondItem="NEb-80-shd" secondAttribute="bottom" constant="20" id="pOa-Jp-vmR"/>
-                                        </constraints>
-                                    </view>
-                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hFa-CU-NpX">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m58-gS-YDr">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                        <accessibility key="accessibilityConfiguration" hint="Press this button to get a panoramic description of your surroundings" label="Deep Analysis"/>
-                                        <state key="normal" title="Deep Analysis">
-                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="makeDeepAnalysis:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YBY-2E-6gQ"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="m58-gS-YDr" secondAttribute="trailing" id="1xo-ed-oeX"/>
-                                    <constraint firstAttribute="trailing" secondItem="hFa-CU-NpX" secondAttribute="trailing" id="EFu-5V-TQ8"/>
-                                    <constraint firstItem="m58-gS-YDr" firstAttribute="top" secondItem="M1i-1w-Ezs" secondAttribute="top" id="J1m-sZ-6vQ"/>
-                                    <constraint firstAttribute="trailing" secondItem="iT5-nx-aRb" secondAttribute="trailing" id="KIH-91-3vV"/>
-                                    <constraint firstAttribute="bottom" secondItem="m58-gS-YDr" secondAttribute="bottom" id="U5q-PK-ag8"/>
-                                    <constraint firstItem="m58-gS-YDr" firstAttribute="leading" secondItem="M1i-1w-Ezs" secondAttribute="leading" id="di9-nR-Xdr"/>
-                                    <constraint firstItem="hFa-CU-NpX" firstAttribute="leading" secondItem="M1i-1w-Ezs" secondAttribute="leading" id="kXG-NC-o2B"/>
-                                    <constraint firstAttribute="bottom" secondItem="iT5-nx-aRb" secondAttribute="bottom" id="mjm-QI-REx"/>
-                                    <constraint firstItem="hFa-CU-NpX" firstAttribute="top" secondItem="M1i-1w-Ezs" secondAttribute="top" id="n6U-Rt-pOS"/>
-                                    <constraint firstAttribute="bottom" secondItem="hFa-CU-NpX" secondAttribute="bottom" id="nYM-2X-P92"/>
-                                    <constraint firstItem="iT5-nx-aRb" firstAttribute="leading" secondItem="M1i-1w-Ezs" secondAttribute="leading" id="rP9-4m-b32"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="DzF-P9-iKd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="3Pe-VF-V8S"/>
-                            <constraint firstAttribute="bottom" secondItem="M1i-1w-Ezs" secondAttribute="bottom" id="GLm-KU-49z"/>
-                            <constraint firstAttribute="trailing" secondItem="DzF-P9-iKd" secondAttribute="trailing" id="IC3-GX-chs"/>
-                            <constraint firstAttribute="bottom" secondItem="DzF-P9-iKd" secondAttribute="bottom" id="Mgx-f2-tcQ"/>
-                            <constraint firstAttribute="trailing" secondItem="M1i-1w-Ezs" secondAttribute="trailing" id="Mh6-PB-itT"/>
-                            <constraint firstItem="M1i-1w-Ezs" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="PlD-kK-VF8"/>
-                            <constraint firstItem="M1i-1w-Ezs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="TCC-JO-NVc"/>
-                            <constraint firstItem="DzF-P9-iKd" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="jB2-x3-1yE"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="NWQ-Ye-62x">
-                        <nil key="title"/>
-                        <view key="titleView" contentMode="scaleToFill" id="n5a-Mr-Maa">
-                            <rect key="frame" x="171.66666666666666" y="0.0" width="32" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SmallTransparentWhiteLogo" translatesAutoresizingMaskIntoConstraints="NO" id="k3r-M1-sys">
-                                    <rect key="frame" x="0.0" y="4" width="32" height="36"/>
-                                </imageView>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstAttribute="trailing" secondItem="k3r-M1-sys" secondAttribute="trailing" id="4dB-nS-ZWR"/>
-                                <constraint firstAttribute="bottom" secondItem="k3r-M1-sys" secondAttribute="bottom" constant="4" id="ZNv-34-eEV"/>
-                                <constraint firstItem="k3r-M1-sys" firstAttribute="top" secondItem="n5a-Mr-Maa" secondAttribute="top" constant="4" id="cjs-vf-0Tn"/>
-                                <constraint firstItem="k3r-M1-sys" firstAttribute="leading" secondItem="n5a-Mr-Maa" secondAttribute="leading" id="ldT-UL-dC2"/>
-                            </constraints>
-                        </view>
-                        <barButtonItem key="rightBarButtonItem" title="Subscribe" id="oQv-Id-w20">
-                            <connections>
-                                <action selector="hitUpgradeAction:" destination="BYZ-38-t0r" id="4rR-sU-qiI"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <connections>
-                        <outlet property="cameraView" destination="DzF-P9-iKd" id="yj1-eQ-dKt"/>
-                        <outlet property="deepAnalysisButton" destination="m58-gS-YDr" id="b2Q-YB-YGb"/>
-                        <outlet property="loveTextField" destination="Vtc-fm-V0O" id="pjn-DU-HeS"/>
-                        <outlet property="pickerContainerView" destination="iT5-nx-aRb" id="svr-Pt-GP4"/>
-                        <outlet property="selectedImageView" destination="hFa-CU-NpX" id="HF0-Sk-JMD"/>
-                        <outlet property="textHistoryPicker" destination="NEb-80-shd" id="hVo-eO-aed"/>
-                        <outlet property="upgradeButtonItem" destination="oQv-Id-w20" id="coi-Kg-oPz"/>
-                        <outlet property="userInterfaceView" destination="M1i-1w-Ezs" id="9pj-Gf-Yw7"/>
-                        <segue destination="74y-tE-t8P" kind="show" identifier="ShowSubscriptionInfo" id="bWS-Hz-M6U"/>
-                        <segue destination="XN5-zD-zT7" kind="show" identifier="ShowUpgradeView" id="mf8-pF-sd2"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-234" y="236"/>
-        </scene>
         <!--Landing View Controller-->
         <scene sceneID="kI3-fn-iCq">
             <objects>
@@ -171,30 +36,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="os2-QV-UVw" kind="presentation" identifier="GoToNonARHome" modalTransitionStyle="crossDissolve" id="Whn-qZ-8oT"/>
                         <segue destination="GOZ-GK-qBh" kind="presentation" identifier="GoToARHome" modalTransitionStyle="crossDissolve" id="Qe0-ET-JuY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wBi-fV-9ub" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2084" y="-264"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="iau-Zh-C7K">
-            <objects>
-                <navigationController id="os2-QV-UVw" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="VtQ-At-8Fr">
-                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Kla-bU-8Oh"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yxo-Cy-W7W" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1223" y="236"/>
         </scene>
         <!--Kit Camera View Controller-->
         <scene sceneID="qBf-Oh-K0f">
@@ -208,11 +55,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6TA-En-mg4">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <gestureRecognizers/>
-                            </arscnView>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ffu-aO-O4g">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
@@ -225,7 +67,6 @@
                                 </state>
                                 <connections>
                                     <action selector="makeDeepAnalysis:" destination="GOZ-GK-qBh" eventType="touchUpInside" id="LzG-AX-Az9"/>
-                                    <action selector="makeDeepAnalysis:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dJY-nG-yqr"/>
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sxf-5T-nUb">
@@ -252,13 +93,9 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="6TA-En-mg4" firstAttribute="top" secondItem="4wM-gE-hjw" secondAttribute="top" id="9Ev-GS-7fs"/>
                             <constraint firstItem="Ffu-aO-O4g" firstAttribute="leading" secondItem="4wM-gE-hjw" secondAttribute="leading" id="HKA-HC-S6j"/>
-                            <constraint firstItem="6TA-En-mg4" firstAttribute="leading" secondItem="4wM-gE-hjw" secondAttribute="leading" id="JdL-0M-vAu"/>
                             <constraint firstAttribute="trailing" secondItem="Ffu-aO-O4g" secondAttribute="trailing" id="aQJ-7o-DVs"/>
-                            <constraint firstAttribute="trailing" secondItem="6TA-En-mg4" secondAttribute="trailing" id="d2R-Na-E6Z"/>
                             <constraint firstAttribute="bottom" secondItem="Ffu-aO-O4g" secondAttribute="bottom" id="qor-Vd-94o"/>
-                            <constraint firstAttribute="bottom" secondItem="6TA-En-mg4" secondAttribute="bottom" id="tAu-jX-n3b"/>
                             <constraint firstItem="Ffu-aO-O4g" firstAttribute="top" secondItem="4wM-gE-hjw" secondAttribute="top" id="wiw-bP-GYH"/>
                         </constraints>
                     </view>
@@ -284,7 +121,6 @@
                         <outlet property="bottomToolbar" destination="jKu-Ib-g3j" id="20e-AZ-pwo"/>
                         <outlet property="deepAnalysisButton" destination="Bt9-g4-3ef" id="6oX-7t-FTW"/>
                         <outlet property="recognizedContentView" destination="Sxf-5T-nUb" id="VLZ-yZ-Cmi"/>
-                        <outlet property="sceneView" destination="6TA-En-mg4" id="s58-jf-p4g"/>
                         <outlet property="selectedImageView" destination="Ffu-aO-O4g" id="BIq-Qi-dx6"/>
                         <outlet property="upgradeButtonItem" destination="feG-yb-xi5" id="bDu-Rg-XeS"/>
                         <segue destination="XN5-zD-zT7" kind="presentation" identifier="ShowUpgradeView" id="832-2e-1X8"/>
@@ -293,7 +129,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DfH-IE-l8u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-234.40000000000001" y="-771.42857142857144"/>
+            <point key="canvasLocation" x="-874" y="-265"/>
         </scene>
         <!--SubscriptionVC-->
         <scene sceneID="TWa-Dk-Syn">
@@ -301,7 +137,7 @@
                 <viewControllerPlaceholder storyboardName="Subscription" referencedIdentifier="SubscriptionVC" id="XN5-zD-zT7" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mUz-ew-zdF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="418" y="-265"/>
+            <point key="canvasLocation" x="16" y="-248"/>
         </scene>
         <!--SubscriptionInfoVC-->
         <scene sceneID="rdp-Ky-Bfm">
@@ -309,7 +145,7 @@
                 <viewControllerPlaceholder storyboardName="Subscription" referencedIdentifier="SubscriptionInfoVC" id="74y-tE-t8P" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rJ4-pd-yGN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="901" y="-265"/>
+            <point key="canvasLocation" x="16" y="-92"/>
         </scene>
         <!--Recognized Content View Controller-->
         <scene sceneID="xzJ-sI-gMJ">
@@ -327,15 +163,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kj2-SS-b3e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="721" y="-771"/>
+            <point key="canvasLocation" x="18" y="-442"/>
         </scene>
     </scenes>
     <resources>
         <image name="SmallTransparentWhiteLogo" width="32" height="50"/>
         <image name="TransparentLogo" width="150" height="233"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="ccV-g2-ehP"/>
-        <segue reference="832-2e-1X8"/>
-    </inferredMetricsTieBreakers>
 </document>

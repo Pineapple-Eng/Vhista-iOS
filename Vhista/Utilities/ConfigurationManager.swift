@@ -25,7 +25,6 @@ class ConfigurationManager: NSObject {
     }()
 
     func serverAllowsRecognition(_ completition: @escaping (_ allowed: Bool) -> Void) {
-
         // Enable for development purposes only.
 //        remoteConfig.configSettings = RemoteConfigSettings(developerModeEnabled: true)
         remoteConfig.setDefaults(fromPlist: "RemoteConfig")
@@ -42,7 +41,5 @@ class ConfigurationManager: NSObject {
                 completition(true)
             }
         }
-
     }
-
 }
