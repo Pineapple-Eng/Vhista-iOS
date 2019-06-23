@@ -217,7 +217,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bt9-g4-3ef">
-                                <rect key="frame" x="0.0" y="88" width="375" height="565"/>
+                                <rect key="frame" x="0.0" y="193" width="375" height="460"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration" hint="Press this button to get a panoramic description of your surroundings" label="Deep Analysis"/>
                                 <state key="normal" title="Deep Analysis">
@@ -228,6 +228,14 @@
                                     <action selector="makeDeepAnalysis:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dJY-nG-yqr"/>
                                 </connections>
                             </button>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sxf-5T-nUb">
+                                <rect key="frame" x="0.0" y="661" width="375" height="107"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <segue destination="tne-YQ-mkO" kind="embed" identifier="ShowRecognizedContentView" id="9bc-Ie-Gz3"/>
+                                </connections>
+                            </containerView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="jKu-Ib-g3j">
                                 <rect key="frame" x="0.0" y="763" width="375" height="49"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -241,14 +249,6 @@
                                 </items>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </toolbar>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sxf-5T-nUb">
-                                <rect key="frame" x="0.0" y="661" width="375" height="107"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <segue destination="tne-YQ-mkO" kind="embed" identifier="ShowRecognizedContentView" id="9bc-Ie-Gz3"/>
-                                </connections>
-                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -315,6 +315,10 @@
         <scene sceneID="xzJ-sI-gMJ">
             <objects>
                 <viewController id="tne-YQ-mkO" customClass="RecognizedContentViewController" customModule="Vhista" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rlT-J0-cGB"/>
+                        <viewControllerLayoutGuide type="bottom" id="N1Y-Cq-vxb"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="BuC-8H-ReT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="107"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

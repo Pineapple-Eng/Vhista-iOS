@@ -18,6 +18,9 @@ ARSessionDelegate {
 
     @IBOutlet weak var sceneView: ARSCNView!
 
+    // Logo View
+    var logoView: UIView!
+
     // Recognized Content View
     var recognizedContentViewHeightContraint: NSLayoutConstraint!
     @IBOutlet weak var recognizedContentView: UIView!
@@ -101,6 +104,12 @@ ARSessionDelegate {
             deepAnalysisButton.rightAnchor.constraint(equalTo: view.rightAnchor),
             deepAnalysisButton.leftAnchor.constraint(equalTo: view.leftAnchor)
             ])
+
+        logoView = LogoView(frame: .zero)
+        logoView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(logoView)
+        NSLayoutConstraint.activate(LogoView.getViewLayoutConstraints(logoView: logoView,
+                                                                      parentView: self.view))
     }
 
     func setUpSceneView() {
