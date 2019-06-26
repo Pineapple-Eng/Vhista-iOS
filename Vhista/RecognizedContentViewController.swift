@@ -17,6 +17,7 @@ class RecognizedContentViewController: UIViewController {
     static let bgEffectViewCornerRadius: CGFloat = 20.0
 
     static let recognizedObjectsLabelVerticalSpacing: CGFloat = 16.0
+    static let recognizedObjectsLabelHorizontalSpacing: CGFloat = 8.0
 
     static let timeIntervalAnimateHeightChange: TimeInterval = 0.25
 
@@ -28,7 +29,6 @@ class RecognizedContentViewController: UIViewController {
 
     func updateWithText(_ text: String) {
         recognizedObjectsLabel.accessibilityLabel = NSLocalizedString("LAST_RECOGNITION", comment: "") + text
-
         DispatchQueue.main.async {
             self.recognizedObjectsLabel.text = text
             self.view.layoutIfNeeded()
@@ -55,8 +55,10 @@ extension RecognizedContentViewController {
         self.view.addSubview(recognizedObjectsLabel)
         NSLayoutConstraint.activate([
             recognizedObjectsLabel.topAnchor.constraint(equalTo: view.topAnchor),
-            recognizedObjectsLabel.leftAnchor.constraint(equalTo: view.leftAnchor),
-            recognizedObjectsLabel.rightAnchor.constraint(equalTo: view.rightAnchor),
+            recognizedObjectsLabel.leftAnchor.constraint(equalTo: view.leftAnchor,
+                                                         constant: RecognizedContentViewController.recognizedObjectsLabelHorizontalSpacing),
+            recognizedObjectsLabel.rightAnchor.constraint(equalTo: view.rightAnchor,
+                                                          constant: -RecognizedContentViewController.recognizedObjectsLabelHorizontalSpacing),
             recognizedObjectsLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
             ])
     }

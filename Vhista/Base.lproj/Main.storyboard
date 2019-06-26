@@ -81,6 +81,7 @@
                                 <rect key="frame" x="0.0" y="763" width="375" height="49"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
+                                    <barButtonItem systemItem="camera" id="KGO-Id-ocm"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Nn4-V8-9b2"/>
                                     <barButtonItem title="Subscribe" id="feG-yb-xi5">
                                         <connections>

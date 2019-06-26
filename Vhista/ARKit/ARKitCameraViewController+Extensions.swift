@@ -27,6 +27,7 @@ extension ARKitCameraViewController {
         sceneView.debugOptions = [SCNDebugOptions.showFeaturePoints]
         sceneView.session.delegate = self
         sceneView.showsStatistics = false
+
         let arScene = SCNScene()
         sceneView.scene = arScene
     }
@@ -85,7 +86,6 @@ extension ARKitCameraViewController: ARSessionDelegate {
         classifyCurrentImage()
     }
 
-
     // MARK: - AR Session Handling
     func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
         switch camera.trackingState {
@@ -139,7 +139,6 @@ extension ARKitCameraViewController: ARSessionDelegate {
         }
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
-
 
     // Run the Vision+ML classifier on the current image buffer.
     /// - Tag: ClassifyCurrentImage

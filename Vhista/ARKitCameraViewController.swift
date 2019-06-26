@@ -48,7 +48,6 @@ UIGestureRecognizerDelegate {
     var currentBuffer: CVPixelBuffer?
     // -- / AR Camera --
 
-
     // Queue for dispatching vision classification requests
     private let visionQueue = DispatchQueue(label: "com.juandavidcruz.Vhista.ARKitVision.serialVisionQueue")
     var selectedImage: UIImage!
@@ -146,23 +145,14 @@ UIGestureRecognizerDelegate {
         ConfigurationManager.shared.serverAllowsRecognition({ (allowed) in
 
             if allowed {
-
-                switch VhistaReachabilityManager.shared.networkStatus {
-                case .notReachable, .unknown:
+                guard VhistaReachabilityManager.shared.validInternetConnection() else {
                     RekognitionManager.shared.backToDefaults()
                     VhistaSpeechManager.shared.blockAllSpeech =  false
                     VhistaSpeechManager.shared.sayText(stringToSpeak: NSLocalizedString("Not_Reachable",
-                                                                                    comment: "Let the user know there is no internet access"),
+                                                                                        comment: "Let the user know there is no internet access"),
                                                        isProtected: true,
                                                        rate: globalRate)
                     UINotificationFeedbackGenerator().notificationOccurred(.error)
-                    return
-                case .reachableViaWWAN:
-                    print("Network OK")
-                case .reachableViaWiFi:
-                    print("Network OK")
-                @unknown default:
-                    print("Network Unknown")
                     return
                 }
 

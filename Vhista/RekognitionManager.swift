@@ -321,7 +321,7 @@ extension RekognitionManager {
             SwiftSpinner.show(NSLocalizedString("HUD_Processing_Image", comment: ""))
         }
 
-        let url = Bundle.main.url(forResource: "pad_confirm", withExtension: "aif")!
+        let url = Bundle.main.url(forResource: "loading_beep", withExtension: "wav")!
 
         do {
             player = try AVAudioPlayer(contentsOf: url)

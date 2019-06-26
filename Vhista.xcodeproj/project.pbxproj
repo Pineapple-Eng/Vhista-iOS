@@ -11,6 +11,7 @@
 		0D1C5B0022BF62850002C892 /* CameraViewConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C5AFF22BF62850002C892 /* CameraViewConstraints.swift */; };
 		0D1C5B0222BF64860002C892 /* ARKit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C5B0122BF64860002C892 /* ARKit+Extensions.swift */; };
 		0D1C5B0522BF67F10002C892 /* NonARCameraViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C5B0422BF67F10002C892 /* NonARCameraViewController+Extensions.swift */; };
+		0D5346F022C313C900103306 /* loading_beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0D5346EF22C313C900103306 /* loading_beep.wav */; };
 		0D95531E22B9FC6E00B17581 /* RecognizedContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D95531D22B9FC6E00B17581 /* RecognizedContentViewController.swift */; };
 		0D95532122BA3E5100B17581 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D95532022BA3E5100B17581 /* LogoView.swift */; };
 		0DB8A87D2134F3FB0005D168 /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB8A87C2134F3FB0005D168 /* ConfigurationManager.swift */; };
@@ -26,7 +27,6 @@
 		2B75038B1F31936E007D4AFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B75038A1F31936E007D4AFF /* Assets.xcassets */; };
 		2B75038E1F31936E007D4AFF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B75038C1F31936E007D4AFF /* LaunchScreen.storyboard */; };
 		2B9638BA1F328E42008DBBCF /* SwiftSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B9638B81F328E41008DBBCF /* SwiftSpinner.swift */; };
-		2B9638BB1F328E42008DBBCF /* pad_confirm.aif in Resources */ = {isa = PBXBuildFile; fileRef = 2B9638B91F328E42008DBBCF /* pad_confirm.aif */; };
 		2BA01FCD1F6B47A700E1BD11 /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA01FCC1F6B47A700E1BD11 /* SubscriptionManager.swift */; };
 		2BF5EE691F46155B009E49D7 /* VhistaReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF5EE681F46155B009E49D7 /* VhistaReachabilityManager.swift */; };
 		63342CD820B0BE0900E397E6 /* SecureConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63342CD720B0BE0900E397E6 /* SecureConstants.swift */; };
@@ -55,6 +55,7 @@
 		0D1C5AFF22BF62850002C892 /* CameraViewConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CameraViewConstraints.swift; path = Camera/UIConstraints/CameraViewConstraints.swift; sourceTree = "<group>"; };
 		0D1C5B0122BF64860002C892 /* ARKit+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ARKit+Extensions.swift"; path = "Utilities/ARKit+Extensions.swift"; sourceTree = "<group>"; };
 		0D1C5B0422BF67F10002C892 /* NonARCameraViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "NonARCameraViewController+Extensions.swift"; path = "Camera/NonARCamera/NonARCameraViewController+Extensions.swift"; sourceTree = "<group>"; };
+		0D5346EF22C313C900103306 /* loading_beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = loading_beep.wav; sourceTree = "<group>"; };
 		0D95531D22B9FC6E00B17581 /* RecognizedContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedContentViewController.swift; sourceTree = "<group>"; };
 		0D95532022BA3E5100B17581 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		0DB8A87C2134F3FB0005D168 /* ConfigurationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConfigurationManager.swift; path = Utilities/ConfigurationManager.swift; sourceTree = "<group>"; };
@@ -75,7 +76,6 @@
 		2B75038A1F31936E007D4AFF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2B75038D1F31936E007D4AFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B9638B81F328E41008DBBCF /* SwiftSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSpinner.swift; sourceTree = "<group>"; };
-		2B9638B91F328E42008DBBCF /* pad_confirm.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = pad_confirm.aif; sourceTree = "<group>"; };
 		2BA01FCC1F6B47A700E1BD11 /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SubscriptionManager.swift; path = Subscription/SubscriptionManager.swift; sourceTree = "<group>"; };
 		2BF5EE681F46155B009E49D7 /* VhistaReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VhistaReachabilityManager.swift; path = Network/VhistaReachabilityManager.swift; sourceTree = "<group>"; };
 		2DEF6EE02D6F384283ADE30C /* Pods_Vhista.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vhista.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -259,7 +259,7 @@
 		2B9638B71F328E31008DBBCF /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				2B9638B91F328E42008DBBCF /* pad_confirm.aif */,
+				0D5346EF22C313C900103306 /* loading_beep.wav */,
 				2B9638B81F328E41008DBBCF /* SwiftSpinner.swift */,
 			);
 			name = SupportingFiles;
@@ -397,7 +397,7 @@
 				9A9AFD631F48CD5E00172469 /* Localizable.strings in Resources */,
 				2B75038B1F31936E007D4AFF /* Assets.xcassets in Resources */,
 				2B7503891F31936E007D4AFF /* Main.storyboard in Resources */,
-				2B9638BB1F328E42008DBBCF /* pad_confirm.aif in Resources */,
+				0D5346F022C313C900103306 /* loading_beep.wav in Resources */,
 				0DCC7D5621238DFE00601C68 /* Subscription.storyboard in Resources */,
 				0DB8A87F2134F6670005D168 /* RemoteConfig.plist in Resources */,
 				63342CDA20B0BE6F00E397E6 /* GoogleService-Info.plist in Resources */,

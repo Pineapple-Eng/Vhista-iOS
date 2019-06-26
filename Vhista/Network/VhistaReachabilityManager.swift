@@ -41,4 +41,17 @@ class VhistaReachabilityManager: NSObject {
         }
         AFNetworkReachabilityManager.shared().startMonitoring()
     }
+
+    func validInternetConnection() -> Bool {
+        switch self.networkStatus {
+        case .notReachable, .unknown:
+            return false
+        case .reachableViaWWAN, .reachableViaWiFi:
+            print("Network OK")
+            return true
+        @unknown default:
+            print("Network Unknown")
+            return false
+        }
+    }
 }
