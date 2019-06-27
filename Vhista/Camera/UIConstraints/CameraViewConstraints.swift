@@ -2,9 +2,10 @@ import UIKit
 
 extension ARKitCameraViewController {
     func setUpUIConstraints() {
+        bottomToolbarViewBottomAnchorContraint = bottomToolbar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         bottomToolbar.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            bottomToolbar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            bottomToolbarViewBottomAnchorContraint,
             bottomToolbar.rightAnchor.constraint(equalTo: view.rightAnchor),
             bottomToolbar.leftAnchor.constraint(equalTo: view.leftAnchor)
             ])
@@ -25,7 +26,6 @@ extension ARKitCameraViewController {
             deepAnalysisButton.rightAnchor.constraint(equalTo: view.rightAnchor),
             deepAnalysisButton.leftAnchor.constraint(equalTo: view.leftAnchor)
             ])
-
         logoView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(LogoView.getViewLayoutConstraints(logoView: logoView,
                                                                       parentView: self.view))
@@ -49,5 +49,20 @@ extension ARKitCameraViewController {
             cameraView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             cameraView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor)
             ])
+    }
+}
+
+extension ARKitCameraViewController {
+    func toggleBottomAndRecognizedContentViewsVisibility(hide: Bool) {
+        var deltaY: CGFloat = 0.0
+        if hide {
+            deltaY = bottomToolbar.frame.size.height + recognizedContentViewHeightContraint.constant + self.view.safeAreaInsets.bottom
+        }
+        DispatchQueue.main.async {
+            self.bottomToolbarViewBottomAnchorContraint.constant = deltaY
+            UIView.animate(withDuration: RecognizedContentViewController.timeIntervalAnimateHeightChange,
+                           animations: { self.view.layoutIfNeeded() },
+                           completion: nil)
+        }
     }
 }

@@ -47,10 +47,10 @@ class VhistaReachabilityManager: NSObject {
         case .notReachable, .unknown:
             return false
         case .reachableViaWWAN, .reachableViaWiFi:
-            print("Network OK")
+            print("🌐 Network OK")
             return true
         @unknown default:
-            print("Network Unknown")
+            print("🌐 Network Unknown")
             return false
         }
     }

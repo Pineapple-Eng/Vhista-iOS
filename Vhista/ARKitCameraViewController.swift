@@ -17,7 +17,7 @@ UIViewController,
 UIGestureRecognizerDelegate {
 
     // Logo View
-    var logoView: UIView!
+    var logoView: LogoView!
 
     // Recognized Content View
     var recognizedContentViewHeightContraint: NSLayoutConstraint!
@@ -28,6 +28,7 @@ UIGestureRecognizerDelegate {
 
     @IBOutlet weak var upgradeButtonItem: UIBarButtonItem!
 
+    var bottomToolbarViewBottomAnchorContraint: NSLayoutConstraint!
     @IBOutlet weak var bottomToolbar: UIToolbar!
 
     // -- Non AR Camera --
@@ -68,7 +69,6 @@ UIGestureRecognizerDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        VhistaSpeechManager.shared.blockAllSpeech = false
         if SubscriptionManager.shared.isUserSubscribedToFullAccess() {
             upgradeButtonItem.title = NSLocalizedString("Show_Subscription_Button_Title", comment: "")
             upgradeButtonItem.accessibilityHint = NSLocalizedString("Subscription_Button_Accessibility_Hint", comment: "")
@@ -80,11 +80,7 @@ UIGestureRecognizerDelegate {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if arEnabled {
-            arCameraViewDidAppear()
-        } else {
-            nonARCameraViewDidAppear()
-        }
+        resumeCurrentSession()
     }
 
     func setUpUI() {
@@ -120,12 +116,7 @@ UIGestureRecognizerDelegate {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        VhistaSpeechManager.shared.stopSpeech(sender: self)
-        VhistaSpeechManager.shared.blockAllSpeech = true
-        // Pause the view's session
-        if arEnabled {
-            sceneView.session.pause()
-        }
+        pauseCurrentSession()
     }
 
     @IBAction func makeDeepAnalysis(_ sender: Any) {
@@ -137,17 +128,11 @@ UIGestureRecognizerDelegate {
             print("No Buffer \(String(describing: self.persistentPixelBuffer))")
             return
         }
-
-        RekognitionManager.shared.playLoadingSound()
-        VhistaSpeechManager.shared.stopSpeech(sender: sender)
-        VhistaSpeechManager.shared.blockAllSpeech =  true
-
+        updateUIForDeepAnalysisChange(willAnalyze: true)
         ConfigurationManager.shared.serverAllowsRecognition({ (allowed) in
-
             if allowed {
                 guard VhistaReachabilityManager.shared.validInternetConnection() else {
-                    RekognitionManager.shared.backToDefaults()
-                    VhistaSpeechManager.shared.blockAllSpeech =  false
+                    self.updateUIForDeepAnalysisChange(willAnalyze: false)
                     VhistaSpeechManager.shared.sayText(stringToSpeak: NSLocalizedString("Not_Reachable",
                                                                                         comment: "Let the user know there is no internet access"),
                                                        isProtected: true,
@@ -157,8 +142,7 @@ UIGestureRecognizerDelegate {
                 }
 
                 if !SubscriptionManager.shared.checkDeepSubscription() {
-                    RekognitionManager.shared.backToDefaults()
-                    VhistaSpeechManager.shared.blockAllSpeech =  false
+                    self.updateUIForDeepAnalysisChange(willAnalyze: false)
                     self.performSegue(withIdentifier: "ShowUpgradeView", sender: nil)
                     return
                 }
@@ -169,8 +153,7 @@ UIGestureRecognizerDelegate {
                     self.processNonARImageAnalysis()
                 }
             } else {
-                RekognitionManager.shared.backToDefaults()
-                VhistaSpeechManager.shared.blockAllSpeech =  false
+                self.updateUIForDeepAnalysisChange(willAnalyze: false)
                 self.showErrorAlertView(title: NSLocalizedString("Deep_Analysis_Deactivated_Title", comment: ""),
                                         message: NSLocalizedString("Deep_Analysis_Deactivated_Message", comment: ""))
                 return
@@ -344,8 +327,11 @@ extension ARKitCameraViewController {
     }
 
     func showSelectedImage() {
-        selectedImageView.image = selectedImage
-        selectedImageView.isHidden = false
+        DispatchQueue.main.async {
+            self.view.bringSubviewToFront(self.logoView)
+            self.selectedImageView.image = self.selectedImage
+            self.selectedImageView.isHidden = false
+        }
     }
 
     func finishedRekognitionAnalisis() {
@@ -356,6 +342,7 @@ extension ARKitCameraViewController {
         }
         selectedImage = nil
         processingImage = false
+        updateUIForDeepAnalysisChange(willAnalyze: false)
     }
 }
 
@@ -371,6 +358,43 @@ extension ARKitCameraViewController {
             UIView.animate(withDuration: RecognizedContentViewController.timeIntervalAnimateHeightChange,
                            animations: { self.view.layoutIfNeeded() },
                            completion: nil)
+        }
+    }
+}
+
+// MARK: - View Handling
+extension ARKitCameraViewController {
+    func updateUIForDeepAnalysisChange(willAnalyze: Bool) {
+        toggleBottomAndRecognizedContentViewsVisibility(hide: willAnalyze)
+        if willAnalyze {
+            pauseCurrentSession()
+            logoView.showLoadingLogoView(parentView: self.view)
+            RekognitionManager.shared.playLoadingSound()
+        } else {
+            resumeCurrentSession()
+            logoView.stopLoadingLogoView(parentView: self.view)
+            RekognitionManager.shared.backToDefaults()
+        }
+    }
+}
+
+// MARK: - Session Handling
+extension ARKitCameraViewController {
+    func pauseCurrentSession() {
+        VhistaSpeechManager.shared.stopSpeech(sender: self)
+        VhistaSpeechManager.shared.blockAllSpeech = true
+        // Pause the view's session
+        if arEnabled {
+            sceneView.session.pause()
+        }
+    }
+
+    func resumeCurrentSession() {
+        VhistaSpeechManager.shared.blockAllSpeech = false
+        if arEnabled {
+            arCameraViewDidAppear()
+        } else {
+            nonARCameraViewDidAppear()
         }
     }
 }

@@ -13,11 +13,14 @@ class LogoView: UIView {
     static let bgEffectViewTag = 101
 
     static let logoViewTopMargin: CGFloat = 16.0
-
     static let viewWidth: CGFloat = 80.0
     static let viewHeight: CGFloat = 80.0
 
     static let imageViewInset: CGFloat = 22.0
+
+    static let logoStartLoadingAnimationDuration: TimeInterval = 0.5
+    static let logoStartLoadingStringDamping: CGFloat = 0.7
+    static let logoStartLoadingInitialSpringVelocity: CGFloat = 0.7
 
     var logoImageView = UIImageView()
 
@@ -73,6 +76,36 @@ extension LogoView {
                                                   constant: -LogoView.imageViewInset)
             ])
     }
+}
+
+extension LogoView {
+
+    func showLoadingLogoView(parentView: UIView) {
+        toggleLoadingLogoView(parentView: parentView, stop: false)
+    }
+
+    func stopLoadingLogoView(parentView: UIView) {
+        toggleLoadingLogoView(parentView: parentView, stop: true)
+    }
+
+    private func toggleLoadingLogoView(parentView: UIView, stop: Bool) {
+        var yDelta = parentView.center.y - self.center.y
+        if stop {
+            yDelta = (parentView.safeAreaInsets.top + LogoView.logoViewTopMargin + LogoView.viewHeight/2) - self.center.y
+        }
+        UIView.animate(withDuration: LogoView.logoStartLoadingAnimationDuration,
+                       delay: .zero,
+                       usingSpringWithDamping: LogoView.logoStartLoadingStringDamping,
+                       initialSpringVelocity: LogoView.logoStartLoadingInitialSpringVelocity,
+                       options: .curveEaseOut,
+                       animations: {
+                        self.transform = CGAffineTransform(translationX: .zero,
+                                                           y: yDelta)
+        }) { (_) in
+            self.toggleLoadingAnimation(stop: stop)
+        }
+    }
+    private func toggleLoadingAnimation(stop: Bool) {}
 }
 
 extension LogoView {

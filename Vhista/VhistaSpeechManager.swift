@@ -87,15 +87,11 @@ class VhistaSpeechManager: NSObject {
         stopSpeech(sender: stringToSpeak)
 
         speechSynthesizer.speak(speechUtterance)
-
 //        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, stringToSpeak)
-
     }
 
     func speakRekognition(stringToSpeak: String) {
-
         sayText(stringToSpeak: stringToSpeak, isProtected: true, rate: Float(globalRate))
-
     }
 
 }
@@ -110,31 +106,18 @@ extension VhistaSpeechManager: AVSpeechSynthesizerDelegate {
         if speechSynthesizer.isSpeaking == true {
             speechSynthesizer.stopSpeaking(at: AVSpeechBoundary.immediate)
         }
-
     }
 
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-
         if processingImage {
-
             if RekognitionManager.shared.nextIsProcessFaces == true {
-
                 print("👦🏼 Getting Rekognition Faces")
-
                 speakRekognition(stringToSpeak: NSLocalizedString("Analizying_People",
                                                                   comment: "We now need to search for faces in the picture"))
-
-                DispatchQueue.main.async {
-                    SwiftSpinner.show(NSLocalizedString("HUD_Searching_People", comment: ""))
-                }
-
                 RekognitionManager.shared.nextIsProcessFaces = false
                 RekognitionManager.shared.getFaces()
-
             } else if RekognitionManager.shared.nextIsFinish {
-
                 print("🏃🏽 Finishing Rekognition")
-
                 RekognitionManager.shared.nextIsFinish = false
                 RekognitionManager.shared.backToDefaults()
                 self.playingProtectedContent = false
@@ -147,7 +130,5 @@ extension VhistaSpeechManager: AVSpeechSynthesizerDelegate {
                 playingProtectedContent = false
             }
         }
-
     }
-
 }

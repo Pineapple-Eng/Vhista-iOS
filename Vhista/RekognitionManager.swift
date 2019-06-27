@@ -39,7 +39,6 @@ class RekognitionManager: NSObject {
 
     func backToDefaults () {
         DispatchQueue.main.async {
-            SwiftSpinner.hide()
             self.pauseLoadingSound()
             self.resultFaces = nil
             self.errorGettingFaces = nil
@@ -95,19 +94,12 @@ extension RekognitionManager {
                 self.errorGettingFaces = true
             }
         }
-
     }
-
 }
 
 extension RekognitionManager {
 
     func processLabels(labels: [AWSRekognitionLabel]) {
-
-        DispatchQueue.main.async {
-            SwiftSpinner.show(NSLocalizedString("HUD_Processing_Response", comment: ""))
-        }
-
         self.recordAnalytics(analyticsEventName: "labels_processed", parameters: [
             "language": globalLanguage,
             "count": "\(labels.count)"
@@ -143,18 +135,11 @@ extension RekognitionManager {
                                         self.speakLabels(arrayLabels: arrayLabels)
                                     }
                 })
-
             }
         }
-
     }
 
     func speakLabels(arrayLabels: [String]) {
-
-        DispatchQueue.main.async {
-            SwiftSpinner.show(NSLocalizedString("HUD_Reading_Response", comment: ""))
-        }
-
         pauseLoadingSound()
 
         var stringResponse: String  = NSLocalizedString("Found_In_Picture", comment: "Object(s) were found, let the user know that")
@@ -183,9 +168,7 @@ extension RekognitionManager {
         VhistaSpeechManager.shared.speakRekognition(stringToSpeak: stringResponse)
 
         nextIsProcessFaces = true
-
     }
-
 }
 
 extension RekognitionManager {
@@ -217,17 +200,10 @@ extension RekognitionManager {
                 self.processFaces(faces: resultFaces!)
 
             }
-
         }
-
     }
 
     func processFaces(faces: [AWSRekognitionFaceDetail]) {
-
-        DispatchQueue.main.async {
-            SwiftSpinner.show(NSLocalizedString("HUD_Describing_People", comment: ""))
-        }
-
         recordAnalytics(analyticsEventName: "faces_processed", parameters: [
             "language": globalLanguage,
             "count": "\(faces.count)"
@@ -308,7 +284,6 @@ extension RekognitionManager {
         VhistaSpeechManager.shared.sayText(stringToSpeak: stringResonse, isProtected: true, rate: Float(globalRate))
 
         nextIsFinish = true
-
     }
 
 }
@@ -316,11 +291,6 @@ extension RekognitionManager {
 extension RekognitionManager {
 
     func playLoadingSound() {
-
-        DispatchQueue.main.async {
-            SwiftSpinner.show(NSLocalizedString("HUD_Processing_Image", comment: ""))
-        }
-
         let url = Bundle.main.url(forResource: "loading_beep", withExtension: "wav")!
 
         do {
@@ -343,5 +313,4 @@ extension RekognitionManager {
             }
         }
     }
-
 }
