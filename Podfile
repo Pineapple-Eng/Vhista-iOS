@@ -21,5 +21,8 @@ target 'Vhista' do
   # Subscription Pods
   pod 'SwiftyStoreKit'
 
+  # UI Pods
+  pod 'HGRippleRadarView'
+
 end
 

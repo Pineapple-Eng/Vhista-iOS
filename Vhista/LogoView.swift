@@ -23,6 +23,7 @@ class LogoView: UIView {
     static let logoStartLoadingInitialSpringVelocity: CGFloat = 0.7
 
     var logoImageView = UIImageView()
+    var logoRippleView: LogoRippleView?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -105,7 +106,34 @@ extension LogoView {
             self.toggleLoadingAnimation(stop: stop)
         }
     }
-    private func toggleLoadingAnimation(stop: Bool) {}
+    private func toggleLoadingAnimation(stop: Bool) {
+        if logoRippleView == nil {
+            setUpLogoRippleView()
+        }
+        if stop {
+            logoRippleView?.radarView.stopAnimation()
+            logoRippleView?.isHidden = true
+        } else {
+            logoRippleView?.radarView.startAnimation()
+            logoRippleView?.isHidden = false
+        }
+
+    }
+}
+
+// MARK: Loading Ripple View
+extension LogoView {
+    func setUpLogoRippleView() {
+        logoRippleView = LogoRippleView(frame: .zero)
+        guard logoRippleView != nil else {
+            return
+        }
+        logoRippleView?.isAccessibilityElement = false
+        self.addSubview(logoRippleView!)
+        logoRippleView!.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(LogoRippleView.getViewLayoutConstraints(rippleLogoView: logoRippleView!,
+                                                                            parentView: self))
+    }
 }
 
 extension LogoView {

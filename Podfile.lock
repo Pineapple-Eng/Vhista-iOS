@@ -84,6 +84,7 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (6.2.0):
     - GoogleUtilities/Logger
+  - HGRippleRadarView (0.1.2)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
@@ -101,6 +102,7 @@ DEPENDENCIES:
   - Fabric
   - Firebase/Core
   - Firebase/RemoteConfig
+  - HGRippleRadarView
   - SwiftyStoreKit
 
 SPEC REPOS:
@@ -121,6 +123,7 @@ SPEC REPOS:
     - FirebaseRemoteConfig
     - GoogleAppMeasurement
     - GoogleUtilities
+    - HGRippleRadarView
     - nanopb
     - Protobuf
     - SwiftyStoreKit
@@ -142,10 +145,11 @@ SPEC CHECKSUMS:
   FirebaseRemoteConfig: 40f75c6ea20a52bf65ef44e3898910dd5b57c532
   GoogleAppMeasurement: 51d8d9ea48f0ca44484d29cfbdef976fbd4fc336
   GoogleUtilities: 996e0db07153674fd1b54b220fda3a3dc3547cba
+  HGRippleRadarView: 5379e27634c09222ebc836671c7425ad7b257cc4
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 3f617b9a6e73605565086864c9bc26b2bf2dd5a3
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
 
-PODFILE CHECKSUM: 1be75232f3f7c750affc52a202221747fcf4ba4a
+PODFILE CHECKSUM: ed0fb420d0b93b5d2c6332e133d4d2bfa449ebb1
 
 COCOAPODS: 1.7.2
