@@ -39,7 +39,13 @@ class LogoView: UIView {
 
 extension LogoView {
     func setUpBackground() {
-        let visualEffectView = UIVisualEffectView(effect: globalBlurEffect())
+        var blurEffect: UIBlurEffect!
+        if #available(iOS 13.0, *) {
+            blurEffect = UIBlurEffect(style: .systemChromeMaterial)
+        } else {
+            blurEffect = UIBlurEffect(style: .dark)
+        }
+        let visualEffectView = UIVisualEffectView(effect: blurEffect)
         visualEffectView.frame = self.frame
         visualEffectView.tag = LogoView.bgEffectViewTag
         for view in self.subviews where view.tag == LogoView.bgEffectViewTag {
