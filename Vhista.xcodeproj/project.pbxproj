@@ -52,7 +52,6 @@
 		0D73C75A22DEFF2E00B8BD57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7503831F31936E007D4AFF /* AppDelegate.swift */; };
 		0D73C75B22DEFF2E00B8BD57 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63342CE320B0BF4700E397E6 /* Constants.swift */; };
 		0D73C75D22DEFF2E00B8BD57 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B2C62421F6B2CCC00E9BAF7 /* StoreKit.framework */; };
-		0D73C75E22DEFF2E00B8BD57 /* Pods_Vhista.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DEF6EE02D6F384283ADE30C /* Pods_Vhista.framework */; };
 		0D73C76022DEFF2E00B8BD57 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B75038C1F31936E007D4AFF /* LaunchScreen.storyboard */; };
 		0D73C76122DEFF2E00B8BD57 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A9AFD651F48CD5E00172469 /* Localizable.strings */; };
 		0D73C76222DEFF2E00B8BD57 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B75038A1F31936E007D4AFF /* Assets.xcassets */; };
@@ -99,6 +98,7 @@
 		9A7AEDDD20FBD26D00430A25 /* DistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7AEDDC20FBD26D00430A25 /* DistanceManager.swift */; };
 		9A9AFD631F48CD5E00172469 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A9AFD651F48CD5E00172469 /* Localizable.strings */; };
 		CC114CC651F176516099194B /* Pods_Vhista.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DEF6EE02D6F384283ADE30C /* Pods_Vhista.framework */; };
+		FF09DF21E6D5CE472D0B687C /* Pods_VhistaDev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B1FC15E055D78BB16BC124 /* Pods_VhistaDev.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +122,7 @@
 		0DCC7D5721238DFE00601C68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Subscription.storyboard; sourceTree = "<group>"; };
 		0DCC7D5A21238E0200601C68 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Subscription.strings"; sourceTree = "<group>"; };
 		0DF120FA211F507400177FC5 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = Inceptionv3.mlmodel; path = ../../../Models/Inceptionv3.mlmodel; sourceTree = "<group>"; };
+		14BDE3BC0EF44C31DD11AABE /* Pods-VhistaDev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VhistaDev.release.xcconfig"; path = "Pods/Target Support Files/Pods-VhistaDev/Pods-VhistaDev.release.xcconfig"; sourceTree = "<group>"; };
 		2AA84037E5C3EBBFFB8DBA7A /* Pods-Vhista.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vhista.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Vhista/Pods-Vhista.debug.xcconfig"; sourceTree = "<group>"; };
 		2B2C62421F6B2CCC00E9BAF7 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		2B38F4751F32E8850083DBDB /* RekognitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RekognitionManager.swift; sourceTree = "<group>"; };
@@ -136,7 +137,6 @@
 		2B75038D1F31936E007D4AFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2BA01FCC1F6B47A700E1BD11 /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SubscriptionManager.swift; path = Subscription/SubscriptionManager.swift; sourceTree = "<group>"; };
 		2BF5EE681F46155B009E49D7 /* VhistaReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VhistaReachabilityManager.swift; path = Network/VhistaReachabilityManager.swift; sourceTree = "<group>"; };
-		2DEF6EE02D6F384283ADE30C /* Pods_Vhista.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vhista.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63342CD720B0BE0900E397E6 /* SecureConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SecureConstants.swift; path = Utilities/SecureConstants.swift; sourceTree = "<group>"; };
 		63342CD920B0BE6F00E397E6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		63342CDB20B0BE9D00E397E6 /* Translator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Translator.swift; path = Translation/Translator.swift; sourceTree = "<group>"; };
@@ -153,6 +153,7 @@
 		6393B0A5204F23920040A6CF /* ClassificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClassificationsManager.swift; path = Camera/ClassificationsManager.swift; sourceTree = "<group>"; };
 		6393B0A7204F290B0040A6CF /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CameraManager.swift; path = Camera/CameraManager.swift; sourceTree = "<group>"; };
 		63CB612A20AA2503004982EF /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIImage+Extensions.swift"; path = "Utilities/UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		67B1FC15E055D78BB16BC124 /* Pods_VhistaDev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VhistaDev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A7AEDDC20FBD26D00430A25 /* DistanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceManager.swift; sourceTree = "<group>"; };
 		9A7AEDDF20FBE12400430A25 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Main.strings"; sourceTree = "<group>"; };
 		9A9AFD641F48CD5E00172469 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -161,6 +162,7 @@
 		9AD2D53C1F48BC08008F470D /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		9AD2D53E1F48BF88008F470D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		9AD2D5401F48C03C008F470D /* AWSCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCore.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Vhista-elzofiarndtfbmanixtdrekchpwm/Build/Products/Debug-iphonesimulator/AWSCore/AWSCore.framework"; sourceTree = "<group>"; };
+		BE2962D9F4D7C64CBF85E3FF /* Pods-VhistaDev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VhistaDev.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VhistaDev/Pods-VhistaDev.debug.xcconfig"; sourceTree = "<group>"; };
 		E1A7CE5187D6B296EAB7CE54 /* Pods-Vhista.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vhista.release.xcconfig"; path = "Pods/Target Support Files/Pods-Vhista/Pods-Vhista.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -170,7 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D73C75D22DEFF2E00B8BD57 /* StoreKit.framework in Frameworks */,
-				0D73C75E22DEFF2E00B8BD57 /* Pods_Vhista.framework in Frameworks */,
+				FF09DF21E6D5CE472D0B687C /* Pods_VhistaDev.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,6 +386,8 @@
 			children = (
 				2AA84037E5C3EBBFFB8DBA7A /* Pods-Vhista.debug.xcconfig */,
 				E1A7CE5187D6B296EAB7CE54 /* Pods-Vhista.release.xcconfig */,
+				BE2962D9F4D7C64CBF85E3FF /* Pods-VhistaDev.debug.xcconfig */,
+				14BDE3BC0EF44C31DD11AABE /* Pods-VhistaDev.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -410,7 +414,7 @@
 				9AD2D5401F48C03C008F470D /* AWSCore.framework */,
 				9AD2D53E1F48BF88008F470D /* AVFoundation.framework */,
 				9AD2D53C1F48BC08008F470D /* AVKit.framework */,
-				2DEF6EE02D6F384283ADE30C /* Pods_Vhista.framework */,
+				67B1FC15E055D78BB16BC124 /* Pods_VhistaDev.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -544,7 +548,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Vhista-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-VhistaDev-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -557,7 +561,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Vhista/Pods-Vhista-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-VhistaDev/Pods-VhistaDev-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/AWSCognito/AWSCognito.framework",
 				"${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProvider/AWSCognitoIdentityProvider.framework",
@@ -586,7 +590,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Vhista/Pods-Vhista-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VhistaDev/Pods-VhistaDev-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		0D73C76922DEFF2E00B8BD57 /* ShellScript */ = {
@@ -814,7 +818,7 @@
 /* Begin XCBuildConfiguration section */
 		0D73C76B22DEFF2E00B8BD57 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2AA84037E5C3EBBFFB8DBA7A /* Pods-Vhista.debug.xcconfig */;
+			baseConfigurationReference = BE2962D9F4D7C64CBF85E3FF /* Pods-VhistaDev.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
 				COREML_CODEGEN_LANGUAGE = Swift;
@@ -832,7 +836,7 @@
 		};
 		0D73C76C22DEFF2E00B8BD57 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E1A7CE5187D6B296EAB7CE54 /* Pods-Vhista.release.xcconfig */;
+			baseConfigurationReference = 14BDE3BC0EF44C31DD11AABE /* Pods-VhistaDev.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
 				COREML_CODEGEN_LANGUAGE = Swift;
