@@ -71,3 +71,5 @@ fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
 Vhista/loading_beep.wav
+.DS_Store
+.DS_Store 2
