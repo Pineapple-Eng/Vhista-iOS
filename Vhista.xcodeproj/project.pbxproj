@@ -67,6 +67,7 @@
 		0DA42CAE22D875F100B4A5FD /* FeaturesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA42CAD22D875F100B4A5FD /* FeaturesCollectionView.swift */; };
 		0DB8A87D2134F3FB0005D168 /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB8A87C2134F3FB0005D168 /* ConfigurationManager.swift */; };
 		0DB8A87F2134F6670005D168 /* RemoteConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0DB8A87E2134F6670005D168 /* RemoteConfig.plist */; };
+		0DCB7DFC22DF7983001335C8 /* Info-Dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0DCB7DFA22DF7983001335C8 /* Info-Dev.plist */; };
 		0DCC7D5621238DFE00601C68 /* Subscription.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DCC7D5821238DFE00601C68 /* Subscription.storyboard */; };
 		0DF120FB211F507500177FC5 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0DF120FA211F507400177FC5 /* Inceptionv3.mlmodel */; };
 		2B2C62431F6B2CCC00E9BAF7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B2C62421F6B2CCC00E9BAF7 /* StoreKit.framework */; };
@@ -97,7 +98,7 @@
 		63CB612B20AA2503004982EF /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CB612A20AA2503004982EF /* UIImage+Extensions.swift */; };
 		9A7AEDDD20FBD26D00430A25 /* DistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7AEDDC20FBD26D00430A25 /* DistanceManager.swift */; };
 		9A9AFD631F48CD5E00172469 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A9AFD651F48CD5E00172469 /* Localizable.strings */; };
-		CC114CC651F176516099194B /* Pods_Vhista.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DEF6EE02D6F384283ADE30C /* Pods_Vhista.framework */; };
+		CC114CC651F176516099194B /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		FF09DF21E6D5CE472D0B687C /* Pods_VhistaDev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B1FC15E055D78BB16BC124 /* Pods_VhistaDev.framework */; };
 /* End PBXBuildFile section */
 
@@ -111,7 +112,6 @@
 		0D5346F422C5630F00103306 /* LogoRippleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoRippleView.swift; sourceTree = "<group>"; };
 		0D59219A22C5991400BBAAFD /* Feature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
 		0D73C76D22DEFF2E00B8BD57 /* VhistaDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VhistaDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0D73C76E22DEFF2F00B8BD57 /* Info-Dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-Dev.plist"; path = "/Users/juan/Library/CloudStorage/iCloud Drive/Vhista/Development/Vhista-iOS/Info-Dev.plist"; sourceTree = "<absolute>"; };
 		0D93683722D8678C0040FD58 /* FeaturesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FeaturesManager.swift; path = Camera/FeaturesCollectionView/FeaturesManager.swift; sourceTree = "<group>"; };
 		0D93683922D868630040FD58 /* FeaturesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FeaturesCollectionViewCell.swift; path = Camera/FeaturesCollectionView/FeaturesCollectionViewCell.swift; sourceTree = "<group>"; };
 		0D95531D22B9FC6E00B17581 /* RecognizedContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedContentViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +119,7 @@
 		0DA42CAD22D875F100B4A5FD /* FeaturesCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturesCollectionView.swift; sourceTree = "<group>"; };
 		0DB8A87C2134F3FB0005D168 /* ConfigurationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConfigurationManager.swift; path = Utilities/ConfigurationManager.swift; sourceTree = "<group>"; };
 		0DB8A87E2134F6670005D168 /* RemoteConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfig.plist; sourceTree = "<group>"; };
+		0DCB7DFB22DF7983001335C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = "../../../../../../../../../System/Volumes/Data/Users/juan/Library/CloudStorage/iCloud Drive/Vhista/Development/Vhista-iOS/Vhista/Base.lproj/Info-Dev.plist"; sourceTree = "<group>"; };
 		0DCC7D5721238DFE00601C68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Subscription.storyboard; sourceTree = "<group>"; };
 		0DCC7D5A21238E0200601C68 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Subscription.strings"; sourceTree = "<group>"; };
 		0DF120FA211F507400177FC5 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = Inceptionv3.mlmodel; path = ../../../Models/Inceptionv3.mlmodel; sourceTree = "<group>"; };
@@ -181,7 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B2C62431F6B2CCC00E9BAF7 /* StoreKit.framework in Frameworks */,
-				CC114CC651F176516099194B /* Pods_Vhista.framework in Frameworks */,
+				CC114CC651F176516099194B /* (null) in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,7 +325,7 @@
 				9A9AFD651F48CD5E00172469 /* Localizable.strings */,
 				0DB8A87E2134F6670005D168 /* RemoteConfig.plist */,
 				63342CD920B0BE6F00E397E6 /* GoogleService-Info.plist */,
-				0D73C76E22DEFF2F00B8BD57 /* Info-Dev.plist */,
+				0DCB7DFA22DF7983001335C8 /* Info-Dev.plist */,
 				2B416BC71F6F28030029CB5A /* Info.plist */,
 				2B9638B71F328E31008DBBCF /* SupportingFiles */,
 			);
@@ -524,6 +525,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B75038E1F31936E007D4AFF /* LaunchScreen.storyboard in Resources */,
+				0DCB7DFC22DF7983001335C8 /* Info-Dev.plist in Resources */,
 				9A9AFD631F48CD5E00172469 /* Localizable.strings in Resources */,
 				2B75038B1F31936E007D4AFF /* Assets.xcassets in Resources */,
 				2B7503891F31936E007D4AFF /* Main.storyboard in Resources */,
@@ -767,6 +769,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		0DCB7DFA22DF7983001335C8 /* Info-Dev.plist */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0DCB7DFB22DF7983001335C8 /* Base */,
+			);
+			name = "Info-Dev.plist";
+			sourceTree = "<group>";
+		};
 		0DCC7D5821238DFE00601C68 /* Subscription.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
