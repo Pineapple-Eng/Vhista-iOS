@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="9RG-CJ-oKt">
-    <device id="retina5_9" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14835.7" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="9RG-CJ-oKt">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14790.5"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -46,7 +44,7 @@
         <!--Kit Camera View Controller-->
         <scene sceneID="qBf-Oh-K0f">
             <objects>
-                <viewController id="GOZ-GK-qBh" customClass="ARKitCameraViewController" customModule="Vhista" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="GOZ-GK-qBh" customClass="ARKitCameraViewController" customModule="Vhista" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YWj-nO-Ykd"/>
                         <viewControllerLayoutGuide type="bottom" id="N6U-D5-L5g"/>
@@ -91,13 +89,25 @@
                                 </items>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </toolbar>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bks-eD-gc3">
+                                <rect key="frame" x="0.0" y="44" width="375" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="s1N-lL-g27"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="RbA-1b-APm" kind="embed" id="5zY-DB-goy"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Ffu-aO-O4g" firstAttribute="leading" secondItem="4wM-gE-hjw" secondAttribute="leading" id="HKA-HC-S6j"/>
                             <constraint firstAttribute="trailing" secondItem="Ffu-aO-O4g" secondAttribute="trailing" id="aQJ-7o-DVs"/>
+                            <constraint firstAttribute="trailing" secondItem="bks-eD-gc3" secondAttribute="trailing" id="c94-WL-CBN"/>
+                            <constraint firstItem="bks-eD-gc3" firstAttribute="top" secondItem="YWj-nO-Ykd" secondAttribute="bottom" id="gKV-Y4-Xh8"/>
                             <constraint firstAttribute="bottom" secondItem="Ffu-aO-O4g" secondAttribute="bottom" id="qor-Vd-94o"/>
                             <constraint firstItem="Ffu-aO-O4g" firstAttribute="top" secondItem="4wM-gE-hjw" secondAttribute="top" id="wiw-bP-GYH"/>
+                            <constraint firstItem="bks-eD-gc3" firstAttribute="leading" secondItem="4wM-gE-hjw" secondAttribute="leading" id="xlS-Im-Y6z"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="9dj-y7-ER9">
@@ -130,7 +140,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DfH-IE-l8u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-874" y="-265"/>
+            <point key="canvasLocation" x="-874.39999999999998" y="-265.27093596059115"/>
         </scene>
         <!--SubscriptionVC-->
         <scene sceneID="TWa-Dk-Syn">
@@ -164,7 +174,21 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kj2-SS-b3e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="18" y="-442"/>
+            <point key="canvasLocation" x="17" y="-435"/>
+        </scene>
+        <!--Features Collection View Controller-->
+        <scene sceneID="LTr-1s-AFD">
+            <objects>
+                <viewController id="RbA-1b-APm" customClass="FeaturesCollectionViewController" customModule="Vhista" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8se-TY-DcO" customClass="UICollectionView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Uo-po-Mvf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="16.800000000000001" y="-600"/>
         </scene>
     </scenes>
     <resources>

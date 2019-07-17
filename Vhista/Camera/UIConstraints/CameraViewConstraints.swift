@@ -26,9 +26,6 @@ extension ARKitCameraViewController {
             deepAnalysisButton.rightAnchor.constraint(equalTo: view.rightAnchor),
             deepAnalysisButton.leftAnchor.constraint(equalTo: view.leftAnchor)
             ])
-        logoView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(LogoView.getViewLayoutConstraints(logoView: logoView,
-                                                                      parentView: self.view))
     }
 
     func setUpARCameraViewSceneConstraints() {

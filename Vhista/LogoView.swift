@@ -22,8 +22,19 @@ class LogoView: UIView {
     static let logoStartLoadingStringDamping: CGFloat = 0.7
     static let logoStartLoadingInitialSpringVelocity: CGFloat = 0.7
 
+    static let defaultImageName = "SmallTransparentLogo"
+    static let contextualImageName = "SmallTransparentLogo"
+    static let panoramicImageName = "SmallTransparentLogo"
+
+    var logoImage: UIImage?
     var logoImageView = UIImageView()
     var logoRippleView: LogoRippleView?
+
+    convenience init(frame: CGRect, image: UIImage) {
+        self.init(frame: frame)
+        self.logoImage = image
+        configureViewWithImage(image)
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,13 +45,18 @@ class LogoView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setUpLogoImageView()
+        setUpBackground()
+    }
+
+    func configureViewWithImage(_ image: UIImage) {
+        logoImage = image
+        logoImageView.image = logoImage
     }
 }
 
 extension LogoView {
     func setUpBackground() {
-        let blurEffect = UIBlurEffect(style: .dark)
-        let visualEffectView = UIVisualEffectView(effect: blurEffect)
+        let visualEffectView = UIVisualEffectView(effect: globalBlurEffect())
         visualEffectView.frame = self.frame
         visualEffectView.tag = LogoView.bgEffectViewTag
         for view in self.subviews where view.tag == LogoView.bgEffectViewTag {
@@ -63,7 +79,7 @@ extension LogoView {
     func setUpLogoImageView() {
         logoImageView = UIImageView()
         logoImageView.contentMode = .scaleAspectFit
-        logoImageView.image = UIImage(named: "SmallTransparentWhiteLogo")
+        logoImageView.image = logoImage ?? UIImage(named: LogoView.defaultImageName)
         self.addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

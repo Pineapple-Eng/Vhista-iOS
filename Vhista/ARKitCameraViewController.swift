@@ -16,9 +16,6 @@ class ARKitCameraViewController:
 UIViewController,
 UIGestureRecognizerDelegate {
 
-    // Logo View
-    var logoView: LogoView!
-
     // Recognized Content View
     var recognizedContentViewHeightContraint: NSLayoutConstraint!
     @IBOutlet weak var recognizedContentView: UIView!
@@ -87,8 +84,6 @@ UIGestureRecognizerDelegate {
         if SubscriptionManager.shared.isUserSubscribedToFullAccess() {
             upgradeButtonItem.title = NSLocalizedString("Show_Subscription_Button_Title", comment: "")
         }
-        logoView = LogoView(frame: .zero)
-        self.view.addSubview(logoView)
         setUpUIConstraints()
     }
 
@@ -328,7 +323,7 @@ extension ARKitCameraViewController {
 
     func showSelectedImage() {
         DispatchQueue.main.async {
-            self.view.bringSubviewToFront(self.logoView)
+//            self.view.bringSubviewToFront(self.logoView)
             self.selectedImageView.image = self.selectedImage
             self.selectedImageView.isHidden = false
         }
@@ -368,11 +363,11 @@ extension ARKitCameraViewController {
         toggleBottomAndRecognizedContentViewsVisibility(hide: willAnalyze)
         if willAnalyze {
             pauseCurrentSession()
-            logoView.showLoadingLogoView(parentView: self.view)
+//            logoView.showLoadingLogoView(parentView: self.view)
             RekognitionManager.shared.playLoadingSound()
         } else {
             resumeCurrentSession()
-            logoView.stopLoadingLogoView(parentView: self.view)
+//            logoView.stopLoadingLogoView(parentView: self.view)
             RekognitionManager.shared.backToDefaults()
         }
     }

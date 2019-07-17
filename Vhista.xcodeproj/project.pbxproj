@@ -11,12 +11,61 @@
 		0D1C5B0022BF62850002C892 /* CameraViewConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C5AFF22BF62850002C892 /* CameraViewConstraints.swift */; };
 		0D1C5B0222BF64860002C892 /* ARKit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C5B0122BF64860002C892 /* ARKit+Extensions.swift */; };
 		0D1C5B0522BF67F10002C892 /* NonARCameraViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C5B0422BF67F10002C892 /* NonARCameraViewController+Extensions.swift */; };
+		0D1E580522D431890005941C /* DarkModeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1E580422D431880005941C /* DarkModeManager.swift */; };
 		0D5346F022C313C900103306 /* loading_beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0D5346EF22C313C900103306 /* loading_beep.wav */; };
 		0D5346F522C5630F00103306 /* LogoRippleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5346F422C5630F00103306 /* LogoRippleView.swift */; };
-		0D59219922C5977700BBAAFD /* FeaturesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D59219822C5977700BBAAFD /* FeaturesCollectionViewController.swift */; };
 		0D59219B22C5991400BBAAFD /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D59219A22C5991400BBAAFD /* Feature.swift */; };
+		0D73C73822DEFF2E00B8BD57 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6393B0A7204F290B0040A6CF /* CameraManager.swift */; };
+		0D73C73922DEFF2E00B8BD57 /* ClassificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6393B0A5204F23920040A6CF /* ClassificationsManager.swift */; };
+		0D73C73A22DEFF2E00B8BD57 /* VhistaReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF5EE681F46155B009E49D7 /* VhistaReachabilityManager.swift */; };
+		0D73C73B22DEFF2E00B8BD57 /* CameraViewConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C5AFF22BF62850002C892 /* CameraViewConstraints.swift */; };
+		0D73C73C22DEFF2E00B8BD57 /* ARKit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C5B0122BF64860002C892 /* ARKit+Extensions.swift */; };
+		0D73C73D22DEFF2E00B8BD57 /* NonARCameraViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C5B0422BF67F10002C892 /* NonARCameraViewController+Extensions.swift */; };
+		0D73C73E22DEFF2E00B8BD57 /* SecureConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63342CD720B0BE0900E397E6 /* SecureConstants.swift */; };
+		0D73C73F22DEFF2E00B8BD57 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6393B09C204E2D280040A6CF /* UIView+Extensions.swift */; };
+		0D73C74022DEFF2E00B8BD57 /* ARKitCameraViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C5AFA22BF605C0002C892 /* ARKitCameraViewController+Extensions.swift */; };
+		0D73C74122DEFF2E00B8BD57 /* FaceAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63342CDF20B0BEBC00E397E6 /* FaceAnalysis.swift */; };
+		0D73C74222DEFF2E00B8BD57 /* DarkModeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1E580422D431880005941C /* DarkModeManager.swift */; };
+		0D73C74322DEFF2E00B8BD57 /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB8A87C2134F3FB0005D168 /* ConfigurationManager.swift */; };
+		0D73C74422DEFF2E00B8BD57 /* LogoRippleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5346F422C5630F00103306 /* LogoRippleView.swift */; };
+		0D73C74522DEFF2E00B8BD57 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6393B09A204E11A60040A6CF /* UIViewController+Extensions.swift */; };
+		0D73C74622DEFF2E00B8BD57 /* DistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A7AEDDC20FBD26D00430A25 /* DistanceManager.swift */; };
+		0D73C74722DEFF2E00B8BD57 /* SubscriptionInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3EDA191F6E05B900C97A41 /* SubscriptionInfoViewController.swift */; };
+		0D73C74822DEFF2E00B8BD57 /* FeaturesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D93683722D8678C0040FD58 /* FeaturesManager.swift */; };
+		0D73C74922DEFF2E00B8BD57 /* FeaturesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA42CAD22D875F100B4A5FD /* FeaturesCollectionView.swift */; };
+		0D73C74A22DEFF2E00B8BD57 /* SubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6393B096204E06EF0040A6CF /* SubscriptionViewController.swift */; };
+		0D73C74B22DEFF2E00B8BD57 /* ARKitCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6393B0A0204F0FF70040A6CF /* ARKitCameraViewController.swift */; };
+		0D73C74C22DEFF2E00B8BD57 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63342CDD20B0BEAB00E397E6 /* Analytics.swift */; };
+		0D73C74D22DEFF2E00B8BD57 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0DF120FA211F507400177FC5 /* Inceptionv3.mlmodel */; };
+		0D73C74E22DEFF2E00B8BD57 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6393B0A3204F10F80040A6CF /* LandingViewController.swift */; };
+		0D73C74F22DEFF2E00B8BD57 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CB612A20AA2503004982EF /* UIImage+Extensions.swift */; };
+		0D73C75022DEFF2E00B8BD57 /* CGImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6393B09E204F0E660040A6CF /* CGImage+Extensions.swift */; };
+		0D73C75122DEFF2E00B8BD57 /* RecognizedContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D95531D22B9FC6E00B17581 /* RecognizedContentViewController.swift */; };
+		0D73C75222DEFF2E00B8BD57 /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA01FCC1F6B47A700E1BD11 /* SubscriptionManager.swift */; };
+		0D73C75322DEFF2E00B8BD57 /* ObjectAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63342CE120B0BEC500E397E6 /* ObjectAnalysis.swift */; };
+		0D73C75422DEFF2E00B8BD57 /* RekognitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B38F4751F32E8850083DBDB /* RekognitionManager.swift */; };
+		0D73C75522DEFF2E00B8BD57 /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D59219A22C5991400BBAAFD /* Feature.swift */; };
+		0D73C75622DEFF2E00B8BD57 /* FeaturesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D93683922D868630040FD58 /* FeaturesCollectionViewCell.swift */; };
+		0D73C75722DEFF2E00B8BD57 /* VhistaSpeechManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B71F0FD1F327150005F4219 /* VhistaSpeechManager.swift */; };
+		0D73C75822DEFF2E00B8BD57 /* Translator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63342CDB20B0BE9D00E397E6 /* Translator.swift */; };
+		0D73C75922DEFF2E00B8BD57 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D95532022BA3E5100B17581 /* LogoView.swift */; };
+		0D73C75A22DEFF2E00B8BD57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7503831F31936E007D4AFF /* AppDelegate.swift */; };
+		0D73C75B22DEFF2E00B8BD57 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63342CE320B0BF4700E397E6 /* Constants.swift */; };
+		0D73C75D22DEFF2E00B8BD57 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B2C62421F6B2CCC00E9BAF7 /* StoreKit.framework */; };
+		0D73C75E22DEFF2E00B8BD57 /* Pods_Vhista.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DEF6EE02D6F384283ADE30C /* Pods_Vhista.framework */; };
+		0D73C76022DEFF2E00B8BD57 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B75038C1F31936E007D4AFF /* LaunchScreen.storyboard */; };
+		0D73C76122DEFF2E00B8BD57 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A9AFD651F48CD5E00172469 /* Localizable.strings */; };
+		0D73C76222DEFF2E00B8BD57 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B75038A1F31936E007D4AFF /* Assets.xcassets */; };
+		0D73C76322DEFF2E00B8BD57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B7503871F31936E007D4AFF /* Main.storyboard */; };
+		0D73C76422DEFF2E00B8BD57 /* loading_beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0D5346EF22C313C900103306 /* loading_beep.wav */; };
+		0D73C76522DEFF2E00B8BD57 /* Subscription.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DCC7D5821238DFE00601C68 /* Subscription.storyboard */; };
+		0D73C76622DEFF2E00B8BD57 /* RemoteConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0DB8A87E2134F6670005D168 /* RemoteConfig.plist */; };
+		0D73C76722DEFF2E00B8BD57 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63342CD920B0BE6F00E397E6 /* GoogleService-Info.plist */; };
+		0D93683822D8678C0040FD58 /* FeaturesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D93683722D8678C0040FD58 /* FeaturesManager.swift */; };
+		0D93683A22D868630040FD58 /* FeaturesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D93683922D868630040FD58 /* FeaturesCollectionViewCell.swift */; };
 		0D95531E22B9FC6E00B17581 /* RecognizedContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D95531D22B9FC6E00B17581 /* RecognizedContentViewController.swift */; };
 		0D95532122BA3E5100B17581 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D95532022BA3E5100B17581 /* LogoView.swift */; };
+		0DA42CAE22D875F100B4A5FD /* FeaturesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA42CAD22D875F100B4A5FD /* FeaturesCollectionView.swift */; };
 		0DB8A87D2134F3FB0005D168 /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB8A87C2134F3FB0005D168 /* ConfigurationManager.swift */; };
 		0DB8A87F2134F6670005D168 /* RemoteConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0DB8A87E2134F6670005D168 /* RemoteConfig.plist */; };
 		0DCC7D5621238DFE00601C68 /* Subscription.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DCC7D5821238DFE00601C68 /* Subscription.storyboard */; };
@@ -57,12 +106,17 @@
 		0D1C5AFF22BF62850002C892 /* CameraViewConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CameraViewConstraints.swift; path = Camera/UIConstraints/CameraViewConstraints.swift; sourceTree = "<group>"; };
 		0D1C5B0122BF64860002C892 /* ARKit+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ARKit+Extensions.swift"; path = "Utilities/ARKit+Extensions.swift"; sourceTree = "<group>"; };
 		0D1C5B0422BF67F10002C892 /* NonARCameraViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "NonARCameraViewController+Extensions.swift"; path = "Camera/NonARCamera/NonARCameraViewController+Extensions.swift"; sourceTree = "<group>"; };
+		0D1E580422D431880005941C /* DarkModeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DarkModeManager.swift; path = Utilities/DarkModeManager.swift; sourceTree = "<group>"; };
 		0D5346EF22C313C900103306 /* loading_beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = loading_beep.wav; sourceTree = "<group>"; };
 		0D5346F422C5630F00103306 /* LogoRippleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoRippleView.swift; sourceTree = "<group>"; };
-		0D59219822C5977700BBAAFD /* FeaturesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesCollectionViewController.swift; sourceTree = "<group>"; };
 		0D59219A22C5991400BBAAFD /* Feature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
+		0D73C76D22DEFF2E00B8BD57 /* VhistaDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VhistaDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D73C76E22DEFF2F00B8BD57 /* Info-Dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-Dev.plist"; path = "/Users/juan/Library/CloudStorage/iCloud Drive/Vhista/Development/Vhista-iOS/Info-Dev.plist"; sourceTree = "<absolute>"; };
+		0D93683722D8678C0040FD58 /* FeaturesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FeaturesManager.swift; path = Camera/FeaturesCollectionView/FeaturesManager.swift; sourceTree = "<group>"; };
+		0D93683922D868630040FD58 /* FeaturesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FeaturesCollectionViewCell.swift; path = Camera/FeaturesCollectionView/FeaturesCollectionViewCell.swift; sourceTree = "<group>"; };
 		0D95531D22B9FC6E00B17581 /* RecognizedContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedContentViewController.swift; sourceTree = "<group>"; };
 		0D95532022BA3E5100B17581 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
+		0DA42CAD22D875F100B4A5FD /* FeaturesCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturesCollectionView.swift; sourceTree = "<group>"; };
 		0DB8A87C2134F3FB0005D168 /* ConfigurationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConfigurationManager.swift; path = Utilities/ConfigurationManager.swift; sourceTree = "<group>"; };
 		0DB8A87E2134F6670005D168 /* RemoteConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfig.plist; sourceTree = "<group>"; };
 		0DCC7D5721238DFE00601C68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Subscription.storyboard; sourceTree = "<group>"; };
@@ -111,6 +165,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0D73C75C22DEFF2E00B8BD57 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D73C75D22DEFF2E00B8BD57 /* StoreKit.framework in Frameworks */,
+				0D73C75E22DEFF2E00B8BD57 /* Pods_Vhista.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2B75037D1F31936E007D4AFF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -176,8 +239,10 @@
 		0D59219722C595EC00BBAAFD /* FeaturesCollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				0D59219822C5977700BBAAFD /* FeaturesCollectionViewController.swift */,
+				0DA42CAD22D875F100B4A5FD /* FeaturesCollectionView.swift */,
+				0D93683922D868630040FD58 /* FeaturesCollectionViewCell.swift */,
 				0D59219A22C5991400BBAAFD /* Feature.swift */,
+				0D93683722D8678C0040FD58 /* FeaturesManager.swift */,
 			);
 			name = FeaturesCollectionView;
 			sourceTree = "<group>";
@@ -233,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				2B7503801F31936E007D4AFF /* Vhista.app */,
+				0D73C76D22DEFF2E00B8BD57 /* VhistaDev.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -256,6 +322,7 @@
 				9A9AFD651F48CD5E00172469 /* Localizable.strings */,
 				0DB8A87E2134F6670005D168 /* RemoteConfig.plist */,
 				63342CD920B0BE6F00E397E6 /* GoogleService-Info.plist */,
+				0D73C76E22DEFF2F00B8BD57 /* Info-Dev.plist */,
 				2B416BC71F6F28030029CB5A /* Info.plist */,
 				2B9638B71F328E31008DBBCF /* SupportingFiles */,
 			);
@@ -289,6 +356,7 @@
 		2B9638BC1F328E94008DBBCF /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				0D1E580422D431880005941C /* DarkModeManager.swift */,
 				63342CDB20B0BE9D00E397E6 /* Translator.swift */,
 				63342CD720B0BE0900E397E6 /* SecureConstants.swift */,
 				63342CE320B0BF4700E397E6 /* Constants.swift */,
@@ -350,6 +418,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0D73C73522DEFF2E00B8BD57 /* VhistaDev */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0D73C76A22DEFF2E00B8BD57 /* Build configuration list for PBXNativeTarget "VhistaDev" */;
+			buildPhases = (
+				0D73C73622DEFF2E00B8BD57 /* [CP] Check Pods Manifest.lock */,
+				0D73C73722DEFF2E00B8BD57 /* Sources */,
+				0D73C75C22DEFF2E00B8BD57 /* Frameworks */,
+				0D73C75F22DEFF2E00B8BD57 /* Resources */,
+				0D73C76822DEFF2E00B8BD57 /* [CP] Embed Pods Frameworks */,
+				0D73C76922DEFF2E00B8BD57 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VhistaDev;
+			productName = Vhista;
+			productReference = 0D73C76D22DEFF2E00B8BD57 /* VhistaDev.app */;
+			productType = "com.apple.product-type.application";
+		};
 		2B75037F1F31936E007D4AFF /* Vhista */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2B7503921F31936E007D4AFF /* Build configuration list for PBXNativeTarget "Vhista" */;
@@ -406,11 +494,27 @@
 			projectRoot = "";
 			targets = (
 				2B75037F1F31936E007D4AFF /* Vhista */,
+				0D73C73522DEFF2E00B8BD57 /* VhistaDev */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0D73C75F22DEFF2E00B8BD57 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D73C76022DEFF2E00B8BD57 /* LaunchScreen.storyboard in Resources */,
+				0D73C76122DEFF2E00B8BD57 /* Localizable.strings in Resources */,
+				0D73C76222DEFF2E00B8BD57 /* Assets.xcassets in Resources */,
+				0D73C76322DEFF2E00B8BD57 /* Main.storyboard in Resources */,
+				0D73C76422DEFF2E00B8BD57 /* loading_beep.wav in Resources */,
+				0D73C76522DEFF2E00B8BD57 /* Subscription.storyboard in Resources */,
+				0D73C76622DEFF2E00B8BD57 /* RemoteConfig.plist in Resources */,
+				0D73C76722DEFF2E00B8BD57 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2B75037E1F31936E007D4AFF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -429,6 +533,75 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0D73C73622DEFF2E00B8BD57 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Vhista-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0D73C76822DEFF2E00B8BD57 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Vhista/Pods-Vhista-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCognito/AWSCognito.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProvider/AWSCognitoIdentityProvider.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProviderASF/AWSCognitoIdentityProviderASF.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCore/AWSCore.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSRekognition/AWSRekognition.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/HGRippleRadarView/HGRippleRadarView.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyStoreKit/SwiftyStoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognito.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoIdentityProvider.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoIdentityProviderASF.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSRekognition.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HGRippleRadarView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyStoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Vhista/Pods-Vhista-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0D73C76922DEFF2E00B8BD57 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		46A05CEC9F4F4F5D903E715A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -501,6 +674,49 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0D73C73722DEFF2E00B8BD57 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D73C73822DEFF2E00B8BD57 /* CameraManager.swift in Sources */,
+				0D73C73922DEFF2E00B8BD57 /* ClassificationsManager.swift in Sources */,
+				0D73C73A22DEFF2E00B8BD57 /* VhistaReachabilityManager.swift in Sources */,
+				0D73C73B22DEFF2E00B8BD57 /* CameraViewConstraints.swift in Sources */,
+				0D73C73C22DEFF2E00B8BD57 /* ARKit+Extensions.swift in Sources */,
+				0D73C73D22DEFF2E00B8BD57 /* NonARCameraViewController+Extensions.swift in Sources */,
+				0D73C73E22DEFF2E00B8BD57 /* SecureConstants.swift in Sources */,
+				0D73C73F22DEFF2E00B8BD57 /* UIView+Extensions.swift in Sources */,
+				0D73C74022DEFF2E00B8BD57 /* ARKitCameraViewController+Extensions.swift in Sources */,
+				0D73C74122DEFF2E00B8BD57 /* FaceAnalysis.swift in Sources */,
+				0D73C74222DEFF2E00B8BD57 /* DarkModeManager.swift in Sources */,
+				0D73C74322DEFF2E00B8BD57 /* ConfigurationManager.swift in Sources */,
+				0D73C74422DEFF2E00B8BD57 /* LogoRippleView.swift in Sources */,
+				0D73C74522DEFF2E00B8BD57 /* UIViewController+Extensions.swift in Sources */,
+				0D73C74622DEFF2E00B8BD57 /* DistanceManager.swift in Sources */,
+				0D73C74722DEFF2E00B8BD57 /* SubscriptionInfoViewController.swift in Sources */,
+				0D73C74822DEFF2E00B8BD57 /* FeaturesManager.swift in Sources */,
+				0D73C74922DEFF2E00B8BD57 /* FeaturesCollectionView.swift in Sources */,
+				0D73C74A22DEFF2E00B8BD57 /* SubscriptionViewController.swift in Sources */,
+				0D73C74B22DEFF2E00B8BD57 /* ARKitCameraViewController.swift in Sources */,
+				0D73C74C22DEFF2E00B8BD57 /* Analytics.swift in Sources */,
+				0D73C74D22DEFF2E00B8BD57 /* Inceptionv3.mlmodel in Sources */,
+				0D73C74E22DEFF2E00B8BD57 /* LandingViewController.swift in Sources */,
+				0D73C74F22DEFF2E00B8BD57 /* UIImage+Extensions.swift in Sources */,
+				0D73C75022DEFF2E00B8BD57 /* CGImage+Extensions.swift in Sources */,
+				0D73C75122DEFF2E00B8BD57 /* RecognizedContentViewController.swift in Sources */,
+				0D73C75222DEFF2E00B8BD57 /* SubscriptionManager.swift in Sources */,
+				0D73C75322DEFF2E00B8BD57 /* ObjectAnalysis.swift in Sources */,
+				0D73C75422DEFF2E00B8BD57 /* RekognitionManager.swift in Sources */,
+				0D73C75522DEFF2E00B8BD57 /* Feature.swift in Sources */,
+				0D73C75622DEFF2E00B8BD57 /* FeaturesCollectionViewCell.swift in Sources */,
+				0D73C75722DEFF2E00B8BD57 /* VhistaSpeechManager.swift in Sources */,
+				0D73C75822DEFF2E00B8BD57 /* Translator.swift in Sources */,
+				0D73C75922DEFF2E00B8BD57 /* LogoView.swift in Sources */,
+				0D73C75A22DEFF2E00B8BD57 /* AppDelegate.swift in Sources */,
+				0D73C75B22DEFF2E00B8BD57 /* Constants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2B75037C1F31936E007D4AFF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -515,12 +731,14 @@
 				6393B09D204E2D280040A6CF /* UIView+Extensions.swift in Sources */,
 				0D1C5AFB22BF605C0002C892 /* ARKitCameraViewController+Extensions.swift in Sources */,
 				63342CE020B0BEBC00E397E6 /* FaceAnalysis.swift in Sources */,
+				0D1E580522D431890005941C /* DarkModeManager.swift in Sources */,
 				0DB8A87D2134F3FB0005D168 /* ConfigurationManager.swift in Sources */,
-				0D59219922C5977700BBAAFD /* FeaturesCollectionViewController.swift in Sources */,
 				0D5346F522C5630F00103306 /* LogoRippleView.swift in Sources */,
 				6393B09B204E11A60040A6CF /* UIViewController+Extensions.swift in Sources */,
 				9A7AEDDD20FBD26D00430A25 /* DistanceManager.swift in Sources */,
 				2B3EDA1A1F6E05B900C97A41 /* SubscriptionInfoViewController.swift in Sources */,
+				0D93683822D8678C0040FD58 /* FeaturesManager.swift in Sources */,
+				0DA42CAE22D875F100B4A5FD /* FeaturesCollectionView.swift in Sources */,
 				6393B097204E06EF0040A6CF /* SubscriptionViewController.swift in Sources */,
 				6393B0A1204F0FF70040A6CF /* ARKitCameraViewController.swift in Sources */,
 				63342CDE20B0BEAB00E397E6 /* Analytics.swift in Sources */,
@@ -533,6 +751,7 @@
 				63342CE220B0BEC500E397E6 /* ObjectAnalysis.swift in Sources */,
 				2B38F4761F32E8850083DBDB /* RekognitionManager.swift in Sources */,
 				0D59219B22C5991400BBAAFD /* Feature.swift in Sources */,
+				0D93683A22D868630040FD58 /* FeaturesCollectionViewCell.swift in Sources */,
 				2B71F0FE1F327150005F4219 /* VhistaSpeechManager.swift in Sources */,
 				63342CDC20B0BE9E00E397E6 /* Translator.swift in Sources */,
 				0D95532122BA3E5100B17581 /* LogoView.swift in Sources */,
@@ -593,6 +812,41 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0D73C76B22DEFF2E00B8BD57 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2AA84037E5C3EBBFFB8DBA7A /* Pods-Vhista.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
+				COREML_CODEGEN_LANGUAGE = Swift;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = LS6M2TWH7D;
+				INFOPLIST_FILE = "Info-Dev.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.juandavidcruz.VhistaDev;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0D73C76C22DEFF2E00B8BD57 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1A7CE5187D6B296EAB7CE54 /* Pods-Vhista.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
+				COREML_CODEGEN_LANGUAGE = Swift;
+				DEVELOPMENT_TEAM = LS6M2TWH7D;
+				INFOPLIST_FILE = "Info-Dev.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.juandavidcruz.VhistaDev;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		2B7503901F31936E007D4AFF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -744,6 +998,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0D73C76A22DEFF2E00B8BD57 /* Build configuration list for PBXNativeTarget "VhistaDev" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0D73C76B22DEFF2E00B8BD57 /* Debug */,
+				0D73C76C22DEFF2E00B8BD57 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2B75037B1F31936E007D4AFF /* Build configuration list for PBXProject "Vhista" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

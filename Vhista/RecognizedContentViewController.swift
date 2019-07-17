@@ -46,7 +46,7 @@ extension RecognizedContentViewController {
 
     func setUpRecognizedLabel() {
         recognizedObjectsLabel = UILabel()
-        recognizedObjectsLabel.textColor = .white
+        recognizedObjectsLabel.textColor = getLabelDarkColorIfSupported(color: .white)
         recognizedObjectsLabel.numberOfLines = .zero
         recognizedObjectsLabel.textAlignment = .center
         recognizedObjectsLabel.lineBreakMode = .byWordWrapping
@@ -67,8 +67,7 @@ extension RecognizedContentViewController {
         guard let view = self.view else {
             return
         }
-        let blurEffect = UIBlurEffect(style: .dark)
-        let pickerVisualEffectView = UIVisualEffectView(effect: blurEffect)
+        let pickerVisualEffectView = UIVisualEffectView(effect: globalBlurEffect())
         pickerVisualEffectView.frame = self.view.frame
         pickerVisualEffectView.tag = RecognizedContentViewController.bgEffectViewTag
         for view in self.view.subviews where view.tag == RecognizedContentViewController.bgEffectViewTag {

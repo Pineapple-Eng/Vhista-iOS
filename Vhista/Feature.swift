@@ -8,7 +8,12 @@
 
 import Foundation
 
+struct FeatureNames {
+    static let contextual = "Contextual"
+    static let panoramic = "Panoramic"
+}
+
 struct Feature {
-    var logoView: LogoView
     var featureName: String
+    var imageName: String
 }
