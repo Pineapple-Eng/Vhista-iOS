@@ -75,13 +75,16 @@
                                     <segue destination="tne-YQ-mkO" kind="embed" identifier="ShowRecognizedContentView" id="9bc-Ie-Gz3"/>
                                 </connections>
                             </containerView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="jKu-Ib-g3j">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jKu-Ib-g3j">
                                 <rect key="frame" x="0.0" y="763" width="375" height="49"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem systemItem="camera" id="KGO-Id-ocm"/>
+                                    <barButtonItem systemItem="camera" id="KGO-Id-ocm">
+                                        <color key="tintColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Nn4-V8-9b2"/>
                                     <barButtonItem title="Subscribe" id="feG-yb-xi5">
+                                        <color key="tintColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <connections>
                                             <action selector="hitUpgradeAction:" destination="GOZ-GK-qBh" id="lSn-Fd-tLd"/>
                                         </connections>
