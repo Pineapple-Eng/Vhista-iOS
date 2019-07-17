@@ -834,7 +834,7 @@
 				COREML_CODEGEN_LANGUAGE = Swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = LS6M2TWH7D;
-				INFOPLIST_FILE = "Info-Dev.plist";
+				INFOPLIST_FILE = "Vhista/Base.lproj/Info-Dev.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.juandavidcruz.VhistaDev;
@@ -851,7 +851,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
 				COREML_CODEGEN_LANGUAGE = Swift;
 				DEVELOPMENT_TEAM = LS6M2TWH7D;
-				INFOPLIST_FILE = "Info-Dev.plist";
+				INFOPLIST_FILE = "Vhista/Base.lproj/Info-Dev.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.juandavidcruz.VhistaDev;
