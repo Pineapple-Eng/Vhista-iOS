@@ -25,6 +25,9 @@ class SubscriptionManager: NSObject {
     }()
 
     func checkDeepSubscription() -> Bool {
+        #if DEVELOPMENT
+        return true
+        #else
         let defaults = UserDefaults.standard
         let numberOfPictures = defaults.integer(forKey: "PicturesTaken")
         let totalPictures = defaults.integer(forKey: "TotalPicturesTaken")
@@ -33,7 +36,7 @@ class SubscriptionManager: NSObject {
             defaults.set(totalPictures + 1, forKey: "TotalPicturesTaken")
             recordAnalytics(analyticsEventName: AnalyticsConstants.PictureFree, parameters: [
                 "language": globalLanguage
-                ])
+            ])
             print("🔢 Number of pictures taken: " + String(numberOfPictures + 1))
             return true
         } else {
@@ -41,15 +44,16 @@ class SubscriptionManager: NSObject {
                 defaults.set(totalPictures + 1, forKey: "TotalPicturesTaken")
                 recordAnalytics(analyticsEventName: AnalyticsConstants.PictureSubscribed, parameters: [
                     "language": globalLanguage
-                    ])
+                ])
                 return true
             } else {
                 recordAnalytics(analyticsEventName: AnalyticsConstants.PictureNotSubscribed, parameters: [
                     "language": globalLanguage
-                    ])
+                ])
                 return false
             }
         }
+        #endif
     }
 
     func completeTransactions() {
