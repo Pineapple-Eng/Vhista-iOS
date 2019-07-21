@@ -314,7 +314,8 @@
 				2B7503951F319BF6007D4AFF /* MLModels */,
 				2B7503831F31936E007D4AFF /* AppDelegate.swift */,
 				6393B0A3204F10F80040A6CF /* LandingViewController.swift */,
-				6393B0A2204F10D80040A6CF /* Camera */,
+				6393B0A2204F10D80040A6CF /* UI */,
+				0D1C5AFD22BF61C50002C892 /* Managers */,
 				2B2C62441F6B383200E9BAF7 /* Subscription */,
 				2B38F4741F32E6610083DBDB /* Analysis */,
 				2B9638B41F328DA4008DBBCF /* Analytics */,
@@ -396,7 +397,7 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		6393B0A2204F10D80040A6CF /* Camera */ = {
+		6393B0A2204F10D80040A6CF /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				6393B0A0204F0FF70040A6CF /* ARKitCameraViewController.swift */,
@@ -405,10 +406,9 @@
 				0D1C5B0322BF67470002C892 /* NonARCamera */,
 				0D95531F22BA3D5F00B17581 /* LogoView */,
 				0D1C5AFE22BF61E80002C892 /* BottomView */,
-				0D1C5AFD22BF61C50002C892 /* Managers */,
 				0D1C5AFC22BF61AD0002C892 /* UIConstraints */,
 			);
-			name = Camera;
+			name = UI;
 			sourceTree = "<group>";
 		};
 		A51939127B91783B411B1974 /* Frameworks */ = {
