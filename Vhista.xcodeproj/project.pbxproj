@@ -12,6 +12,7 @@
 		0D1C5B0222BF64860002C892 /* ARKit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C5B0122BF64860002C892 /* ARKit+Extensions.swift */; };
 		0D1C5B0522BF67F10002C892 /* NonARCameraViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C5B0422BF67F10002C892 /* NonARCameraViewController+Extensions.swift */; };
 		0D1E580522D431890005941C /* DarkModeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1E580422D431880005941C /* DarkModeManager.swift */; };
+		0D20AEF222E3ED5300E508E6 /* CS-GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D20AEF122E3ED5300E508E6 /* CS-GoogleService-Info.plist */; };
 		0D5346F022C313C900103306 /* loading_beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0D5346EF22C313C900103306 /* loading_beep.wav */; };
 		0D5346F522C5630F00103306 /* LogoRippleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5346F422C5630F00103306 /* LogoRippleView.swift */; };
 		0D59219B22C5991400BBAAFD /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D59219A22C5991400BBAAFD /* Feature.swift */; };
@@ -108,10 +109,11 @@
 		0D1C5B0122BF64860002C892 /* ARKit+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ARKit+Extensions.swift"; path = "Utilities/ARKit+Extensions.swift"; sourceTree = "<group>"; };
 		0D1C5B0422BF67F10002C892 /* NonARCameraViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "NonARCameraViewController+Extensions.swift"; path = "Camera/NonARCamera/NonARCameraViewController+Extensions.swift"; sourceTree = "<group>"; };
 		0D1E580422D431880005941C /* DarkModeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DarkModeManager.swift; path = Utilities/DarkModeManager.swift; sourceTree = "<group>"; };
+		0D20AEF122E3ED5300E508E6 /* CS-GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CS-GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0D5346EF22C313C900103306 /* loading_beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = loading_beep.wav; sourceTree = "<group>"; };
 		0D5346F422C5630F00103306 /* LogoRippleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoRippleView.swift; sourceTree = "<group>"; };
 		0D59219A22C5991400BBAAFD /* Feature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
-		0D73C76D22DEFF2E00B8BD57 /* VhistaDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VhistaDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D73C76D22DEFF2E00B8BD57 /* Vhista CS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Vhista CS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D93683722D8678C0040FD58 /* FeaturesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FeaturesManager.swift; path = Camera/FeaturesCollectionView/FeaturesManager.swift; sourceTree = "<group>"; };
 		0D93683922D868630040FD58 /* FeaturesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FeaturesCollectionViewCell.swift; path = Camera/FeaturesCollectionView/FeaturesCollectionViewCell.swift; sourceTree = "<group>"; };
 		0D95531D22B9FC6E00B17581 /* RecognizedContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedContentViewController.swift; sourceTree = "<group>"; };
@@ -301,7 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				2B7503801F31936E007D4AFF /* Vhista.app */,
-				0D73C76D22DEFF2E00B8BD57 /* VhistaDev.app */,
+				0D73C76D22DEFF2E00B8BD57 /* Vhista CS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -325,6 +327,7 @@
 				9A9AFD651F48CD5E00172469 /* Localizable.strings */,
 				0DB8A87E2134F6670005D168 /* RemoteConfig.plist */,
 				63342CD920B0BE6F00E397E6 /* GoogleService-Info.plist */,
+				0D20AEF122E3ED5300E508E6 /* CS-GoogleService-Info.plist */,
 				0DCB7DFA22DF7983001335C8 /* Info-Dev.plist */,
 				2B416BC71F6F28030029CB5A /* Info.plist */,
 				2B9638B71F328E31008DBBCF /* SupportingFiles */,
@@ -423,9 +426,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0D73C73522DEFF2E00B8BD57 /* VhistaDev */ = {
+		0D73C73522DEFF2E00B8BD57 /* Vhista CS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0D73C76A22DEFF2E00B8BD57 /* Build configuration list for PBXNativeTarget "VhistaDev" */;
+			buildConfigurationList = 0D73C76A22DEFF2E00B8BD57 /* Build configuration list for PBXNativeTarget "Vhista CS" */;
 			buildPhases = (
 				0D73C73622DEFF2E00B8BD57 /* [CP] Check Pods Manifest.lock */,
 				0D73C73722DEFF2E00B8BD57 /* Sources */,
@@ -438,9 +441,9 @@
 			);
 			dependencies = (
 			);
-			name = VhistaDev;
+			name = "Vhista CS";
 			productName = Vhista;
-			productReference = 0D73C76D22DEFF2E00B8BD57 /* VhistaDev.app */;
+			productReference = 0D73C76D22DEFF2E00B8BD57 /* Vhista CS.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2B75037F1F31936E007D4AFF /* Vhista */ = {
@@ -499,7 +502,7 @@
 			projectRoot = "";
 			targets = (
 				2B75037F1F31936E007D4AFF /* Vhista */,
-				0D73C73522DEFF2E00B8BD57 /* VhistaDev */,
+				0D73C73522DEFF2E00B8BD57 /* Vhista CS */,
 			);
 		};
 /* End PBXProject section */
@@ -517,6 +520,7 @@
 				0D73C76522DEFF2E00B8BD57 /* Subscription.storyboard in Resources */,
 				0D73C76622DEFF2E00B8BD57 /* RemoteConfig.plist in Resources */,
 				0D73C76722DEFF2E00B8BD57 /* GoogleService-Info.plist in Resources */,
+				0D20AEF222E3ED5300E508E6 /* CS-GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -838,7 +842,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -DDEVELOPMENT";
-				PRODUCT_BUNDLE_IDENTIFIER = com.juandavidcruz.VhistaDev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.juandavidcruz.VhistaCS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -856,7 +860,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -DDEVELOPMENT";
-				PRODUCT_BUNDLE_IDENTIFIER = com.juandavidcruz.VhistaDev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.juandavidcruz.VhistaCS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1016,7 +1020,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0D73C76A22DEFF2E00B8BD57 /* Build configuration list for PBXNativeTarget "VhistaDev" */ = {
+		0D73C76A22DEFF2E00B8BD57 /* Build configuration list for PBXNativeTarget "Vhista CS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0D73C76B22DEFF2E00B8BD57 /* Debug */,

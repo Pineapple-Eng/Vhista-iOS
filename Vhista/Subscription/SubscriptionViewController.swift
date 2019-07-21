@@ -64,25 +64,22 @@ class SubscriptionViewController: UIViewController {
 
     @IBAction func acceptBuy(_ sender: Any) {
         deactivateBuyButtons()
-        self.recordAnalyticsViewController(analyticsEventName: AnalyticsConstants.BuyButtonSubscription, parameters: [
-            "language": globalLanguage
-            ])
+        recordAnalytics(analyticsEventName: AnalyticsConstants.BuyButtonSubscription,
+                        parameters: nil)
         SubscriptionManager.shared.purchaseSKProductWithID(productId: "Vhista_Full")
 
     }
 
     @IBAction func restoreSubscription(_ sender: Any) {
         deactivateBuyButtons()
-        self.recordAnalyticsViewController(analyticsEventName: AnalyticsConstants.RestoreButtonSubscription, parameters: [
-            "language": globalLanguage
-            ])
+        recordAnalytics(analyticsEventName: AnalyticsConstants.RestoreButtonSubscription,
+                        parameters: nil)
         SubscriptionManager.shared.restoreSubscriptions()
     }
 
     @IBAction func getFreeSubscription(_ sender: Any) {
-        recordAnalytics(analyticsEventName: AnalyticsConstants.RequestedMoreFreeImages, parameters: [
-            "language": globalLanguage
-            ])
+        recordAnalytics(analyticsEventName: AnalyticsConstants.RequestedMoreFreeImages,
+                        parameters: nil)
         let defaults = UserDefaults.standard
         let numberOfPictures = defaults.integer(forKey: "PicturesTaken")
         let totalPictures = defaults.integer(forKey: "TotalPicturesTaken")
@@ -96,10 +93,10 @@ class SubscriptionViewController: UIViewController {
         let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""),
                                         style: .default) { (_) in
                                             defaults.set(0, forKey: "PicturesTaken")
-                                            self.recordAnalytics(analyticsEventName: AnalyticsConstants.GrantedMoreFreeImages, parameters: [
-                                                "language": globalLanguage,
-                                                "totalPictures": "\(totalPictures)"
-                                                ])
+                                            recordAnalytics(analyticsEventName: AnalyticsConstants.GrantedMoreFreeImages,
+                                                            parameters: [
+                                                                "totalPictures": "\(totalPictures)"
+                                            ])
                                             self.didEndPurchaseProcess()
         }
         alertController.addAction(actionClose)
@@ -123,9 +120,8 @@ class SubscriptionViewController: UIViewController {
 
     @IBAction func cancelSubscription(_ sender: Any) {
         deactivateBuyButtons()
-        self.recordAnalyticsViewController(analyticsEventName: AnalyticsConstants.CancelButtonSubscription, parameters: [
-            "language": globalLanguage
-            ])
+        recordAnalytics(analyticsEventName: AnalyticsConstants.CancelButtonSubscription,
+                        parameters: nil)
         self.didEndPurchaseProcess()
     }
 

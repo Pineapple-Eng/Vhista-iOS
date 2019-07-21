@@ -43,9 +43,7 @@ class LandingViewController: UIViewController {
 
     func continueToApp() {
         let eventName = arEnabled ? AnalyticsConstants.LandedAREnabled:AnalyticsConstants.LandedARDisabled
-        recordAnalytics(analyticsEventName: eventName, parameters: [
-            "language": globalLanguage
-            ])
+        recordAnalytics(analyticsEventName: eventName, parameters: nil)
         self.performSegue(withIdentifier: "GoToARHome", sender: nil)
     }
 
