@@ -12,6 +12,7 @@ import Alamofire
 class ComputerVisionManager: NSObject {
 
     static let compressionQuality: CGFloat = 1.0
+    let afSession = Alamofire.Session()
 
     // MARK: - Initialization Method
     override init() {
@@ -23,23 +24,38 @@ class ComputerVisionManager: NSObject {
         return instance
     }()
 
+    @discardableResult
     func makeComputerVisionRequest(image: UIImage,
                                    features: [String],
                                    details: [String]?,
-                                   language: String?) {
+                                   language: String?,
+                                   completion: @escaping (DataResponse<CVResponse>) -> Void) -> Request? {
         guard let imageData = image.jpegData(compressionQuality: ComputerVisionManager.compressionQuality) else {
-            return
+            return nil
         }
         if (Double(imageData.count) / 1_024 / 1_024) <= 4 {
-            return
+            return nil
+        }
+        guard let url = buildRequestURL(features: features, details: details, language: language) else {
+            return nil
+        }
+        let headers: HTTPHeaders = [
+          "Ocp-Apim-Subscription-Key": azureAPIKey,
+          "Content-Type": "application/octet-stream"
+        ]
+        return afSession.upload(imageData,
+                                to: url,
+                                method: .post,
+                                headers: headers).responseDecodable { (response) in
+            completion(response)
         }
     }
 }
 
 extension ComputerVisionManager {
-    func buildRequestURL(features: [String],
-                         details: [String]?,
-                         language: String?) -> URL? {
+    private func buildRequestURL(features: [String],
+                                 details: [String]?,
+                                 language: String?) -> URL? {
         var components = URLComponents()
         components.scheme = "https"
         components.host = "westus.api.cognitive.microsoft.com"

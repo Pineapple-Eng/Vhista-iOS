@@ -9,7 +9,7 @@
 
 import Foundation
 
-struct CVResponse {
+struct CVResponse: Codable {
     let requestId: String
     let metadata: CVMetadata?
     let categories: [CVCategories]?
@@ -22,69 +22,69 @@ struct CVResponse {
     let objects: [CVObjects]?
 }
 
-struct CVMetadata {
+struct CVMetadata: Codable {
     let width: Int?
     let height: Int?
     let format: String?
 }
 
-struct CVCategories {
+struct CVCategories: Codable {
     let name: String?
     let score: Double?
 }
 
-struct CVDetail {
+struct CVDetail: Codable {
     let celebrities: [CVCelebrities]?
     let landmarks: [CVLandmarks]?
 }
 
-struct CVCelebrities {
+struct CVCelebrities: Codable {
     let name: String?
     let confidence: Double?
     let faceRectangle: CVFaceRectangle?
 }
 
-struct CVFaceRectangle {
+struct CVFaceRectangle: Codable {
     let left: Int?
     let top: Int?
     let width: Int?
     let height: Int?
 }
 
-struct CVLandmarks {
+struct CVLandmarks: Codable {
     let name: String?
     let confidence: Double?
 }
 
-struct CVAdult {
+struct CVAdult: Codable {
     let isAdultContent: Bool?
     let isRacyContent: Bool?
     let adultScore: Double?
     let racyScore: Double?
 }
 
-struct CVTags {
+struct CVTags: Codable {
     let name: String?
     let confidence: Double?
 }
 
-struct CVDescription {
+struct CVDescription: Codable {
     let tags: [String]?
     let captions: [CVCaption]?
 }
 
-struct CVCaption {
+struct CVCaption: Codable {
     let text: String?
     let confidence: Double?
 }
 
-struct CVFaces {
+struct CVFaces: Codable {
     let age: Int?
     let gender: String?
     let faceRectangle: CVFaceRectangle?
 }
 
-struct CVColor {
+struct CVColor: Codable {
     let dominantColorForeground: String?
     let dominantColorBackground: String?
     let dominantColors: [String]?
@@ -92,18 +92,18 @@ struct CVColor {
     let isBWImg: Bool?
 }
 
-struct CVImageType {
+struct CVImageType: Codable {
     let clipArtType: Int?
     let lineDrawingType: Int?
 }
 
-struct CVObjects {
+struct CVObjects: Codable {
     let rectangle: CVRectangle?
     let object: String?
     let confidence: Double?
 }
 
-struct CVRectangle {
+struct CVRectangle: Codable {
     let x: Int?
     let y: Int?
     let w: Int?
