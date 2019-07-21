@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0D73C73522DEFF2E00B8BD57"
-               BuildableName = "Vhista CS.app"
-               BlueprintName = "Vhista CS"
+               BuildableName = "VhistaDev.app"
+               BlueprintName = "VhistaDev"
                ReferencedContainer = "container:Vhista.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,8 +45,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0D73C73522DEFF2E00B8BD57"
-            BuildableName = "Vhista CS.app"
-            BlueprintName = "Vhista CS"
+            BuildableName = "VhistaDev.app"
+            BlueprintName = "VhistaDev"
             ReferencedContainer = "container:Vhista.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -62,8 +62,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0D73C73522DEFF2E00B8BD57"
-            BuildableName = "Vhista CS.app"
-            BlueprintName = "Vhista CS"
+            BuildableName = "VhistaDev.app"
+            BlueprintName = "VhistaDev"
             ReferencedContainer = "container:Vhista.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
