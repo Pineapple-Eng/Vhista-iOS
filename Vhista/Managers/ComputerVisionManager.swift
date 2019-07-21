@@ -7,8 +7,11 @@
 //
 
 import Foundation
+import Alamofire
 
 class ComputerVisionManager: NSObject {
+
+    static let compressionQuality: CGFloat = 1.0
 
     // MARK: - Initialization Method
     override init() {
@@ -19,4 +22,65 @@ class ComputerVisionManager: NSObject {
         let instance = ComputerVisionManager()
         return instance
     }()
+
+    func makeComputerVisionRequest(image: UIImage,
+                                   features: [String],
+                                   details: [String]?,
+                                   language: String?) {
+        guard let imageData = image.jpegData(compressionQuality: ComputerVisionManager.compressionQuality) else {
+            return
+        }
+        if (Double(imageData.count) / 1_024 / 1_024) <= 4 {
+            return
+        }
+    }
+}
+
+extension ComputerVisionManager {
+    func buildRequestURL(features: [String],
+                         details: [String]?,
+                         language: String?) -> URL? {
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "westus.api.cognitive.microsoft.com"
+        components.path = "/vision/v2.0/analyze"
+        var queryItems = [URLQueryItem]()
+        queryItems.append(URLQueryItem(name: CVRequestParameters.VisualFeatures,
+                                       value: features.joined(separator: ",")))
+        queryItems.append(URLQueryItem(name: CVRequestParameters.Language,
+                                       value: (language ?? CVLanguage.English)))
+        components.queryItems = queryItems
+        return components.url
+    }
+}
+
+extension ComputerVisionManager {
+
+    struct CVRequestParameters {
+        static let VisualFeatures = "visualFeatures"
+        static let Language = "language"
+    }
+    struct CVFeatures {
+        static let Adult = "Adult"
+        static let Brands = "Brands"
+        static let Categories = "Categories"
+        static let Color = "Color"
+        static let Description = "Description"
+        static let Faces = "Faces"
+        static let ImageType = "ImageType"
+        static let Objects = "Objects"
+        static let Tags = "Tags"
+    }
+
+    struct CVDetails {
+        static let Celebrities = "Celebrities"
+        static let Landmarks = "Landmarks"
+    }
+
+    struct CVLanguage {
+        static let English = "en"
+        static let Spanish = "es"
+        static let Japanese = "ja"
+        static let SimplifiedChinese = "zh"
+    }
 }
