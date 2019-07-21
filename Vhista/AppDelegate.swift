@@ -30,8 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         //Verify Subscriptions
+        #if !DEVELOPMENT
         SubscriptionManager.shared.completeTransactions()
         SubscriptionManager.shared.verifySubscription(productId: "Vhista_Full") { (_) in }
+        #endif
 
         //Listen For Network Changes
         VhistaReachabilityManager.shared.startMonitoring()
