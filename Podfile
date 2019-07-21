@@ -4,9 +4,11 @@ target 'Vhista' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for Vhista
+  # Networking Pods
   pod 'AFNetworking'
   pod 'Alamofire', '~> 5.0.0-beta.5'
+
+  # AWS Pods
   pod 'AWSCognito'
   pod 'AWSCognitoIdentityProvider'
   pod 'AWSRekognition'
@@ -31,9 +33,11 @@ target 'Vhista CS' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for Vhista
+  # Networking Pods
   pod 'AFNetworking'
   pod 'Alamofire', '~> 5.0.0-beta.5'
+
+  # AWS Pods
   pod 'AWSCognito'
   pod 'AWSCognitoIdentityProvider'
   pod 'AWSRekognition'
