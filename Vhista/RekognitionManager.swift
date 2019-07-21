@@ -50,10 +50,9 @@ extension RekognitionManager {
 
     func startProcessing (_ sender: UIImage?) {
 
-        recordAnalytics(analyticsEventName: AnalyticsConstants.TakenPicture,
-                        parameters: [
-                            "language": globalLanguage
-        ])
+        recordAnalytics(analyticsEventName: AnalyticsConstants.TakenPicture, parameters: [
+            "language": globalLanguage
+            ])
 
 //        VhistaSpeechManager.shared.speakRekognition(stringToSpeak: NSLocalizedString("Processing_Image", comment: ""))
 
@@ -101,10 +100,10 @@ extension RekognitionManager {
 extension RekognitionManager {
 
     func processLabels(labels: [AWSRekognitionLabel]) {
-        recordAnalytics(analyticsEventName: "labels_processed",
-                        parameters: [
-                            "count": "\(labels.count)"
-        ])
+        self.recordAnalytics(analyticsEventName: "labels_processed", parameters: [
+            "language": globalLanguage,
+            "count": "\(labels.count)"
+            ])
 
         var arrayLabels = [String]()
 
@@ -205,10 +204,10 @@ extension RekognitionManager {
     }
 
     func processFaces(faces: [AWSRekognitionFaceDetail]) {
-        recordAnalytics(analyticsEventName: "faces_processed",
-                        parameters: [
-                            "count": "\(faces.count)"
-        ])
+        recordAnalytics(analyticsEventName: "faces_processed", parameters: [
+            "language": globalLanguage,
+            "count": "\(faces.count)"
+            ])
 
         var stringResonse: String = ""
         if faces.count > 1 {
