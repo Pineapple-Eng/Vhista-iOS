@@ -317,7 +317,13 @@ extension ARKitCameraViewController {
             selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .right)
         }
 
-        RekognitionManager.shared.startProcessing(selectedImage)
+//        RekognitionManager.shared.startProcessing(selectedImage)
+        ComputerVisionManager.shared.makeComputerVisionRequest(image: selectedImage,
+                                                               features: [ComputerVisionManager.CVFeatures.Description],
+                                                               details: nil,
+                                                               language: ComputerVisionManager.CVLanguage.English) { (response) in
+                                                                print(response)
+        }
         showSelectedImage()
     }
 
