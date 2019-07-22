@@ -149,42 +149,14 @@ class SubscriptionManager: NSObject {
                 case .expired(let expiryDate, let receiptItems):
                     print("Product is expired since \(expiryDate) with receipt items: \(receiptItems)")
                     defaults.set(false, forKey: "IsSubscribed")
-
-                    if self.parent != nil {
-                        let alert = UIAlertController(title: NSLocalizedString("Title_Product_Expired", comment: ""),
-                                                      message: NSLocalizedString("Message_Product_Expired", comment: ""),
-                                                      preferredStyle: .alert)
-
-                        let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: { (_) in
-                            self.parent.didEndPurchaseProcess()
-                        })
-
-                        alert.addAction(actionClose)
-
-                        self.parent.present(alert, animated: true, completion: nil)
-                        self.parent.didEndPurchaseProcess()
-                    }
-
+                    self.showPurchaseExceptionAlert(title: NSLocalizedString("Title_Product_Expired", comment: ""),
+                                                    message: NSLocalizedString("Message_Product_Expired", comment: ""))
                     completition(false)
                 case .notPurchased:
                     print("This product has never been purchased")
                     defaults.set(false, forKey: "IsSubscribed")
-
-                    if self.parent != nil {
-                        let alert = UIAlertController(title: NSLocalizedString("Title_Never_Purchased", comment: ""),
-                                                      message: NSLocalizedString("Message_Never_Purchased", comment: ""),
-                                                      preferredStyle: .alert)
-
-                        let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: { (_) in
-                            self.parent.didEndPurchaseProcess()
-                        })
-
-                        alert.addAction(actionClose)
-
-                        self.parent.present(alert, animated: true, completion: nil)
-                        self.parent.didEndPurchaseProcess()
-                    }
-
+                    self.showPurchaseExceptionAlert(title: NSLocalizedString("Title_Never_Purchased", comment: ""),
+                                                    message: NSLocalizedString("Message_Never_Purchased", comment: ""))
                     completition(false)
                 }
 
@@ -220,42 +192,15 @@ class SubscriptionManager: NSObject {
                 case .expired(let expiryDate, let receiptItems):
                     print("Product is expired since \(expiryDate) with receipt items: \(receiptItems)")
                     defaults.set(false, forKey: "IsSubscribed")
-
-                    if self.parent != nil {
-                        let alert = UIAlertController(title: NSLocalizedString("Title_Product_Expired", comment: ""),
-                                                      message: NSLocalizedString("Message_Product_Expired", comment: ""),
-                                                      preferredStyle: .alert)
-
-                        let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: { (_) in
-                            self.parent.didEndPurchaseProcess()
-                        })
-
-                        alert.addAction(actionClose)
-
-                        self.parent.present(alert, animated: true, completion: nil)
-                        self.parent.didEndPurchaseProcess()
-                    }
+                    self.showPurchaseExceptionAlert(title: NSLocalizedString("Title_Product_Expired", comment: ""),
+                                                    message: NSLocalizedString("Message_Product_Expired", comment: ""))
 
                     completition(false)
                 case .notPurchased:
                     print("This product has never been purchased")
                     defaults.set(false, forKey: "IsSubscribed")
-
-                    if self.parent != nil {
-                        let alert = UIAlertController(title: NSLocalizedString("Title_Never_Purchased", comment: ""),
-                                                      message: NSLocalizedString("Message_Never_Purchased", comment: ""),
-                                                      preferredStyle: .alert)
-
-                        let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: { (_) in
-                            self.parent.didEndPurchaseProcess()
-                        })
-
-                        alert.addAction(actionClose)
-
-                        self.parent.present(alert, animated: true, completion: nil)
-                        self.parent.didEndPurchaseProcess()
-                    }
-
+                    self.showPurchaseExceptionAlert(title: NSLocalizedString("Title_Never_Purchased", comment: ""),
+                                               message: NSLocalizedString("Message_Never_Purchased", comment: ""))
                     completition(false)
                 }
 
@@ -306,6 +251,25 @@ class SubscriptionManager: NSObject {
                 self.parent.present(alert, animated: true, completion: nil)
 
             }
+        }
+    }
+}
+
+extension SubscriptionManager {
+    func showPurchaseExceptionAlert(title: String, message: String) {
+        if self.parent != nil {
+            let alert = UIAlertController(title: title,
+                                          message: message,
+                                          preferredStyle: .alert)
+
+            let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: { (_) in
+                self.parent.didEndPurchaseProcess()
+            })
+
+            alert.addAction(actionClose)
+
+            self.parent.present(alert, animated: true, completion: nil)
+            self.parent.didEndPurchaseProcess()
         }
     }
 }

@@ -27,7 +27,7 @@ extension UIViewController {
                                                       handler: { (_: UIAlertAction) in
                                                         if UIApplication.shared.canOpenURL(URL(string: UIApplication.openSettingsURLString)!) {
                                                             UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!,
-                                                                                      options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]),
+                                                                                      options: convertToOpenExternalURLOptionsKeyDictionary([:]),
                                                                                       completionHandler: { (_) in
                                                             })
                                                         }
@@ -50,6 +50,6 @@ extension UIViewController {
 }
 
 // Helper function inserted by Swift 4.2 migrator.
-private func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+private func convertToOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
 	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }
