@@ -25,15 +25,10 @@ class ConfigurationManager: NSObject {
     }()
 
     func serverAllowsRecognition(_ completition: @escaping (_ allowed: Bool) -> Void) {
-        #if DEVELOPMENT
-        remoteConfig.configSettings = RemoteConfigSettings(developerModeEnabled: true)
-        #endif
         remoteConfig.setDefaults(fromPlist: "RemoteConfig")
-
-        remoteConfig.fetch { (status, error) in
-            if status == .success {
+        remoteConfig.fetchAndActivate { (status, error) in
+            if status == .successFetchedFromRemote || status == .successUsingPreFetchedData {
                 print("Config fetched!")
-                self.remoteConfig.activateFetched()
                 print(self.remoteConfig["deep_analysis_enabled"].boolValue)
                 completition(self.remoteConfig["deep_analysis_enabled"].boolValue)
             } else {
