@@ -53,7 +53,9 @@ class FeaturesCollectionViewController: UICollectionViewController, UICollection
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: LogoView.viewWidth, height: LogoView.viewHeight + 20)
     }
 }

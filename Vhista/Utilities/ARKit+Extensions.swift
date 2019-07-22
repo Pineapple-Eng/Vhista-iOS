@@ -5,6 +5,7 @@
 //  Created by Juan David Cruz Serrano on 6/23/19.
 //  Copyright © 2019 juandavidcruz. All rights reserved.
 //
+// swiftlint:disable implicit_getter
 
 import ARKit
 

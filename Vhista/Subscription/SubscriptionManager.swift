@@ -82,7 +82,8 @@ class SubscriptionManager: NSObject {
         return isSubscribed
     }
 
-    func getProductForId(productId: String, _ completition: @escaping (_ success: SKProduct?) -> Void) {
+    func getProductForId(productId: String,
+                         _ completition: @escaping (_ success: SKProduct?) -> Void) {
         SwiftyStoreKit.retrieveProductsInfo([productId]) { result in
             if let product = result.retrievedProducts.first {
                 completition(product)
@@ -108,7 +109,8 @@ class SubscriptionManager: NSObject {
         }
     }
 
-    func purchaseProduct (product: SKProduct, productId: String) {
+    func purchaseProduct (product: SKProduct,
+                          productId: String) {
         SwiftyStoreKit.purchaseProduct(product) { (result: PurchaseResult) in
             if case .success(let purchase) = result {
                 // Deliver content from server, then:
@@ -124,7 +126,8 @@ class SubscriptionManager: NSObject {
         }
     }
 
-    func verifySubscription(productId: String, _ completition: @escaping (_ subscribed: Bool?) -> Void) {
+    func verifySubscription(productId: String,
+                            _ completition: @escaping (_ subscribed: Bool?) -> Void) {
         let appleValidator = AppleReceiptValidator(service: .production, sharedSecret: appleReceiptValidatorSecret)
         SwiftyStoreKit.verifyReceipt(using: appleValidator) { result in
 
@@ -194,7 +197,8 @@ class SubscriptionManager: NSObject {
         }
     }
 
-    func verifyTestSubscription(productId: String, _ completition: @escaping (_ subscribed: Bool?) -> Void) {
+    func verifyTestSubscription(productId: String,
+                                _ completition: @escaping (_ subscribed: Bool?) -> Void) {
         let appleValidator = AppleReceiptValidator(service: .sandbox, sharedSecret: appleReceiptValidatorSecret)
         SwiftyStoreKit.verifyReceipt(using: appleValidator) { result in
 

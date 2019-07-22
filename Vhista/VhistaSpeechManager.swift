@@ -60,13 +60,6 @@ class VhistaSpeechManager: NSObject {
         return instance
     }()
 
-    func sayGreetingMessage() {
-        sayText(stringToSpeak: NSLocalizedString("Greeting_Message",
-                                                 comment: "The first message the user hears everytime he/she opens the app, usually a Short Intro to the app."),
-                isProtected: true,
-                rate: Float(globalRate))
-    }
-
     func sayText(stringToSpeak: String, isProtected: Bool, rate: Float) {
 
         if blockAllSpeech {
