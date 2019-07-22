@@ -31,12 +31,15 @@ class ComputerVisionManager: NSObject {
                                    language: String?,
                                    completion: @escaping (DataResponse<CVResponse>) -> Void) -> Request? {
         guard let imageData = image.jpegData(compressionQuality: ComputerVisionManager.compressionQuality) else {
+            print("🚨 Unable to get JPEG Data 🖼")
             return nil
         }
-        if (Double(imageData.count) / 1_024 / 1_024) <= 4 {
+        if (Double(imageData.count) / 1_024 / 1_024) > 4 {
+            print("🚨 Data size 🐋 more than 4bm Size: \(Double(imageData.count) / 1_024 / 1_024)")
             return nil
         }
         guard let url = buildRequestURL(features: features, details: details, language: language) else {
+            print("🚨 Got nil URL 🕸")
             return nil
         }
         let headers: HTTPHeaders = [
