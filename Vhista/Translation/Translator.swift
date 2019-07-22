@@ -33,10 +33,11 @@ extension NSObject {
                                 return
                             }
                             completition(resultString)
-        }) { (task: URLSessionDataTask?, error: Error) in
-                                print("Error Task: \(String(describing: task))  -- Error Response: \(error) ")
-                                completition(nil)
-        }
+        },
+                    failure: { (task: URLSessionDataTask?, error: Error) in
+                        print("Error Task: \(String(describing: task))  -- Error Response: \(error) ")
+                        completition(nil)
+        })
     }
 
     func translateModelString(pString: String, targetLanguage: String) -> String {

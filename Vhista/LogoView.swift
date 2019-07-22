@@ -118,9 +118,10 @@ extension LogoView {
                        animations: {
                         self.transform = CGAffineTransform(translationX: .zero,
                                                            y: yDelta)
-        }) { (_) in
-            self.toggleLoadingAnimation(stop: stop)
-        }
+        },
+                       completion: { (_) in
+                        self.toggleLoadingAnimation(stop: stop)
+        })
     }
     private func toggleLoadingAnimation(stop: Bool) {
         if logoRippleView == nil {
