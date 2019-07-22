@@ -297,7 +297,7 @@ extension ARKitCameraViewController {
 
 extension ARKitCameraViewController {
 
-    func setImageForRekognition(image: UIImage) {
+    func setImageForRecognition(image: UIImage) {
 
         selectedImage = image
 
@@ -315,14 +315,6 @@ extension ARKitCameraViewController {
             selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .left)
         default:
             selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .right)
-        }
-
-//        RekognitionManager.shared.startProcessing(selectedImage)
-        ComputerVisionManager.shared.makeComputerVisionRequest(image: selectedImage,
-                                                               features: [ComputerVisionManager.CVFeatures.Description],
-                                                               details: nil,
-                                                               language: ComputerVisionManager.CVLanguage.English) { (response) in
-                                                                print(response)
         }
         showSelectedImage()
     }
@@ -370,11 +362,11 @@ extension ARKitCameraViewController {
         if willAnalyze {
             pauseCurrentSession()
 //            logoView.showLoadingLogoView(parentView: self.view)
-            RekognitionManager.shared.playLoadingSound()
+//            RekognitionManager.shared.playLoadingSound()
         } else {
             resumeCurrentSession()
 //            logoView.stopLoadingLogoView(parentView: self.view)
-            RekognitionManager.shared.backToDefaults()
+//            RekognitionManager.shared.backToDefaults()
         }
     }
 }

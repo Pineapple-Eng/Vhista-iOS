@@ -10,7 +10,6 @@ import UIKit
 import AVFoundation
 import AFNetworking
 import Firebase
-import AWSCore
 import SwiftyStoreKit
 
 let manager = AFHTTPSessionManager(baseURL: URL(string: ""))
@@ -45,16 +44,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         //SetUp Firebase
+        #if !DEVELOPMENT
         FirebaseApp.configure()
-
-        //SetUp AWS
-        let credentialsProvider = AWSCognitoCredentialsProvider(
-            regionType: AWSRegionType.USEast1,
-            identityPoolId: awsPoolID)
-        let configuration = AWSServiceConfiguration(
-            region: AWSRegionType.USEast1,
-            credentialsProvider: credentialsProvider)
-        AWSServiceManager.default().defaultServiceConfiguration = configuration
+        #else
+        let filePath = Bundle.main.path(forResource: "CS-GoogleService-Info", ofType: "plist")
+        guard let fileopts = FirebaseOptions(contentsOfFile: filePath!)
+            else { assert(false, "Couldn't load config file") }
+        FirebaseApp.configure(options: fileopts)
+        #endif
 
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default)

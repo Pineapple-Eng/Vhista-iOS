@@ -110,25 +110,25 @@ extension VhistaSpeechManager: AVSpeechSynthesizerDelegate {
 
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         if processingImage {
-            if RekognitionManager.shared.nextIsProcessFaces == true {
-                print("👦🏼 Getting Rekognition Faces")
-                speakRekognition(stringToSpeak: NSLocalizedString("Analizying_People",
-                                                                  comment: "We now need to search for faces in the picture"))
-                RekognitionManager.shared.nextIsProcessFaces = false
-                RekognitionManager.shared.getFaces()
-            } else if RekognitionManager.shared.nextIsFinish {
-                print("🏃🏽 Finishing Rekognition")
-                RekognitionManager.shared.nextIsFinish = false
-                RekognitionManager.shared.backToDefaults()
-                self.playingProtectedContent = false
-                if let parentVCAR = self.parentARController {
-                    parentVCAR.finishedRekognitionAnalisis()
-                }
-            }
-        } else {
-            if playingProtectedContent {
-                playingProtectedContent = false
-            }
+//            if RekognitionManager.shared.nextIsProcessFaces == true {
+//                print("👦🏼 Getting Rekognition Faces")
+//                speakRekognition(stringToSpeak: NSLocalizedString("Analizying_People",
+//                                                                  comment: "We now need to search for faces in the picture"))
+//                RekognitionManager.shared.nextIsProcessFaces = false
+//                RekognitionManager.shared.getFaces()
+//            } else if RekognitionManager.shared.nextIsFinish {
+//                print("🏃🏽 Finishing Rekognition")
+//                RekognitionManager.shared.nextIsFinish = false
+//                RekognitionManager.shared.backToDefaults()
+//                self.playingProtectedContent = false
+//                if let parentVCAR = self.parentARController {
+//                    parentVCAR.finishedRekognitionAnalisis()
+//                }
+//            }
+//        } else {
+//            if playingProtectedContent {
+//                playingProtectedContent = false
+//            }
         }
     }
 }

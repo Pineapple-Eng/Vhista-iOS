@@ -7,11 +7,6 @@ target 'Vhista' do
   # Networking Pods
   pod 'AFNetworking'
   pod 'Alamofire', '~> 5.0.0-beta.5'
-
-  # AWS Pods
-  pod 'AWSCognito'
-  pod 'AWSCognitoIdentityProvider'
-  pod 'AWSRekognition'
    
   # Firebase Pods
   pod 'Firebase/Core'
@@ -36,11 +31,6 @@ target 'Vhista CS' do
   # Networking Pods
   pod 'AFNetworking'
   pod 'Alamofire', '~> 5.0.0-beta.5'
-
-  # AWS Pods
-  pod 'AWSCognito'
-  pod 'AWSCognitoIdentityProvider'
-  pod 'AWSRekognition'
 
   # Firebase Pods
   pod 'Firebase/Core'

@@ -143,6 +143,19 @@ extension ARKitCameraViewController {
     }
 }
 
+// MARK: - After Taken Picture Methods
+extension ARKitCameraViewController: AVCapturePhotoCaptureDelegate {
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        if error != nil {
+            print(error!.localizedDescription)
+            return
+        }
+        selectedImage = UIImage(cgImage: (photo.cgImageRepresentation()?.takeUnretainedValue())!, scale: 1.0, orientation: UIImage.Orientation.right)
+        startContextualRecognition()
+        showSelectedImage()
+    }
+}
+
 // MARK: - Handle Capture Classifications
 extension ARKitCameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
@@ -164,18 +177,5 @@ extension ARKitCameraViewController: AVCaptureVideoDataOutputSampleBufferDelegat
                                                         orientation: CGImagePropertyOrientation(rawValue: 1)!,
                                                         options: requestOptions)
         runVisionQueueWithRequestHandler(imageRequestHandler)
-    }
-}
-
-// MARK: - After Taken Picture Methods
-extension ARKitCameraViewController: AVCapturePhotoCaptureDelegate {
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        if error != nil {
-            print(error!.localizedDescription)
-            return
-        }
-        selectedImage = UIImage(cgImage: (photo.cgImageRepresentation()?.takeUnretainedValue())!, scale: 1.0, orientation: UIImage.Orientation.right)
-        RekognitionManager.shared.startProcessing(selectedImage)
-        showSelectedImage()
     }
 }
