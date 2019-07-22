@@ -7,7 +7,5 @@ framework module FirebaseRemoteConfig {
   link framework "CoreFoundation"
   link framework "Foundation"
   link framework "Security"
-  link framework "StoreKit"
   link framework "SystemConfiguration"
-  link framework "UIKit"
 }

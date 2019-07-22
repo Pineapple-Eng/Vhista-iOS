@@ -1,3 +1,22 @@
+Version 5.2.0
+==================================
+- Bug fix for a crash seen by some users. (#3344)
+
+Version 5.1.0
+==================================
+- Improved shared instance initialization sequence during 'FirebaseApp.configure()'.
+
+Version 4.1.0
+==================================
+- Async initialization with new API for ensuring initialization completed with completion handler.
+- Support for multiple active instances of Remote Config in the same app (Analytics only supported with default Firebase app instance).
+ - All Remote Config API with explicit namespace are deprecated.
+- New fetchAndActivate API to perform both fetch and activation upon a successful fetch in a single API call with async completion.
+- New property in the FIRRemoteConfigValue class for reading value of a param as a jsonValue.
+- developerModeEnabled is now deprecated. Use minimumFetchInterval or call fetchWithExpirationDuration: to force a fetch to the Remote Config backend.
+- New config settings for minimumFetchInterval and fetch timeout.
+- Async activate API with completion handler.
+
 Version 4.0.0
 ==================================
 - FirebaseAnalytics is no longer a hard dependency in the RemoteConfig pod. If you were installing Remote Config via pod ''Firebase/RemoteConfig'', you should add 'pod 'Firebase/Analytics'' to the Podfile to maintain full RemoteConfig functionality. If you previously have 'pod 'Firebase/Core'' in the Podfile, no change is necessary. No major changes to functionality.

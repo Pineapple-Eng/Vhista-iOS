@@ -5,17 +5,19 @@
 //
 #import <Foundation/Foundation.h>
 
+@class FIRApp;
+
 /// The Firebase Remote Config service default namespace, to be used if the API method does not
 /// specify a different namespace. Use the default namespace if configuring from the Google Firebase
 /// service.
-extern NSString *const __nonnull FIRNamespaceGoogleMobilePlatform
-    NS_SWIFT_NAME(NamespaceGoogleMobilePlatform);
+extern NSString *const _Nonnull FIRNamespaceGoogleMobilePlatform NS_SWIFT_NAME(
+    NamespaceGoogleMobilePlatform);
 
 /// Key used to manage throttling in NSError user info when the refreshing of Remote Config
 /// parameter values (data) is throttled. The value of this key is the elapsed time since 1970,
 /// measured in seconds.
-extern NSString *const __nonnull FIRRemoteConfigThrottledEndTimeInSecondsKey
-    NS_SWIFT_NAME(RemoteConfigThrottledEndTimeInSecondsKey);
+extern NSString *const _Nonnull FIRRemoteConfigThrottledEndTimeInSecondsKey NS_SWIFT_NAME(
+    RemoteConfigThrottledEndTimeInSecondsKey);
 
 /// Indicates whether updated data was successfully fetched.
 typedef NS_ENUM(NSInteger, FIRRemoteConfigFetchStatus) {
@@ -29,8 +31,19 @@ typedef NS_ENUM(NSInteger, FIRRemoteConfigFetchStatus) {
   FIRRemoteConfigFetchStatusThrottled,
 } NS_SWIFT_NAME(RemoteConfigFetchStatus);
 
+/// Indicates whether updated data was successfully fetched and activated.
+typedef NS_ENUM(NSInteger, FIRRemoteConfigFetchAndActivateStatus) {
+  // The remote fetch succeeded and fetched data was activated.
+  FIRRemoteConfigFetchAndActivateStatusSuccessFetchedFromRemote,
+  // The fetch and activate succeeded from already fetched but yet unexpired config data. You can
+  // control this using minimumFetchInterval property in FIRRemoteConfigSettings.
+  FIRRemoteConfigFetchAndActivateStatusSuccessUsingPreFetchedData,
+  // The fetch and activate failed.
+  FIRRemoteConfigFetchAndActivateStatusError
+} NS_SWIFT_NAME(RemoteConfigFetchAndActivateStatus);
+
 /// Remote Config error domain that handles errors when fetching data from the service.
-extern NSString *const __nonnull FIRRemoteConfigErrorDomain NS_SWIFT_NAME(RemoteConfigErrorDomain);
+extern NSString *const _Nonnull FIRRemoteConfigErrorDomain NS_SWIFT_NAME(RemoteConfigErrorDomain);
 /// Firebase Remote Config service fetch error.
 typedef NS_ENUM(NSInteger, FIRRemoteConfigError) {
   /// Unknown or no error.
@@ -55,14 +68,33 @@ typedef NS_ENUM(NSInteger, FIRRemoteConfigSource) {
 /// @param status Config fetching status.
 /// @param error  Error message on failure.
 typedef void (^FIRRemoteConfigFetchCompletion)(FIRRemoteConfigFetchStatus status,
-                                               NSError *__nullable error)
+                                               NSError *_Nullable error)
     NS_SWIFT_NAME(RemoteConfigFetchCompletion);
+
+/// Completion handler invoked by activate method upon completion.
+/// @param error  Error message on failure. Nil if activation was successful.
+typedef void (^FIRRemoteConfigActivateCompletion)(NSError *_Nullable error)
+    NS_SWIFT_NAME(RemoteConfigActivateCompletion);
+
+/// Completion handler invoked upon completion of Remote Config initialization.
+///
+/// @param initializationError nil if initialization succeeded.
+typedef void (^FIRRemoteConfigInitializationCompletion)(NSError *_Nullable initializationError)
+    NS_SWIFT_NAME(RemoteConfigInitializationCompletion);
+
+/// Completion handler invoked by the fetchAndActivate method. Used to convey status of fetch and,
+/// if successful, resultant activate call
+/// @param status Config fetching status.
+/// @param error  Error message on failure of config fetch
+typedef void (^FIRRemoteConfigFetchAndActivateCompletion)(
+    FIRRemoteConfigFetchAndActivateStatus status, NSError *_Nullable error)
+    NS_SWIFT_NAME(RemoteConfigFetchAndActivateCompletion);
 
 #pragma mark - FIRRemoteConfigValue
 /// This class provides a wrapper for Remote Config parameter values, with methods to get parameter
 /// values as different data types.
 NS_SWIFT_NAME(RemoteConfigValue)
-@interface FIRRemoteConfigValue : NSObject<NSCopying>
+@interface FIRRemoteConfigValue : NSObject <NSCopying>
 /// Gets the value as a string.
 @property(nonatomic, readonly, nullable) NSString *stringValue;
 /// Gets the value as a number value.
@@ -71,6 +103,10 @@ NS_SWIFT_NAME(RemoteConfigValue)
 @property(nonatomic, readonly, nonnull) NSData *dataValue;
 /// Gets the value as a boolean.
 @property(nonatomic, readonly) BOOL boolValue;
+/// Gets a foundation object (NSDictionary / NSArray) by parsing the value as JSON. This method uses
+/// NSJSONSerialization's JSONObjectWithData method with an options value of 0.
+/// TODO(mandard): Pending API review. (b/113523947).
+@property(nonatomic, readonly, nullable) id JSONValue NS_SWIFT_NAME(jsonValue);
 /// Identifies the source of the fetched value.
 @property(nonatomic, readonly) FIRRemoteConfigSource source;
 @end
@@ -79,40 +115,70 @@ NS_SWIFT_NAME(RemoteConfigValue)
 /// Firebase Remote Config settings.
 NS_SWIFT_NAME(RemoteConfigSettings)
 @interface FIRRemoteConfigSettings : NSObject
+/// Indicates the default value in seconds to set for the minimum interval that needs to elapse
+/// before a fetch request can again be made to the Remote Config backend. After a fetch request to
+/// the backend has succeeded, no additional fetch requests to the backend will be allowed until the
+/// minimum fetch interval expires. Note that you can override this default on a per-fetch request
+/// basis using -[FIRRemoteConfig fetchWithExpirationDuration:completionHandler]. For E.g. setting
+/// the expiration duration to 0 in the fetch request will override the minimumFetchInterval and
+/// allow the request to the backend.
+@property(nonatomic, assign) NSTimeInterval minimumFetchInterval;
+/// Indicates the default value in seconds to abandon a pending fetch request made to the backend.
+/// This value is set for outgoing requests as the timeoutIntervalForRequest as well as the
+/// timeoutIntervalForResource on the NSURLSession's configuration.
+@property(nonatomic, assign) NSTimeInterval fetchTimeout;
 /// Indicates whether Developer Mode is enabled.
-@property(nonatomic, readonly) BOOL isDeveloperModeEnabled;
+@property(nonatomic, readonly) BOOL isDeveloperModeEnabled DEPRECATED_MSG_ATTRIBUTE(
+    "This no longer needs to be set during development. Refer to documentation for additional "
+    "details.");
 /// Initializes FIRRemoteConfigSettings, which is used to set properties for custom settings. To
 /// make custom settings take effect, pass the FIRRemoteConfigSettings instance to the
 /// configSettings property of FIRRemoteConfig.
 - (nonnull FIRRemoteConfigSettings *)initWithDeveloperModeEnabled:(BOOL)developerModeEnabled
-    NS_DESIGNATED_INITIALIZER;
+    DEPRECATED_MSG_ATTRIBUTE("This no longer needs to be set during development. Refer to "
+                             "documentation for additional details.");
 @end
 
 #pragma mark - FIRRemoteConfig
 /// Firebase Remote Config class. The shared instance method +remoteConfig can be created and used
 /// to fetch, activate and read config results and set default config results.
 NS_SWIFT_NAME(RemoteConfig)
-@interface FIRRemoteConfig : NSObject<NSFastEnumeration>
+@interface FIRRemoteConfig : NSObject <NSFastEnumeration>
 /// Last successful fetch completion time.
-@property(nonatomic, readonly, strong, nullable) NSDate *lastFetchTime;
+@property(nonatomic, readwrite, strong, nullable) NSDate *lastFetchTime;
 /// Last fetch status. The status can be any enumerated value from FIRRemoteConfigFetchStatus.
 @property(nonatomic, readonly, assign) FIRRemoteConfigFetchStatus lastFetchStatus;
 /// Config settings are custom settings.
 @property(nonatomic, readwrite, strong, nonnull) FIRRemoteConfigSettings *configSettings;
 
-/// Returns the FIRRemoteConfig instance shared throughout your app. This singleton object contains
-/// the complete set of Remote Config parameter values available to the app, including the Active
-/// Config and Default Config. This object also caches values fetched from the Remote Config Server
-/// until they are copied to the Active Config by calling activateFetched.
-/// When you fetch values from the Remote Config Server using the default Firebase namespace
-/// service, you should use this class method to create a shared instance of the FIRRemoteConfig
-/// object to ensure that your app will function properly with the Remote Config Server and the
-/// Firebase service.
+/// Returns the FIRRemoteConfig instance configured for the default Firebase app. This singleton
+/// object contains the complete set of Remote Config parameter values available to the app,
+/// including the Active Config and Default Config. This object also caches values fetched from the
+/// Remote Config Server until they are copied to the Active Config by calling activateFetched. When
+/// you fetch values from the Remote Config Server using the default Firebase namespace service, you
+/// should use this class method to create a shared instance of the FIRRemoteConfig object to ensure
+/// that your app will function properly with the Remote Config Server and the Firebase service.
 + (nonnull FIRRemoteConfig *)remoteConfig NS_SWIFT_NAME(remoteConfig());
+
+/// Returns the FIRRemoteConfig instance for your (non-default) Firebase appID. Note that Firebase
+/// analytics does not work for non-default app instances. This singleton object contains the
+/// complete set of Remote Config parameter values available to the app, including the Active Config
+/// and Default Config. This object also caches values fetched from the Remote Config Server until
+/// they are copied to the Active Config by calling activateFetched. When you fetch values from the
+/// Remote Config Server using the default Firebase namespace service, you should use this class
+/// method to create a shared instance of the FIRRemoteConfig object to ensure that your app will
+/// function properly with the Remote Config Server and the Firebase service.
+/// TODO(mandard): API review pending (b/113523947).
++ (nonnull FIRRemoteConfig *)remoteConfigWithApp:(nonnull FIRApp *)app
+    NS_SWIFT_NAME(remoteConfig(app:));
 
 /// Unavailable. Use +remoteConfig instead.
 - (nonnull instancetype)init __attribute__((unavailable("Use +remoteConfig instead.")));
 
+/// Ensures initialization is complete and clients can begin querying for Remote Config values.
+/// @param completionHandler Initialization complete callback.
+- (void)ensureInitializedWithCompletionHandler:
+    (nonnull FIRRemoteConfigInitializationCompletion)completionHandler;
 #pragma mark - Fetch
 /// Fetches Remote Config data with a callback. Call activateFetched to make fetched data available
 /// to your app.
@@ -135,22 +201,43 @@ NS_SWIFT_NAME(RemoteConfig)
 /// To stop the periodic sync, developers need to call `[FIRInstanceID deleteIDWithHandler:]` and
 /// avoid calling this method again.
 ///
-/// @param expirationDuration  Duration that defines how long fetched config data is available, in
-///                            seconds. When the config data expires, a new fetch is required.
+/// @param expirationDuration  Override the (default or optionally set minimumFetchInterval property
+/// in FIRRemoteConfigSettings) minimumFetchInterval for only the current request, in seconds.
+/// Setting a value of 0 seconds will force a fetch to the backend.
 /// @param completionHandler   Fetch operation callback.
 - (void)fetchWithExpirationDuration:(NSTimeInterval)expirationDuration
                   completionHandler:(nullable FIRRemoteConfigFetchCompletion)completionHandler;
 
+/// Fetches Remote Config data and if successful, activates fetched data. Optional completion
+/// handler callback is invoked after the attempted activation of data, if the fetch call succeeded.
+///
+/// Note: This method uses a Firebase Instance ID token to identify the app instance, and once it's
+/// called, it periodically sends data to the Firebase backend. (see
+/// `[FIRInstanceID getIDWithHandler:]`).
+/// To stop the periodic sync, developers need to call `[FIRInstanceID deleteIDWithHandler:]` and
+/// avoid calling this method again.
+///
+/// @param completionHandler Fetch operation callback.
+- (void)fetchAndActivateWithCompletionHandler:
+    (nullable FIRRemoteConfigFetchAndActivateCompletion)completionHandler;
+
 #pragma mark - Apply
+
+/// Applies Fetched Config data to the Active Config, causing updates to the behavior and appearance
+/// of the app to take effect (depending on how config data is used in the app).
+/// @param completionHandler Activate operation callback.
+- (void)activateWithCompletionHandler:(nullable FIRRemoteConfigActivateCompletion)completionHandler;
+
+/// This method is deprecated. Please use -[FIRRemoteConfig activate] instead.
 /// Applies Fetched Config data to the Active Config, causing updates to the behavior and appearance
 /// of the app to take effect (depending on how config data is used in the app).
 /// Returns true if there was a Fetched Config, and it was activated.
 /// Returns false if no Fetched Config was found, or the Fetched Config was already activated.
-- (BOOL)activateFetched;
+- (BOOL)activateFetched DEPRECATED_MSG_ATTRIBUTE("Use -[FIRRemoteConfig activate] "
+                                                 "instead.");
 
 #pragma mark - Get Config
 /// Enables access to configuration values by using object subscripting syntax.
-/// This is used to get the config value of the default namespace.
 /// <pre>
 /// // Example:
 /// FIRRemoteConfig *config = [FIRRemoteConfig remoteConfig];
@@ -160,7 +247,7 @@ NS_SWIFT_NAME(RemoteConfig)
 /// </pre>
 - (nonnull FIRRemoteConfigValue *)objectForKeyedSubscript:(nonnull NSString *)key;
 
-/// Gets the config value of the default namespace.
+/// Gets the config value.
 /// @param key Config key.
 - (nonnull FIRRemoteConfigValue *)configValueForKey:(nullable NSString *)key;
 
@@ -168,7 +255,15 @@ NS_SWIFT_NAME(RemoteConfig)
 /// @param key              Config key.
 /// @param aNamespace       Config results under a given namespace.
 - (nonnull FIRRemoteConfigValue *)configValueForKey:(nullable NSString *)key
-                                          namespace:(nullable NSString *)aNamespace;
+                                          namespace:(nullable NSString *)aNamespace
+    DEPRECATED_MSG_ATTRIBUTE("Use -[FIRRemoteConfig configValueForKey:] "
+                             "instead.");
+
+/// Gets the config value of a given namespace and a given source.
+/// @param key              Config key.
+/// @param source           Config value source.
+- (nonnull FIRRemoteConfigValue *)configValueForKey:(nullable NSString *)key
+                                             source:(FIRRemoteConfigSource)source;
 
 /// Gets the config value of a given namespace and a given source.
 /// @param key              Config key.
@@ -176,7 +271,15 @@ NS_SWIFT_NAME(RemoteConfig)
 /// @param source           Config value source.
 - (nonnull FIRRemoteConfigValue *)configValueForKey:(nullable NSString *)key
                                           namespace:(nullable NSString *)aNamespace
-                                             source:(FIRRemoteConfigSource)source;
+                                             source:(FIRRemoteConfigSource)source
+    DEPRECATED_MSG_ATTRIBUTE("Use -[FIRRemoteConfig configValueForKey:source:] "
+                             "instead.");
+
+/// Gets all the parameter keys from a given source and a given namespace.
+///
+/// @param source           The config data source.
+/// @return                 An array of keys under the given source and namespace.
+- (nonnull NSArray<NSString *> *)allKeysFromSource:(FIRRemoteConfigSource)source;
 
 /// Gets all the parameter keys from a given source and a given namespace.
 ///
@@ -184,7 +287,8 @@ NS_SWIFT_NAME(RemoteConfig)
 /// @param aNamespace       The config data namespace.
 /// @return                 An array of keys under the given source and namespace.
 - (nonnull NSArray<NSString *> *)allKeysFromSource:(FIRRemoteConfigSource)source
-                                         namespace:(nullable NSString *)aNamespace;
+                                         namespace:(nullable NSString *)aNamespace
+    DEPRECATED_MSG_ATTRIBUTE("Use -[FIRRemoteConfig allKeysFromSource:] instead.");
 
 /// Returns the set of parameter keys that start with the given prefix, from the default namespace
 ///                         in the active config.
@@ -203,11 +307,11 @@ NS_SWIFT_NAME(RemoteConfig)
 ///                         returns an empty set.
 /// @return                 The set of parameter keys that start with the specified prefix.
 - (nonnull NSSet<NSString *> *)keysWithPrefix:(nullable NSString *)prefix
-                                    namespace:(nullable NSString *)aNamespace;
+                                    namespace:(nullable NSString *)aNamespace
+    DEPRECATED_MSG_ATTRIBUTE("Use -[FIRRemoteConfig keysWithPrefix:] instead.");
 
 #pragma mark - Defaults
 /// Sets config defaults for parameter keys and values in the default namespace config.
-///
 /// @param defaults         A dictionary mapping a NSString * key to a NSObject * value.
 - (void)setDefaults:(nullable NSDictionary<NSString *, NSObject *> *)defaults;
 
@@ -216,7 +320,8 @@ NS_SWIFT_NAME(RemoteConfig)
 /// @param defaults         A dictionary mapping a NSString * key to a NSObject * value.
 /// @param aNamespace       Config under a given namespace.
 - (void)setDefaults:(nullable NSDictionary<NSString *, NSObject *> *)defaults
-          namespace:(nullable NSString *)aNamespace;
+          namespace:(nullable NSString *)aNamespace
+    DEPRECATED_MSG_ATTRIBUTE("Use -[FIRRemoteConfig setDefaults:] instead.");
 
 /// Sets default configs from plist for default namespace;
 /// @param fileName The plist file name, with no file name extension. For example, if the plist file
@@ -232,7 +337,15 @@ NS_SWIFT_NAME(RemoteConfig)
 /// @param aNamespace The namespace where the default config is set.
 - (void)setDefaultsFromPlistFileName:(nullable NSString *)fileName
                            namespace:(nullable NSString *)aNamespace
-    NS_SWIFT_NAME(setDefaults(fromPlist:namespace:));
+    NS_SWIFT_NAME(setDefaults(fromPlist:namespace:))
+        DEPRECATED_MSG_ATTRIBUTE("Use -[FIRRemoteConfig setDefaultsFromPlistFileName:] instead.");
+
+/// Returns the default value of a given key and a given namespace from the default config.
+///
+/// @param key              The parameter key of default config.
+/// @return                 Returns the default value of the specified key and namespace. Returns
+///                         nil if the key or namespace doesn't exist in the default config.
+- (nullable FIRRemoteConfigValue *)defaultValueForKey:(nullable NSString *)key;
 
 /// Returns the default value of a given key and a given namespace from the default config.
 ///
@@ -241,6 +354,7 @@ NS_SWIFT_NAME(RemoteConfig)
 /// @return                 Returns the default value of the specified key and namespace. Returns
 ///                         nil if the key or namespace doesn't exist in the default config.
 - (nullable FIRRemoteConfigValue *)defaultValueForKey:(nullable NSString *)key
-                                            namespace:(nullable NSString *)aNamespace;
+                                            namespace:(nullable NSString *)aNamespace
+    DEPRECATED_MSG_ATTRIBUTE("Use -[FIRRemoteConfig defaultValueForKey:] instead.");
 
 @end
