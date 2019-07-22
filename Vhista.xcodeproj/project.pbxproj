@@ -15,6 +15,7 @@
 		0D20AEF222E3ED5300E508E6 /* CS-GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D20AEF122E3ED5300E508E6 /* CS-GoogleService-Info.plist */; };
 		0D24923D22E5459B0024BD52 /* ContextualFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D24923C22E5459B0024BD52 /* ContextualFeature.swift */; };
 		0D24923E22E5459B0024BD52 /* ContextualFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D24923C22E5459B0024BD52 /* ContextualFeature.swift */; };
+		0D24923F22E55D710024BD52 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B416BC71F6F28030029CB5A /* Info.plist */; };
 		0D5346F022C313C900103306 /* loading_beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0D5346EF22C313C900103306 /* loading_beep.wav */; };
 		0D5346F522C5630F00103306 /* LogoRippleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5346F422C5630F00103306 /* LogoRippleView.swift */; };
 		0D59219B22C5991400BBAAFD /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D59219A22C5991400BBAAFD /* Feature.swift */; };
@@ -71,7 +72,6 @@
 		0DA42CAE22D875F100B4A5FD /* FeaturesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA42CAD22D875F100B4A5FD /* FeaturesCollectionView.swift */; };
 		0DB8A87D2134F3FB0005D168 /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB8A87C2134F3FB0005D168 /* ConfigurationManager.swift */; };
 		0DB8A87F2134F6670005D168 /* RemoteConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0DB8A87E2134F6670005D168 /* RemoteConfig.plist */; };
-		0DCB7DFC22DF7983001335C8 /* Info-Dev.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0DCB7DFA22DF7983001335C8 /* Info-Dev.plist */; };
 		0DCC7D5621238DFE00601C68 /* Subscription.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DCC7D5821238DFE00601C68 /* Subscription.storyboard */; };
 		0DF120FB211F507500177FC5 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0DF120FA211F507400177FC5 /* Inceptionv3.mlmodel */; };
 		1ACE6DA367AF68D0E8CE0322 /* Pods_Vhista_CS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BE414E83777601E745C8F7 /* Pods_Vhista_CS.framework */; };
@@ -536,8 +536,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D24923F22E55D710024BD52 /* Info.plist in Resources */,
 				2B75038E1F31936E007D4AFF /* LaunchScreen.storyboard in Resources */,
-				0DCB7DFC22DF7983001335C8 /* Info-Dev.plist in Resources */,
 				9A9AFD631F48CD5E00172469 /* Localizable.strings in Resources */,
 				2B75038B1F31936E007D4AFF /* Assets.xcassets in Resources */,
 				2B7503891F31936E007D4AFF /* Main.storyboard in Resources */,
@@ -830,7 +830,7 @@
 				COREML_CODEGEN_LANGUAGE = Swift;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = LS6M2TWH7D;
-				INFOPLIST_FILE = "Vhista/Base.lproj/Info-Dev.plist";
+				INFOPLIST_FILE = "Vhista/CS-GoogleService-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -DDEVELOPMENT";
@@ -848,7 +848,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
 				COREML_CODEGEN_LANGUAGE = Swift;
 				DEVELOPMENT_TEAM = LS6M2TWH7D;
-				INFOPLIST_FILE = "Vhista/Base.lproj/Info-Dev.plist";
+				INFOPLIST_FILE = "Vhista/CS-GoogleService-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -DDEVELOPMENT";
@@ -911,6 +911,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_VERIFY_BITCODE = NO;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -965,6 +966,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_VERIFY_BITCODE = NO;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
