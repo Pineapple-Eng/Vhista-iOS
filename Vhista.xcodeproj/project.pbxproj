@@ -46,7 +46,7 @@
 		0D73C74E22DEFF2E00B8BD57 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6393B0A3204F10F80040A6CF /* LandingViewController.swift */; };
 		0D73C74F22DEFF2E00B8BD57 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CB612A20AA2503004982EF /* UIImage+Extensions.swift */; };
 		0D73C75022DEFF2E00B8BD57 /* CGImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6393B09E204F0E660040A6CF /* CGImage+Extensions.swift */; };
-		0D73C75122DEFF2E00B8BD57 /* RecognizedContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D95531D22B9FC6E00B17581 /* RecognizedContentViewController.swift */; };
+		0D73C75122DEFF2E00B8BD57 /* FastRecognizedContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D95531D22B9FC6E00B17581 /* FastRecognizedContentViewController.swift */; };
 		0D73C75222DEFF2E00B8BD57 /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA01FCC1F6B47A700E1BD11 /* SubscriptionManager.swift */; };
 		0D73C75522DEFF2E00B8BD57 /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D59219A22C5991400BBAAFD /* Feature.swift */; };
 		0D73C75622DEFF2E00B8BD57 /* FeaturesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D93683922D868630040FD58 /* FeaturesCollectionViewCell.swift */; };
@@ -65,7 +65,7 @@
 		0D73C76622DEFF2E00B8BD57 /* RemoteConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0DB8A87E2134F6670005D168 /* RemoteConfig.plist */; };
 		0D93683822D8678C0040FD58 /* FeaturesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D93683722D8678C0040FD58 /* FeaturesManager.swift */; };
 		0D93683A22D868630040FD58 /* FeaturesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D93683922D868630040FD58 /* FeaturesCollectionViewCell.swift */; };
-		0D95531E22B9FC6E00B17581 /* RecognizedContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D95531D22B9FC6E00B17581 /* RecognizedContentViewController.swift */; };
+		0D95531E22B9FC6E00B17581 /* FastRecognizedContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D95531D22B9FC6E00B17581 /* FastRecognizedContentViewController.swift */; };
 		0D95532122BA3E5100B17581 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D95532022BA3E5100B17581 /* LogoView.swift */; };
 		0DA42CAE22D875F100B4A5FD /* FeaturesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA42CAD22D875F100B4A5FD /* FeaturesCollectionView.swift */; };
 		0DB8A87D2134F3FB0005D168 /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB8A87C2134F3FB0005D168 /* ConfigurationManager.swift */; };
@@ -119,7 +119,7 @@
 		0D73C76D22DEFF2E00B8BD57 /* Vhista CS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Vhista CS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D93683722D8678C0040FD58 /* FeaturesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FeaturesManager.swift; path = Camera/FeaturesCollectionView/FeaturesManager.swift; sourceTree = "<group>"; };
 		0D93683922D868630040FD58 /* FeaturesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FeaturesCollectionViewCell.swift; path = Camera/FeaturesCollectionView/FeaturesCollectionViewCell.swift; sourceTree = "<group>"; };
-		0D95531D22B9FC6E00B17581 /* RecognizedContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedContentViewController.swift; sourceTree = "<group>"; };
+		0D95531D22B9FC6E00B17581 /* FastRecognizedContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastRecognizedContentViewController.swift; sourceTree = "<group>"; };
 		0D95532022BA3E5100B17581 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		0DA42CAD22D875F100B4A5FD /* FeaturesCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturesCollectionView.swift; sourceTree = "<group>"; };
 		0DB8A87C2134F3FB0005D168 /* ConfigurationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConfigurationManager.swift; path = Utilities/ConfigurationManager.swift; sourceTree = "<group>"; };
@@ -224,7 +224,7 @@
 		0D1C5AFE22BF61E80002C892 /* BottomView */ = {
 			isa = PBXGroup;
 			children = (
-				0D95531D22B9FC6E00B17581 /* RecognizedContentViewController.swift */,
+				0D95531D22B9FC6E00B17581 /* FastRecognizedContentViewController.swift */,
 			);
 			name = BottomView;
 			sourceTree = "<group>";
@@ -703,7 +703,7 @@
 				0D73C74E22DEFF2E00B8BD57 /* LandingViewController.swift in Sources */,
 				0D73C74F22DEFF2E00B8BD57 /* UIImage+Extensions.swift in Sources */,
 				0D73C75022DEFF2E00B8BD57 /* CGImage+Extensions.swift in Sources */,
-				0D73C75122DEFF2E00B8BD57 /* RecognizedContentViewController.swift in Sources */,
+				0D73C75122DEFF2E00B8BD57 /* FastRecognizedContentViewController.swift in Sources */,
 				0D73C75222DEFF2E00B8BD57 /* SubscriptionManager.swift in Sources */,
 				0D73C75522DEFF2E00B8BD57 /* Feature.swift in Sources */,
 				0D73C75622DEFF2E00B8BD57 /* FeaturesCollectionViewCell.swift in Sources */,
@@ -746,7 +746,7 @@
 				6393B0A4204F10F80040A6CF /* LandingViewController.swift in Sources */,
 				63CB612B20AA2503004982EF /* UIImage+Extensions.swift in Sources */,
 				6393B09F204F0E660040A6CF /* CGImage+Extensions.swift in Sources */,
-				0D95531E22B9FC6E00B17581 /* RecognizedContentViewController.swift in Sources */,
+				0D95531E22B9FC6E00B17581 /* FastRecognizedContentViewController.swift in Sources */,
 				2BA01FCD1F6B47A700E1BD11 /* SubscriptionManager.swift in Sources */,
 				0D59219B22C5991400BBAAFD /* Feature.swift in Sources */,
 				0D93683A22D868630040FD58 /* FeaturesCollectionViewCell.swift in Sources */,

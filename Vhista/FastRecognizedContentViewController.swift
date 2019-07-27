@@ -1,5 +1,5 @@
 //
-//  RecognizedContentViewController.swift
+//  FastRecognizedContentViewController.swift
 //  Vhista
 //
 //  Created by Juan David Cruz Serrano on 6/18/19.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class RecognizedContentViewController: UIViewController {
+class FastRecognizedContentViewController: UIViewController {
 
     var recognizedObjectsLabel = UILabel()
 
@@ -36,7 +36,7 @@ class RecognizedContentViewController: UIViewController {
     }
 }
 
-extension RecognizedContentViewController {
+extension FastRecognizedContentViewController {
     func setUpUI() {
         // General View
         self.view.backgroundColor = .clear
@@ -56,9 +56,9 @@ extension RecognizedContentViewController {
         NSLayoutConstraint.activate([
             recognizedObjectsLabel.topAnchor.constraint(equalTo: view.topAnchor),
             recognizedObjectsLabel.leftAnchor.constraint(equalTo: view.leftAnchor,
-                                                         constant: RecognizedContentViewController.recognizedObjectsLabelHorizontalSpacing),
+                                                         constant: FastRecognizedContentViewController.recognizedObjectsLabelHorizontalSpacing),
             recognizedObjectsLabel.rightAnchor.constraint(equalTo: view.rightAnchor,
-                                                          constant: -RecognizedContentViewController.recognizedObjectsLabelHorizontalSpacing),
+                                                          constant: -FastRecognizedContentViewController.recognizedObjectsLabelHorizontalSpacing),
             recognizedObjectsLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
             ])
     }
@@ -69,8 +69,8 @@ extension RecognizedContentViewController {
         }
         let pickerVisualEffectView = UIVisualEffectView(effect: globalBlurEffect())
         pickerVisualEffectView.frame = self.view.frame
-        pickerVisualEffectView.tag = RecognizedContentViewController.bgEffectViewTag
-        for view in self.view.subviews where view.tag == RecognizedContentViewController.bgEffectViewTag {
+        pickerVisualEffectView.tag = FastRecognizedContentViewController.bgEffectViewTag
+        for view in self.view.subviews where view.tag == FastRecognizedContentViewController.bgEffectViewTag {
             view.removeFromSuperview()
         }
         self.view.insertSubview(pickerVisualEffectView, at: .zero)
@@ -82,7 +82,7 @@ extension RecognizedContentViewController {
             pickerVisualEffectView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
             ])
         pickerVisualEffectView.clipsToBounds = true
-        pickerVisualEffectView.layer.cornerRadius = RecognizedContentViewController.bgEffectViewCornerRadius
+        pickerVisualEffectView.layer.cornerRadius = FastRecognizedContentViewController.bgEffectViewCornerRadius
         pickerVisualEffectView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
 

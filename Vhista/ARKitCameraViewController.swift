@@ -19,7 +19,7 @@ UIGestureRecognizerDelegate {
     // Recognized Content View
     var recognizedContentViewHeightContraint: NSLayoutConstraint!
     @IBOutlet weak var recognizedContentView: UIView!
-    var recognizedContentViewController: RecognizedContentViewController?
+    var recognizedContentViewController: FastRecognizedContentViewController?
 
     @IBOutlet weak var deepAnalysisButton: UIButton!
 
@@ -105,7 +105,7 @@ UIGestureRecognizerDelegate {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowRecognizedContentView" {
-            recognizedContentViewController = segue.destination as? RecognizedContentViewController
+            recognizedContentViewController = segue.destination as? FastRecognizedContentViewController
         }
     }
 
@@ -344,11 +344,11 @@ extension ARKitCameraViewController {
     func updateRecognizedContentView(text: String) {
         recognizedContentViewController?.updateWithText(text)
         DispatchQueue.main.async {
-            let height = RecognizedContentViewController.calculateHeightForText(text: text,
+            let height = FastRecognizedContentViewController.calculateHeightForText(text: text,
                                                                                 width: self.recognizedContentView.frame.width,
                                                                                 safeAreaHeight: self.view.safeAreaInsets.bottom)
             self.recognizedContentViewHeightContraint.constant = height
-            UIView.animate(withDuration: RecognizedContentViewController.timeIntervalAnimateHeightChange,
+            UIView.animate(withDuration: FastRecognizedContentViewController.timeIntervalAnimateHeightChange,
                            animations: { self.view.layoutIfNeeded() },
                            completion: nil)
         }

@@ -57,7 +57,7 @@ extension ARKitCameraViewController {
         }
         DispatchQueue.main.async {
             self.bottomToolbarViewBottomAnchorContraint.constant = deltaY
-            UIView.animate(withDuration: RecognizedContentViewController.timeIntervalAnimateHeightChange,
+            UIView.animate(withDuration: FastRecognizedContentViewController.timeIntervalAnimateHeightChange,
                            animations: { self.view.layoutIfNeeded() },
                            completion: nil)
         }
