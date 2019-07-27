@@ -9,7 +9,25 @@
 import UIKit
 
 class RecognizedContentViewController: UIViewController {
+
+    var recognizedObjectsTextView = UITextView()
+    var actionsToolbar: UIToolbar!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpUI()
+    }
+
+    func updateWithText(_ text: String) {
+        recognizedObjectsTextView.accessibilityLabel = NSLocalizedString("LAST_RECOGNITION", comment: "") + text
+        DispatchQueue.main.async {
+            self.recognizedObjectsTextView.text = text
+            self.view.layoutIfNeeded()
+        }
+    }
+}
+
+extension RecognizedContentViewController {
+    func setUpUI() {
     }
 }
