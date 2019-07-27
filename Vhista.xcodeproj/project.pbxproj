@@ -15,7 +15,6 @@
 		0D20AEF222E3ED5300E508E6 /* CS-GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D20AEF122E3ED5300E508E6 /* CS-GoogleService-Info.plist */; };
 		0D24923D22E5459B0024BD52 /* ContextualFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D24923C22E5459B0024BD52 /* ContextualFeature.swift */; };
 		0D24923E22E5459B0024BD52 /* ContextualFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D24923C22E5459B0024BD52 /* ContextualFeature.swift */; };
-		0D24923F22E55D710024BD52 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B416BC71F6F28030029CB5A /* Info.plist */; };
 		0D5346F022C313C900103306 /* loading_beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0D5346EF22C313C900103306 /* loading_beep.wav */; };
 		0D5346F522C5630F00103306 /* LogoRippleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5346F422C5630F00103306 /* LogoRippleView.swift */; };
 		0D59219B22C5991400BBAAFD /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D59219A22C5991400BBAAFD /* Feature.swift */; };
@@ -64,7 +63,6 @@
 		0D73C76422DEFF2E00B8BD57 /* loading_beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0D5346EF22C313C900103306 /* loading_beep.wav */; };
 		0D73C76522DEFF2E00B8BD57 /* Subscription.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DCC7D5821238DFE00601C68 /* Subscription.storyboard */; };
 		0D73C76622DEFF2E00B8BD57 /* RemoteConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0DB8A87E2134F6670005D168 /* RemoteConfig.plist */; };
-		0D73C76722DEFF2E00B8BD57 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63342CD920B0BE6F00E397E6 /* GoogleService-Info.plist */; };
 		0D93683822D8678C0040FD58 /* FeaturesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D93683722D8678C0040FD58 /* FeaturesManager.swift */; };
 		0D93683A22D868630040FD58 /* FeaturesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D93683922D868630040FD58 /* FeaturesCollectionViewCell.swift */; };
 		0D95531E22B9FC6E00B17581 /* RecognizedContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D95531D22B9FC6E00B17581 /* RecognizedContentViewController.swift */; };
@@ -112,6 +110,7 @@
 		0D1E580422D431880005941C /* DarkModeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DarkModeManager.swift; path = Utilities/DarkModeManager.swift; sourceTree = "<group>"; };
 		0D20AEF122E3ED5300E508E6 /* CS-GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CS-GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0D24923C22E5459B0024BD52 /* ContextualFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContextualFeature.swift; path = "../../../../../../../../System/Volumes/Data/Users/juan/Dropbox/Vhista/Development/Vhista-iOS/Vhista/Features/ContextualFeature.swift"; sourceTree = "<group>"; };
+		0D24924222E55F880024BD52 /* InfoDev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = InfoDev.plist; sourceTree = "<group>"; };
 		0D5346EF22C313C900103306 /* loading_beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = loading_beep.wav; sourceTree = "<group>"; };
 		0D5346F422C5630F00103306 /* LogoRippleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoRippleView.swift; sourceTree = "<group>"; };
 		0D59219A22C5991400BBAAFD /* Feature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
@@ -125,7 +124,6 @@
 		0DA42CAD22D875F100B4A5FD /* FeaturesCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturesCollectionView.swift; sourceTree = "<group>"; };
 		0DB8A87C2134F3FB0005D168 /* ConfigurationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConfigurationManager.swift; path = Utilities/ConfigurationManager.swift; sourceTree = "<group>"; };
 		0DB8A87E2134F6670005D168 /* RemoteConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfig.plist; sourceTree = "<group>"; };
-		0DCB7DFB22DF7983001335C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = "../../../../../../../../../System/Volumes/Data/Users/juan/Library/CloudStorage/iCloud Drive/Vhista/Development/Vhista-iOS/Vhista/Base.lproj/Info-Dev.plist"; sourceTree = "<group>"; };
 		0DCC7D5721238DFE00601C68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Subscription.storyboard; sourceTree = "<group>"; };
 		0DCC7D5A21238E0200601C68 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Subscription.strings"; sourceTree = "<group>"; };
 		0DF120FA211F507400177FC5 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = Inceptionv3.mlmodel; path = ../../../Models/Inceptionv3.mlmodel; sourceTree = "<group>"; };
@@ -334,7 +332,7 @@
 				0DB8A87E2134F6670005D168 /* RemoteConfig.plist */,
 				63342CD920B0BE6F00E397E6 /* GoogleService-Info.plist */,
 				0D20AEF122E3ED5300E508E6 /* CS-GoogleService-Info.plist */,
-				0DCB7DFA22DF7983001335C8 /* Info-Dev.plist */,
+				0D24924222E55F880024BD52 /* InfoDev.plist */,
 				2B416BC71F6F28030029CB5A /* Info.plist */,
 				2B9638B71F328E31008DBBCF /* SupportingFiles */,
 			);
@@ -527,7 +525,6 @@
 				0D73C76422DEFF2E00B8BD57 /* loading_beep.wav in Resources */,
 				0D73C76522DEFF2E00B8BD57 /* Subscription.storyboard in Resources */,
 				0D73C76622DEFF2E00B8BD57 /* RemoteConfig.plist in Resources */,
-				0D73C76722DEFF2E00B8BD57 /* GoogleService-Info.plist in Resources */,
 				0D20AEF222E3ED5300E508E6 /* CS-GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -536,7 +533,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D24923F22E55D710024BD52 /* Info.plist in Resources */,
 				2B75038E1F31936E007D4AFF /* LaunchScreen.storyboard in Resources */,
 				9A9AFD631F48CD5E00172469 /* Localizable.strings in Resources */,
 				2B75038B1F31936E007D4AFF /* Assets.xcassets in Resources */,
@@ -765,14 +761,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		0DCB7DFA22DF7983001335C8 /* Info-Dev.plist */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0DCB7DFB22DF7983001335C8 /* Base */,
-			);
-			name = "Info-Dev.plist";
-			sourceTree = "<group>";
-		};
 		0DCC7D5821238DFE00601C68 /* Subscription.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -828,11 +816,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
 				COREML_CODEGEN_LANGUAGE = Swift;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = LS6M2TWH7D;
-				INFOPLIST_FILE = "Vhista/CS-GoogleService-Info.plist";
+				INFOPLIST_FILE = Vhista/InfoDev.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 4.0;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -DDEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = com.juandavidcruz.VhistaCS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -847,10 +837,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
 				COREML_CODEGEN_LANGUAGE = Swift;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = LS6M2TWH7D;
-				INFOPLIST_FILE = "Vhista/CS-GoogleService-Info.plist";
+				INFOPLIST_FILE = Vhista/InfoDev.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 4.0;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -DDEVELOPMENT";
 				PRODUCT_BUNDLE_IDENTIFIER = com.juandavidcruz.VhistaCS;
 				PRODUCT_NAME = "$(TARGET_NAME)";

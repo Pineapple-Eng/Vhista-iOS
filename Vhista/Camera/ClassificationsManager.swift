@@ -3,7 +3,7 @@
 //  Vhista
 //
 //  Created by David Cruz on 3/6/18.
-//  Copyright © 2018 juandavidcruz. All rights reserved.
+//  Copyright © Juan David Cruz Serrano & Vhista Inc. All rights reserved.
 //
 
 import Foundation
