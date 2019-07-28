@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14845" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="9RG-CJ-oKt">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14799.2"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,11 +16,11 @@
                         <viewControllerLayoutGuide type="bottom" id="YHW-2P-WgL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gec-dR-2Yo">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TransparentLogo" translatesAutoresizingMaskIntoConstraints="NO" id="UXU-0a-Guf">
-                                <rect key="frame" x="225" y="225" width="150" height="150"/>
+                                <rect key="frame" x="132" y="373" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="LOJ-YT-NfA"/>
                                     <constraint firstAttribute="height" constant="150" id="ZN1-Wa-Xyc"/>
@@ -48,11 +50,11 @@
                         <viewControllerLayoutGuide type="bottom" id="N6U-D5-L5g"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="4wM-gE-hjw">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ffu-aO-O4g">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bt9-g4-3ef">
                                 <rect key="frame" x="0.0" y="193" width="375" height="460"/>
@@ -66,7 +68,7 @@
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sxf-5T-nUb">
-                                <rect key="frame" x="0.0" y="449" width="600" height="107"/>
+                                <rect key="frame" x="0.0" y="745" width="414" height="107"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -74,7 +76,7 @@
                                 </connections>
                             </containerView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jKu-Ib-g3j">
-                                <rect key="frame" x="0.0" y="551" width="600" height="49"/>
+                                <rect key="frame" x="0.0" y="847" width="414" height="49"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem systemItem="camera" id="KGO-Id-ocm">
@@ -91,7 +93,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </toolbar>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bks-eD-gc3">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="s1N-lL-g27"/>
                                 </constraints>
@@ -132,7 +134,7 @@
                     <connections>
                         <outlet property="bottomToolbar" destination="jKu-Ib-g3j" id="20e-AZ-pwo"/>
                         <outlet property="deepAnalysisButton" destination="Bt9-g4-3ef" id="6oX-7t-FTW"/>
-                        <outlet property="recognizedContentView" destination="Sxf-5T-nUb" id="VLZ-yZ-Cmi"/>
+                        <outlet property="fastRecognizedContentView" destination="Sxf-5T-nUb" id="VKk-6G-PGy"/>
                         <outlet property="selectedImageView" destination="Ffu-aO-O4g" id="BIq-Qi-dx6"/>
                         <outlet property="upgradeButtonItem" destination="feG-yb-xi5" id="bDu-Rg-XeS"/>
                         <segue destination="XN5-zD-zT7" kind="presentation" identifier="ShowUpgradeView" id="832-2e-1X8"/>
@@ -168,7 +170,7 @@
                         <viewControllerLayoutGuide type="bottom" id="N1Y-Cq-vxb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="BuC-8H-ReT">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="107"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="107"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
@@ -186,7 +188,7 @@
                         <viewControllerLayoutGuide type="bottom" id="aKs-Vb-0Nc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8se-TY-DcO" customClass="UICollectionView">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>

@@ -10,19 +10,19 @@ extension ARKitCameraViewController {
             bottomToolbar.leftAnchor.constraint(equalTo: view.leftAnchor)
             ])
 
-        recognizedContentViewHeightContraint = recognizedContentView.heightAnchor.constraint(equalToConstant: .zero)
-        recognizedContentView.translatesAutoresizingMaskIntoConstraints = false
+        fastRecognizedContentViewHeightContraint = fastRecognizedContentView.heightAnchor.constraint(equalToConstant: .zero)
+        fastRecognizedContentView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            recognizedContentViewHeightContraint,
-            recognizedContentView.bottomAnchor.constraint(equalTo: bottomToolbar.topAnchor),
-            recognizedContentView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            recognizedContentView.leftAnchor.constraint(equalTo: view.leftAnchor)
+            fastRecognizedContentViewHeightContraint,
+            fastRecognizedContentView.bottomAnchor.constraint(equalTo: bottomToolbar.topAnchor),
+            fastRecognizedContentView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            fastRecognizedContentView.leftAnchor.constraint(equalTo: view.leftAnchor)
             ])
 
         deepAnalysisButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             deepAnalysisButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            deepAnalysisButton.bottomAnchor.constraint(equalTo: recognizedContentView.topAnchor),
+            deepAnalysisButton.bottomAnchor.constraint(equalTo: fastRecognizedContentView.topAnchor),
             deepAnalysisButton.rightAnchor.constraint(equalTo: view.rightAnchor),
             deepAnalysisButton.leftAnchor.constraint(equalTo: view.leftAnchor)
             ])
@@ -53,7 +53,7 @@ extension ARKitCameraViewController {
     func toggleBottomAndRecognizedContentViewsVisibility(hide: Bool) {
         var deltaY: CGFloat = 0.0
         if hide {
-            deltaY = bottomToolbar.frame.size.height + recognizedContentViewHeightContraint.constant + self.view.safeAreaInsets.bottom
+            deltaY = bottomToolbar.frame.size.height + fastRecognizedContentViewHeightContraint.constant + self.view.safeAreaInsets.bottom
         }
         DispatchQueue.main.async {
             self.bottomToolbarViewBottomAnchorContraint.constant = deltaY

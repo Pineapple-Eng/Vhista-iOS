@@ -16,10 +16,10 @@ class ARKitCameraViewController:
 UIViewController,
 UIGestureRecognizerDelegate {
 
-    // Recognized Content View
-    var recognizedContentViewHeightContraint: NSLayoutConstraint!
-    @IBOutlet weak var recognizedContentView: UIView!
-    var recognizedContentViewController: FastRecognizedContentViewController?
+    // Fast Recognized Content View
+    var fastRecognizedContentViewHeightContraint: NSLayoutConstraint!
+    @IBOutlet weak var fastRecognizedContentView: UIView!
+    var fastRecognizedContentViewController: FastRecognizedContentViewController?
 
     @IBOutlet weak var deepAnalysisButton: UIButton!
 
@@ -89,7 +89,7 @@ UIGestureRecognizerDelegate {
 
     override func viewDidLayoutSubviews() {
         self.view.bringSubviewToFront(deepAnalysisButton)
-        recognizedContentView.translatesAutoresizingMaskIntoConstraints = false
+        fastRecognizedContentView.translatesAutoresizingMaskIntoConstraints = false
         if !arEnabled {
             updateNonARCameraConnectionOrientationAndFrame()
         }
@@ -105,7 +105,7 @@ UIGestureRecognizerDelegate {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowRecognizedContentView" {
-            recognizedContentViewController = segue.destination as? FastRecognizedContentViewController
+            fastRecognizedContentViewController = segue.destination as? FastRecognizedContentViewController
         }
     }
 
@@ -342,12 +342,12 @@ extension ARKitCameraViewController {
 // MARK: - Update Recognized Content View
 extension ARKitCameraViewController {
     func updateRecognizedContentView(text: String) {
-        recognizedContentViewController?.updateWithText(text)
+        fastRecognizedContentViewController?.updateWithText(text)
         DispatchQueue.main.async {
             let height = FastRecognizedContentViewController.calculateHeightForText(text: text,
-                                                                                width: self.recognizedContentView.frame.width,
+                                                                                width: self.fastRecognizedContentView.frame.width,
                                                                                 safeAreaHeight: self.view.safeAreaInsets.bottom)
-            self.recognizedContentViewHeightContraint.constant = height
+            self.fastRecognizedContentViewHeightContraint.constant = height
             UIView.animate(withDuration: FastRecognizedContentViewController.timeIntervalAnimateHeightChange,
                            animations: { self.view.layoutIfNeeded() },
                            completion: nil)

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 extension ARKitCameraViewController {
     func startContextualRecognition() {
@@ -14,7 +15,17 @@ extension ARKitCameraViewController {
                                                                features: [ComputerVisionManager.CVFeatures.Description],
                                                                details: nil,
                                                                language: ComputerVisionManager.CVLanguage.English) { (response) in
-                                                                print(response)
+                                                                self.finishedContextualRecognition(response)
         }
+    }
+
+    func finishedContextualRecognition(_ response: DataResponse<CVResponse>) {
+        let recognizedVC = RecognizedContentViewController()
+        guard let fisrtCaption = response.value?.description?.captions?.first?.text else {
+            return
+        }
+        self.present(recognizedVC, animated: true, completion: {
+            recognizedVC.updateWithText(fisrtCaption)
+        })
     }
 }
