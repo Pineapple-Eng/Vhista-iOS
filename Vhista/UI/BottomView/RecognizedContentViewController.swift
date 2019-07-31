@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol RecognizedContentViewControllerDelegate: class {
+    func willDismissRecognizedContentViewController(_ controller: RecognizedContentViewController)
+}
+
 class RecognizedContentViewController: UIViewController {
+
+    weak var delegate: RecognizedContentViewControllerDelegate?
 
     var recognizedObjectsTextView: UITextView!
     var actionsToolbar: UIToolbar!
@@ -18,6 +24,11 @@ class RecognizedContentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        delegate?.willDismissRecognizedContentViewController(self)
     }
 
     func updateWithText(_ text: String) {

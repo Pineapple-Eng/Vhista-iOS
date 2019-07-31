@@ -361,8 +361,8 @@ extension ARKitCameraViewController {
         toggleBottomAndRecognizedContentViewsVisibility(hide: willAnalyze)
         if willAnalyze {
             pauseCurrentSession()
-//            logoView.showLoadingLogoView(parentView: self.view)
 //            RekognitionManager.shared.playLoadingSound()
+//            logoView.showLoadingLogoView(parentView: self.view)
         } else {
             resumeCurrentSession()
 //            logoView.stopLoadingLogoView(parentView: self.view)

@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-extension ARKitCameraViewController {
+extension ARKitCameraViewController: RecognizedContentViewControllerDelegate {
     func startContextualRecognition() {
         ComputerVisionManager.shared.makeComputerVisionRequest(image: selectedImage,
                                                                features: [ComputerVisionManager.CVFeatures.Description],
@@ -24,8 +24,15 @@ extension ARKitCameraViewController {
         guard let fisrtCaption = response.value?.description?.captions?.first?.text else {
             return
         }
+        recognizedVC.delegate = self
         self.present(recognizedVC, animated: true, completion: {
             recognizedVC.updateWithText(fisrtCaption)
         })
     }
+
+    // MARK: RecognizedContentViewControllerDelegate
+    func willDismissRecognizedContentViewController(_ controller: RecognizedContentViewController) {
+
+    }
+
 }

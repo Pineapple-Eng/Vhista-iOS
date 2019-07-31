@@ -13,8 +13,8 @@
 		0D1C5B0522BF67F10002C892 /* NonARCameraViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C5B0422BF67F10002C892 /* NonARCameraViewController+Extensions.swift */; };
 		0D1E580522D431890005941C /* DarkModeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1E580422D431880005941C /* DarkModeManager.swift */; };
 		0D20AEF222E3ED5300E508E6 /* CS-GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D20AEF122E3ED5300E508E6 /* CS-GoogleService-Info.plist */; };
-		0D24923D22E5459B0024BD52 /* ContextualFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D24923C22E5459B0024BD52 /* ContextualFeature.swift */; };
-		0D24923E22E5459B0024BD52 /* ContextualFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D24923C22E5459B0024BD52 /* ContextualFeature.swift */; };
+		0D24923D22E5459B0024BD52 /* ARKitCameraViewController+ContextualFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D24923C22E5459B0024BD52 /* ARKitCameraViewController+ContextualFeature.swift */; };
+		0D24923E22E5459B0024BD52 /* ARKitCameraViewController+ContextualFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D24923C22E5459B0024BD52 /* ARKitCameraViewController+ContextualFeature.swift */; };
 		0D5346F022C313C900103306 /* loading_beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0D5346EF22C313C900103306 /* loading_beep.wav */; };
 		0D5346F522C5630F00103306 /* LogoRippleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5346F422C5630F00103306 /* LogoRippleView.swift */; };
 		0D59219B22C5991400BBAAFD /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D59219A22C5991400BBAAFD /* Feature.swift */; };
@@ -111,7 +111,7 @@
 		0D1C5B0422BF67F10002C892 /* NonARCameraViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "NonARCameraViewController+Extensions.swift"; path = "Camera/NonARCamera/NonARCameraViewController+Extensions.swift"; sourceTree = "<group>"; };
 		0D1E580422D431880005941C /* DarkModeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DarkModeManager.swift; path = Utilities/DarkModeManager.swift; sourceTree = "<group>"; };
 		0D20AEF122E3ED5300E508E6 /* CS-GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CS-GoogleService-Info.plist"; sourceTree = "<group>"; };
-		0D24923C22E5459B0024BD52 /* ContextualFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContextualFeature.swift; path = "../../../../../../../../System/Volumes/Data/Users/juan/Dropbox/Vhista/Development/Vhista-iOS/Vhista/Features/ContextualFeature.swift"; sourceTree = "<group>"; };
+		0D24923C22E5459B0024BD52 /* ARKitCameraViewController+ContextualFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ARKitCameraViewController+ContextualFeature.swift"; path = "../../../../../../../../System/Volumes/Data/Users/juan/Dropbox/Vhista/Development/Vhista-iOS/Vhista/Features/ARKitCameraViewController+ContextualFeature.swift"; sourceTree = "<group>"; };
 		0D24924222E55F880024BD52 /* InfoDev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = InfoDev.plist; sourceTree = "<group>"; };
 		0D5346EF22C313C900103306 /* loading_beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = loading_beep.wav; sourceTree = "<group>"; };
 		0D5346F422C5630F00103306 /* LogoRippleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoRippleView.swift; sourceTree = "<group>"; };
@@ -244,7 +244,7 @@
 		0D24923B22E5456F0024BD52 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				0D24923C22E5459B0024BD52 /* ContextualFeature.swift */,
+				0D24923C22E5459B0024BD52 /* ARKitCameraViewController+ContextualFeature.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -689,7 +689,7 @@
 				0D73C73E22DEFF2E00B8BD57 /* SecureConstants.swift in Sources */,
 				0D73C73F22DEFF2E00B8BD57 /* UIView+Extensions.swift in Sources */,
 				0D73C74022DEFF2E00B8BD57 /* ARKitCameraViewController+Extensions.swift in Sources */,
-				0D24923E22E5459B0024BD52 /* ContextualFeature.swift in Sources */,
+				0D24923E22E5459B0024BD52 /* ARKitCameraViewController+ContextualFeature.swift in Sources */,
 				0D73C74222DEFF2E00B8BD57 /* DarkModeManager.swift in Sources */,
 				0D73C74322DEFF2E00B8BD57 /* ConfigurationManager.swift in Sources */,
 				0D73C74422DEFF2E00B8BD57 /* LogoRippleView.swift in Sources */,
@@ -733,7 +733,7 @@
 				63342CD820B0BE0900E397E6 /* SecureConstants.swift in Sources */,
 				6393B09D204E2D280040A6CF /* UIView+Extensions.swift in Sources */,
 				0D1C5AFB22BF605C0002C892 /* ARKitCameraViewController+Extensions.swift in Sources */,
-				0D24923D22E5459B0024BD52 /* ContextualFeature.swift in Sources */,
+				0D24923D22E5459B0024BD52 /* ARKitCameraViewController+ContextualFeature.swift in Sources */,
 				0D1E580522D431890005941C /* DarkModeManager.swift in Sources */,
 				0DB8A87D2134F3FB0005D168 /* ConfigurationManager.swift in Sources */,
 				0D5346F522C5630F00103306 /* LogoRippleView.swift in Sources */,
