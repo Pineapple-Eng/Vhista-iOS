@@ -1,6 +1,6 @@
 ![Readme Cover](README_COVER.png?raw=true "Cover")
 
-## We want to hear from you ❤
+## We want to hear from you
 
 Feel free  to join our [Slack](https://join.slack.com/t/vhistainc/shared_invite/enQtNzA5NjI3ODYzNDQxLWIzMzE0MDg1ZDBiMjg1MmQ4NWMwOTdlNzc5MDc0MGRkMmU3ODEyZjMyODE0NDhlYzQ1Yzc0ODE1MGFlZmE2Mjc) workspace for questions, press, feedback or just say thanks ❤.
 
