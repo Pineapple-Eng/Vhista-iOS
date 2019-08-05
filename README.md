@@ -1,5 +1,9 @@
 ![Readme Cover](README_COVER.png?raw=true "Cover")
 
+## We want to hear from you ❤
+
+Feel free  to join our [Slack](https://join.slack.com/t/vhistainc/shared_invite/enQtNzA5NjI3ODYzNDQxLWIzMzE0MDg1ZDBiMjg1MmQ4NWMwOTdlNzc5MDc0MGRkMmU3ODEyZjMyODE0NDhlYzQ1Yzc0ODE1MGFlZmE2Mjc) workspace for questions, press, feedback, say thanks ❤.
+
 ## Documentation
 
 To compile and run Vhista, please go to the [english documentation](https://github.com/VhistaInc/Vhista-iOS/blob/master/Documentation/ENGLISH_BUILD.md)
