@@ -16,10 +16,20 @@ class RecognizedContentViewController: UIViewController {
 
     weak var delegate: RecognizedContentViewControllerDelegate?
 
+    var recognizedImageView: UIImageView!
     var recognizedObjectsTextView: UITextView!
     var actionsToolbar: UIToolbar!
 
     static let recognizedTextViewHorizontalSpacing: CGFloat = 8.0
+    static let recognizedTextViewVerticalSpacing: CGFloat = 8.0
+    static let recognizedImageViewVerticalSpacing: CGFloat = 20.0
+    static let recognizedImageViewMaxHeight: CGFloat = 150.0
+    static let recognizedImageViewCornerRadius: CGFloat = 8.0
+
+    static let timeIntervalAnimateHeightChange: TimeInterval = 0.15
+
+    var recognizedImageViewWidthContraint: NSLayoutConstraint!
+    var recognizedImageViewHeightContraint: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,11 +42,24 @@ class RecognizedContentViewController: UIViewController {
         delegate?.willDismissRecognizedContentViewController(self)
     }
 
-    func updateWithText(_ text: String) {
+    func updateWithText(_ text: String, image: UIImage? = nil) {
         recognizedObjectsTextView.accessibilityLabel = NSLocalizedString("LAST_RECOGNITION", comment: "") + text
         DispatchQueue.main.async {
             self.recognizedObjectsTextView.text = text
-            self.view.layoutIfNeeded()
+            if let takenImage = image {
+                self.recognizedImageView.image = takenImage
+                self.recognizedImageViewHeightContraint.constant = RecognizedContentViewController.recognizedImageViewMaxHeight
+                let imageSizeRatio = takenImage.size.width / takenImage.size.height
+                self.recognizedImageViewWidthContraint.constant = imageSizeRatio * RecognizedContentViewController.recognizedImageViewMaxHeight
+                UIView.animate(withDuration: RecognizedContentViewController.timeIntervalAnimateHeightChange,
+                               animations: { self.view.layoutIfNeeded() },
+                               completion: nil)
+            } else {
+                self.recognizedImageViewHeightContraint.constant = 0.0
+                UIView.animate(withDuration: RecognizedContentViewController.timeIntervalAnimateHeightChange,
+                               animations: { self.view.layoutIfNeeded() },
+                               completion: nil)
+            }
         }
         UIAccessibility.post(notification: UIAccessibility.Notification.layoutChanged,
                              argument: recognizedObjectsTextView)
@@ -53,25 +76,45 @@ extension RecognizedContentViewController {
     func setUpUI() {
         setUpBackground()
         setUpToolbar()
+        setUpImageView()
         setUpTextView()
     }
 
     func setUpBackground() {
-            guard let view = self.view else {
-                return
-            }
-            let pickerVisualEffectView = UIVisualEffectView(effect: globalBlurEffect())
-            pickerVisualEffectView.frame = self.view.frame
-            self.view.insertSubview(pickerVisualEffectView, at: .zero)
-            pickerVisualEffectView.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                pickerVisualEffectView.widthAnchor.constraint(equalTo: view.widthAnchor),
-                pickerVisualEffectView.heightAnchor.constraint(equalTo: view.heightAnchor),
-                pickerVisualEffectView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                pickerVisualEffectView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-            ])
+        guard let view = self.view else {
+            return
         }
+        let pickerVisualEffectView = UIVisualEffectView(effect: globalBlurEffect())
+        pickerVisualEffectView.frame = self.view.frame
+        self.view.insertSubview(pickerVisualEffectView, at: .zero)
+        pickerVisualEffectView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            pickerVisualEffectView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            pickerVisualEffectView.heightAnchor.constraint(equalTo: view.heightAnchor),
+            pickerVisualEffectView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            pickerVisualEffectView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
 
+    func setUpImageView() {
+        recognizedImageView = UIImageView(frame: .zero)
+        recognizedImageView.contentMode = .scaleAspectFit
+        recognizedImageView.clipsToBounds = true
+        recognizedImageView.layer.masksToBounds = true
+        recognizedImageView.layer.cornerRadius = RecognizedContentViewController.recognizedImageViewCornerRadius
+        recognizedImageView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(recognizedImageView)
+        recognizedImageViewHeightContraint = recognizedImageView.heightAnchor.constraint(equalToConstant: 0.0)
+        recognizedImageViewWidthContraint = recognizedImageView.widthAnchor.constraint(equalToConstant: 0.0)
+
+        NSLayoutConstraint.activate([
+            recognizedImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+                                                     constant: RecognizedContentViewController.recognizedImageViewVerticalSpacing),
+            recognizedImageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            recognizedImageViewWidthContraint,
+            recognizedImageViewHeightContraint
+        ])
+    }
     func setUpTextView() {
         recognizedObjectsTextView = UITextView(frame: .zero)
         recognizedObjectsTextView.textColor = getLabelDarkColorIfSupported(color: .white)
@@ -83,7 +126,8 @@ extension RecognizedContentViewController {
         recognizedObjectsTextView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(recognizedObjectsTextView)
         NSLayoutConstraint.activate([
-            recognizedObjectsTextView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            recognizedObjectsTextView.topAnchor.constraint(equalTo: recognizedImageView.safeAreaLayoutGuide.bottomAnchor,
+                                                           constant: RecognizedContentViewController.recognizedTextViewVerticalSpacing),
             recognizedObjectsTextView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor,
                                                             constant: RecognizedContentViewController.recognizedTextViewHorizontalSpacing),
             recognizedObjectsTextView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor,
