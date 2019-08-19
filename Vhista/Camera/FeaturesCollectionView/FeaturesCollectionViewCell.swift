@@ -32,8 +32,14 @@ class FeaturesCollectionViewCell: UICollectionViewCell {
 
     func configureCellWithFeature(_ feature: Feature) {
         self.feature = feature
-        guard let image = UIImage(named: feature.imageName) else {
-            return
+        var image = UIImage()
+        if #available(iOS 13.0, *) {
+            guard let systemImage = UIImage(systemName: feature.imageName) else {
+                return
+            }
+            image = systemImage
+        } else {
+            // Fallback on earlier versions
         }
         nameLabel.text = feature.featureName
         logoView.configureViewWithImage(image)
@@ -54,6 +60,7 @@ extension FeaturesCollectionViewCell {
                                              constant: 4),
             logoView.heightAnchor.constraint(equalTo: logoView.widthAnchor)
         ])
+        logoView.tintColor = getLabelDarkColorIfSupported(color: .black)
     }
 
     func setUpNameLabel() {

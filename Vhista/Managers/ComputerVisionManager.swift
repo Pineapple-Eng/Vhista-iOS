@@ -52,7 +52,6 @@ class ComputerVisionManager: NSObject {
                                 headers: headers).responseDecodable { (response) in
                                     completion(response)
         }
-        
     }
 }
 

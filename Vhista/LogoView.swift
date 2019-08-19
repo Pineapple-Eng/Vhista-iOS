@@ -23,8 +23,8 @@ class LogoView: UIView {
     static let logoStartLoadingInitialSpringVelocity: CGFloat = 0.7
 
     static let defaultImageName = "SmallTransparentLogo"
-    static let contextualImageName = "SmallTransparentLogo"
-    static let panoramicImageName = "SmallTransparentLogo"
+    static let contextualImageName = "eye.fill"
+    static let panoramicImageName = "pano.fill"
 
     var logoImage: UIImage?
     var logoImageView = UIImageView()
