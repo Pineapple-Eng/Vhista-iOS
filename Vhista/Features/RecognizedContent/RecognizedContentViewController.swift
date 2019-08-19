@@ -170,7 +170,7 @@ extension RecognizedContentViewController {
         let savePhotoItem = UIBarButtonItem(image: savePhotoImage,
                                             style: .plain,
                                             target: self,
-                                            action: nil)
+                                            action: #selector(shareImage(_:)))
         savePhotoItem.accessibilityLabel = NSLocalizedString("share_taken_picture", comment: "")
         actionsToolbar.items?.append(savePhotoItem)
 
@@ -191,6 +191,18 @@ extension RecognizedContentViewController {
                              argument: NSLocalizedString("text_copied", comment: ""))
         UIPasteboard.general.string = recognizedObjectsTextView.text
     }
+
+    @objc func shareImage(_ sender: UIBarButtonItem) {
+        guard let image = recognizedImageView.image else {
+            return
+        }
+        let imagesToShare = [image]
+        let activityViewController = UIActivityViewController(activityItems: imagesToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.barButtonItem = sender
+
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+
     @objc func dismissView() {
         self.dismiss(animated: true, completion: nil)
     }
