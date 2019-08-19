@@ -14,7 +14,7 @@ extension ARKitCameraViewController {
         NSLayoutConstraint.activate([
             shutterButtonView.widthAnchor.constraint(equalToConstant: CameraShutterButtonView.buttonSize),
             shutterButtonView.heightAnchor.constraint(equalToConstant: CameraShutterButtonView.buttonSize),
-            shutterButtonView.bottomAnchor.constraint(equalTo: bottomToolbar.bottomAnchor,
+            shutterButtonView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
                                                       constant: -CameraShutterButtonView.paddingFromBottom),
             shutterButtonView.centerXAnchor.constraint(equalTo: bottomToolbar.centerXAnchor)
         ])

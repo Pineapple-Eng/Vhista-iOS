@@ -50,8 +50,9 @@ class ComputerVisionManager: NSObject {
                                 to: url,
                                 method: .post,
                                 headers: headers).responseDecodable { (response) in
-            completion(response)
+                                    completion(response)
         }
+        
     }
 }
 

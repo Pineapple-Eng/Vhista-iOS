@@ -37,7 +37,6 @@ extension ARKitCameraViewController {
     func processARImageAnalysis() {
         if let currentImage = UIImage(pixelBuffer: self.persistentPixelBuffer!) {
             UINotificationFeedbackGenerator().notificationOccurred(.success)
-            processingImage = true
             self.setImageForRecognition(image: currentImage)
             self.startContextualRecognition()
         }

@@ -13,6 +13,8 @@ class CameraShutterButtonView: UIView {
     static let buttonSize: CGFloat = 66.0
     static let paddingFromBottom: CGFloat = 8.0
 
+    weak var buttonDelegate: VHCameraButtonDelegate?
+
     var shutterButton: VHCameraButton
 
     override init(frame: CGRect) {
@@ -63,7 +65,7 @@ extension CameraShutterButtonView {
 
 extension CameraShutterButtonView: VHCameraButtonDelegate {
     func didChangeCameraButtonSelection(_ button: VHCameraButton, _ selected: Bool) {
-        print(selected)
+        buttonDelegate?.didChangeCameraButtonSelection(button, selected)
     }
 }
 

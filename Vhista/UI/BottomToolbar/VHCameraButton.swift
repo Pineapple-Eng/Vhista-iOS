@@ -16,7 +16,7 @@ protocol VHCameraButtonDelegate: AnyObject {
 class VHCameraButton: UIButton {
 
     var pathLayer: CAShapeLayer!
-    let animationDuration = 0.4
+    let animationDuration = 0.1
 
     weak var buttonDelegate: VHCameraButtonDelegate?
 
@@ -75,40 +75,13 @@ class VHCameraButton: UIButton {
     }
 
     @objc func touchUpInside(sender: UIButton) {
-        //Create the animation to restore the color of the button
-        let colorChange = CABasicAnimation(keyPath: "fillColor")
-        colorChange.duration = animationDuration
-        colorChange.toValue = UIColor.white.cgColor
-
-        //make sure that the color animation is not reverted once the animation is completed
-        colorChange.fillMode = CAMediaTimingFillMode.forwards
-        colorChange.isRemovedOnCompletion = false
-
-        //indicate which animation timing function to use, in this case ease in and ease out
-        colorChange.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-
-        //add the animation
-        self.pathLayer.add(colorChange, forKey: "darkColor")
-
+        resetColor()
         //change the state of the control to update the shape
         self.isSelected = !self.isSelected
     }
 
     @objc func touchUpOutside(sender: UIButton) {
-           //Create the animation to restore the color of the button
-           let colorChange = CABasicAnimation(keyPath: "fillColor")
-           colorChange.duration = animationDuration
-           colorChange.toValue = UIColor.white.cgColor
-
-           //make sure that the color animation is not reverted once the animation is completed
-           colorChange.fillMode = CAMediaTimingFillMode.forwards
-           colorChange.isRemovedOnCompletion = false
-
-           //indicate which animation timing function to use, in this case ease in and ease out
-           colorChange.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-
-           //add the animation
-           self.pathLayer.add(colorChange, forKey: "darkColor")
+        resetColor()
     }
 
     @objc func touchDown(sender: UIButton) {
@@ -138,6 +111,29 @@ class VHCameraButton: UIButton {
             UIColor.white.setStroke()
         }
         outerRing.stroke()
+    }
+
+    func reset() {
+        resetColor()
+        //change the state of the control to update the shape
+        self.isSelected = !self.isSelected
+    }
+
+    func resetColor() {
+        //Create the animation to restore the color of the button
+        let colorChange = CABasicAnimation(keyPath: "fillColor")
+        colorChange.duration = animationDuration
+        colorChange.toValue = UIColor.white.cgColor
+
+        //make sure that the color animation is not reverted once the animation is completed
+        colorChange.fillMode = CAMediaTimingFillMode.forwards
+        colorChange.isRemovedOnCompletion = false
+
+        //indicate which animation timing function to use, in this case ease in and ease out
+        colorChange.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+
+        //add the animation
+        self.pathLayer.add(colorChange, forKey: "darkColor")
     }
 
     func currentInnerPath () -> UIBezierPath {

@@ -118,7 +118,6 @@ extension ARKitCameraViewController {
 
 extension ARKitCameraViewController {
     func processNonARImageAnalysis() {
-        processingImage = true
         UINotificationFeedbackGenerator().notificationOccurred(.success)
         if stillImageOutput.connection(with: AVMediaType.video) != nil {
             let settings = AVCapturePhotoSettings()

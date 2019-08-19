@@ -15,7 +15,8 @@ import AVFoundation
 class ARKitCameraViewController:
 UIViewController,
 UIGestureRecognizerDelegate,
-VHBottomNavigationToolbarDelegate {
+VHBottomNavigationToolbarDelegate,
+VHCameraButtonDelegate {
 
     // Features Collection View
     @IBOutlet weak var featuresCollectionContentView: UIView!
@@ -85,6 +86,7 @@ VHBottomNavigationToolbarDelegate {
         self.view.addSubview(bottomToolbar)
         // Shutter View
         shutterButtonView = CameraShutterButtonView(frame: .zero)
+        shutterButtonView.buttonDelegate = self
         self.view.addSubview(shutterButtonView)
         // Constraints
         setUpUIConstraints()
@@ -118,15 +120,18 @@ VHBottomNavigationToolbarDelegate {
     }
 
     @IBAction func makeDeepAnalysis(_ sender: Any) {
+        self.updateUIForDeepAnalysisChange(willAnalyze: true)
         if !checkCameraPermissions() {
+            self.updateUIForDeepAnalysisChange(willAnalyze: false)
             return
         }
 
         guard self.persistentPixelBuffer != nil else {
             print("No Buffer \(String(describing: self.persistentPixelBuffer))")
+            self.updateUIForDeepAnalysisChange(willAnalyze: false)
             return
         }
-        updateUIForDeepAnalysisChange(willAnalyze: true)
+
         ConfigurationManager.shared.serverAllowsRecognition({ (allowed) in
             if allowed {
                 guard VhistaReachabilityManager.shared.validInternetConnection() else {
@@ -332,13 +337,16 @@ extension ARKitCameraViewController {
 
     func finishedRekognitionAnalisis() {
         print("🏁 Finished Rekognition Analysis")
-        DispatchQueue.main.async {
-            self.selectedImageView.isHidden = true
-            self.selectedImageView.image = nil
-        }
-        selectedImage = nil
-        processingImage = false
         updateUIForDeepAnalysisChange(willAnalyze: false)
+    }
+}
+
+// MARK: - Shutter Button Delegate
+extension ARKitCameraViewController {
+    func didChangeCameraButtonSelection(_ button: VHCameraButton, _ selected: Bool) {
+        if selected && !processingImage {
+            makeDeepAnalysis(button)
+        }
     }
 }
 
@@ -374,12 +382,19 @@ extension ARKitCameraViewController {
 extension ARKitCameraViewController {
     func updateUIForDeepAnalysisChange(willAnalyze: Bool) {
         toggleBottomAndRecognizedContentViewsVisibility(hide: willAnalyze)
+        processingImage = willAnalyze
         if willAnalyze {
             pauseCurrentSession()
 //            RekognitionManager.shared.playLoadingSound()
 //            logoView.showLoadingLogoView(parentView: self.view)
         } else {
             resumeCurrentSession()
+            shutterButtonView.shutterButton.reset()
+            DispatchQueue.main.async {
+                self.selectedImageView.isHidden = true
+                self.selectedImageView.image = nil
+            }
+            selectedImage = nil
 //            logoView.stopLoadingLogoView(parentView: self.view)
 //            RekognitionManager.shared.backToDefaults()
         }
