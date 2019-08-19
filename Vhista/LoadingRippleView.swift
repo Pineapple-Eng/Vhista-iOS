@@ -1,5 +1,5 @@
 //
-//  LogoRippleView.swift
+//  LoadingRippleView.swift
 //  Vhista
 //
 //  Created by Juan David Cruz Serrano on 6/27/19.
@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 import HGRippleRadarView
 
-class LogoRippleView: UIView {
+class LoadingRippleView: UIView {
 
-    static let viewWidth: CGFloat = 160.0
-    static let viewHeight: CGFloat = 160.0
+    static let viewWidth: CGFloat = 80.0
+    static let viewHeight: CGFloat = 80.0
 
-    private static let centerDiskRadius: CGFloat = LogoView.viewWidth / 2
-    private static let animationDuration: CGFloat = 0.9
+    private static let centerDiskRadius: CGFloat = CameraShutterButtonView.buttonSize / 2
+    private static let animationDuration: CGFloat = 0.85
     private static let paddingBetweenCircles: CGFloat = 15.0
     private static let numberOfCircles: Int = 6
     private static let diskColor: UIColor = .clear
@@ -35,16 +35,16 @@ class LogoRippleView: UIView {
     }
 }
 
-extension LogoRippleView {
+extension LoadingRippleView {
     private func setUpRadarView() {
         radarView = RadarView(frame: .zero)
-        radarView.diskRadius = LogoRippleView.centerDiskRadius
-        radarView.circleOnColor = LogoRippleView.circleOnColor
-        radarView.diskColor = LogoRippleView.diskColor
-        radarView.circleOffColor = LogoRippleView.circleOffColor
-        radarView.numberOfCircles = LogoRippleView.numberOfCircles
-        radarView.animationDuration = LogoRippleView.animationDuration
-        radarView.paddingBetweenCircles = LogoRippleView.paddingBetweenCircles
+        radarView.diskRadius = LoadingRippleView.centerDiskRadius
+        radarView.circleOnColor = LoadingRippleView.circleOnColor
+        radarView.diskColor = LoadingRippleView.diskColor
+        radarView.circleOffColor = LoadingRippleView.circleOffColor
+        radarView.numberOfCircles = LoadingRippleView.numberOfCircles
+        radarView.animationDuration = LoadingRippleView.animationDuration
+        radarView.paddingBetweenCircles = LoadingRippleView.paddingBetweenCircles
         self.addSubview(radarView)
         radarView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -52,18 +52,18 @@ extension LogoRippleView {
             radarView.leftAnchor.constraint(equalTo: self.leftAnchor),
             radarView.rightAnchor.constraint(equalTo: self.rightAnchor),
             radarView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-            ])
+        ])
     }
 }
 
-extension LogoRippleView {
-    static func getViewLayoutConstraints(rippleLogoView: LogoRippleView,
+extension LoadingRippleView {
+    static func getViewLayoutConstraints(rippleLoadingView: LoadingRippleView,
                                          parentView: UIView) -> [NSLayoutConstraint] {
         return [
-            rippleLogoView.centerYAnchor.constraint(equalTo: parentView.safeAreaLayoutGuide.centerYAnchor),
-            rippleLogoView.centerXAnchor.constraint(equalTo: parentView.safeAreaLayoutGuide.centerXAnchor),
-            rippleLogoView.widthAnchor.constraint(equalToConstant: viewWidth),
-            rippleLogoView.heightAnchor.constraint(equalToConstant: viewHeight)
+            rippleLoadingView.centerYAnchor.constraint(equalTo: parentView.safeAreaLayoutGuide.centerYAnchor),
+            rippleLoadingView.centerXAnchor.constraint(equalTo: parentView.safeAreaLayoutGuide.centerXAnchor),
+            rippleLoadingView.widthAnchor.constraint(equalToConstant: viewWidth),
+            rippleLoadingView.heightAnchor.constraint(equalToConstant: viewHeight)
         ]
     }
 }

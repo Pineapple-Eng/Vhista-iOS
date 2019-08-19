@@ -18,17 +18,12 @@ class LogoView: UIView {
 
     static let imageViewInset: CGFloat = 22.0
 
-    static let logoStartLoadingAnimationDuration: TimeInterval = 0.5
-    static let logoStartLoadingStringDamping: CGFloat = 0.7
-    static let logoStartLoadingInitialSpringVelocity: CGFloat = 0.7
-
     static let defaultImageName = "SmallTransparentLogo"
     static let contextualImageName = "eye.fill"
     static let panoramicImageName = "pano.fill"
 
     var logoImage: UIImage?
     var logoImageView = UIImageView()
-    var logoRippleView: LogoRippleView?
 
     convenience init(frame: CGRect, image: UIImage) {
         self.init(frame: frame)
@@ -92,64 +87,6 @@ extension LogoView {
             logoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor,
                                                   constant: -LogoView.imageViewInset)
             ])
-    }
-}
-
-extension LogoView {
-
-    func showLoadingLogoView(parentView: UIView) {
-        toggleLoadingLogoView(parentView: parentView, stop: false)
-    }
-
-    func stopLoadingLogoView(parentView: UIView) {
-        toggleLoadingLogoView(parentView: parentView, stop: true)
-    }
-
-    private func toggleLoadingLogoView(parentView: UIView, stop: Bool) {
-        var yDelta = parentView.center.y - self.center.y
-        if stop {
-            yDelta = (parentView.safeAreaInsets.top + LogoView.logoViewTopMargin + LogoView.viewHeight/2) - self.center.y
-        }
-        UIView.animate(withDuration: LogoView.logoStartLoadingAnimationDuration,
-                       delay: .zero,
-                       usingSpringWithDamping: LogoView.logoStartLoadingStringDamping,
-                       initialSpringVelocity: LogoView.logoStartLoadingInitialSpringVelocity,
-                       options: .curveEaseOut,
-                       animations: {
-                        self.transform = CGAffineTransform(translationX: .zero,
-                                                           y: yDelta)
-        },
-                       completion: { (_) in
-                        self.toggleLoadingAnimation(stop: stop)
-        })
-    }
-    private func toggleLoadingAnimation(stop: Bool) {
-        if logoRippleView == nil {
-            setUpLogoRippleView()
-        }
-        if stop {
-            logoRippleView?.radarView.stopAnimation()
-            logoRippleView?.isHidden = true
-        } else {
-            logoRippleView?.radarView.startAnimation()
-            logoRippleView?.isHidden = false
-        }
-
-    }
-}
-
-// MARK: Loading Ripple View
-extension LogoView {
-    func setUpLogoRippleView() {
-        logoRippleView = LogoRippleView(frame: .zero)
-        guard logoRippleView != nil else {
-            return
-        }
-        logoRippleView?.isAccessibilityElement = false
-        self.addSubview(logoRippleView!)
-        logoRippleView!.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate(LogoRippleView.getViewLayoutConstraints(rippleLogoView: logoRippleView!,
-                                                                            parentView: self))
     }
 }
 

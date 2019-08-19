@@ -100,14 +100,6 @@ VHCameraButtonDelegate {
         }
     }
 
-    @IBAction func hitUpgradeAction(_ sender: Any) {
-        if !SubscriptionManager.shared.isUserSubscribedToFullAccess() {
-            self.performSegue(withIdentifier: "ShowUpgradeView", sender: nil)
-        } else {
-            self.performSegue(withIdentifier: "ShowSubscriptionInfo", sender: nil)
-        }
-    }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowRecognizedContentView" {
             fastRecognizedContentViewController = segue.destination as? FastRecognizedContentViewController
@@ -119,7 +111,7 @@ VHCameraButtonDelegate {
         pauseCurrentSession()
     }
 
-    @IBAction func makeDeepAnalysis(_ sender: Any) {
+    func makeDeepAnalysis(_ sender: Any) {
         self.updateUIForDeepAnalysisChange(willAnalyze: true)
         if !checkCameraPermissions() {
             self.updateUIForDeepAnalysisChange(willAnalyze: false)
@@ -164,6 +156,14 @@ VHCameraButtonDelegate {
         })
     }
 
+    func hitUpgradeAction(_ sender: Any) {
+        if !SubscriptionManager.shared.isUserSubscribedToFullAccess() {
+            self.performSegue(withIdentifier: "ShowUpgradeView", sender: nil)
+        } else {
+            self.performSegue(withIdentifier: "ShowSubscriptionInfo", sender: nil)
+        }
+    }
+
     // MARK: - Vision classification
     // Vision classification request and model
     /// - Tag: ClassificationRequest
@@ -174,12 +174,9 @@ VHCameraButtonDelegate {
             let request = VNCoreMLRequest(model: model, completionHandler: { [weak self] request, error in
                 self?.processClassifications(for: request, error: error)
             })
-
             // Crop input images to square area at center, matching the way the ML model was trained.
             request.imageCropAndScaleOption = .centerCrop
-
-//            request.usesCPUOnly = true
-
+            // request.usesCPUOnly = true
             return request
         } catch {
             fatalError("Failed to load Vision ML model: \(error)")
@@ -194,9 +191,7 @@ VHCameraButtonDelegate {
         visionQueue.async {
             do {
                 // Release the pixel buffer when done, allowing the next buffer to be processed.
-                defer {
-                    self.currentBuffer = nil
-                }
+                defer { self.currentBuffer = nil }
                 try requestHandler.perform([self.classificationRequest, self.facesClassificationRequest])
             } catch {
                 print("Error: Vision request failed with error \"\(error)\"")
@@ -386,7 +381,7 @@ extension ARKitCameraViewController {
         if willAnalyze {
             pauseCurrentSession()
             VhistaSoundManager.shared.playLoadingSound()
-//            logoView.showLoadingLogoView(parentView: self.view)
+            shutterButtonView.showLoadingRippleView(parentView: self.view)
         } else {
             resumeCurrentSession()
             shutterButtonView.shutterButton.reset()
@@ -396,7 +391,7 @@ extension ARKitCameraViewController {
             }
             selectedImage = nil
             VhistaSoundManager.shared.pauseLoadingSound()
-//            logoView.stopLoadingLogoView(parentView: self.view)
+            shutterButtonView.stopLoadingRippleView(parentView: self.view)
         }
     }
 }

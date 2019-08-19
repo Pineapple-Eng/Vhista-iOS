@@ -17,6 +17,9 @@ class CameraShutterButtonView: UIView {
 
     var shutterButton: VHCameraButton
 
+    // Loading Ripple View
+    var loadingRippleView: LoadingRippleView?
+
     override init(frame: CGRect) {
         self.shutterButton = VHCameraButton()
         super.init(frame: frame)
@@ -72,5 +75,41 @@ extension CameraShutterButtonView: VHCameraButtonDelegate {
 extension CameraShutterButtonView {
     static func calculateSizeOfOverSteppingHeight() -> CGFloat {
         return self.buttonSize - VHBottomNavigationToolbar.estimatedToolbarHeight + self.paddingFromBottom
+    }
+}
+
+// MARK: Loading Ripple View
+extension CameraShutterButtonView {
+    func setUpLoadingRippleView(parentView: UIView) {
+        loadingRippleView = LoadingRippleView(frame: .zero)
+        guard loadingRippleView != nil else {
+            return
+        }
+        loadingRippleView?.isAccessibilityElement = false
+        parentView.addSubview(loadingRippleView!)
+        loadingRippleView!.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(LoadingRippleView.getViewLayoutConstraints(rippleLoadingView: loadingRippleView!,
+                                                                               parentView: self))
+    }
+
+    func showLoadingRippleView(parentView: UIView) {
+        toggleLoadingAnimation(parentView: parentView, stop: false)
+    }
+
+    func stopLoadingRippleView(parentView: UIView) {
+        toggleLoadingAnimation(parentView: parentView, stop: true)
+    }
+
+    private func toggleLoadingAnimation(parentView: UIView, stop: Bool) {
+        if loadingRippleView == nil {
+            setUpLoadingRippleView(parentView: parentView)
+        }
+        if stop {
+            loadingRippleView?.radarView.stopAnimation()
+            loadingRippleView?.isHidden = true
+        } else {
+            loadingRippleView?.radarView.startAnimation()
+            loadingRippleView?.isHidden = false
+        }
     }
 }
