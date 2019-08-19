@@ -80,6 +80,12 @@
 
 "Many_People" = " personas";
 
+"text_copied" = "Copiado!";
+
+"copy_text" = "Copiar Texto";
+
+"share_taken_picture" = "Compartir o guardar Imagen";
+
 // Error Handling
 
 "Deep_Analysis_Deactivated_Title" = "Servicio no disponible";

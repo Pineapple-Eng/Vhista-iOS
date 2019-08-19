@@ -80,6 +80,12 @@
 
 "Many_People" = " people";
 
+"text_copied" = "Copied!";
+
+"copy_text" = "Copy Text";
+
+"share_taken_picture" = "Share, or Save Picture";
+
 // Error Handling
 
 "Deep_Analysis_Deactivated_Title" = "Service Unavailable";

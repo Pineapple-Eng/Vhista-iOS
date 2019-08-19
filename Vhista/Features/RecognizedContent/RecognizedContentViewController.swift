@@ -23,6 +23,7 @@ class RecognizedContentViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpAccessibility()
         setUpUI()
     }
 
@@ -39,6 +40,12 @@ class RecognizedContentViewController: UIViewController {
         }
         UIAccessibility.post(notification: UIAccessibility.Notification.layoutChanged,
                              argument: recognizedObjectsTextView)
+    }
+}
+
+extension RecognizedContentViewController {
+    func setUpAccessibility() {
+        self.accessibilityViewIsModal = true
     }
 }
 
@@ -87,6 +94,7 @@ extension RecognizedContentViewController {
 
     func setUpToolbar() {
         actionsToolbar = UIToolbar()
+        actionsToolbar.tintColor = getLabelDarkColorIfSupported(color: .white)
         actionsToolbar.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(actionsToolbar)
         NSLayoutConstraint.activate([
@@ -94,5 +102,52 @@ extension RecognizedContentViewController {
             actionsToolbar.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             actionsToolbar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+
+        // Items
+        actionsToolbar.items = [UIBarButtonItem]()
+
+        var copyTextImage = UIImage()
+        if #available(iOS 13.0, *) {
+            copyTextImage = UIImage(systemName: "doc.on.doc") ?? copyTextImage
+        }
+        let copyTextItem = UIBarButtonItem(image: copyTextImage,
+                                            style: .plain,
+                                            target: self,
+                                            action: #selector(copyContextText))
+        copyTextItem.accessibilityLabel = NSLocalizedString("copy_text", comment: "")
+        actionsToolbar.items?.append(copyTextItem)
+
+        actionsToolbar.items?.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
+
+        var savePhotoImage = UIImage()
+        if #available(iOS 13.0, *) {
+            savePhotoImage = UIImage(systemName: "square.and.arrow.up") ?? savePhotoImage
+        }
+        let savePhotoItem = UIBarButtonItem(image: savePhotoImage,
+                                            style: .plain,
+                                            target: self,
+                                            action: nil)
+        savePhotoItem.accessibilityLabel = NSLocalizedString("share_taken_picture", comment: "")
+        actionsToolbar.items?.append(savePhotoItem)
+
+        actionsToolbar.items?.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
+
+        let closeItem = UIBarButtonItem(title: NSLocalizedString("Close_Action", comment: ""),
+                                        style: .done,
+                                        target: self,
+                                        action: #selector(dismissView))
+        actionsToolbar.items?.append(closeItem)
+    }
+}
+
+extension RecognizedContentViewController {
+
+    @objc func copyContextText() {
+        UIAccessibility.post(notification: .announcement,
+                             argument: NSLocalizedString("text_copied", comment: ""))
+        UIPasteboard.general.string = recognizedObjectsTextView.text
+    }
+    @objc func dismissView() {
+        self.dismiss(animated: true, completion: nil)
     }
 }
