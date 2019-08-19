@@ -8,7 +8,16 @@ extension ARKitCameraViewController {
             bottomToolbarViewBottomAnchorContraint,
             bottomToolbar.rightAnchor.constraint(equalTo: view.rightAnchor),
             bottomToolbar.leftAnchor.constraint(equalTo: view.leftAnchor)
-            ])
+        ])
+
+        shutterButtonView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            shutterButtonView.widthAnchor.constraint(equalToConstant: CameraShutterButtonView.buttonSize),
+            shutterButtonView.heightAnchor.constraint(equalToConstant: CameraShutterButtonView.buttonSize),
+            shutterButtonView.bottomAnchor.constraint(equalTo: bottomToolbar.bottomAnchor,
+                                                      constant: -CameraShutterButtonView.paddingFromBottom),
+            shutterButtonView.centerXAnchor.constraint(equalTo: bottomToolbar.centerXAnchor)
+        ])
 
         fastRecognizedContentViewHeightContraint = fastRecognizedContentView.heightAnchor.constraint(equalToConstant: .zero)
         fastRecognizedContentView.translatesAutoresizingMaskIntoConstraints = false
@@ -17,15 +26,7 @@ extension ARKitCameraViewController {
             fastRecognizedContentView.bottomAnchor.constraint(equalTo: bottomToolbar.topAnchor),
             fastRecognizedContentView.rightAnchor.constraint(equalTo: view.rightAnchor),
             fastRecognizedContentView.leftAnchor.constraint(equalTo: view.leftAnchor)
-            ])
-
-        deepAnalysisButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            deepAnalysisButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            deepAnalysisButton.bottomAnchor.constraint(equalTo: fastRecognizedContentView.topAnchor),
-            deepAnalysisButton.rightAnchor.constraint(equalTo: view.rightAnchor),
-            deepAnalysisButton.leftAnchor.constraint(equalTo: view.leftAnchor)
-            ])
+        ])
     }
 
     func setUpARCameraViewSceneConstraints() {
@@ -35,7 +36,7 @@ extension ARKitCameraViewController {
             sceneView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             sceneView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             sceneView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor)
-            ])
+        ])
     }
 
     func setUpNonARCameraViewConstraints() {

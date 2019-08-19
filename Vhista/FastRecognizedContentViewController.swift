@@ -59,7 +59,8 @@ extension FastRecognizedContentViewController {
                                                          constant: FastRecognizedContentViewController.recognizedObjectsLabelHorizontalSpacing),
             recognizedObjectsLabel.rightAnchor.constraint(equalTo: view.rightAnchor,
                                                           constant: -FastRecognizedContentViewController.recognizedObjectsLabelHorizontalSpacing),
-            recognizedObjectsLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            recognizedObjectsLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+                                                           constant: -CameraShutterButtonView.calculateSizeOfOverSteppingHeight())
             ])
     }
 
@@ -96,6 +97,9 @@ extension FastRecognizedContentViewController {
         label.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         label.text = text
         label.sizeToFit()
-        return label.frame.height + recognizedObjectsLabelVerticalSpacing * 2 + safeAreaHeight
+        return label.frame.height
+            + recognizedObjectsLabelVerticalSpacing * 2
+            + safeAreaHeight
+            + CameraShutterButtonView.calculateSizeOfOverSteppingHeight()
     }
 }

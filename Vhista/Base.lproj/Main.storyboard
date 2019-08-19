@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14845" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="9RG-CJ-oKt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14854.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="9RG-CJ-oKt">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14799.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14806.4"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -56,42 +56,6 @@
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ffu-aO-O4g">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bt9-g4-3ef">
-                                <rect key="frame" x="0.0" y="193" width="375" height="460"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" hint="Press this button to get a panoramic description of your surroundings" label="Deep Analysis"/>
-                                <state key="normal" title="Deep Analysis">
-                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="makeDeepAnalysis:" destination="GOZ-GK-qBh" eventType="touchUpInside" id="LzG-AX-Az9"/>
-                                </connections>
-                            </button>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sxf-5T-nUb">
-                                <rect key="frame" x="0.0" y="745" width="414" height="107"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <segue destination="tne-YQ-mkO" kind="embed" identifier="ShowRecognizedContentView" id="9bc-Ie-Gz3"/>
-                                </connections>
-                            </containerView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jKu-Ib-g3j">
-                                <rect key="frame" x="0.0" y="847" width="414" height="49"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem systemItem="camera" id="KGO-Id-ocm">
-                                        <color key="tintColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Nn4-V8-9b2"/>
-                                    <barButtonItem title="Subscribe" id="feG-yb-xi5">
-                                        <color key="tintColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <connections>
-                                            <action selector="hitUpgradeAction:" destination="GOZ-GK-qBh" id="lSn-Fd-tLd"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </toolbar>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bks-eD-gc3">
                                 <rect key="frame" x="0.0" y="44" width="414" height="100"/>
                                 <constraints>
@@ -99,6 +63,14 @@
                                 </constraints>
                                 <connections>
                                     <segue destination="RbA-1b-APm" kind="embed" id="5zY-DB-goy"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sxf-5T-nUb">
+                                <rect key="frame" x="0.0" y="740" width="414" height="107"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <segue destination="tne-YQ-mkO" kind="embed" identifier="ShowRecognizedContentView" id="9bc-Ie-Gz3"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -132,18 +104,16 @@
                         </view>
                     </navigationItem>
                     <connections>
-                        <outlet property="bottomToolbar" destination="jKu-Ib-g3j" id="20e-AZ-pwo"/>
-                        <outlet property="deepAnalysisButton" destination="Bt9-g4-3ef" id="6oX-7t-FTW"/>
                         <outlet property="fastRecognizedContentView" destination="Sxf-5T-nUb" id="VKk-6G-PGy"/>
+                        <outlet property="featuresCollectionContentView" destination="bks-eD-gc3" id="sgY-xO-eeO"/>
                         <outlet property="selectedImageView" destination="Ffu-aO-O4g" id="BIq-Qi-dx6"/>
-                        <outlet property="upgradeButtonItem" destination="feG-yb-xi5" id="bDu-Rg-XeS"/>
                         <segue destination="XN5-zD-zT7" kind="presentation" identifier="ShowUpgradeView" id="832-2e-1X8"/>
                         <segue destination="74y-tE-t8P" kind="presentation" identifier="ShowSubscriptionInfo" id="ccV-g2-ehP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DfH-IE-l8u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-874.39999999999998" y="-265.27093596059115"/>
+            <point key="canvasLocation" x="-875.36231884057975" y="-265.84821428571428"/>
         </scene>
         <!--SubscriptionVC-->
         <scene sceneID="TWa-Dk-Syn">

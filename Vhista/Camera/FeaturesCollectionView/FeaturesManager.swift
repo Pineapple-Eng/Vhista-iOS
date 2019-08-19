@@ -11,6 +11,7 @@ import Foundation
 class FeaturesManager: NSObject {
 
     var features: [Feature]
+    var selectedFeature: Feature?
 
     // MARK: - Initialization Method
     override init() {
@@ -35,5 +36,18 @@ class FeaturesManager: NSObject {
         let panoramicFeature = Feature(featureName: FeatureNames.panoramic,
                                         imageName: LogoView.panoramicImageName)
         features.append(panoramicFeature)
+    }
+
+    func getSelectedFeature() -> Feature {
+        guard let feature = selectedFeature else {
+            // Default to first object in the array
+            selectedFeature = features.first
+            return selectedFeature!
+        }
+        return feature
+    }
+
+    func setSelectedFeature(_ feature: Feature) {
+        selectedFeature = feature
     }
 }

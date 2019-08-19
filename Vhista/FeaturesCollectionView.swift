@@ -56,6 +56,22 @@ class FeaturesCollectionViewController: UICollectionViewController, UICollection
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: LogoView.viewWidth, height: LogoView.viewHeight + 20)
+        let currentFeature = FeaturesManager.shared.features[indexPath.item]
+        if FeaturesManager.shared.getSelectedFeature().featureName == currentFeature.featureName {
+            return CGSize(width: LogoView.viewWidth, height: LogoView.viewHeight + 20)
+        } else {
+            return CGSize(width: LogoView.viewWidth * 0.75, height: (LogoView.viewHeight + 20) * 0.75)
+        }
+    }
+
+    // MARK: UICollectionViewDelegate
+    override func collectionView(_ collectionView: UICollectionView,
+                                 didSelectItemAt indexPath: IndexPath) {
+        let selectedFeature = FeaturesManager.shared.features[indexPath.item]
+        FeaturesManager.shared.setSelectedFeature(selectedFeature)
+        collectionView.scrollToItem(at: indexPath,
+                                    at: .centeredVertically,
+                                    animated: true)
+        collectionView.reloadData()
     }
 }

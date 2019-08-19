@@ -17,6 +17,14 @@ func globalBlurEffect() -> UIBlurEffect {
     }
 }
 
+func secondaryBlurEffect() -> UIBlurEffect {
+    if #available(iOS 13.0, *) {
+        return UIBlurEffect(style: .systemUltraThinMaterial)
+    } else {
+        return UIBlurEffect(style: .dark)
+    }
+}
+
 func getLabelDarkColorIfSupported(color: UIColor) -> UIColor {
     guard #available(iOS 13.0, *) else {
         return color

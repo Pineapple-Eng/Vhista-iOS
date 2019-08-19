@@ -14,19 +14,22 @@ import AVFoundation
 
 class ARKitCameraViewController:
 UIViewController,
-UIGestureRecognizerDelegate {
+UIGestureRecognizerDelegate,
+VHBottomNavigationToolbarDelegate {
+
+    // Features Collection View
+    @IBOutlet weak var featuresCollectionContentView: UIView!
 
     // Fast Recognized Content View
     var fastRecognizedContentViewHeightContraint: NSLayoutConstraint!
     @IBOutlet weak var fastRecognizedContentView: UIView!
     var fastRecognizedContentViewController: FastRecognizedContentViewController?
 
-    @IBOutlet weak var deepAnalysisButton: UIButton!
-
-    @IBOutlet weak var upgradeButtonItem: UIBarButtonItem!
+    // Shutter Action Button
+    var shutterButtonView: CameraShutterButtonView!
 
     var bottomToolbarViewBottomAnchorContraint: NSLayoutConstraint!
-    @IBOutlet weak var bottomToolbar: UIToolbar!
+    var bottomToolbar: VHBottomNavigationToolbar!
 
     // -- Non AR Camera --
     var captureSession: AVCaptureSession!
@@ -66,13 +69,8 @@ UIGestureRecognizerDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if SubscriptionManager.shared.isUserSubscribedToFullAccess() {
-            upgradeButtonItem.title = NSLocalizedString("Show_Subscription_Button_Title", comment: "")
-            upgradeButtonItem.accessibilityHint = NSLocalizedString("Subscription_Button_Accessibility_Hint", comment: "")
-        } else {
-            upgradeButtonItem.title = NSLocalizedString("Upgrade_Button_Title", comment: "")
-            upgradeButtonItem.accessibilityHint = NSLocalizedString("Upgrade_Button_Accessibility_Hint", comment: "")
-        }
+        bottomToolbar.setUpItems(showSubscriptionButton: true,
+                                 isSubscribed: SubscriptionManager.shared.isUserSubscribedToFullAccess())
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -81,14 +79,19 @@ UIGestureRecognizerDelegate {
     }
 
     func setUpUI() {
-        if SubscriptionManager.shared.isUserSubscribedToFullAccess() {
-            upgradeButtonItem.title = NSLocalizedString("Show_Subscription_Button_Title", comment: "")
-        }
+        // Bottom Toolbar
+        bottomToolbar = VHBottomNavigationToolbar(frame: .zero)
+        bottomToolbar.customDelegate = self
+        self.view.addSubview(bottomToolbar)
+        // Shutter View
+        shutterButtonView = CameraShutterButtonView(frame: .zero)
+        self.view.addSubview(shutterButtonView)
+        // Constraints
         setUpUIConstraints()
     }
 
     override func viewDidLayoutSubviews() {
-        self.view.bringSubviewToFront(deepAnalysisButton)
+        self.view.bringSubviewToFront(shutterButtonView)
         fastRecognizedContentView.translatesAutoresizingMaskIntoConstraints = false
         if !arEnabled {
             updateNonARCameraConnectionOrientationAndFrame()
@@ -336,6 +339,18 @@ extension ARKitCameraViewController {
         selectedImage = nil
         processingImage = false
         updateUIForDeepAnalysisChange(willAnalyze: false)
+    }
+}
+
+// MARK: - Bottom Toolbar Delegate
+extension ARKitCameraViewController {
+    func didSelectBarButtonItemWithType(_ barButtonItem: UIBarButtonItem, _ type: VHBottomNavigationToolbarItemType) {
+        switch type {
+        case .gallery:
+            break
+        case .subscription, .upgrade:
+            hitUpgradeAction(barButtonItem)
+        }
     }
 }
 
