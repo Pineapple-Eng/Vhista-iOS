@@ -27,6 +27,22 @@ extension ARKitCameraViewController {
             fastRecognizedContentView.rightAnchor.constraint(equalTo: view.rightAnchor),
             fastRecognizedContentView.leftAnchor.constraint(equalTo: view.leftAnchor)
         ])
+
+        selectedImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            selectedImageView.topAnchor.constraint(equalTo: view.topAnchor),
+            selectedImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            selectedImageView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            selectedImageView.rightAnchor.constraint(equalTo: view.rightAnchor)
+        ])
+
+        selectedImageViewOverlay.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            selectedImageViewOverlay.topAnchor.constraint(equalTo: view.topAnchor),
+            selectedImageViewOverlay.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            selectedImageViewOverlay.leftAnchor.constraint(equalTo: view.leftAnchor),
+            selectedImageViewOverlay.rightAnchor.constraint(equalTo: view.rightAnchor)
+        ])
     }
 
     func setUpARCameraViewSceneConstraints() {

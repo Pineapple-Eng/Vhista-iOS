@@ -53,9 +53,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ffu-aO-O4g">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                            </imageView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bks-eD-gc3">
                                 <rect key="frame" x="0.0" y="44" width="414" height="100"/>
                                 <constraints>
@@ -76,12 +73,8 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Ffu-aO-O4g" firstAttribute="leading" secondItem="4wM-gE-hjw" secondAttribute="leading" id="HKA-HC-S6j"/>
-                            <constraint firstAttribute="trailing" secondItem="Ffu-aO-O4g" secondAttribute="trailing" id="aQJ-7o-DVs"/>
                             <constraint firstAttribute="trailing" secondItem="bks-eD-gc3" secondAttribute="trailing" id="c94-WL-CBN"/>
                             <constraint firstItem="bks-eD-gc3" firstAttribute="top" secondItem="YWj-nO-Ykd" secondAttribute="bottom" id="gKV-Y4-Xh8"/>
-                            <constraint firstAttribute="bottom" secondItem="Ffu-aO-O4g" secondAttribute="bottom" id="qor-Vd-94o"/>
-                            <constraint firstItem="Ffu-aO-O4g" firstAttribute="top" secondItem="4wM-gE-hjw" secondAttribute="top" id="wiw-bP-GYH"/>
                             <constraint firstItem="bks-eD-gc3" firstAttribute="leading" secondItem="4wM-gE-hjw" secondAttribute="leading" id="xlS-Im-Y6z"/>
                         </constraints>
                     </view>
@@ -106,7 +99,6 @@
                     <connections>
                         <outlet property="fastRecognizedContentView" destination="Sxf-5T-nUb" id="VKk-6G-PGy"/>
                         <outlet property="featuresCollectionContentView" destination="bks-eD-gc3" id="sgY-xO-eeO"/>
-                        <outlet property="selectedImageView" destination="Ffu-aO-O4g" id="BIq-Qi-dx6"/>
                         <segue destination="XN5-zD-zT7" kind="presentation" identifier="ShowUpgradeView" id="832-2e-1X8"/>
                         <segue destination="74y-tE-t8P" kind="presentation" identifier="ShowSubscriptionInfo" id="ccV-g2-ehP"/>
                     </connections>

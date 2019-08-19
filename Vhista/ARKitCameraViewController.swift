@@ -52,9 +52,11 @@ VHCameraButtonDelegate {
 
     // Queue for dispatching vision classification requests
     private let visionQueue = DispatchQueue(label: "com.juandavidcruz.Vhista.ARKitVision.serialVisionQueue")
-    var selectedImage: UIImage!
 
-    @IBOutlet weak var selectedImageView: UIImageView!
+    // Selected ImageView
+    var selectedImage: UIImage!
+    var selectedImageView: UIImageView!
+    var selectedImageViewOverlay: UIView!
 
     // MARK: - View controller lifecycle
     override func viewDidLoad() {
@@ -88,6 +90,15 @@ VHCameraButtonDelegate {
         shutterButtonView = CameraShutterButtonView(frame: .zero)
         shutterButtonView.buttonDelegate = self
         self.view.addSubview(shutterButtonView)
+        // Selected ImageView
+        selectedImageView = UIImageView(frame: .zero)
+        selectedImageView.isHidden = true
+        selectedImageView.contentMode = .scaleAspectFill
+        self.view.addSubview(selectedImageView)
+        selectedImageViewOverlay = UIView(frame: .zero)
+        selectedImageViewOverlay.isHidden = true
+        selectedImageViewOverlay.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        self.view.addSubview(selectedImageViewOverlay)
         // Constraints
         setUpUIConstraints()
     }
@@ -324,9 +335,9 @@ extension ARKitCameraViewController {
 
     func showSelectedImage() {
         DispatchQueue.main.async {
-//            self.view.bringSubviewToFront(self.logoView)
             self.selectedImageView.image = self.selectedImage
             self.selectedImageView.isHidden = false
+            self.selectedImageViewOverlay.isHidden = false
         }
     }
 
@@ -387,6 +398,7 @@ extension ARKitCameraViewController {
             shutterButtonView.shutterButton.reset()
             DispatchQueue.main.async {
                 self.selectedImageView.isHidden = true
+                self.selectedImageViewOverlay.isHidden = true
                 self.selectedImageView.image = nil
             }
             selectedImage = nil

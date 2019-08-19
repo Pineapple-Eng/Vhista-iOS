@@ -123,6 +123,7 @@
 		0D20AEF122E3ED5300E508E6 /* CS-GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CS-GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0D24923C22E5459B0024BD52 /* ARKitCameraViewController+ContextualFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ARKitCameraViewController+ContextualFeature.swift"; path = "../../../../../../../../System/Volumes/Data/Users/juan/Dropbox/Vhista/Development/Vhista-iOS/Vhista/Features/ARKitCameraViewController+ContextualFeature.swift"; sourceTree = "<group>"; };
 		0D24924222E55F880024BD52 /* InfoDev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = InfoDev.plist; sourceTree = "<group>"; };
+		0D40E824230A88AA006E5598 /* RecognizedContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedContentViewController.swift; sourceTree = "<group>"; };
 		0D5346EF22C313C900103306 /* loading_beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = loading_beep.wav; sourceTree = "<group>"; };
 		0D5346F422C5630F00103306 /* LoadingRippleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingRippleView.swift; sourceTree = "<group>"; };
 		0D59219A22C5991400BBAAFD /* Feature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
@@ -243,7 +244,6 @@
 			isa = PBXGroup;
 			children = (
 				0DF848A4230A0C5A004FDE5A /* BottomToolbar */,
-				0D95531D22B9FC6E00B17581 /* FastRecognizedContentViewController.swift */,
 				0DB067EE22ECA7B100F19B02 /* RecognizedContentViewController.swift */,
 			);
 			name = BottomView;
@@ -261,8 +261,26 @@
 			isa = PBXGroup;
 			children = (
 				0D24923C22E5459B0024BD52 /* ARKitCameraViewController+ContextualFeature.swift */,
+				0D40E823230A88A2006E5598 /* RecognizedContent */,
+				0D40E822230A8891006E5598 /* FastRecognizedContent */,
 			);
 			path = Features;
+			sourceTree = "<group>";
+		};
+		0D40E822230A8891006E5598 /* FastRecognizedContent */ = {
+			isa = PBXGroup;
+			children = (
+				0D95531D22B9FC6E00B17581 /* FastRecognizedContentViewController.swift */,
+			);
+			path = FastRecognizedContent;
+			sourceTree = "<group>";
+		};
+		0D40E823230A88A2006E5598 /* RecognizedContent */ = {
+			isa = PBXGroup;
+			children = (
+				0D40E824230A88AA006E5598 /* RecognizedContentViewController.swift */,
+			);
+			path = RecognizedContent;
 			sourceTree = "<group>";
 		};
 		0D5346F322C5621C00103306 /* LoadingRippleView */ = {

@@ -20,9 +20,9 @@ extension ARKitCameraViewController: RecognizedContentViewControllerDelegate {
     }
 
     func finishedContextualRecognition(_ response: DataResponse<CVResponse>) {
+        self.updateUIForDeepAnalysisChange(willAnalyze: false)
         let recognizedVC = RecognizedContentViewController()
         guard let firstCaption = response.value?.description?.captions?.first?.text else {
-            self.updateUIForDeepAnalysisChange(willAnalyze: false)
             return
         }
         recognizedVC.delegate = self
