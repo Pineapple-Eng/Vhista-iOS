@@ -11,7 +11,7 @@ import Alamofire
 
 extension ARKitCameraViewController: RecognizedContentViewControllerDelegate {
     func startContextualRecognition() {
-        ComputerVisionManager.shared.makeComputerVisionRequest(image: selectedImage,
+        ComputerVisionManager.shared.makeComputerVisionRequest(image: selectedImage.getUIImage(),
                                                                features: [ComputerVisionManager.CVFeatures.Description],
                                                                details: nil,
                                                                language: ComputerVisionManager.CVLanguage.English) { (response) in
@@ -27,7 +27,7 @@ extension ARKitCameraViewController: RecognizedContentViewControllerDelegate {
         }
         recognizedVC.delegate = self
         self.present(recognizedVC, animated: true, completion: {
-            recognizedVC.updateWithText(firstCaption, image: self.selectedImage)
+            recognizedVC.updateWithText(firstCaption, image: self.selectedImage.getUIImage())
             self.updateUIForDeepAnalysisChange(willAnalyze: false)
         })
     }

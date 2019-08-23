@@ -149,7 +149,8 @@ extension ARKitCameraViewController: AVCapturePhotoCaptureDelegate {
             print(error!.localizedDescription)
             return
         }
-        selectedImage = UIImage(cgImage: (photo.cgImageRepresentation()?.takeUnretainedValue())!, scale: 1.0, orientation: UIImage.Orientation.right)
+        let rawImage = UIImage(cgImage: (photo.cgImageRepresentation()?.takeUnretainedValue())!, scale: 1.0, orientation: UIImage.Orientation.right)
+        selectedImage = VHImage(image: rawImage, withSource: VHImageSource.camera)
         startContextualRecognition()
         showSelectedImage()
     }

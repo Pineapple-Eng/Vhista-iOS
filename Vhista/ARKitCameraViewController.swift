@@ -54,7 +54,7 @@ VHCameraButtonDelegate {
     private let visionQueue = DispatchQueue(label: "com.juandavidcruz.Vhista.ARKitVision.serialVisionQueue")
 
     // Selected ImageView
-    var selectedImage: UIImage!
+    var selectedImage: VHImage!
     var selectedImageView: UIImageView!
     var selectedImageViewOverlay: UIView!
 
@@ -135,6 +135,18 @@ VHCameraButtonDelegate {
             return
         }
 
+        self.deepAnalysisPreChecks { (allowed) in
+            if allowed {
+                if arEnabled {
+                    self.processARImageAnalysis()
+                } else {
+                    self.processNonARImageAnalysis()
+                }
+            }
+        }
+    }
+
+    func deepAnalysisPreChecks(completion: @escaping (_ allowed: Bool) -> Void) {
         ConfigurationManager.shared.serverAllowsRecognition({ (allowed) in
             if allowed {
                 guard VhistaReachabilityManager.shared.validInternetConnection() else {
@@ -144,24 +156,22 @@ VHCameraButtonDelegate {
                                                        isProtected: true,
                                                        rate: globalRate)
                     UINotificationFeedbackGenerator().notificationOccurred(.error)
+                    completion(false)
                     return
                 }
-
                 if !SubscriptionManager.shared.checkDeepSubscription() {
                     self.updateUIForDeepAnalysisChange(willAnalyze: false)
                     self.performSegue(withIdentifier: "ShowUpgradeView", sender: nil)
+                    completion(false)
                     return
                 }
-
-                if arEnabled {
-                    self.processARImageAnalysis()
-                } else {
-                    self.processNonARImageAnalysis()
-                }
+                completion(true)
+                return
             } else {
                 self.updateUIForDeepAnalysisChange(willAnalyze: false)
                 self.showErrorAlertView(title: NSLocalizedString("Deep_Analysis_Deactivated_Title", comment: ""),
                                         message: NSLocalizedString("Deep_Analysis_Deactivated_Message", comment: ""))
+                completion(false)
                 return
             }
         })
@@ -311,31 +321,18 @@ extension ARKitCameraViewController {
 
 extension ARKitCameraViewController {
 
-    func setImageForRecognition(image: UIImage) {
-
-        selectedImage = image
-
-        let currentDevice: UIDevice = UIDevice.current
-        let orientation: UIDeviceOrientation = currentDevice.orientation
-
-        switch orientation {
-        case .portrait:
-            selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .right)
-        case .landscapeRight:
-            selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .down)
-        case .landscapeLeft:
-            selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .up)
-        case .portraitUpsideDown:
-            selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .left)
-        default:
-            selectedImage = UIImage(cgImage: selectedImage.cgImage!, scale: 1.0, orientation: .right)
+    func setImageForRecognition(image: UIImage, source: String) {
+        var rawImage = image
+        if source == VHImageSource.camera {
+            rawImage = image.adjustImageRotation()
         }
+        selectedImage = VHImage(image: rawImage, withSource: source)
         showSelectedImage()
     }
 
     func showSelectedImage() {
         DispatchQueue.main.async {
-            self.selectedImageView.image = self.selectedImage
+            self.selectedImageView.image = self.selectedImage.getUIImage()
             self.selectedImageView.isHidden = false
             self.selectedImageViewOverlay.isHidden = false
         }
@@ -361,7 +358,7 @@ extension ARKitCameraViewController {
     func didSelectBarButtonItemWithType(_ barButtonItem: UIBarButtonItem, _ type: VHBottomNavigationToolbarItemType) {
         switch type {
         case .gallery:
-            break
+            showPhotoPicker(barButtonItem)
         case .subscription, .upgrade:
             hitUpgradeAction(barButtonItem)
         }

@@ -47,5 +47,7 @@
 	<string>Necesitamos acceso para poder grabar imágenes tomadas con Vhista</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Necesitamos acceso a tus fotos para poder identificar objetos y personas en ellas</string>
 </dict>
 </plist>

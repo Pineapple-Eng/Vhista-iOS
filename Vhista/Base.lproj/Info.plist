@@ -4,6 +4,8 @@
 <dict>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>We need permission to save images taken with Vhista</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need access to your photos to identify objects and people in them </string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
