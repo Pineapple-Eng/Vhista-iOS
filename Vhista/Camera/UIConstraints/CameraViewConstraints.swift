@@ -28,6 +28,15 @@ extension ARKitCameraViewController {
             fastRecognizedContentView.leftAnchor.constraint(equalTo: view.leftAnchor)
         ])
 
+        featuresCollectionContentView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            featuresCollectionContentView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+                                                               constant: FeaturesCollectionViewController.viewTopPadding),
+            featuresCollectionContentView.heightAnchor.constraint(equalToConstant: FeaturesCollectionViewController.viewHeight),
+            featuresCollectionContentView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+            featuresCollectionContentView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor)
+        ])
+
         selectedImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             selectedImageView.topAnchor.constraint(equalTo: view.topAnchor),

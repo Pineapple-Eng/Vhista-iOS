@@ -53,11 +53,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bks-eD-gc3">
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bks-eD-gc3">
                                 <rect key="frame" x="0.0" y="44" width="414" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="s1N-lL-g27"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <segue destination="RbA-1b-APm" kind="embed" id="5zY-DB-goy"/>
                                 </connections>
@@ -72,11 +70,6 @@
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="bks-eD-gc3" secondAttribute="trailing" id="c94-WL-CBN"/>
-                            <constraint firstItem="bks-eD-gc3" firstAttribute="top" secondItem="YWj-nO-Ykd" secondAttribute="bottom" id="gKV-Y4-Xh8"/>
-                            <constraint firstItem="bks-eD-gc3" firstAttribute="leading" secondItem="4wM-gE-hjw" secondAttribute="leading" id="xlS-Im-Y6z"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="9dj-y7-ER9">
                         <view key="titleView" contentMode="scaleToFill" id="4DO-7C-APz">

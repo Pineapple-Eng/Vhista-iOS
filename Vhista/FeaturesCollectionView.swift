@@ -12,6 +12,9 @@ private let reuseIdentifier = "FeatureCell"
 
 class FeaturesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
+    static let viewTopPadding: CGFloat = 8.0
+    static let viewHeight: CGFloat = 100.0
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpCollectionView()
