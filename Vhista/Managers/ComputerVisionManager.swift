@@ -12,6 +12,7 @@ import Alamofire
 class ComputerVisionManager: NSObject {
 
     static let compressionQuality: CGFloat = 1.0
+    static let compressionQualityDelta: CGFloat = 0.1
     let afSession = Alamofire.Session()
 
     // MARK: - Initialization Method
@@ -30,13 +31,18 @@ class ComputerVisionManager: NSObject {
                                    details: [String]?,
                                    language: String?,
                                    completion: @escaping (DataResponse<CVResponse>) -> Void) -> Request? {
-        guard let imageData = image.jpegData(compressionQuality: ComputerVisionManager.compressionQuality) else {
+        guard var imageData = image.jpegData(compressionQuality: ComputerVisionManager.compressionQuality) else {
             print("🚨 Unable to get JPEG Data 🖼")
             return nil
         }
         if (Double(imageData.count) / 1_024 / 1_024) > 4 {
             print("🚨 Data size 🐋 more than 4bm Size: \(Double(imageData.count) / 1_024 / 1_024)")
-            return nil
+            var compression: CGFloat = 0.9
+            while (imageData.count / 1_024 / 1_024) > 4 {
+                imageData = image.jpegData(compressionQuality: compression)!
+                compression -= ComputerVisionManager.compressionQualityDelta
+                print("🚨 Data size 🐋 is now: \(Double(imageData.count) / 1_024 / 1_024)")
+            }
         }
         guard let url = buildRequestURL(features: features, details: details, language: language) else {
             print("🚨 Got nil URL 🕸")
