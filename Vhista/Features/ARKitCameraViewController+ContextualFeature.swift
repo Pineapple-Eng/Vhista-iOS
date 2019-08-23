@@ -10,6 +10,7 @@ import Foundation
 import Alamofire
 
 extension ARKitCameraViewController: RecognizedContentViewControllerDelegate {
+
     func startContextualRecognition() {
         ComputerVisionManager.shared.makeComputerVisionRequest(image: selectedImage.getUIImage(),
                                                                features: [ComputerVisionManager.CVFeatures.Description],

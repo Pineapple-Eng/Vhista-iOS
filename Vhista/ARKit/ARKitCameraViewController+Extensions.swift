@@ -43,6 +43,54 @@ extension ARKitCameraViewController {
     }
 }
 
+// MARK: - Handle Reading of Identified Labels
+extension ARKitCameraViewController {
+
+    func handleFaceLandmarks(request: VNRequest, error: Error?) {
+        if processingImage { return }
+        if let landmarksResults = request.results as? [VNFaceObservation] {
+            let resultText = ClassificationsManager.shared.addPeopleToRead(faceObservations: landmarksResults)
+            if resultText != "" {
+                self.addStringToReadFace(stringRecognized: resultText, isProtected: false)
+            }
+        }
+    }
+
+    func addStringToRead(_ stringRecognized: String, _ distanceString: String = "", isProtected: Bool) {
+        if !ClassificationsManager.shared.allowStringRecognized(stringRecognized: stringRecognized) { return }
+        let stringRecognizedTranslated = translateModelString(pString: stringRecognized, targetLanguage: globalLanguage)
+
+        ClassificationsManager.shared.lastRecognition = stringRecognized
+        ClassificationsManager.shared.recognitionsAsText.insert(stringRecognizedTranslated, at: 0)
+        if ClassificationsManager.shared.recognitionsAsText.count == 3 {
+            ClassificationsManager.shared.recognitionsAsText.remove(at: 2)
+        }
+        guard let text = ClassificationsManager.shared.recognitionsAsText.first else {
+            return
+        }
+        updateRecognizedContentView(text: text)
+
+        VhistaSpeechManager.shared.sayText(stringToSpeak: text + distanceString,
+                                           isProtected: isProtected,
+                                           rate: Float(globalRate))
+    }
+
+    func addStringToReadFace(stringRecognized: String, isProtected: Bool) {
+        ClassificationsManager.shared.lastRecognition = stringRecognized
+        ClassificationsManager.shared.recognitionsAsText.insert(stringRecognized, at: 0)
+        if ClassificationsManager.shared.recognitionsAsText.count == 3 {
+            ClassificationsManager.shared.recognitionsAsText.removeLast()
+        }
+        guard let text = ClassificationsManager.shared.recognitionsAsText.first else {
+            return
+        }
+        updateRecognizedContentView(text: text)
+
+        VhistaSpeechManager.shared.sayText(stringToSpeak: stringRecognized, isProtected: isProtected, rate: Float(globalRate))
+
+    }
+}
+
 extension ARKitCameraViewController: ARSessionDelegate {
 
     // MARK: - ARSessionDelegate

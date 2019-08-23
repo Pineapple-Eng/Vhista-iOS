@@ -103,3 +103,19 @@ extension FastRecognizedContentViewController {
             + CameraShutterButtonView.calculateSizeOfOverSteppingHeight()
     }
 }
+
+// MARK: - Update Recognized Content View
+extension ARKitCameraViewController {
+    func updateRecognizedContentView(text: String) {
+        fastRecognizedContentViewController?.updateWithText(text)
+        DispatchQueue.main.async {
+            let height = FastRecognizedContentViewController.calculateHeightForText(text: text,
+                                                                                width: self.fastRecognizedContentView.frame.width,
+                                                                                safeAreaHeight: self.view.safeAreaInsets.bottom)
+            self.fastRecognizedContentViewHeightContraint.constant = height
+            UIView.animate(withDuration: FastRecognizedContentViewController.timeIntervalAnimateHeightChange,
+                           animations: { self.view.layoutIfNeeded() },
+                           completion: nil)
+        }
+    }
+}
