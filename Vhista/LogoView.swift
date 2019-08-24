@@ -15,8 +15,9 @@ class LogoView: UIView {
     static let logoViewTopMargin: CGFloat = 16.0
     static let viewWidth: CGFloat = 80.0
     static let viewHeight: CGFloat = 80.0
+    static let viewCornerRadius: CGFloat = 20.0
 
-    static let imageViewInset: CGFloat = 22.0
+    static let imageViewInset: CGFloat = 16.0
 
     static let defaultImageName = "SmallTransparentLogo"
     static let contextualImageName = "eye.fill"
@@ -66,7 +67,7 @@ extension LogoView {
             visualEffectView.centerYAnchor.constraint(equalTo: self.centerYAnchor)
             ])
         visualEffectView.clipsToBounds = true
-        visualEffectView.layer.cornerRadius = LogoView.viewWidth / 2
+        visualEffectView.layer.cornerRadius = LogoView.viewCornerRadius
     }
 }
 
