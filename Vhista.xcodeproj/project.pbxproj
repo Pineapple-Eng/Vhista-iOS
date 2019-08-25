@@ -19,6 +19,8 @@
 		0D20AEF222E3ED5300E508E6 /* CS-GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D20AEF122E3ED5300E508E6 /* CS-GoogleService-Info.plist */; };
 		0D23BB71231232FD00F032F6 /* FeaturesAccessibilityElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D23BB70231232FD00F032F6 /* FeaturesAccessibilityElement.swift */; };
 		0D23BB72231232FD00F032F6 /* FeaturesAccessibilityElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D23BB70231232FD00F032F6 /* FeaturesAccessibilityElement.swift */; };
+		0D23BB7423127AFA00F032F6 /* ARKitCameraViewController+Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D23BB7323127AFA00F032F6 /* ARKitCameraViewController+Accessibility.swift */; };
+		0D23BB7523127AFA00F032F6 /* ARKitCameraViewController+Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D23BB7323127AFA00F032F6 /* ARKitCameraViewController+Accessibility.swift */; };
 		0D24923D22E5459B0024BD52 /* ARKitCameraViewController+ContextualFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D24923C22E5459B0024BD52 /* ARKitCameraViewController+ContextualFeature.swift */; };
 		0D24923E22E5459B0024BD52 /* ARKitCameraViewController+ContextualFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D24923C22E5459B0024BD52 /* ARKitCameraViewController+ContextualFeature.swift */; };
 		0D40E825230A890F006E5598 /* RecognizedContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D40E824230A88AA006E5598 /* RecognizedContentViewController.swift */; };
@@ -130,6 +132,7 @@
 		0D1E580422D431880005941C /* DarkModeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DarkModeManager.swift; path = Utilities/DarkModeManager.swift; sourceTree = "<group>"; };
 		0D20AEF122E3ED5300E508E6 /* CS-GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CS-GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0D23BB70231232FD00F032F6 /* FeaturesAccessibilityElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FeaturesAccessibilityElement.swift; path = Features/FeaturesCollectionView/FeaturesAccessibilityElement.swift; sourceTree = "<group>"; };
+		0D23BB7323127AFA00F032F6 /* ARKitCameraViewController+Accessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARKitCameraViewController+Accessibility.swift"; sourceTree = "<group>"; };
 		0D24923C22E5459B0024BD52 /* ARKitCameraViewController+ContextualFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ARKitCameraViewController+ContextualFeature.swift"; path = "../../../../../../../../System/Volumes/Data/Users/juan/Dropbox/Vhista/Development/Vhista-iOS/Vhista/Features/ARKitCameraViewController+ContextualFeature.swift"; sourceTree = "<group>"; };
 		0D24924222E55F880024BD52 /* InfoDev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = InfoDev.plist; sourceTree = "<group>"; };
 		0D40E824230A88AA006E5598 /* RecognizedContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedContentViewController.swift; sourceTree = "<group>"; };
@@ -498,6 +501,7 @@
 			isa = PBXGroup;
 			children = (
 				6393B0A0204F0FF70040A6CF /* ARKitCameraViewController.swift */,
+				0D23BB7323127AFA00F032F6 /* ARKitCameraViewController+Accessibility.swift */,
 				0DE5947D230A754000A1D8F8 /* Session */,
 				0D1C5AF922BF60080002C892 /* ARKit */,
 				0D1C5B0322BF67470002C892 /* NonARCamera */,
@@ -775,6 +779,7 @@
 				0D73C73A22DEFF2E00B8BD57 /* VhistaReachabilityManager.swift in Sources */,
 				0D73C73B22DEFF2E00B8BD57 /* CameraViewConstraints.swift in Sources */,
 				0D73C73C22DEFF2E00B8BD57 /* ARKit+Extensions.swift in Sources */,
+				0D23BB7523127AFA00F032F6 /* ARKitCameraViewController+Accessibility.swift in Sources */,
 				0D73C73D22DEFF2E00B8BD57 /* NonARCameraViewController+Extensions.swift in Sources */,
 				0D73C73E22DEFF2E00B8BD57 /* SecureConstants.swift in Sources */,
 				0D73C73F22DEFF2E00B8BD57 /* UIView+Extensions.swift in Sources */,
@@ -827,6 +832,7 @@
 				2BF5EE691F46155B009E49D7 /* VhistaReachabilityManager.swift in Sources */,
 				0D1C5B0022BF62850002C892 /* CameraViewConstraints.swift in Sources */,
 				0D1C5B0222BF64860002C892 /* ARKit+Extensions.swift in Sources */,
+				0D23BB7423127AFA00F032F6 /* ARKitCameraViewController+Accessibility.swift in Sources */,
 				0D1C5B0522BF67F10002C892 /* NonARCameraViewController+Extensions.swift in Sources */,
 				63342CD820B0BE0900E397E6 /* SecureConstants.swift in Sources */,
 				6393B09D204E2D280040A6CF /* UIView+Extensions.swift in Sources */,

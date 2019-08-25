@@ -64,6 +64,7 @@ VHCameraButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUI()
+        setUpAccessibility()
         if arEnabled {
             setUpSceneView()
         } else {
