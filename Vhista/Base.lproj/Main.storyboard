@@ -53,13 +53,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bks-eD-gc3">
-                                <rect key="frame" x="0.0" y="44" width="414" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <segue destination="RbA-1b-APm" kind="embed" id="5zY-DB-goy"/>
-                                </connections>
-                            </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sxf-5T-nUb">
                                 <rect key="frame" x="0.0" y="740" width="414" height="107"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -91,7 +84,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="fastRecognizedContentView" destination="Sxf-5T-nUb" id="VKk-6G-PGy"/>
-                        <outlet property="featuresCollectionContentView" destination="bks-eD-gc3" id="sgY-xO-eeO"/>
                         <segue destination="XN5-zD-zT7" kind="presentation" identifier="ShowUpgradeView" id="832-2e-1X8"/>
                         <segue destination="74y-tE-t8P" kind="presentation" identifier="ShowSubscriptionInfo" id="ccV-g2-ehP"/>
                     </connections>
@@ -133,24 +125,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kj2-SS-b3e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="17" y="-435"/>
-        </scene>
-        <!--Features Collection View Controller-->
-        <scene sceneID="LTr-1s-AFD">
-            <objects>
-                <viewController id="RbA-1b-APm" customClass="FeaturesCollectionViewController" customModule="Vhista" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="KqM-L9-p3s"/>
-                        <viewControllerLayoutGuide type="bottom" id="aKs-Vb-0Nc"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8se-TY-DcO" customClass="UICollectionView">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2Uo-po-Mvf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="16.800000000000001" y="-600"/>
         </scene>
     </scenes>
     <resources>

@@ -19,7 +19,8 @@ VHBottomNavigationToolbarDelegate,
 VHCameraButtonDelegate {
 
     // Features Collection View
-    @IBOutlet weak var featuresCollectionContentView: UIView!
+    var featuresCollectionContentView: FeaturesCarouselContainerView!
+    var featuresCollectionVC: FeaturesCollectionViewController!
 
     // Fast Recognized Content View
     var fastRecognizedContentViewHeightContraint: NSLayoutConstraint!
@@ -43,6 +44,7 @@ VHCameraButtonDelegate {
 
     // -- AR Camera --
     var sceneView: ARSCNView!
+    var arConfiguration = ARWorldTrackingConfiguration()
     var previousFrameTimeInterval: TimeInterval!
     //Still Image
     var persistentPixelBuffer: CVPixelBuffer?
@@ -82,6 +84,15 @@ VHCameraButtonDelegate {
     }
 
     func setUpUI() {
+        // Features View
+        featuresCollectionContentView = FeaturesCarouselContainerView(frame: .zero)
+        self.view.addSubview(featuresCollectionContentView)
+        featuresCollectionVC = FeaturesCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        featuresCollectionContentView.collectionViewController = featuresCollectionVC
+        addChild(featuresCollectionVC)
+        featuresCollectionContentView.addSubview(featuresCollectionVC.view)
+        featuresCollectionVC.didMove(toParent: self)
+        featuresCollectionVC.setUpCollectionView()
         // Bottom Toolbar
         bottomToolbar = VHBottomNavigationToolbar(frame: .zero)
         bottomToolbar.customDelegate = self

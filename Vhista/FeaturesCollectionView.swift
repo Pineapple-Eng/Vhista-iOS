@@ -17,7 +17,6 @@ class FeaturesCollectionViewController: UICollectionViewController, UICollection
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpCollectionView()
     }
 
     func setUpCollectionView() {
@@ -26,10 +25,10 @@ class FeaturesCollectionViewController: UICollectionViewController, UICollection
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(collectionView)
         NSLayoutConstraint.activate([
-            self.view.topAnchor.constraint(equalTo: collectionView.topAnchor),
-            self.view.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor),
-            self.view.leadingAnchor.constraint(equalTo: collectionView.leadingAnchor),
-            self.view.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor)
+            collectionView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            collectionView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+            collectionView.rightAnchor.constraint(equalTo: self.view.rightAnchor)
         ])
         self.collectionView = collectionView
         self.collectionView.backgroundColor = .clear
@@ -70,11 +69,66 @@ class FeaturesCollectionViewController: UICollectionViewController, UICollection
     // MARK: UICollectionViewDelegate
     override func collectionView(_ collectionView: UICollectionView,
                                  didSelectItemAt indexPath: IndexPath) {
+        didSelectFeature(collectionView, didSelectItemAt: indexPath)
+    }
+
+    func didSelectFeature(_ collectionView: UICollectionView,
+                          didSelectItemAt indexPath: IndexPath) {
         let selectedFeature = FeaturesManager.shared.features[indexPath.item]
         FeaturesManager.shared.setSelectedFeature(selectedFeature)
         collectionView.scrollToItem(at: indexPath,
                                     at: .centeredVertically,
                                     animated: true)
         collectionView.reloadData()
+    }
+
+    // MARK: UIScrollViewDelegate
+
+    // This keeps the cells of the collection view centered.
+    override func scrollViewWillEndDragging(_ scrollView: UIScrollView,
+                                            withVelocity velocity: CGPoint,
+                                            targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        guard let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
+            return
+        }
+
+        let cellWidthIncludingSpacing = layout.itemSize.width + layout.minimumLineSpacing
+
+        var offset = targetContentOffset.pointee
+        let index = round((offset.x + scrollView.contentInset.left) / cellWidthIncludingSpacing)
+        offset = CGPoint(x: index * cellWidthIncludingSpacing - scrollView.contentInset.left,
+                         y: -scrollView.contentInset.top)
+        targetContentOffset.pointee = offset
+    }
+
+    /**
+        In `scrollViewDidScroll`, we calculate our new centered cell's index, then find the corresponding `Feature`
+        in our array and update our current `Feature`. We also animate in or out the gallery button based on
+        whether or not we want to show it for the new dog.
+    */
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard let flowLayout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
+            return
+        }
+
+        let itemWidth = flowLayout.itemSize.width
+        let offset = self.collectionView.contentOffset.x / itemWidth
+        let index = Int(round(offset))
+
+        guard (0..<FeaturesManager.shared.features.count).contains(index) else {
+            return
+        }
+
+        let selectedFeature = FeaturesManager.shared.features[index]
+        FeaturesManager.shared.setSelectedFeature(selectedFeature)
+        didSelectFeature(self.collectionView, didSelectItemAt: IndexPath(row: index, section: 0))
+
+        /*
+            The information for the Feature displayed below the collection view updates as you scroll,
+            but VoiceOver isn't aware that the views have changed their values. So we need to post
+            a layout changed notification to let VoiceOver know it needs to update its current
+            understanding of what's on screen.
+        */
+        UIAccessibility.post(notification: .layoutChanged, argument: nil)
     }
 }

@@ -86,6 +86,8 @@
 
 "share_taken_picture" = "Share, or Save Picture";
 
+"feature_picker" = "Feature Picker";
+
 // Error Handling
 
 "Deep_Analysis_Deactivated_Title" = "Service Unavailable";

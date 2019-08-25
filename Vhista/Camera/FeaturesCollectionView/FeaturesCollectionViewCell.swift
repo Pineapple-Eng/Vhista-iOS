@@ -43,6 +43,9 @@ class FeaturesCollectionViewCell: UICollectionViewCell {
         }
         nameLabel.text = feature.featureName
         logoView.configureViewWithImage(image)
+        self.isAccessibilityElement = true
+        self.accessibilityLabel = feature.featureName
+        self.shouldGroupAccessibilityChildren = true
     }
 }
 

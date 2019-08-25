@@ -4,15 +4,14 @@ import Vision
 extension ARKitCameraViewController {
     func arCameraViewDidAppear() {
         // Create a session configuration
-        let configuration = ARWorldTrackingConfiguration()
         if #available(iOS 11.3, *) {
             print("Activating vertical plane detection")
-            configuration.planeDetection = .vertical
+            arConfiguration.planeDetection = .vertical
         } else {
             // Fallback on earlier versions
         }
         // Run the view's session
-        sceneView.session.run(configuration)
+        sceneView.session.run(arConfiguration)
     }
 
     func setUpSceneView() {
@@ -154,6 +153,16 @@ extension ARKitCameraViewController: ARSessionDelegate {
             errorWithInfo.localizedRecoverySuggestion
         ]
 
+        if let arError = error as? ARError {
+            switch arError.errorCode {
+            case 102:
+                arConfiguration.worldAlignment = .gravity
+                restartSession()
+            default:
+                break
+            }
+        }
+
         // Filter out optional error messages.
         let errorMessage = messages.compactMap({ $0 }).joined(separator: "\n")
         DispatchQueue.main.async {
@@ -179,13 +188,8 @@ extension ARKitCameraViewController: ARSessionDelegate {
         guard let sceneView = self.view as? ARSKView else {
             return
         }
-        let configuration = ARWorldTrackingConfiguration()
-        if #available(iOS 11.3, *) {
-            configuration.planeDetection = .vertical
-        } else {
-            // Fallback on earlier versions
-        }
-        sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+        sceneView.session.pause()
+        sceneView.session.run(arConfiguration, options: [.resetTracking, .removeExistingAnchors])
     }
 
     // Run the Vision+ML classifier on the current image buffer.

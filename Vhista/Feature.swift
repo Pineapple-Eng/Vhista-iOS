@@ -17,3 +17,10 @@ struct Feature {
     var featureName: String
     var imageName: String
 }
+
+extension Feature: Equatable {
+    static func == (lhs: Feature, rhs: Feature) -> Bool {
+        return lhs.featureName == rhs.featureName &&
+               lhs.imageName == rhs.imageName
+    }
+}
