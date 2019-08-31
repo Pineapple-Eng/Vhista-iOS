@@ -88,6 +88,8 @@
 
 "feature_picker" = "Selector de Funciones";
 
+"dismiss" = "Cerrar";
+
 // Error Handling
 
 "Deep_Analysis_Deactivated_Title" = "Servicio no disponible";

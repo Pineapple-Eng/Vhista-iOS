@@ -88,6 +88,8 @@
 
 "feature_picker" = "Feature Picker";
 
+"dismiss" = "Dismiss";
+
 // Error Handling
 
 "Deep_Analysis_Deactivated_Title" = "Service Unavailable";

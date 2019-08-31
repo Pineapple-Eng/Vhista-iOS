@@ -16,10 +16,14 @@ class RecognizedContentViewController: UIViewController {
 
     weak var delegate: RecognizedContentViewControllerDelegate?
 
+    var closeButton: UIButton!
     var recognizedImageView: UIImageView!
     var recognizedObjectsTextView: UITextView!
     var actionsToolbar: UIToolbar!
 
+    static let recognizedCloseButtonSize: CGFloat = 20.0
+    static let recognizedCloseButtonHorizontalSpacing: CGFloat = 8.0
+    static let recognizedCloseButtonVerticalSpacing: CGFloat = 8.0
     static let recognizedTextViewHorizontalSpacing: CGFloat = 8.0
     static let recognizedTextViewVerticalSpacing: CGFloat = 8.0
     static let recognizedImageViewVerticalSpacing: CGFloat = 20.0
@@ -62,7 +66,7 @@ class RecognizedContentViewController: UIViewController {
             }
         }
         UIAccessibility.post(notification: UIAccessibility.Notification.layoutChanged,
-                             argument: recognizedObjectsTextView)
+                             argument: closeButton)
     }
 }
 
@@ -75,6 +79,7 @@ extension RecognizedContentViewController {
 extension RecognizedContentViewController {
     func setUpUI() {
         setUpBackground()
+        setUpCloseButton()
         setUpToolbar()
         setUpImageView()
         setUpTextView()
@@ -96,6 +101,24 @@ extension RecognizedContentViewController {
         ])
     }
 
+    func setUpCloseButton() {
+        closeButton = UIButton(type: .system)
+        closeButton.setTitle(NSLocalizedString("dismiss", comment: ""),
+                             for: .normal)
+        closeButton.tintColor = getLabelDarkColorIfSupported(color: .black)
+        closeButton.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(closeButton)
+        NSLayoutConstraint.activate([
+            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+                                             constant: RecognizedContentViewController.recognizedCloseButtonVerticalSpacing),
+            closeButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor,
+                                               constant: RecognizedContentViewController.recognizedCloseButtonHorizontalSpacing),
+            closeButton.widthAnchor.constraint(equalToConstant: RecognizedContentViewController.recognizedCloseButtonSize),
+            closeButton.heightAnchor.constraint(equalToConstant: RecognizedContentViewController.recognizedCloseButtonSize)
+        ])
+    }
+
     func setUpImageView() {
         recognizedImageView = UIImageView(frame: .zero)
         recognizedImageView.contentMode = .scaleAspectFit
@@ -108,7 +131,7 @@ extension RecognizedContentViewController {
         recognizedImageViewWidthContraint = recognizedImageView.widthAnchor.constraint(equalToConstant: 0.0)
 
         NSLayoutConstraint.activate([
-            recognizedImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+            recognizedImageView.topAnchor.constraint(equalTo: closeButton.bottomAnchor,
                                                      constant: RecognizedContentViewController.recognizedImageViewVerticalSpacing),
             recognizedImageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             recognizedImageViewWidthContraint,
@@ -175,12 +198,6 @@ extension RecognizedContentViewController {
         actionsToolbar.items?.append(savePhotoItem)
 
         actionsToolbar.items?.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
-
-        let closeItem = UIBarButtonItem(title: NSLocalizedString("Close_Action", comment: ""),
-                                        style: .done,
-                                        target: self,
-                                        action: #selector(dismissView))
-        actionsToolbar.items?.append(closeItem)
     }
 }
 
