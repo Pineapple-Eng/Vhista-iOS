@@ -86,8 +86,8 @@ extension InfoFooterView {
 }
 
 extension InfoFooterView {
-    static func generateFootnoteLabel(text: String? = "") -> UILabel {
-        let label = UILabel()
+    static func generateFootnoteLabel(text: String? = "", frame: CGRect = .zero) -> UILabel {
+        let label = UILabel(frame: frame)
         label.textColor = getLabelDarkColorIfSupported(color: .black)
         label.text = text
         label.lineBreakMode = .byWordWrapping
@@ -96,5 +96,22 @@ extension InfoFooterView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.sizeToFit()
         return label
+    }
+}
+
+extension InfoFooterView {
+    static func getEstimatedHeight(width: CGFloat) -> CGFloat {
+        let labelFrame = CGRect(x: .zero,
+                                y: .zero,
+                                width: width,
+                                height: CGFloat.greatestFiniteMagnitude)
+        let labelColombia = self.generateFootnoteLabel(text: NSLocalizedString("made_with_love", comment: ""), frame: labelFrame)
+        let labelLegal = self.generateFootnoteLabel(text: NSLocalizedString("legal", comment: ""), frame: labelFrame)
+        let labelVersion = self.generateFootnoteLabel(text: getFormattedAppVersion(), frame: labelFrame)
+
+        return (InfoFooterView.footnoteItemsVerticalSpacing + labelVersion.frame.size.height +
+            InfoFooterView.footnoteItemsVerticalSpacing + labelLegal.frame.size.height +
+            InfoFooterView.footnoteItemsVerticalSpacing + labelColombia.frame.size.height
+            + InfoFooterView.footnoteItemsVerticalSpacing)
     }
 }

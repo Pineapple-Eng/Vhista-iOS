@@ -13,17 +13,23 @@ class InfoViewController: UIViewController {
     static let headerViewVerticalSpacing: CGFloat = 8.0
     static let headerViewHorizontalSpacing: CGFloat = 8.0
 
+    static let footerViewVerticalSpacing: CGFloat = 8.0
+    static let footerViewHorizontalSpacing: CGFloat = 8.0
+
     var infoHeaderView: InfoHeaderView!
+    var infoFooterView: InfoFooterView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpBackground()
         setUpHeaderView()
+        setUpFooterView()
     }
 
     override func viewDidLayoutSubviews() {
         setUpBackground()
         setUpHeaderView()
+        setUpFooterView()
     }
 }
 
@@ -57,6 +63,21 @@ extension InfoViewController {
             infoHeaderView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor,
                                                   constant: InfoViewController.headerViewHorizontalSpacing),
             infoHeaderView.heightAnchor.constraint(equalToConstant: InfoHeaderView.getEstimatedHeight(width: self.view.frame.size.width))
+        ])
+    }
+
+    func setUpFooterView() {
+        infoFooterView = InfoFooterView(frame: .zero)
+        self.view.addSubview(infoFooterView)
+        infoFooterView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            infoFooterView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor,
+                                                   constant: InfoViewController.footerViewVerticalSpacing),
+            infoFooterView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor,
+                                                 constant: InfoViewController.footerViewHorizontalSpacing),
+            infoFooterView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor,
+                                                  constant: InfoViewController.footerViewHorizontalSpacing),
+            infoFooterView.heightAnchor.constraint(equalToConstant: InfoFooterView.getEstimatedHeight(width: self.view.frame.size.width))
         ])
     }
 }
