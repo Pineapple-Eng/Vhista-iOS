@@ -18,6 +18,6 @@ extension ARKitCameraViewController {
         if fastRecognizedContentViewController != nil {
             self.view.accessibilityElements?.append(fastRecognizedContentViewController as Any)
         }
-        self.view.accessibilityElements?.append(bottomToolbar)
+        self.view.accessibilityElements?.append(bottomToolbar as Any)
     }
 }
