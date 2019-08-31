@@ -16,12 +16,14 @@ enum VHBottomNavigationToolbarItemType {
     case gallery
     case subscription
     case upgrade
+    case info
 }
 
 class VHBottomNavigationToolbar: UIToolbar {
 
     let gallerySystemImageName = "photo.on.rectangle"
     let cameraSystemImageName = "ring.circle.fill"
+    let infoSystemImageName = "info.circle.fill"
 
     static let estimatedToolbarHeight: CGFloat = 44.0
 
@@ -73,6 +75,12 @@ extension VHBottomNavigationToolbar {
             }
             self.items?.append(subscriptionItem)
         }
+
+        let infoItem = UIBarButtonItem(image: getButtonItemInfoImage(),
+                                       style: .plain,
+                                       target: self,
+                                       action: #selector(didSelectBarButtonItemInfo(_:)))
+        self.items?.append(infoItem)
     }
 }
 
@@ -81,6 +89,14 @@ extension VHBottomNavigationToolbar {
         var image = UIImage()
         if #available(iOS 13.0, *) {
             image = UIImage(systemName: gallerySystemImageName) ?? image
+        }
+        return image
+    }
+
+    func getButtonItemInfoImage() -> UIImage {
+        var image = UIImage()
+        if #available(iOS 13.0, *) {
+            image = UIImage(systemName: infoSystemImageName) ?? image
         }
         return image
     }
@@ -100,5 +116,10 @@ extension VHBottomNavigationToolbar {
     @objc func didSelectBarButtonItemUpgrade(_ barButtonItem: UIBarButtonItem) {
         self.customDelegate?.didSelectBarButtonItemWithType(barButtonItem,
                                                             VHBottomNavigationToolbarItemType.upgrade)
+    }
+
+    @objc func didSelectBarButtonItemInfo(_ barButtonItem: UIBarButtonItem) {
+        self.customDelegate?.didSelectBarButtonItemWithType(barButtonItem,
+                                                            VHBottomNavigationToolbarItemType.info)
     }
 }

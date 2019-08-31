@@ -324,6 +324,8 @@ extension ARKitCameraViewController {
             showPhotoPicker(barButtonItem)
         case .subscription, .upgrade:
             hitUpgradeAction(barButtonItem)
+        case .info:
+            showInfoVC(barButtonItem)
         }
     }
 }
@@ -349,5 +351,12 @@ extension ARKitCameraViewController {
             VhistaSoundManager.shared.pauseLoadingSound()
             shutterButtonView.stopLoadingRippleView(parentView: self.view)
         }
+    }
+}
+
+// MARK: - Info View
+extension ARKitCameraViewController {
+    func showInfoVC(_ sender: Any) {
+        // TODO: Present info vc
     }
 }
