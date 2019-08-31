@@ -357,6 +357,8 @@ extension ARKitCameraViewController {
 // MARK: - Info View
 extension ARKitCameraViewController {
     func showInfoVC(_ sender: Any) {
-        // TODO: Present info vc
+        let infoVC = InfoViewController()
+        pauseCurrentSession()
+        self.present(infoVC, animated: true, completion: nil)
     }
 }

@@ -87,7 +87,7 @@ extension LogoView {
                                                  constant: -LogoView.imageViewInset),
             logoImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor,
                                                   constant: -LogoView.imageViewInset)
-            ])
+        ])
     }
 }
 
