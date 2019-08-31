@@ -73,6 +73,12 @@ class RecognizedContentViewController: UIViewController {
 extension RecognizedContentViewController {
     func setUpAccessibility() {
         self.accessibilityViewIsModal = true
+        self.view.accessibilityElements = [
+            closeButton as Any,
+            recognizedImageView as Any,
+            recognizedObjectsTextView as Any,
+            actionsToolbar as Any
+        ]
     }
 }
 
