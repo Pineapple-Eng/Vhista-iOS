@@ -10,30 +10,55 @@ import UIKit
 
 class InfoViewController: UIViewController {
 
+    static let closeButtonSize: CGFloat = 20.0
+    static let closeButtonHorizontalSpacing: CGFloat = 8.0
+    static let closeButtonVerticalSpacing: CGFloat = 8.0
+
     static let headerViewVerticalSpacing: CGFloat = 8.0
     static let headerViewHorizontalSpacing: CGFloat = 8.0
 
     static let footerViewVerticalSpacing: CGFloat = 8.0
     static let footerViewHorizontalSpacing: CGFloat = 8.0
 
+    var closeButton: UIButton!
     var infoHeaderView: InfoHeaderView!
     var infoFooterView: InfoFooterView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpBackground()
+        setUpCloseButton()
         setUpHeaderView()
         setUpFooterView()
     }
 
     override func viewDidLayoutSubviews() {
         setUpBackground()
+        setUpCloseButton()
         setUpHeaderView()
         setUpFooterView()
     }
 }
 
 extension InfoViewController {
+
+    func setUpCloseButton() {
+        closeButton = UIButton(type: .system)
+        closeButton.setTitle(NSLocalizedString("dismiss", comment: ""),
+                             for: .normal)
+        closeButton.tintColor = getLabelDarkColorIfSupported(color: .black)
+        closeButton.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(closeButton)
+        NSLayoutConstraint.activate([
+            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+                                             constant: InfoViewController.closeButtonVerticalSpacing),
+            closeButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor,
+                                               constant: InfoViewController.closeButtonHorizontalSpacing),
+            closeButton.widthAnchor.constraint(equalToConstant: InfoViewController.closeButtonSize),
+            closeButton.heightAnchor.constraint(equalToConstant: InfoViewController.closeButtonSize)
+        ])
+    }
 
     func setUpBackground() {
         guard let view = self.view else {
@@ -79,5 +104,11 @@ extension InfoViewController {
                                                   constant: InfoViewController.footerViewHorizontalSpacing),
             infoFooterView.heightAnchor.constraint(equalToConstant: InfoFooterView.getEstimatedHeight(width: self.view.frame.size.width))
         ])
+    }
+}
+
+extension InfoViewController {
+    @objc func dismissView() {
+        self.dismiss(animated: true, completion: nil)
     }
 }
