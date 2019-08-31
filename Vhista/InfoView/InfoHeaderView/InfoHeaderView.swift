@@ -20,10 +20,6 @@ class InfoHeaderView: UIView {
     var logoImageView = UIImageView()
     var nameLabel = UILabel()
 
-    convenience init(frame: CGRect, image: UIImage) {
-        self.init(frame: frame)
-    }
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpBackground()

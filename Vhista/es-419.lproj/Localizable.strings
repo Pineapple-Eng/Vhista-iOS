@@ -90,6 +90,14 @@
 
 "dismiss" = "Cerrar";
 
+"made_with_love" = "Hecho con ❤️ en Colombia 🇨🇴";
+
+"legal" = "Legal";
+
+"version" = "Versión";
+
+"build" = "Paquete";
+
 // Error Handling
 
 "Deep_Analysis_Deactivated_Title" = "Servicio no disponible";

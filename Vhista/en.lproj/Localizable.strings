@@ -90,6 +90,14 @@
 
 "dismiss" = "Dismiss";
 
+"made_with_love" = "Made with ❤️ in Colombia 🇨🇴";
+
+"legal" = "Legal";
+
+"version" = "Version";
+
+"build" = "Build";
+
 // Error Handling
 
 "Deep_Analysis_Deactivated_Title" = "Service Unavailable";

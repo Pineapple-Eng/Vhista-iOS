@@ -93,6 +93,8 @@
 		0DF0B00F231ADDBC00EA4BC0 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF0B00D231ADDBC00EA4BC0 /* InfoViewController.swift */; };
 		0DF0B012231ADE1A00EA4BC0 /* InfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF0B011231ADE1A00EA4BC0 /* InfoHeaderView.swift */; };
 		0DF0B013231ADE1A00EA4BC0 /* InfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF0B011231ADE1A00EA4BC0 /* InfoHeaderView.swift */; };
+		0DF0B016231AE60500EA4BC0 /* InfoFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF0B015231AE60500EA4BC0 /* InfoFooterView.swift */; };
+		0DF0B017231AE60500EA4BC0 /* InfoFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF0B015231AE60500EA4BC0 /* InfoFooterView.swift */; };
 		0DF120FB211F507500177FC5 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0DF120FA211F507400177FC5 /* Inceptionv3.mlmodel */; };
 		0DF848A6230A0CA7004FDE5A /* VHBottomNavigationToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF848A5230A0CA7004FDE5A /* VHBottomNavigationToolbar.swift */; };
 		0DF848A7230A0CA7004FDE5A /* VHBottomNavigationToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF848A5230A0CA7004FDE5A /* VHBottomNavigationToolbar.swift */; };
@@ -161,6 +163,7 @@
 		0DE5947E230A756100A1D8F8 /* ARKitCameraViewController+Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ARKitCameraViewController+Session.swift"; path = "Session/ARKitCameraViewController+Session.swift"; sourceTree = "<group>"; };
 		0DF0B00D231ADDBC00EA4BC0 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InfoViewController.swift; path = InfoView/InfoViewController.swift; sourceTree = "<group>"; };
 		0DF0B011231ADE1A00EA4BC0 /* InfoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InfoHeaderView.swift; path = InfoView/InfoHeaderView/InfoHeaderView.swift; sourceTree = "<group>"; };
+		0DF0B015231AE60500EA4BC0 /* InfoFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InfoFooterView.swift; path = InfoView/InfoFooterView/InfoFooterView.swift; sourceTree = "<group>"; };
 		0DF120FA211F507400177FC5 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = Inceptionv3.mlmodel; path = ../../../Models/Inceptionv3.mlmodel; sourceTree = "<group>"; };
 		0DF848A5230A0CA7004FDE5A /* VHBottomNavigationToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VHBottomNavigationToolbar.swift; path = UI/BottomToolbar/VHBottomNavigationToolbar.swift; sourceTree = "<group>"; };
 		14BDE3BC0EF44C31DD11AABE /* Pods-VhistaDev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VhistaDev.release.xcconfig"; path = "Pods/Target Support Files/Pods-VhistaDev/Pods-VhistaDev.release.xcconfig"; sourceTree = "<group>"; };
@@ -366,6 +369,7 @@
 			children = (
 				0DF0B00D231ADDBC00EA4BC0 /* InfoViewController.swift */,
 				0DF0B010231ADDE800EA4BC0 /* InfoHeaderView */,
+				0DF0B014231AE5DA00EA4BC0 /* InfoFooterView */,
 			);
 			name = InfoView;
 			sourceTree = "<group>";
@@ -376,6 +380,14 @@
 				0DF0B011231ADE1A00EA4BC0 /* InfoHeaderView.swift */,
 			);
 			name = InfoHeaderView;
+			sourceTree = "<group>";
+		};
+		0DF0B014231AE5DA00EA4BC0 /* InfoFooterView */ = {
+			isa = PBXGroup;
+			children = (
+				0DF0B015231AE60500EA4BC0 /* InfoFooterView.swift */,
+			);
+			name = InfoFooterView;
 			sourceTree = "<group>";
 		};
 		0DF848A4230A0C5A004FDE5A /* BottomToolbar */ = {
@@ -845,6 +857,7 @@
 				0D73C75A22DEFF2E00B8BD57 /* AppDelegate.swift in Sources */,
 				0D73C75B22DEFF2E00B8BD57 /* Constants.swift in Sources */,
 				0DF0B013231ADE1A00EA4BC0 /* InfoHeaderView.swift in Sources */,
+				0DF0B017231AE60500EA4BC0 /* InfoFooterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -900,6 +913,7 @@
 				2B7503841F31936E007D4AFF /* AppDelegate.swift in Sources */,
 				63342CE420B0BF4700E397E6 /* Constants.swift in Sources */,
 				0DF0B012231ADE1A00EA4BC0 /* InfoHeaderView.swift in Sources */,
+				0DF0B016231AE60500EA4BC0 /* InfoFooterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
