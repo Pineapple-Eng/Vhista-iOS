@@ -53,16 +53,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure(options: fileopts)
         #endif
 
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default)
-        } catch let error as NSError {
-            print("Error: Could not set audio category: \(error), \(error.userInfo)")
-        }
+        // Take control of audio only if using VoiceOver
+        if UIAccessibility.isVoiceOverRunning {
+            do {
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default)
+            } catch let error as NSError {
+                print("Error: Could not set audio category: \(error), \(error.userInfo)")
+            }
 
-        do {
-            try AVAudioSession.sharedInstance().setActive(true)
-        } catch let error as NSError {
-            print("Error: Could not setActive to true: \(error), \(error.userInfo)")
+            do {
+                try AVAudioSession.sharedInstance().setActive(true)
+            } catch let error as NSError {
+                print("Error: Could not setActive to true: \(error), \(error.userInfo)")
+            }
         }
 
         // Avoid Screen Dim
