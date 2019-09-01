@@ -10,7 +10,6 @@ import UIKit
 
 class InfoViewController: UIViewController {
 
-    static let closeButtonSize: CGFloat = 20.0
     static let closeButtonHorizontalSpacing: CGFloat = 8.0
     static let closeButtonVerticalSpacing: CGFloat = 8.0
 
@@ -20,7 +19,7 @@ class InfoViewController: UIViewController {
     static let footerViewVerticalSpacing: CGFloat = 8.0
     static let footerViewHorizontalSpacing: CGFloat = 8.0
 
-    var closeButton: UIButton!
+    var closeButton: VHCloseButton!
     var infoHeaderView: InfoHeaderView!
     var infoFooterView: InfoFooterView!
 
@@ -43,10 +42,7 @@ class InfoViewController: UIViewController {
 extension InfoViewController {
 
     func setUpCloseButton() {
-        closeButton = UIButton(type: .system)
-        closeButton.setTitle(NSLocalizedString("dismiss", comment: ""),
-                             for: .normal)
-        closeButton.tintColor = getLabelDarkColorIfSupported(color: .black)
+        closeButton = VHCloseButton(type: .system)
         closeButton.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(closeButton)
@@ -55,8 +51,8 @@ extension InfoViewController {
                                              constant: InfoViewController.closeButtonVerticalSpacing),
             closeButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor,
                                                constant: InfoViewController.closeButtonHorizontalSpacing),
-            closeButton.widthAnchor.constraint(equalToConstant: InfoViewController.closeButtonSize),
-            closeButton.heightAnchor.constraint(equalToConstant: InfoViewController.closeButtonSize)
+            closeButton.widthAnchor.constraint(equalToConstant: VHCloseButton.closeButtonSize),
+            closeButton.heightAnchor.constraint(equalToConstant: VHCloseButton.closeButtonSize)
         ])
     }
 

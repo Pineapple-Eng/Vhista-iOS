@@ -16,12 +16,11 @@ class RecognizedContentViewController: UIViewController {
 
     weak var delegate: RecognizedContentViewControllerDelegate?
 
-    var closeButton: UIButton!
+    var closeButton: VHCloseButton!
     var recognizedImageView: UIImageView!
     var recognizedObjectsTextView: UITextView!
     var actionsToolbar: UIToolbar!
 
-    static let recognizedCloseButtonSize: CGFloat = 20.0
     static let recognizedCloseButtonHorizontalSpacing: CGFloat = 8.0
     static let recognizedCloseButtonVerticalSpacing: CGFloat = 8.0
     static let recognizedTextViewHorizontalSpacing: CGFloat = 8.0
@@ -108,10 +107,7 @@ extension RecognizedContentViewController {
     }
 
     func setUpCloseButton() {
-        closeButton = UIButton(type: .system)
-        closeButton.setTitle(NSLocalizedString("dismiss", comment: ""),
-                             for: .normal)
-        closeButton.tintColor = getLabelDarkColorIfSupported(color: .black)
+        closeButton = VHCloseButton(type: .system)
         closeButton.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(closeButton)
@@ -120,8 +116,8 @@ extension RecognizedContentViewController {
                                              constant: RecognizedContentViewController.recognizedCloseButtonVerticalSpacing),
             closeButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor,
                                                constant: RecognizedContentViewController.recognizedCloseButtonHorizontalSpacing),
-            closeButton.widthAnchor.constraint(equalToConstant: RecognizedContentViewController.recognizedCloseButtonSize),
-            closeButton.heightAnchor.constraint(equalToConstant: RecognizedContentViewController.recognizedCloseButtonSize)
+            closeButton.widthAnchor.constraint(equalToConstant: VHCloseButton.closeButtonSize),
+            closeButton.heightAnchor.constraint(equalToConstant: VHCloseButton.closeButtonSize)
         ])
     }
 

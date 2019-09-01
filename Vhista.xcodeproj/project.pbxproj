@@ -23,6 +23,8 @@
 		0D23BB7523127AFA00F032F6 /* ARKitCameraViewController+Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D23BB7323127AFA00F032F6 /* ARKitCameraViewController+Accessibility.swift */; };
 		0D24923D22E5459B0024BD52 /* ARKitCameraViewController+ContextualFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D24923C22E5459B0024BD52 /* ARKitCameraViewController+ContextualFeature.swift */; };
 		0D24923E22E5459B0024BD52 /* ARKitCameraViewController+ContextualFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D24923C22E5459B0024BD52 /* ARKitCameraViewController+ContextualFeature.swift */; };
+		0D268653231B466E00A9354E /* VHCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D268652231B466E00A9354E /* VHCloseButton.swift */; };
+		0D268654231B466E00A9354E /* VHCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D268652231B466E00A9354E /* VHCloseButton.swift */; };
 		0D40E825230A890F006E5598 /* RecognizedContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D40E824230A88AA006E5598 /* RecognizedContentViewController.swift */; };
 		0D40E826230A8910006E5598 /* RecognizedContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D40E824230A88AA006E5598 /* RecognizedContentViewController.swift */; };
 		0D5346F022C313C900103306 /* loading_beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0D5346EF22C313C900103306 /* loading_beep.wav */; };
@@ -141,6 +143,7 @@
 		0D23BB7323127AFA00F032F6 /* ARKitCameraViewController+Accessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARKitCameraViewController+Accessibility.swift"; sourceTree = "<group>"; };
 		0D24923C22E5459B0024BD52 /* ARKitCameraViewController+ContextualFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ARKitCameraViewController+ContextualFeature.swift"; path = "../../../../../../../../System/Volumes/Data/Users/juan/Dropbox/Vhista/Development/Vhista-iOS/Vhista/Features/ARKitCameraViewController+ContextualFeature.swift"; sourceTree = "<group>"; };
 		0D24924222E55F880024BD52 /* InfoDev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = InfoDev.plist; sourceTree = "<group>"; };
+		0D268652231B466E00A9354E /* VHCloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VHCloseButton.swift; path = VHObjects/VHCloseButton/VHCloseButton.swift; sourceTree = "<group>"; };
 		0D40E824230A88AA006E5598 /* RecognizedContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedContentViewController.swift; sourceTree = "<group>"; };
 		0D5346EF22C313C900103306 /* loading_beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = loading_beep.wav; sourceTree = "<group>"; };
 		0D5346F422C5630F00103306 /* LoadingRippleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingRippleView.swift; sourceTree = "<group>"; };
@@ -303,6 +306,23 @@
 			path = Features;
 			sourceTree = "<group>";
 		};
+		0D268650231B462000A9354E /* VHObjects */ = {
+			isa = PBXGroup;
+			children = (
+				0D268651231B462F00A9354E /* VHCloseButton */,
+				0D0CEA7C230FBB280044C3B7 /* VHImage */,
+			);
+			name = VHObjects;
+			sourceTree = "<group>";
+		};
+		0D268651231B462F00A9354E /* VHCloseButton */ = {
+			isa = PBXGroup;
+			children = (
+				0D268652231B466E00A9354E /* VHCloseButton.swift */,
+			);
+			name = VHCloseButton;
+			sourceTree = "<group>";
+		};
 		0D40E822230A8891006E5598 /* FastRecognizedContent */ = {
 			isa = PBXGroup;
 			children = (
@@ -445,9 +465,9 @@
 				2B7503951F319BF6007D4AFF /* MLModels */,
 				2B7503831F31936E007D4AFF /* AppDelegate.swift */,
 				6393B0A3204F10F80040A6CF /* LandingViewController.swift */,
+				0D268650231B462000A9354E /* VHObjects */,
 				6393B0A2204F10D80040A6CF /* UI */,
 				0D24923B22E5456F0024BD52 /* Features */,
-				0D0CEA7C230FBB280044C3B7 /* VHImage */,
 				0D1C5AFD22BF61C50002C892 /* Managers */,
 				2B2C62441F6B383200E9BAF7 /* Subscription */,
 				2B9638B41F328DA4008DBBCF /* Analytics */,
@@ -809,6 +829,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D268654231B466E00A9354E /* VHCloseButton.swift in Sources */,
 				0DE5947C230A744000A1D8F8 /* VhistaSoundManager.swift in Sources */,
 				0D73C73822DEFF2E00B8BD57 /* CameraManager.swift in Sources */,
 				0D73C73922DEFF2E00B8BD57 /* ClassificationsManager.swift in Sources */,
@@ -865,6 +886,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D268653231B466E00A9354E /* VHCloseButton.swift in Sources */,
 				0DE5947B230A744000A1D8F8 /* VhistaSoundManager.swift in Sources */,
 				6393B0A8204F290B0040A6CF /* CameraManager.swift in Sources */,
 				6393B0A6204F23920040A6CF /* ClassificationsManager.swift in Sources */,

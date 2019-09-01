@@ -32,6 +32,8 @@ func getLabelDarkColorIfSupported(color: UIColor) -> UIColor {
     switch color {
     case .white, .black:
         return UIColor.label
+    case .lightGray, .darkGray:
+        return UIColor.secondarySystemBackground
     default:
         return color
     }
