@@ -25,6 +25,7 @@ class FastRecognizedContentViewController: UIViewController {
         super.viewDidLoad()
         setUpUI()
         setUpBackground()
+        setUpAccessibility()
     }
 
     func updateWithText(_ text: String) {
@@ -101,6 +102,20 @@ extension FastRecognizedContentViewController {
             + recognizedObjectsLabelVerticalSpacing * 2
             + safeAreaHeight
             + CameraShutterButtonView.calculateSizeOfOverSteppingHeight()
+    }
+}
+
+extension FastRecognizedContentViewController {
+    func setUpAccessibility() {
+        self.accessibilityCustomActions = [
+            UIAccessibilityCustomAction(name: NSLocalizedString("mute_fast_recognition", comment: ""), target: self, selector: #selector(muteRecognition))
+        ]
+    }
+}
+
+extension FastRecognizedContentViewController {
+    @objc func muteRecognition() {
+        //TODO: Mute fast recognition
     }
 }
 
