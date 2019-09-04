@@ -46,6 +46,10 @@ extension ARKitCameraViewController {
             featuresCollectionVC.view.leftAnchor.constraint(equalTo: featuresCollectionContentView.leftAnchor)
         ])
 
+        setUpSelectedImageConstraints()
+    }
+
+    func setUpSelectedImageConstraints() {
         selectedImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             selectedImageView.topAnchor.constraint(equalTo: view.topAnchor),
