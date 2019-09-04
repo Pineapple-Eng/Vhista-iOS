@@ -11,9 +11,9 @@ import UIKit
 class InfoHeaderView: UIView {
     static let logoImageName: String = "SmallTransparentLogo"
     static let logoImageViewVerticalSpacing: CGFloat = 8.0
-    static let logoImageViewSize: CGFloat = 30.0
+    static let logoImageViewSize: CGFloat = 40.0
 
-    static let nameLabelText: String = "SmallTransparentLogo"
+    static let nameLabelText: String = "Vhista, Inc"
     static let nameLabelVerticalSpacing: CGFloat = 8.0
     static let nameLabelHorizontalSpacing: CGFloat = 8.0
 
@@ -59,13 +59,14 @@ extension InfoHeaderView {
         nameLabel = UILabel()
         nameLabel.textColor = getLabelDarkColorIfSupported(color: .black)
         nameLabel.text = InfoHeaderView.nameLabelText
+        nameLabel.textAlignment = .center
         nameLabel.lineBreakMode = .byTruncatingTail
         nameLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         nameLabel.numberOfLines = 0
         self.addSubview(nameLabel)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: logoImageView.topAnchor,
+            nameLabel.topAnchor.constraint(equalTo: logoImageView.bottomAnchor,
                                            constant: InfoHeaderView.nameLabelVerticalSpacing),
             nameLabel.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor,
             constant: InfoHeaderView.nameLabelHorizontalSpacing),

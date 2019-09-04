@@ -30,13 +30,6 @@ class InfoViewController: UIViewController {
         setUpHeaderView()
         setUpFooterView()
     }
-
-    override func viewDidLayoutSubviews() {
-        setUpBackground()
-        setUpCloseButton()
-        setUpHeaderView()
-        setUpFooterView()
-    }
 }
 
 extension InfoViewController {
@@ -44,13 +37,13 @@ extension InfoViewController {
     func setUpCloseButton() {
         closeButton = VHCloseButton(type: .system)
         closeButton.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
-        closeButton.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(closeButton)
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
                                              constant: InfoViewController.closeButtonVerticalSpacing),
             closeButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor,
-                                               constant: InfoViewController.closeButtonHorizontalSpacing),
+                                               constant: -InfoViewController.closeButtonHorizontalSpacing),
             closeButton.widthAnchor.constraint(equalToConstant: VHCloseButton.closeButtonSize),
             closeButton.heightAnchor.constraint(equalToConstant: VHCloseButton.closeButtonSize)
         ])
@@ -77,12 +70,12 @@ extension InfoViewController {
         self.view.addSubview(infoHeaderView)
         infoHeaderView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            infoHeaderView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor,
+            infoHeaderView.topAnchor.constraint(equalTo: closeButton.bottomAnchor,
                                                 constant: InfoViewController.headerViewVerticalSpacing),
             infoHeaderView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor,
                                                  constant: InfoViewController.headerViewHorizontalSpacing),
             infoHeaderView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor,
-                                                  constant: InfoViewController.headerViewHorizontalSpacing),
+                                                  constant: -InfoViewController.headerViewHorizontalSpacing),
             infoHeaderView.heightAnchor.constraint(equalToConstant: InfoHeaderView.getEstimatedHeight(width: self.view.frame.size.width))
         ])
     }
@@ -97,7 +90,7 @@ extension InfoViewController {
             infoFooterView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor,
                                                  constant: InfoViewController.footerViewHorizontalSpacing),
             infoFooterView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor,
-                                                  constant: InfoViewController.footerViewHorizontalSpacing),
+                                                  constant: -InfoViewController.footerViewHorizontalSpacing),
             infoFooterView.heightAnchor.constraint(equalToConstant: InfoFooterView.getEstimatedHeight(width: self.view.frame.size.width))
         ])
     }

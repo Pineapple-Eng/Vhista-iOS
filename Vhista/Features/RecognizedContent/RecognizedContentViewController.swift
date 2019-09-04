@@ -115,7 +115,7 @@ extension RecognizedContentViewController {
             closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
                                              constant: RecognizedContentViewController.recognizedCloseButtonVerticalSpacing),
             closeButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor,
-                                               constant: RecognizedContentViewController.recognizedCloseButtonHorizontalSpacing),
+                                               constant: -RecognizedContentViewController.recognizedCloseButtonHorizontalSpacing),
             closeButton.widthAnchor.constraint(equalToConstant: VHCloseButton.closeButtonSize),
             closeButton.heightAnchor.constraint(equalToConstant: VHCloseButton.closeButtonSize)
         ])

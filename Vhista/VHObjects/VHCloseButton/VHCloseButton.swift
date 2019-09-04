@@ -10,10 +10,12 @@ import UIKit
 
 class VHCloseButton: UIButton {
 
-    static let closeButtonSize: CGFloat = 20.0
+    static let closeButtonSize: CGFloat = 35.0
+    static let xmarkImageSize: CGFloat = 25.0
     static let systemImageName: String = "xmark"
 
     var circleBackgroundView = UIView()
+    var xmarkImageView = UIImageView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,11 +35,10 @@ class VHCloseButton: UIButton {
 extension VHCloseButton {
     func setUpBackground() {
         circleBackgroundView = UIView(frame: .zero)
-        circleBackgroundView.backgroundColor = getLabelDarkColorIfSupported(color: .lightGray)
+        circleBackgroundView.backgroundColor = getLabelDarkColorIfSupported(color: .darkGray)
         circleBackgroundView.layer.cornerRadius = VHCloseButton.closeButtonSize/2
         circleBackgroundView.layer.masksToBounds = true
         self.addSubview(circleBackgroundView)
-        self.sendSubviewToBack(circleBackgroundView)
         circleBackgroundView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             circleBackgroundView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
@@ -48,12 +49,23 @@ extension VHCloseButton {
     }
 
     func setUpButtonImage() {
-        self.tintColor = getLabelDarkColorIfSupported(color: .black)
+        xmarkImageView = UIImageView(frame: .zero)
+        xmarkImageView.contentMode = .scaleAspectFit
+        xmarkImageView.tintColor = getLabelDarkColorIfSupported(color: .white)
         if #available(iOS 13.0, *) {
-            self.setImage(UIImage(systemName: VHCloseButton.systemImageName), for: .normal)
+            xmarkImageView.image = UIImage(systemName: VHCloseButton.systemImageName)
         } else {
-            self.setImage(UIImage(), for: .normal)
+            xmarkImageView.image = UIImage()
         }
+        self.addSubview(xmarkImageView)
+        self.bringSubviewToFront(xmarkImageView)
+        xmarkImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            xmarkImageView.centerXAnchor.constraint(equalTo: circleBackgroundView.centerXAnchor),
+            xmarkImageView.centerYAnchor.constraint(equalTo: circleBackgroundView.centerYAnchor),
+            xmarkImageView.widthAnchor.constraint(equalToConstant: VHCloseButton.xmarkImageSize),
+            xmarkImageView.heightAnchor.constraint(equalToConstant: VHCloseButton.xmarkImageSize)
+        ])
     }
 }
 
