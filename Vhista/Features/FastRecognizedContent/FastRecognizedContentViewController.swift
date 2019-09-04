@@ -108,7 +108,9 @@ extension FastRecognizedContentViewController {
 extension FastRecognizedContentViewController {
     func setUpAccessibility() {
         self.accessibilityCustomActions = [
-            UIAccessibilityCustomAction(name: NSLocalizedString("mute_fast_recognition", comment: ""), target: self, selector: #selector(muteRecognition))
+            UIAccessibilityCustomAction(name: NSLocalizedString("mute_fast_recognition", comment: ""),
+                                        target: self,
+                                        selector: #selector(muteRecognition))
         ]
     }
 }

@@ -34,12 +34,9 @@ class FeaturesCollectionViewCell: UICollectionViewCell {
         self.feature = feature
         var image = UIImage()
         if #available(iOS 13.0, *) {
-            guard let systemImage = UIImage(systemName: feature.imageName) else {
-                return
-            }
-            image = systemImage
+            image = UIImage(systemName: feature.imageName) ?? UIImage()
         } else {
-            // Fallback on earlier versions
+            image = UIImage(named: feature.imageName) ?? UIImage()
         }
         nameLabel.text = feature.featureName
         logoView.configureViewWithImage(image)

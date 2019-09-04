@@ -31,6 +31,9 @@ class RecognizedContentViewController: UIViewController {
 
     static let timeIntervalAnimateHeightChange: TimeInterval = 0.15
 
+    static let copyImageName: String = "doc.on.doc"
+    static let shareImageName: String = "square.and.arrow.up"
+
     var recognizedImageViewWidthContraint: NSLayoutConstraint!
     var recognizedImageViewHeightContraint: NSLayoutConstraint!
 
@@ -175,9 +178,9 @@ extension RecognizedContentViewController {
         // Items
         actionsToolbar.items = [UIBarButtonItem]()
 
-        var copyTextImage = UIImage()
+        var copyTextImage = UIImage(named: RecognizedContentViewController.copyImageName)
         if #available(iOS 13.0, *) {
-            copyTextImage = UIImage(systemName: "doc.on.doc") ?? copyTextImage
+            copyTextImage = UIImage(systemName: RecognizedContentViewController.copyImageName) ?? copyTextImage
         }
         let copyTextItem = UIBarButtonItem(image: copyTextImage,
                                             style: .plain,
@@ -188,9 +191,9 @@ extension RecognizedContentViewController {
 
         actionsToolbar.items?.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
 
-        var savePhotoImage = UIImage()
+        var savePhotoImage = UIImage(named: RecognizedContentViewController.shareImageName)
         if #available(iOS 13.0, *) {
-            savePhotoImage = UIImage(systemName: "square.and.arrow.up") ?? savePhotoImage
+            savePhotoImage = UIImage(systemName: RecognizedContentViewController.shareImageName) ?? savePhotoImage
         }
         let savePhotoItem = UIBarButtonItem(image: savePhotoImage,
                                             style: .plain,

@@ -55,7 +55,7 @@ extension VHCloseButton {
         if #available(iOS 13.0, *) {
             xmarkImageView.image = UIImage(systemName: VHCloseButton.systemImageName)
         } else {
-            xmarkImageView.image = UIImage()
+            xmarkImageView.image = UIImage(named: VHCloseButton.systemImageName)
         }
         self.addSubview(xmarkImageView)
         self.bringSubviewToFront(xmarkImageView)

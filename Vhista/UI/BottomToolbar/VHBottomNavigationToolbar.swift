@@ -22,7 +22,6 @@ enum VHBottomNavigationToolbarItemType {
 class VHBottomNavigationToolbar: UIToolbar {
 
     let gallerySystemImageName = "photo.on.rectangle"
-    let cameraSystemImageName = "ring.circle.fill"
     let infoSystemImageName = "info.circle.fill"
 
     static let estimatedToolbarHeight: CGFloat = 44.0
@@ -86,19 +85,19 @@ extension VHBottomNavigationToolbar {
 
 extension VHBottomNavigationToolbar {
     func getButtonItemGalleryImage() -> UIImage {
-        var image = UIImage()
+        var image = UIImage(named: gallerySystemImageName)
         if #available(iOS 13.0, *) {
             image = UIImage(systemName: gallerySystemImageName) ?? image
         }
-        return image
+        return image ?? UIImage()
     }
 
     func getButtonItemInfoImage() -> UIImage {
-        var image = UIImage()
+        var image = UIImage(named: infoSystemImageName)
         if #available(iOS 13.0, *) {
             image = UIImage(systemName: infoSystemImageName) ?? image
         }
-        return image
+        return image ?? UIImage()
     }
 }
 
