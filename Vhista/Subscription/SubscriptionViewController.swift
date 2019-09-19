@@ -41,6 +41,7 @@ class SubscriptionViewController: UIViewController {
 
     func setUpUI() {
         self.title = NSLocalizedString("Subscribe_Nav_Title", comment: "")
+        freeButton.isHidden = !SubscriptionManager.shared.canRequestFreeImages
         subscriptionDescTextView.text = NSLocalizedString("Text_Subscription_Terms", comment: "")
     }
 

@@ -13,7 +13,7 @@ func globalBlurEffect() -> UIBlurEffect {
     if #available(iOS 13.0, *) {
         return UIBlurEffect(style: .systemChromeMaterial)
     } else {
-        return UIBlurEffect(style: .dark)
+        return UIBlurEffect(style: .extraLight)
     }
 }
 
@@ -30,7 +30,9 @@ func getLabelDarkColorIfSupported(color: UIColor) -> UIColor {
         return color
     }
     switch color {
-    case .white, .black:
+    case .white:
+        return UIColor.systemBackground
+    case .black:
         return UIColor.label
     case .lightGray, .darkGray:
         return UIColor.secondarySystemBackground

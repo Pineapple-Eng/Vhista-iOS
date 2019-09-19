@@ -32,10 +32,12 @@ class FeaturesManager: NSObject {
                                         imageName: LogoView.contextualImageName)
         features.append(contextualFeature)
 
-        // Panoramic Feature
+//      Panoramic Feature - Adding in V4.0.1
+        #if DEVELOPMENT
         let panoramicFeature = Feature(featureName: FeatureNames.panoramic,
                                         imageName: LogoView.panoramicImageName)
         features.append(panoramicFeature)
+        #endif
     }
 
     func getSelectedFeature() -> Feature {

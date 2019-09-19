@@ -59,6 +59,10 @@ class ComputerVisionManager: NSObject {
                                     completion(response)
         }
     }
+
+    func stopComputerVisionRequest() {
+        afSession.cancelRequestsForSessionInvalidation(with: nil)
+    }
 }
 
 extension ComputerVisionManager {
@@ -76,6 +80,13 @@ extension ComputerVisionManager {
                                        value: (language ?? CVLanguage.English)))
         components.queryItems = queryItems
         return components.url
+    }
+
+    func getCVLanguageForCurrentGlobalLanguage() -> String {
+        if globalLanguage.contains("es-") {
+            return CVLanguage.Spanish
+        }
+        return CVLanguage.English
     }
 }
 

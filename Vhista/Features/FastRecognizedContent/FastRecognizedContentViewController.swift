@@ -29,9 +29,13 @@ class FastRecognizedContentViewController: UIViewController {
     }
 
     func updateWithText(_ text: String) {
-        recognizedObjectsLabel.accessibilityLabel = NSLocalizedString("LAST_RECOGNITION", comment: "") + text
+        self.accessibilityLabel = NSLocalizedString("LAST_RECOGNITION", comment: "") + text
         DispatchQueue.main.async {
+            #if !DEVELOPMENT
             self.recognizedObjectsLabel.text = text
+            #else
+            self.recognizedObjectsLabel.text = NSLocalizedString("donut", comment: "")
+            #endif
             self.view.layoutIfNeeded()
         }
     }
@@ -40,14 +44,14 @@ class FastRecognizedContentViewController: UIViewController {
 extension FastRecognizedContentViewController {
     func setUpUI() {
         // General View
-        self.view.backgroundColor = .clear
+            self.view.backgroundColor = .clear
         // Components
         setUpRecognizedLabel()
     }
 
     func setUpRecognizedLabel() {
         recognizedObjectsLabel = UILabel()
-        recognizedObjectsLabel.textColor = getLabelDarkColorIfSupported(color: .white)
+        recognizedObjectsLabel.textColor = getLabelDarkColorIfSupported(color: .black)
         recognizedObjectsLabel.numberOfLines = .zero
         recognizedObjectsLabel.textAlignment = .center
         recognizedObjectsLabel.lineBreakMode = .byWordWrapping
@@ -107,11 +111,16 @@ extension FastRecognizedContentViewController {
 
 extension FastRecognizedContentViewController {
     func setUpAccessibility() {
+        self.shouldGroupAccessibilityChildren = true
+        self.accessibilityLabel = "No Recognition"
+        self.isAccessibilityElement = true
+        #if DEVELOPMENT
         self.accessibilityCustomActions = [
             UIAccessibilityCustomAction(name: NSLocalizedString("mute_fast_recognition", comment: ""),
                                         target: self,
                                         selector: #selector(muteRecognition))
         ]
+        #endif
     }
 }
 

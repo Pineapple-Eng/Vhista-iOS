@@ -25,6 +25,7 @@ class VHBottomNavigationToolbar: UIToolbar {
     let infoSystemImageName = "info.circle.fill"
 
     static let estimatedToolbarHeight: CGFloat = 44.0
+    static let maxToolbarIconSize: CGSize = CGSize(width: 28, height: 28)
 
     weak var customDelegate: VHBottomNavigationToolbarDelegate?
 
@@ -53,32 +54,18 @@ extension VHBottomNavigationToolbar {
                                               style: .plain,
                                               target: self,
                                               action: #selector(didSelectBarButtonItemGallery(_:)))
+            galleryItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            galleryItem.accessibilityLabel = NSLocalizedString("choose_from_library", comment: "")
             self.items?.append(galleryItem)
         }
 
         self.items?.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
 
-        if showSubscriptionButton {
-            let subscriptionItem = UIBarButtonItem(title: nil,
-                                                   style: .plain,
-                                                   target: self,
-                                                   action: nil)
-            if isSubscribed {
-                subscriptionItem.title = NSLocalizedString("Show_Subscription_Button_Title", comment: "")
-                subscriptionItem.accessibilityHint = NSLocalizedString("Subscription_Button_Accessibility_Hint", comment: "")
-                subscriptionItem.action = #selector(didSelectBarButtonItemSubscription(_:))
-            } else {
-                subscriptionItem.title = NSLocalizedString("Upgrade_Button_Title", comment: "")
-                subscriptionItem.accessibilityHint = NSLocalizedString("Upgrade_Button_Accessibility_Hint", comment: "")
-                subscriptionItem.action = #selector(didSelectBarButtonItemUpgrade(_:))
-            }
-            self.items?.append(subscriptionItem)
-        }
-
         let infoItem = UIBarButtonItem(image: getButtonItemInfoImage(),
                                        style: .plain,
                                        target: self,
                                        action: #selector(didSelectBarButtonItemInfo(_:)))
+        infoItem.accessibilityLabel = NSLocalizedString("more_information", comment: "")
         self.items?.append(infoItem)
     }
 }

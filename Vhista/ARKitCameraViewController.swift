@@ -84,6 +84,10 @@ VHCameraButtonDelegate {
         resumeCurrentSession()
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
     func setUpUI() {
         // Features View
         featuresCollectionContentView = FeaturesCarouselContainerView(frame: .zero)
@@ -126,6 +130,8 @@ VHCameraButtonDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowRecognizedContentView" {
             fastRecognizedContentViewController = segue.destination as? FastRecognizedContentViewController
+            // We noe have a FastRecognition VC, Add it to te Accessible elements array
+            setUpAccessibility()
         }
     }
 
@@ -158,6 +164,11 @@ VHCameraButtonDelegate {
         }
     }
 
+    func stopDeepAnalysis(_ sender: Any) {
+        ComputerVisionManager.shared.stopComputerVisionRequest()
+        self.updateUIForDeepAnalysisChange(willAnalyze: false)
+    }
+
     func deepAnalysisPreChecks(completion: @escaping (_ allowed: Bool) -> Void) {
         ConfigurationManager.shared.serverAllowsRecognition({ (allowed) in
             if allowed {
@@ -174,6 +185,7 @@ VHCameraButtonDelegate {
                 if !SubscriptionManager.shared.checkDeepSubscription() {
                     self.updateUIForDeepAnalysisChange(willAnalyze: false)
                     self.performSegue(withIdentifier: "ShowUpgradeView", sender: nil)
+                    UINotificationFeedbackGenerator().notificationOccurred(.error)
                     completion(false)
                     return
                 }
@@ -190,6 +202,7 @@ VHCameraButtonDelegate {
     }
 
     func hitUpgradeAction(_ sender: Any) {
+        pauseCurrentSession()
         if !SubscriptionManager.shared.isUserSubscribedToFullAccess() {
             self.performSegue(withIdentifier: "ShowUpgradeView", sender: nil)
         } else {
@@ -312,6 +325,8 @@ extension ARKitCameraViewController {
     func didChangeCameraButtonSelection(_ button: VHCameraButton, _ selected: Bool) {
         if selected && !processingImage {
             makeDeepAnalysis(button)
+        } else {
+            stopDeepAnalysis(button)
         }
     }
 }
@@ -358,6 +373,7 @@ extension ARKitCameraViewController {
 extension ARKitCameraViewController {
     func showInfoVC(_ sender: Any) {
         let infoVC = InfoViewController()
+        infoVC.delegate = self
         pauseCurrentSession()
         self.present(infoVC, animated: true, completion: nil)
     }

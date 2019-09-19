@@ -14,6 +14,8 @@ class SubscriptionManager: NSObject {
 
     var parent: SubscriptionViewController!
 
+    var canRequestFreeImages: Bool = false
+
     // MARK: - Initialization Method
     override init() {
         super.init()
@@ -21,6 +23,7 @@ class SubscriptionManager: NSObject {
 
     static let shared: SubscriptionManager = {
         let instance = SubscriptionManager()
+        instance.canRequestFreeImages = UIAccessibility.isVoiceOverRunning
         return instance
     }()
 
@@ -30,18 +33,13 @@ class SubscriptionManager: NSObject {
         #else
         let defaults = UserDefaults.standard
         let numberOfPictures = defaults.integer(forKey: "PicturesTaken")
-        let totalPictures = defaults.integer(forKey: "TotalPicturesTaken")
         if numberOfPictures < 5 {
-            defaults.set(numberOfPictures + 1, forKey: "PicturesTaken")
-            defaults.set(totalPictures + 1, forKey: "TotalPicturesTaken")
             recordAnalytics(analyticsEventName: AnalyticsConstants.PictureFree, parameters: [
                 "language": globalLanguage
             ])
-            print("🔢 Number of pictures taken: " + String(numberOfPictures + 1))
             return true
         } else {
             if isUserSubscribedToFullAccess() {
-                defaults.set(totalPictures + 1, forKey: "TotalPicturesTaken")
                 recordAnalytics(analyticsEventName: AnalyticsConstants.PictureSubscribed, parameters: [
                     "language": globalLanguage
                 ])
@@ -54,6 +52,17 @@ class SubscriptionManager: NSObject {
             }
         }
         #endif
+    }
+
+    func incrementNumberOfPictures() {
+        let defaults = UserDefaults.standard
+        let numberOfPictures = defaults.integer(forKey: "PicturesTaken")
+        let totalPictures = defaults.integer(forKey: "TotalPicturesTaken")
+        if numberOfPictures < 5 {
+            defaults.set(numberOfPictures + 1, forKey: "PicturesTaken")
+            defaults.set(totalPictures + 1, forKey: "TotalPicturesTaken")
+        }
+        print("🔢 Number of pictures taken: " + String(numberOfPictures + 1))
     }
 
     func completeTransactions() {

@@ -19,3 +19,14 @@ extension UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
 }
+
+func getTopMostViewController() -> UIViewController? {
+    if var topController = UIApplication.shared.keyWindow?.rootViewController {
+        while let presentedViewController = topController.presentedViewController {
+            topController = presentedViewController
+        }
+        return topController
+    }
+    return nil
+}
+

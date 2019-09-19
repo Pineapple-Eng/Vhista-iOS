@@ -6,7 +6,9 @@ extension ARKitCameraViewController {
         // Create a session configuration
         if #available(iOS 11.3, *) {
             print("Activating vertical plane detection")
+            #if !DEVELOPMENT
             arConfiguration.planeDetection = .vertical
+            #endif
         } else {
             // Fallback on earlier versions
         }

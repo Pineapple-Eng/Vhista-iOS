@@ -38,7 +38,7 @@ extension InfoFooterView {
         self.addSubview(colombiaLabel)
         colombiaLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            colombiaLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            colombiaLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             colombiaLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         ])
     }

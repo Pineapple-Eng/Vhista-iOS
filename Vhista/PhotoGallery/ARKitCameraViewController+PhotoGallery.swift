@@ -15,15 +15,22 @@ extension ARKitCameraViewController: UIImagePickerControllerDelegate, UINavigati
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         pickerController.allowsEditing = false
+        pickerController.navigationBar.tintColor = getLabelDarkColorIfSupported(color: .black)
+        pickerController.navigationController?.navigationBar.tintColor = getLabelDarkColorIfSupported(color: .black)
         pickerController.mediaTypes = ["public.image"]
         pickerController.sourceType = .photoLibrary
         pickerController.imageExportPreset = .compatible
         pickerController.popoverPresentationController?.barButtonItem = sender
-        self.present(pickerController, animated: true, completion: nil)
+        pauseCurrentSession()
+        DispatchQueue.main.async {
+            self.present(pickerController, animated: true, completion: nil)
+        }
     }
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.pickerController(picker, didSelect: nil)
+        picker.dismiss(animated: true, completion: nil)
+        resumeCurrentSession()
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {

@@ -48,7 +48,7 @@ class SubscriptionInfoViewController: UIViewController {
 
     @IBAction func dismissView(_ sender: Any) {
         VhistaSpeechManager.shared.blockAllSpeech = false
-        self.dismiss(animated: false, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

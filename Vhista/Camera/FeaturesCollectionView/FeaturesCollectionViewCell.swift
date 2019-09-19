@@ -38,7 +38,11 @@ class FeaturesCollectionViewCell: UICollectionViewCell {
         } else {
             image = UIImage(named: feature.imageName) ?? UIImage()
         }
-        nameLabel.text = feature.featureName
+        if FeaturesManager.shared.getSelectedFeature().featureName == feature.featureName {
+            nameLabel.text = feature.featureName
+        } else {
+            nameLabel.text = nil
+        }
         logoView.configureViewWithImage(image)
         self.isAccessibilityElement = true
         self.accessibilityLabel = feature.featureName
@@ -65,7 +69,7 @@ extension FeaturesCollectionViewCell {
 
     func setUpNameLabel() {
         nameLabel = UILabel()
-        nameLabel.textColor = getLabelDarkColorIfSupported(color: .white)
+        nameLabel.textColor = .white
         nameLabel.numberOfLines = .zero
         nameLabel.textAlignment = .center
         nameLabel.lineBreakMode = .byWordWrapping

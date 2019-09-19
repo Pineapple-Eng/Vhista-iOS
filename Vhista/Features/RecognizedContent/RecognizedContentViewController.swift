@@ -21,6 +21,8 @@ class RecognizedContentViewController: UIViewController {
     var recognizedObjectsTextView: UITextView!
     var actionsToolbar: UIToolbar!
 
+    static let maxToolbarIconSize: CGSize = CGSize(width: 28, height: 28)
+
     static let recognizedCloseButtonHorizontalSpacing: CGFloat = 8.0
     static let recognizedCloseButtonVerticalSpacing: CGFloat = 8.0
     static let recognizedTextViewHorizontalSpacing: CGFloat = 8.0
@@ -41,6 +43,10 @@ class RecognizedContentViewController: UIViewController {
         super.viewDidLoad()
         setUpAccessibility()
         setUpUI()
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .default
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -86,7 +92,11 @@ extension RecognizedContentViewController {
 
 extension RecognizedContentViewController {
     func setUpUI() {
-        setUpBackground()
+        if #available(iOS 13.0, *) {
+            setUpBackground()
+        } else {
+            self.view.backgroundColor = UIColor.white
+        }
         setUpCloseButton()
         setUpToolbar()
         setUpImageView()
@@ -145,7 +155,7 @@ extension RecognizedContentViewController {
     }
     func setUpTextView() {
         recognizedObjectsTextView = UITextView(frame: .zero)
-        recognizedObjectsTextView.textColor = getLabelDarkColorIfSupported(color: .white)
+        recognizedObjectsTextView.textColor = getLabelDarkColorIfSupported(color: .black)
         recognizedObjectsTextView.isEditable = false
         recognizedObjectsTextView.isSelectable = false
         recognizedObjectsTextView.backgroundColor = .clear
@@ -166,7 +176,7 @@ extension RecognizedContentViewController {
 
     func setUpToolbar() {
         actionsToolbar = UIToolbar()
-        actionsToolbar.tintColor = getLabelDarkColorIfSupported(color: .white)
+        actionsToolbar.tintColor = getLabelDarkColorIfSupported(color: .black)
         actionsToolbar.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(actionsToolbar)
         NSLayoutConstraint.activate([

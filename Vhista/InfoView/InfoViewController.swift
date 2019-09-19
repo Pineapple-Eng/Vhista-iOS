@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol InfoViewControllerDelegate: class {
+    func willDismissInfoViewControllerr(_ controller: InfoViewController)
+}
+
 class InfoViewController: UIViewController {
 
     static let closeButtonHorizontalSpacing: CGFloat = 8.0
@@ -16,12 +20,18 @@ class InfoViewController: UIViewController {
     static let headerViewVerticalSpacing: CGFloat = 8.0
     static let headerViewHorizontalSpacing: CGFloat = 8.0
 
+    static let bodyViewVerticalSpacing: CGFloat = 8.0
+    static let bodyViewHorizontalSpacing: CGFloat = 8.0
+
     static let footerViewVerticalSpacing: CGFloat = 8.0
     static let footerViewHorizontalSpacing: CGFloat = 8.0
 
     var closeButton: VHCloseButton!
     var infoHeaderView: InfoHeaderView!
+    var infoBodyView: InfoBodyView!
     var infoFooterView: InfoFooterView!
+
+    weak var delegate: InfoViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +39,18 @@ class InfoViewController: UIViewController {
         setUpCloseButton()
         setUpHeaderView()
         setUpFooterView()
+        setUpBodyView()
+        setUpAccessibility()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        infoBodyView.reloadSubscriptionStates()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        delegate?.willDismissInfoViewControllerr(self)
     }
 }
 
@@ -80,13 +102,29 @@ extension InfoViewController {
         ])
     }
 
+    func setUpBodyView() {
+        infoBodyView = InfoBodyView(frame: .zero)
+        self.view.addSubview(infoBodyView)
+        infoBodyView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            infoBodyView.topAnchor.constraint(equalTo: infoHeaderView.bottomAnchor,
+                                                constant: InfoViewController.bodyViewVerticalSpacing),
+            infoBodyView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor,
+                                                 constant: InfoViewController.bodyViewHorizontalSpacing),
+            infoBodyView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor,
+                                                  constant: -InfoViewController.bodyViewHorizontalSpacing),
+            infoBodyView.bottomAnchor.constraint(equalTo: infoFooterView.topAnchor,
+                                                 constant: -InfoViewController.bodyViewVerticalSpacing)
+        ])
+    }
+
     func setUpFooterView() {
         infoFooterView = InfoFooterView(frame: .zero)
         self.view.addSubview(infoFooterView)
         infoFooterView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             infoFooterView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor,
-                                                   constant: InfoViewController.footerViewVerticalSpacing),
+                                                   constant: -InfoViewController.footerViewVerticalSpacing),
             infoFooterView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor,
                                                  constant: InfoViewController.footerViewHorizontalSpacing),
             infoFooterView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor,
@@ -99,5 +137,11 @@ extension InfoViewController {
 extension InfoViewController {
     @objc func dismissView() {
         self.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension InfoViewController {
+    func setUpAccessibility() {
+        self.accessibilityViewIsModal = true
     }
 }

@@ -100,6 +100,14 @@
 
 "build" = "Paquete";
 
+"take_picture" = "Tomar foto";
+
+"choose_from_library" = "Seleccionar de la Librería de Fotos";
+
+"more_information" = "Más Información";
+
+"cancel_recognition" = "Cancelar Reconocimiento";
+
 // Error Handling
 
 "Deep_Analysis_Deactivated_Title" = "Servicio no disponible";
@@ -209,4 +217,6 @@
 
 "POINT" = "punto";
 
+// DEV
 
+"donut" = "dona";

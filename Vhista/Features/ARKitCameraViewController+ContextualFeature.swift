@@ -9,13 +9,13 @@
 import Foundation
 import Alamofire
 
-extension ARKitCameraViewController: RecognizedContentViewControllerDelegate {
+extension ARKitCameraViewController: RecognizedContentViewControllerDelegate, InfoViewControllerDelegate {
 
     func startContextualRecognition() {
         ComputerVisionManager.shared.makeComputerVisionRequest(image: selectedImage.getUIImage(),
                                                                features: [ComputerVisionManager.CVFeatures.Description],
                                                                details: nil,
-                                                               language: ComputerVisionManager.CVLanguage.English) { (response) in
+                                                               language: ComputerVisionManager.shared.getCVLanguageForCurrentGlobalLanguage()) { (response) in
                                                                 self.finishedContextualRecognition(response)
         }
     }
@@ -29,13 +29,19 @@ extension ARKitCameraViewController: RecognizedContentViewControllerDelegate {
         recognizedVC.delegate = self
         self.present(recognizedVC, animated: true, completion: {
             recognizedVC.updateWithText(firstCaption, image: self.selectedImage.getUIImage())
+            SubscriptionManager.shared.incrementNumberOfPictures()
             self.updateUIForDeepAnalysisChange(willAnalyze: false)
         })
     }
 
     // MARK: RecognizedContentViewControllerDelegate
     func willDismissRecognizedContentViewController(_ controller: RecognizedContentViewController) {
+        resumeCurrentSession()
+    }
 
+    // MARK: InfoViewControllerDelegate
+    func willDismissInfoViewControllerr(_ controller: InfoViewController) {
+        resumeCurrentSession()
     }
 
 }

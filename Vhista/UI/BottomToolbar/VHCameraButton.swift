@@ -23,11 +23,13 @@ class VHCameraButton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setUp()
+        self.setUpAccessibility()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.setUp()
+        self.setUpAccessibility()
     }
 
     func setUp() {
@@ -78,6 +80,7 @@ class VHCameraButton: UIButton {
         resetColor()
         //change the state of the control to update the shape
         self.isSelected = !self.isSelected
+        self.setUpAccessibility()
     }
 
     @objc func touchUpOutside(sender: UIButton) {
@@ -115,8 +118,9 @@ class VHCameraButton: UIButton {
 
     func reset() {
         resetColor()
-        //change the state of the control to update the shape
-        self.isSelected = !self.isSelected
+        if self.isSelected {
+            self.isSelected = false
+        }
     }
 
     func resetColor() {
@@ -153,5 +157,15 @@ class VHCameraButton: UIButton {
 
     func innerSquarePath () -> UIBezierPath {
         return UIBezierPath(roundedRect: CGRect(x: 18, y: 18, width: 30, height: 30), cornerRadius: 4)
+    }
+}
+
+extension VHCameraButton {
+    func setUpAccessibility() {
+        if self.isSelected {
+            self.accessibilityLabel = NSLocalizedString("cancel_recognition", comment: "")
+        } else {
+            self.accessibilityLabel = NSLocalizedString("take_picture", comment: "")
+        }
     }
 }

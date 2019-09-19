@@ -11,7 +11,8 @@ import UIKit
 class VHCloseButton: UIButton {
 
     static let closeButtonSize: CGFloat = 35.0
-    static let xmarkImageSize: CGFloat = 25.0
+    static let xmarkSystemImageSize: CGFloat = 25.0
+    static let xmarkImageSize: CGFloat = 16.0
     static let systemImageName: String = "xmark"
 
     var circleBackgroundView = UIView()
@@ -35,9 +36,14 @@ class VHCloseButton: UIButton {
 extension VHCloseButton {
     func setUpBackground() {
         circleBackgroundView = UIView(frame: .zero)
-        circleBackgroundView.backgroundColor = getLabelDarkColorIfSupported(color: .darkGray)
+        var color: UIColor = UIColor(white: 0.0, alpha: 0.1)
+        if #available(iOS 13.0, *) {
+            color = .lightGray
+        }
+        circleBackgroundView.backgroundColor = getLabelDarkColorIfSupported(color: color)
         circleBackgroundView.layer.cornerRadius = VHCloseButton.closeButtonSize/2
         circleBackgroundView.layer.masksToBounds = true
+        circleBackgroundView.isUserInteractionEnabled = false
         self.addSubview(circleBackgroundView)
         circleBackgroundView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -49,11 +55,17 @@ extension VHCloseButton {
     }
 
     func setUpButtonImage() {
-        xmarkImageView = UIImageView(frame: .zero)
+        xmarkImageView = UIImageView(frame: CGRect(x: 0,
+                                                   y: 0,
+                                                   width: VHCloseButton.xmarkImageSize,
+                                                   height: VHCloseButton.xmarkImageSize))
+        xmarkImageView.isUserInteractionEnabled = false
         xmarkImageView.contentMode = .scaleAspectFit
-        xmarkImageView.tintColor = getLabelDarkColorIfSupported(color: .white)
+        xmarkImageView.tintColor = getLabelDarkColorIfSupported(color: .black)
+        var imageViewSize: CGFloat = VHCloseButton.xmarkImageSize
         if #available(iOS 13.0, *) {
             xmarkImageView.image = UIImage(systemName: VHCloseButton.systemImageName)
+            imageViewSize = VHCloseButton.xmarkSystemImageSize
         } else {
             xmarkImageView.image = UIImage(named: VHCloseButton.systemImageName)
         }
@@ -63,8 +75,8 @@ extension VHCloseButton {
         NSLayoutConstraint.activate([
             xmarkImageView.centerXAnchor.constraint(equalTo: circleBackgroundView.centerXAnchor),
             xmarkImageView.centerYAnchor.constraint(equalTo: circleBackgroundView.centerYAnchor),
-            xmarkImageView.widthAnchor.constraint(equalToConstant: VHCloseButton.xmarkImageSize),
-            xmarkImageView.heightAnchor.constraint(equalToConstant: VHCloseButton.xmarkImageSize)
+            xmarkImageView.widthAnchor.constraint(equalToConstant: imageViewSize),
+            xmarkImageView.heightAnchor.constraint(equalToConstant: imageViewSize)
         ])
     }
 }
