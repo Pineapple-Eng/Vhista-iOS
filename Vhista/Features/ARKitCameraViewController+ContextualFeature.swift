@@ -22,13 +22,29 @@ extension ARKitCameraViewController: RecognizedContentViewControllerDelegate, In
 
     func finishedContextualRecognition(_ response: DataResponse<CVResponse>) {
         let recognizedVC = RecognizedContentViewController()
-        guard let firstCaption = response.value?.description?.captions?.first?.text else {
-            self.updateUIForDeepAnalysisChange(willAnalyze: false)
+
+        let description = response.value?.description
+        let caption = description?.captions?.first
+        let captionConfidence = caption?.confidence
+        let captionText = caption?.text
+
+        let tags = description?.tags
+
+        if caption == nil && captionText == nil && tags == nil && tags?.count == 0 {
+            let alertEmpty = UIAlertController(title: NSLocalizedString("No_Objects_Found", comment: ""),
+                                               message: nil,
+                                               preferredStyle: .alert)
+            let actionCancel = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""),
+                                             style: .cancel) { (action) in
+                self.updateUIForDeepAnalysisChange(willAnalyze: false)
+            }
+            alertEmpty.addAction(actionCancel)
+            self.present(alertEmpty, animated: true, completion: nil)
             return
         }
         recognizedVC.delegate = self
         self.present(recognizedVC, animated: true, completion: {
-            recognizedVC.updateWithText(firstCaption, image: self.selectedImage.getUIImage())
+            recognizedVC.updateWithText(captionText ?? "", tags: tags ?? [String](), image: self.selectedImage.getUIImage(), confidence: captionConfidence)
             SubscriptionManager.shared.incrementNumberOfPictures()
             VhistaSoundManager.shared.pauseLoadingSound()
             self.shutterButtonView.stopLoadingRippleView(parentView: self.view)

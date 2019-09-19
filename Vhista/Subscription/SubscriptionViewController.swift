@@ -34,6 +34,13 @@ class SubscriptionViewController: UIViewController {
         getSubscriptionInfo()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if self.presentingViewController is ARKitCameraViewController {
+            (self.presentingViewController as? ARKitCameraViewController)?.resumeCurrentSession()
+        }
+    }
+
     override func viewDidLayoutSubviews() {
         //TextView Scrolling Fix
         subscriptionDescTextView.setContentOffset(CGPoint.zero, animated: false)

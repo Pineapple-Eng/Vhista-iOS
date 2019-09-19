@@ -19,6 +19,7 @@ class RecognizedContentViewController: UIViewController {
     var closeButton: VHCloseButton!
     var recognizedImageView: UIImageView!
     var recognizedObjectsTextView: UITextView!
+    var recognizedTagsLabel: UILabel!
     var actionsToolbar: UIToolbar!
 
     static let maxToolbarIconSize: CGSize = CGSize(width: 28, height: 28)
@@ -38,11 +39,12 @@ class RecognizedContentViewController: UIViewController {
 
     var recognizedImageViewWidthContraint: NSLayoutConstraint!
     var recognizedImageViewHeightContraint: NSLayoutConstraint!
+    var recognizedTextViewHeightContraint: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpAccessibility()
         setUpUI()
+        setUpAccessibility()
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -54,10 +56,16 @@ class RecognizedContentViewController: UIViewController {
         delegate?.willDismissRecognizedContentViewController(self)
     }
 
-    func updateWithText(_ text: String, image: UIImage? = nil) {
-        recognizedObjectsTextView.accessibilityLabel = NSLocalizedString("LAST_RECOGNITION", comment: "") + text
+    func updateWithText(_ text: String, tags: [String], image: UIImage? = nil, confidence: Double?) {
+        recognizedObjectsTextView.textContainer.accessibilityLabel = NSLocalizedString("LAST_RECOGNITION", comment: "") + text
+        if confidence != nil {
+            let currentLabel = (recognizedObjectsTextView.textContainer.accessibilityLabel ?? "") + ". "
+            recognizedObjectsTextView.textContainer.accessibilityLabel = currentLabel + NSLocalizedString("confidence", comment: "") + String(Int(confidence!)) + "%"
+        }
         DispatchQueue.main.async {
             self.recognizedObjectsTextView.text = text
+            self.recognizedTagsLabel.text = tags.joined(separator: ", ")
+            self.setUpFontsAndSizes(onlyShowTags: (text == "" && tags.count > 0))
             if let takenImage = image {
                 self.recognizedImageView.image = takenImage
                 self.recognizedImageViewHeightContraint.constant = RecognizedContentViewController.recognizedImageViewMaxHeight
@@ -85,6 +93,7 @@ extension RecognizedContentViewController {
             closeButton as Any,
             recognizedImageView as Any,
             recognizedObjectsTextView as Any,
+            recognizedTagsLabel as Any,
             actionsToolbar as Any
         ]
     }
@@ -101,6 +110,7 @@ extension RecognizedContentViewController {
         setUpToolbar()
         setUpImageView()
         setUpTextView()
+        setUpTagsLabel()
     }
 
     func setUpBackground() {
@@ -153,6 +163,7 @@ extension RecognizedContentViewController {
             recognizedImageViewHeightContraint
         ])
     }
+
     func setUpTextView() {
         recognizedObjectsTextView = UITextView(frame: .zero)
         recognizedObjectsTextView.textColor = getLabelDarkColorIfSupported(color: .black)
@@ -163,6 +174,7 @@ extension RecognizedContentViewController {
         recognizedObjectsTextView.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         recognizedObjectsTextView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(recognizedObjectsTextView)
+        recognizedTextViewHeightContraint = recognizedObjectsTextView.heightAnchor.constraint(equalToConstant: 0.0)
         NSLayoutConstraint.activate([
             recognizedObjectsTextView.topAnchor.constraint(equalTo: recognizedImageView.safeAreaLayoutGuide.bottomAnchor,
                                                            constant: RecognizedContentViewController.recognizedTextViewVerticalSpacing),
@@ -170,8 +182,41 @@ extension RecognizedContentViewController {
                                                             constant: RecognizedContentViewController.recognizedTextViewHorizontalSpacing),
             recognizedObjectsTextView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor,
                                                              constant: -RecognizedContentViewController.recognizedTextViewHorizontalSpacing),
-            recognizedObjectsTextView.bottomAnchor.constraint(equalTo: actionsToolbar.topAnchor)
+            recognizedTextViewHeightContraint
         ])
+    }
+
+    func setUpTagsLabel() {
+        recognizedTagsLabel = UILabel(frame: .zero)
+        recognizedTagsLabel.textColor = getLabelDarkColorIfSupported(color: .darkGray)
+        recognizedTagsLabel.numberOfLines = 0
+        recognizedTagsLabel.backgroundColor = .clear
+        recognizedTagsLabel.textAlignment = .center
+        recognizedTagsLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        recognizedTagsLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(recognizedTagsLabel)
+        NSLayoutConstraint.activate([
+            recognizedTagsLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor,
+                                                         constant: RecognizedContentViewController.recognizedTextViewHorizontalSpacing),
+            recognizedTagsLabel.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor,
+                                                          constant: -RecognizedContentViewController.recognizedTextViewHorizontalSpacing),
+            recognizedTagsLabel.topAnchor.constraint(equalTo: recognizedObjectsTextView.bottomAnchor,
+                                                     constant: RecognizedContentViewController.recognizedTextViewVerticalSpacing)
+        ])
+    }
+
+    func setUpFontsAndSizes(onlyShowTags: Bool) {
+        let fixedWidth = self.recognizedObjectsTextView.frame.size.width
+        let newSize = self.recognizedObjectsTextView.sizeThatFits(CGSize(width: fixedWidth,
+                                                                         height: CGFloat.greatestFiniteMagnitude))
+        recognizedTextViewHeightContraint.constant = newSize.height
+        if onlyShowTags {
+            recognizedTagsLabel.textColor = getLabelDarkColorIfSupported(color: .black)
+            recognizedTagsLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        } else {
+            recognizedTagsLabel.textColor = getLabelDarkColorIfSupported(color: .darkGray)
+            recognizedTagsLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        }
     }
 
     func setUpToolbar() {

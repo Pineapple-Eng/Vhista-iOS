@@ -219,7 +219,7 @@
 
 // Recognition
 
-"confidence" = "Confidencia: ";
+"confidence" = "Confianza: ";
 
 "no_fast_recognition" = "Sin Reconocimiento Reciente";
 

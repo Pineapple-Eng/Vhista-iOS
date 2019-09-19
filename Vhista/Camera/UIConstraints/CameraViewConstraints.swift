@@ -81,10 +81,10 @@ extension ARKitCameraViewController {
         cameraView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             cameraView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            cameraView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            cameraView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             cameraView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             cameraView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor)
-            ])
+        ])
     }
 }
 

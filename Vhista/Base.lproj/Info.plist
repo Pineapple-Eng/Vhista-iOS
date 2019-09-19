@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>We need permission to save images taken with Vhista</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We need access to your photos to identify objects and people in them </string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -26,6 +22,10 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>We need your camera to identify objects and people in front of you</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>We need permission to save images taken with Vhista</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need access to your photos to identify objects and people in them </string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

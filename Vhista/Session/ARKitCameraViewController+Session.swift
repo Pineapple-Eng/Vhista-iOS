@@ -16,6 +16,8 @@ extension ARKitCameraViewController {
         // Pause the view's session
         if arEnabled {
             sceneView.session.pause()
+        } else {
+            VhistaSpeechManager.shared.blockAllSpeech = true
         }
     }
 

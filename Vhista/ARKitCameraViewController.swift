@@ -147,10 +147,12 @@ VHCameraButtonDelegate {
             return
         }
 
-        guard self.persistentPixelBuffer != nil else {
-            print("No Buffer \(String(describing: self.persistentPixelBuffer))")
-            self.updateUIForDeepAnalysisChange(willAnalyze: false)
-            return
+        if arEnabled {
+            guard self.persistentPixelBuffer != nil else {
+                print("No Buffer \(String(describing: self.persistentPixelBuffer))")
+                self.updateUIForDeepAnalysisChange(willAnalyze: false)
+                return
+            }
         }
 
         self.deepAnalysisPreChecks { (allowed) in
@@ -186,6 +188,7 @@ VHCameraButtonDelegate {
                     self.updateUIForDeepAnalysisChange(willAnalyze: false)
                     self.performSegue(withIdentifier: "ShowUpgradeView", sender: nil)
                     UINotificationFeedbackGenerator().notificationOccurred(.error)
+                    self.pauseCurrentSession()
                     completion(false)
                     return
                 }
