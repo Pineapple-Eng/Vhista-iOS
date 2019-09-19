@@ -98,7 +98,7 @@ class SubscriptionViewController: UIViewController {
                                                             parameters: [
                                                                 "totalPictures": "\(totalPictures)"
                                             ])
-                                            self.didEndPurchaseProcess()
+                                            self.didEndPurchaseProcess(shouldDismiss: true)
         }
         alertController.addAction(actionClose)
         self.present(alertController, animated: true, completion: nil)
@@ -123,7 +123,7 @@ class SubscriptionViewController: UIViewController {
         deactivateBuyButtons()
         recordAnalytics(analyticsEventName: AnalyticsConstants.CancelButtonSubscription,
                         parameters: nil)
-        self.didEndPurchaseProcess()
+        self.didEndPurchaseProcess(shouldDismiss: true)
     }
 
     func activateBuyButtons() {
@@ -142,9 +142,11 @@ class SubscriptionViewController: UIViewController {
         restoreButton.isAccessibilityElement = false
     }
 
-    func didEndPurchaseProcess() {
+    func didEndPurchaseProcess(shouldDismiss: Bool) {
         activateBuyButtons()
-        self.dismiss(animated: true, completion: nil)
+        if shouldDismiss {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 
     override func didReceiveMemoryWarning() {

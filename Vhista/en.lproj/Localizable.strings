@@ -217,6 +217,12 @@
 
 "POINT" = "point";
 
+// Recognition
+
+"confidence" = "Confidence: ";
+
+"no_fast_recognition" = "No Recent Recognition";
+
 // DEV
 
 "donut" = "donut";

@@ -57,7 +57,7 @@ extension ARKitCameraViewController {
         }
     }
 
-    func addStringToRead(_ stringRecognized: String, _ distanceString: String = "", isProtected: Bool) {
+    func addStringToRead(_ stringRecognized: String, _ distanceString: String = "", isProtected: Bool, confidence: Double) {
         if !ClassificationsManager.shared.allowStringRecognized(stringRecognized: stringRecognized) { return }
         let stringRecognizedTranslated = translateModelString(pString: stringRecognized, targetLanguage: globalLanguage)
 
@@ -69,7 +69,7 @@ extension ARKitCameraViewController {
         guard let text = ClassificationsManager.shared.recognitionsAsText.first else {
             return
         }
-        updateRecognizedContentView(text: text)
+        updateRecognizedContentView(text: text, confidence: confidence)
 
         VhistaSpeechManager.shared.sayText(stringToSpeak: text + distanceString,
                                            isProtected: isProtected,
@@ -85,7 +85,7 @@ extension ARKitCameraViewController {
         guard let text = ClassificationsManager.shared.recognitionsAsText.first else {
             return
         }
-        updateRecognizedContentView(text: text)
+        updateRecognizedContentView(text: text, confidence: nil)
 
         VhistaSpeechManager.shared.sayText(stringToSpeak: stringRecognized, isProtected: isProtected, rate: Float(globalRate))
 
@@ -119,7 +119,7 @@ extension ARKitCameraViewController: ARSessionDelegate {
         //                print("\(error)")
         //            }
         //        }
-        guard currentBuffer == nil, case .normal = frame.camera.trackingState else {
+        guard currentBuffer == nil else {
             return
         }
 

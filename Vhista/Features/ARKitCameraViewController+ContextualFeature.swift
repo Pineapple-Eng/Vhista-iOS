@@ -30,18 +30,19 @@ extension ARKitCameraViewController: RecognizedContentViewControllerDelegate, In
         self.present(recognizedVC, animated: true, completion: {
             recognizedVC.updateWithText(firstCaption, image: self.selectedImage.getUIImage())
             SubscriptionManager.shared.incrementNumberOfPictures()
-            self.updateUIForDeepAnalysisChange(willAnalyze: false)
+            VhistaSoundManager.shared.pauseLoadingSound()
+            self.shutterButtonView.stopLoadingRippleView(parentView: self.view)
         })
     }
 
     // MARK: RecognizedContentViewControllerDelegate
     func willDismissRecognizedContentViewController(_ controller: RecognizedContentViewController) {
-        resumeCurrentSession()
+        self.updateUIForDeepAnalysisChange(willAnalyze: false)
     }
 
     // MARK: InfoViewControllerDelegate
     func willDismissInfoViewControllerr(_ controller: InfoViewController) {
-        resumeCurrentSession()
+        self.updateUIForDeepAnalysisChange(willAnalyze: false)
     }
 
 }

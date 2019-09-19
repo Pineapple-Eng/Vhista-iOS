@@ -28,8 +28,11 @@ class FastRecognizedContentViewController: UIViewController {
         setUpAccessibility()
     }
 
-    func updateWithText(_ text: String) {
+    func updateWithText(_ text: String, confidence: Double?) {
         self.accessibilityLabel = NSLocalizedString("LAST_RECOGNITION", comment: "") + text
+        if confidence != nil {
+            self.accessibilityLabel = (self.accessibilityLabel ?? "") + NSLocalizedString("confidence", comment: "") + String(Int(confidence!)) + "%"
+        }
         DispatchQueue.main.async {
             #if !DEVELOPMENT
             self.recognizedObjectsLabel.text = text
@@ -112,7 +115,7 @@ extension FastRecognizedContentViewController {
 extension FastRecognizedContentViewController {
     func setUpAccessibility() {
         self.shouldGroupAccessibilityChildren = true
-        self.accessibilityLabel = "No Recognition"
+        self.accessibilityLabel = NSLocalizedString("no_fast_recognition", comment: "")
         self.isAccessibilityElement = true
         #if DEVELOPMENT
         self.accessibilityCustomActions = [
@@ -132,12 +135,12 @@ extension FastRecognizedContentViewController {
 
 // MARK: - Update Recognized Content View
 extension ARKitCameraViewController {
-    func updateRecognizedContentView(text: String) {
-        fastRecognizedContentViewController?.updateWithText(text)
+    func updateRecognizedContentView(text: String, confidence: Double?) {
+        fastRecognizedContentViewController?.updateWithText(text, confidence: confidence)
         DispatchQueue.main.async {
             let height = FastRecognizedContentViewController.calculateHeightForText(text: text,
-                                                                                width: self.fastRecognizedContentView.frame.width,
-                                                                                safeAreaHeight: self.view.safeAreaInsets.bottom)
+                                                                                    width: self.fastRecognizedContentView.frame.width,
+                                                                                    safeAreaHeight: self.view.safeAreaInsets.bottom)
             self.fastRecognizedContentViewHeightContraint.constant = height
             UIView.animate(withDuration: FastRecognizedContentViewController.timeIntervalAnimateHeightChange,
                            animations: { self.view.layoutIfNeeded() },

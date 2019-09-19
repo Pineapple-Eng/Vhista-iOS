@@ -286,12 +286,14 @@ VHCameraButtonDelegate {
         if arEnabled {
             let hitTestResults = sceneView.hitTest(sceneView.center, types: .featurePoint)
             guard let hitTestResult = hitTestResults.first else {
-                addStringToRead(result, "", isProtected: false)
+                addStringToRead(result, "", isProtected: false, confidence: Double(confidence * 100))
                 return
             }
-            addStringToRead(result, getLocalizedStringForDistance(hitTestResult.distance), isProtected: false)
+            addStringToRead(result, getLocalizedStringForDistance(hitTestResult.distance),
+                            isProtected: false,
+                            confidence: Double(confidence * 100))
         } else {
-            addStringToRead(result, "", isProtected: false)
+            addStringToRead(result, "", isProtected: false, confidence: Double(confidence * 100))
         }
     }
 }

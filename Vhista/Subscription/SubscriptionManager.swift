@@ -77,7 +77,7 @@ class SubscriptionManager: NSObject {
                     }
                     print("Purchased: \(purchase)")
                     if self.parent != nil {
-                        self.parent.didEndPurchaseProcess()
+                        self.parent.didEndPurchaseProcess(shouldDismiss: true)
                     }
                 }
             }
@@ -98,11 +98,11 @@ class SubscriptionManager: NSObject {
                 completition(product)
             } else if let invalidProductId = result.invalidProductIDs.first {
                 print("Invalid product identifier: \(invalidProductId)")
-                self.parent.didEndPurchaseProcess()
+                self.parent.didEndPurchaseProcess(shouldDismiss: false)
                 completition(nil)
             } else {
                 print("Error: \(String(describing: result.error))")
-                self.parent.didEndPurchaseProcess()
+                self.parent.didEndPurchaseProcess(shouldDismiss: false)
                 completition(nil)
             }
         }
@@ -113,7 +113,7 @@ class SubscriptionManager: NSObject {
             if product != nil {
                 self.purchaseProduct(product: product!, productId: productId)
             } else {
-                self.parent.didEndPurchaseProcess()
+                self.parent.didEndPurchaseProcess(shouldDismiss: false)
             }
         }
     }
@@ -130,7 +130,7 @@ class SubscriptionManager: NSObject {
                 }
             } else {
                 // purchase error
-                self.parent.didEndPurchaseProcess()
+                self.parent.didEndPurchaseProcess(shouldDismiss: false)
             }
         }
     }
@@ -151,7 +151,7 @@ class SubscriptionManager: NSObject {
                     print("Product is valid until \(expiryDate) with receipt items: \(receiptItems)")
                     defaults.set(true, forKey: "IsSubscribed")
                     if self.parent != nil {
-                       self.parent.didEndPurchaseProcess()
+                       self.parent.didEndPurchaseProcess(shouldDismiss: true)
                         VhistaSpeechManager.shared.blockAllSpeech = false
                     }
                     completition(true)
@@ -194,7 +194,7 @@ class SubscriptionManager: NSObject {
                     print("Product is valid until \(expiryDate) with receipt items: \(receiptItems)")
                     defaults.set(true, forKey: "IsSubscribed")
                     if self.parent != nil {
-                        self.parent.didEndPurchaseProcess()
+                        self.parent.didEndPurchaseProcess(shouldDismiss: true)
                         VhistaSpeechManager.shared.blockAllSpeech = false
                     }
                     completition(true)
@@ -216,7 +216,7 @@ class SubscriptionManager: NSObject {
             } else {
                 // receipt verification error
                 if self.parent != nil {
-                    self.parent.didEndPurchaseProcess()
+                    self.parent.didEndPurchaseProcess(shouldDismiss: false)
                 }
                 completition(nil)
             }
@@ -233,7 +233,7 @@ class SubscriptionManager: NSObject {
                                               preferredStyle: .alert)
 
                 let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: { (_) in
-                    self.parent.didEndPurchaseProcess()
+                    self.parent.didEndPurchaseProcess(shouldDismiss: false)
                 })
 
                 alert.addAction(actionClose)
@@ -252,7 +252,7 @@ class SubscriptionManager: NSObject {
                                               preferredStyle: .alert)
 
                 let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: { (_) in
-                    self.parent.didEndPurchaseProcess()
+                    self.parent.didEndPurchaseProcess(shouldDismiss: false)
                 })
 
                 alert.addAction(actionClose)
@@ -272,13 +272,12 @@ extension SubscriptionManager {
                                           preferredStyle: .alert)
 
             let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: { (_) in
-                self.parent.didEndPurchaseProcess()
+                self.parent.didEndPurchaseProcess(shouldDismiss: false)
             })
 
             alert.addAction(actionClose)
 
             self.parent.present(alert, animated: true, completion: nil)
-            self.parent.didEndPurchaseProcess()
         }
     }
 }
