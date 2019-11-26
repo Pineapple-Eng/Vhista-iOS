@@ -21,6 +21,8 @@ struct AnalyticsConstants {
     static let PictureFree = "took_free_picture"
     static let RequestedMoreFreeImages = "requested_more_free_images"
     static let GrantedMoreFreeImages = "granted_more_free_images"
+    static let LandedVoiceOverEnabledFirstTime = "landed_voice_over_enabled_first_time"
+    static let LandedVoiceOverEnabled = "landed_voice_over_enabled"
 }
 
 func recordAnalytics(analyticsEventName: String, parameters: [String: String]? = [:]) {

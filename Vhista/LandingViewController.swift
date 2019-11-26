@@ -24,7 +24,7 @@ class LandingViewController: UIViewController {
 
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         if launchedBefore {
-            continueToApp()
+            continueToApp(firstTime: false)
         } else {
             let alertPrivacy = UIAlertController(title: NSLocalizedString("TITLE_ALERT_PRIVACY", comment: ""),
                                                  message: NSLocalizedString("MESSAGE_ALERT_PRIVACY", comment: ""),
@@ -32,7 +32,7 @@ class LandingViewController: UIViewController {
 
             let actionClose = UIAlertAction(title: NSLocalizedString("CONTINUE", comment: ""),
                                             style: .default) { (_) in
-                                                self.continueToApp()
+                                                self.continueToApp(firstTime: true)
             }
             alertPrivacy.addAction(actionClose)
 
@@ -41,7 +41,11 @@ class LandingViewController: UIViewController {
         }
     }
 
-    func continueToApp() {
+    func continueToApp(firstTime: Bool) {
+        if UIAccessibility.isVoiceOverRunning {
+            let voiceOverEventName = firstTime ? AnalyticsConstants.LandedVoiceOverEnabledFirstTime:AnalyticsConstants.LandedVoiceOverEnabled
+            recordAnalytics(analyticsEventName: voiceOverEventName, parameters: nil)
+        }
         let eventName = arEnabled ? AnalyticsConstants.LandedAREnabled:AnalyticsConstants.LandedARDisabled
         recordAnalytics(analyticsEventName: eventName, parameters: nil)
         self.performSegue(withIdentifier: "GoToARHome", sender: nil)
