@@ -43,11 +43,16 @@ extension ARKitCameraViewController: RecognizedContentViewControllerDelegate, In
             return
         }
         recognizedVC.delegate = self
+        recognizedVC.captionText = captionText ?? ""
+        recognizedVC.tags = tags ?? [String]()
+        recognizedVC.image = self.selectedImage.getUIImage()
+        recognizedVC.confidence = captionConfidence
+
+        self.shutterButtonView.stopLoadingRippleView(parentView: self.view)
         self.present(recognizedVC, animated: true, completion: {
-            recognizedVC.updateWithText(captionText ?? "", tags: tags ?? [String](), image: self.selectedImage.getUIImage(), confidence: captionConfidence)
+            recognizedVC.update()
             SubscriptionManager.shared.incrementNumberOfPictures()
             VhistaSoundManager.shared.pauseLoadingSound()
-            self.shutterButtonView.stopLoadingRippleView(parentView: self.view)
         })
     }
 

@@ -17,6 +17,12 @@ class RecognizedContentViewController: UIViewController {
     weak var delegate: RecognizedContentViewControllerDelegate?
 
     var closeButton: VHCloseButton!
+
+    var captionText = ""
+    var tags = [String]()
+    var image: UIImage?
+    var confidence: Double?
+
     var recognizedImageView: UIImageView!
     var recognizedObjectsTextView: UITextView!
     var recognizedTagsLabel: UILabel!
@@ -56,17 +62,19 @@ class RecognizedContentViewController: UIViewController {
         delegate?.willDismissRecognizedContentViewController(self)
     }
 
-    func updateWithText(_ text: String, tags: [String], image: UIImage? = nil, confidence: Double?) {
-        recognizedObjectsTextView.textContainer.accessibilityLabel = NSLocalizedString("LAST_RECOGNITION", comment: "") + text
-        if confidence != nil {
+    func update() {
+        recognizedObjectsTextView.textContainer.accessibilityLabel = NSLocalizedString("LAST_RECOGNITION", comment: "") + captionText
+        if let conf = confidence {
             let currentLabel = (recognizedObjectsTextView.textContainer.accessibilityLabel ?? "") + ". "
-            recognizedObjectsTextView.textContainer.accessibilityLabel = currentLabel + NSLocalizedString("confidence", comment: "") + String(Int(confidence!)) + "%"
+            recognizedObjectsTextView.textContainer.accessibilityLabel = (currentLabel
+                + NSLocalizedString("confidence", comment: "")
+                + String(Int(conf)) + "%")
         }
         DispatchQueue.main.async {
-            self.recognizedObjectsTextView.text = text
-            self.recognizedTagsLabel.text = tags.joined(separator: ", ")
-            self.setUpFontsAndSizes(onlyShowTags: (text == "" && tags.count > 0))
-            if let takenImage = image {
+            self.recognizedObjectsTextView.text = self.captionText
+            self.recognizedTagsLabel.text = self.tags.joined(separator: ", ")
+            self.setUpFontsAndSizes(onlyShowTags: (self.captionText == "" && self.tags.count > 0))
+            if let takenImage = self.image {
                 self.recognizedImageView.image = takenImage
                 self.recognizedImageViewHeightContraint.constant = RecognizedContentViewController.recognizedImageViewMaxHeight
                 let imageSizeRatio = takenImage.size.width / takenImage.size.height
