@@ -63,15 +63,14 @@ class RecognizedContentViewController: UIViewController {
     }
 
     func update() {
-        recognizedObjectsTextView.textContainer.accessibilityLabel = NSLocalizedString("LAST_RECOGNITION", comment: "") + captionText
+        var finalText = NSLocalizedString("LAST_RECOGNITION", comment: "") + captionText
         if let conf = confidence {
-            let currentLabel = (recognizedObjectsTextView.textContainer.accessibilityLabel ?? "") + ". "
-            recognizedObjectsTextView.textContainer.accessibilityLabel = (currentLabel
+            finalText = (finalText + ". "
                 + NSLocalizedString("confidence", comment: "")
-                + String(Int(conf)) + "%")
+                + String(Int(conf*100)) + "%")
         }
         DispatchQueue.main.async {
-            self.recognizedObjectsTextView.text = self.captionText
+            self.recognizedObjectsTextView.text = finalText
             self.recognizedTagsLabel.text = self.tags.joined(separator: ", ")
             self.setUpFontsAndSizes(onlyShowTags: (self.captionText == "" && self.tags.count > 0))
             if let takenImage = self.image {
