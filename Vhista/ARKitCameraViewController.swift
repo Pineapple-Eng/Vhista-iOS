@@ -184,6 +184,16 @@ VHCameraButtonDelegate {
                     completion(false)
                     return
                 }
+                if UIAccessibility.isVoiceOverRunning == true,
+                    let currentRegion = Locale.current.regionCode, currentRegion.uppercased() == "CO",
+                    let timeZoneAbbreviation = TimeZone.autoupdatingCurrent.abbreviation(),
+                    timeZoneAbbreviation == "GMT-5",
+                    TimeZone.autoupdatingCurrent.identifier.contains("Bogota") {
+                    recordAnalytics(analyticsEventName: AnalyticsConstants.PictureFreeColombia,
+                                    parameters: nil)
+                    completion(true)
+                    return
+                }
                 if !SubscriptionManager.shared.checkDeepSubscription() {
                     self.updateUIForDeepAnalysisChange(willAnalyze: false)
                     self.performSegue(withIdentifier: "ShowUpgradeView", sender: nil)

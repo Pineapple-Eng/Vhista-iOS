@@ -19,6 +19,7 @@ struct AnalyticsConstants {
     static let PictureNotSubscribed = "error_picture_unsubscribed"
     static let PictureSubscribed = "took_picture_subscribed"
     static let PictureFree = "took_free_picture"
+    static let PictureFreeColombia = "took_free_picture_colombia_love"
     static let RequestedMoreFreeImages = "requested_more_free_images"
     static let GrantedMoreFreeImages = "granted_more_free_images"
     static let LandedVoiceOverEnabledFirstTime = "landed_voice_over_enabled_first_time"
@@ -28,11 +29,13 @@ struct AnalyticsConstants {
 func recordAnalytics(analyticsEventName: String, parameters: [String: String]? = [:]) {
     DispatchQueue.main.async {
         print("Send Analytics: " + analyticsEventName)
-        let completeParameters = [
+        var completeParameters = [
             "language": globalLanguage,
-            "voiceover_on": UIAccessibility.isVoiceOverRunning.description,
-            "extras": parameters as Any
+            "voiceover_on": UIAccessibility.isVoiceOverRunning.description
             ] as [String: Any]
+        for parameter in parameters ?? [:] {
+            completeParameters[parameter.key] = parameter.value
+        }
         Analytics.logEvent(analyticsEventName, parameters: completeParameters)
     }
 }
