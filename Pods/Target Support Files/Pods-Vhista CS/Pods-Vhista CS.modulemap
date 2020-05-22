@@ -1,6 +1,0 @@
-framework module Pods_Vhista_CS {
-  umbrella header "Pods-Vhista CS-umbrella.h"
-
-  export *
-  module * { export * }
-}
