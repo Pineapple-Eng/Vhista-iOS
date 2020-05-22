@@ -12,15 +12,20 @@ import Alamofire
 extension ARKitCameraViewController: RecognizedContentViewControllerDelegate, InfoViewControllerDelegate {
 
     func startContextualRecognition() {
-        ComputerVisionManager.shared.makeComputerVisionRequest(image: selectedImage.getUIImage(),
-                                                               features: [ComputerVisionManager.CVFeatures.Description],
-                                                               details: nil,
-                                                               language: ComputerVisionManager.shared.getCVLanguageForCurrentGlobalLanguage()) { (response) in
-                                                                self.finishedContextualRecognition(response)
+        guard let image = selectedImage?.getUIImage() else {
+            self.updateUIForDeepAnalysisChange(willAnalyze: false)
+            return
+        }
+        ComputerVisionManager.shared.makeComputerVisionRequest(
+            image: image,
+            features: [ComputerVisionManager.CVFeatures.Description],
+            details: nil,
+            language: ComputerVisionManager.shared.getCVLanguageForCurrentGlobalLanguage()) { (response) in
+                self.finishedContextualRecognition(response)
         }
     }
 
-    func finishedContextualRecognition(_ response: DataResponse<CVResponse>) {
+    func finishedContextualRecognition(_ response: DataResponse<CVResponse, AFError>) {
         let recognizedVC = RecognizedContentViewController()
 
         let description = response.value?.description
@@ -35,7 +40,7 @@ extension ARKitCameraViewController: RecognizedContentViewControllerDelegate, In
                                                message: nil,
                                                preferredStyle: .alert)
             let actionCancel = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""),
-                                             style: .cancel) { (action) in
+                                             style: .cancel) { (_) in
                 self.updateUIForDeepAnalysisChange(willAnalyze: false)
             }
             alertEmpty.addAction(actionCancel)
@@ -45,13 +50,12 @@ extension ARKitCameraViewController: RecognizedContentViewControllerDelegate, In
         recognizedVC.delegate = self
         recognizedVC.captionText = captionText ?? ""
         recognizedVC.tags = tags ?? [String]()
-        recognizedVC.image = self.selectedImage.getUIImage()
+        recognizedVC.image = self.selectedImage?.getUIImage()
         recognizedVC.confidence = captionConfidence
 
         self.shutterButtonView.stopLoadingRippleView(parentView: self.view)
         self.present(recognizedVC, animated: true, completion: {
             recognizedVC.update()
-            SubscriptionManager.shared.incrementNumberOfPictures()
             VhistaSoundManager.shared.pauseLoadingSound()
         })
     }

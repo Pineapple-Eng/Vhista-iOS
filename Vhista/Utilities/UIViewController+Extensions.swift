@@ -29,4 +29,3 @@ func getTopMostViewController() -> UIViewController? {
     }
     return nil
 }
-

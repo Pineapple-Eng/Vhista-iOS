@@ -17,8 +17,6 @@ class InfoBodyView: UIView {
 
     var bodyStack: UIStackView!
 
-    var subscriptionButton: VHRoundedButton!
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpStackView()
@@ -29,18 +27,6 @@ class InfoBodyView: UIView {
         super.init(coder: aDecoder)
         setUpStackView()
         setUpContents()
-    }
-
-    func reloadSubscriptionStates() {
-        if SubscriptionManager.shared.isUserSubscribedToFullAccess() {
-            subscriptionButton.setTitle(NSLocalizedString("Show_Subscription_Button_Title", comment: ""), for: .normal)
-            subscriptionButton.accessibilityHint = NSLocalizedString("Subscription_Button_Accessibility_Hint", comment: "")
-            subscriptionButton.addTarget(self, action: #selector(showSubscriptionInfo), for: .touchUpInside)
-        } else {
-            subscriptionButton.setTitle(NSLocalizedString("Upgrade_Button_Title", comment: ""), for: .normal)
-            subscriptionButton.accessibilityHint = NSLocalizedString("Upgrade_Button_Accessibility_Hint", comment: "")
-            subscriptionButton.addTarget(self, action: #selector(showUpgrade), for: .touchUpInside)
-        }
     }
 }
 
@@ -61,21 +47,7 @@ extension InfoBodyView {
     }
 
     func setUpContents() {
-        addSubscriptionButton()
         addLegalButton()
-    }
-
-    func addSubscriptionButton() {
-        subscriptionButton = VHRoundedButton(frame: .zero,
-                                     title: NSLocalizedString("Upgrade", comment: ""),
-                                     type: VHRoundedButtonType.darkBackground)
-        bodyStack.insertArrangedSubview(subscriptionButton, at: bodyStack.arrangedSubviews.count)
-        subscriptionButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            subscriptionButton.widthAnchor.constraint(equalTo: bodyStack.widthAnchor),
-            subscriptionButton.heightAnchor.constraint(equalToConstant: VHRoundedButton.defaultHeight)
-        ])
-        reloadSubscriptionStates()
     }
 
     func addLegalButton() {
@@ -93,24 +65,6 @@ extension InfoBodyView {
 }
 
 extension InfoBodyView {
-    @objc func showSubscriptionInfo() {
-        let storyboard = UIStoryboard(name: "Subscription", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "SubscriptionInfoVC")
-        guard let topVC = getTopMostViewController() else {
-            return
-        }
-        topVC.present(controller, animated: true, completion: nil)
-    }
-
-    @objc func showUpgrade() {
-        let storyboard = UIStoryboard(name: "Subscription", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "SubscriptionVC")
-        guard let topVC = getTopMostViewController() else {
-            return
-        }
-        topVC.present(controller, animated: true, completion: nil)
-    }
-
     @objc func showLegal() {
         let safariVC = SFSafariViewController(url: URL(string: "https://vhista.com/legal")!)
         guard let topVC = getTopMostViewController() else {

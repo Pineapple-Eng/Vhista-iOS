@@ -14,8 +14,6 @@ protocol VHBottomNavigationToolbarDelegate: AnyObject {
 
 enum VHBottomNavigationToolbarItemType {
     case gallery
-    case subscription
-    case upgrade
     case info
 }
 
@@ -45,9 +43,7 @@ class VHBottomNavigationToolbar: UIToolbar {
 }
 
 extension VHBottomNavigationToolbar {
-    public func setUpItems(showGallery: Bool = true,
-                           showSubscriptionButton: Bool = false,
-                           isSubscribed: Bool = false) {
+    public func setUpItems(showGallery: Bool = true) {
         self.items = [UIBarButtonItem]()
         if showGallery {
             let galleryItem = UIBarButtonItem(image: getButtonItemGalleryImage(),
@@ -92,16 +88,6 @@ extension VHBottomNavigationToolbar {
     @objc func didSelectBarButtonItemGallery(_ barButtonItem: UIBarButtonItem) {
         self.customDelegate?.didSelectBarButtonItemWithType(barButtonItem,
                                                             VHBottomNavigationToolbarItemType.gallery)
-    }
-
-    @objc func didSelectBarButtonItemSubscription(_ barButtonItem: UIBarButtonItem) {
-        self.customDelegate?.didSelectBarButtonItemWithType(barButtonItem,
-                                                            VHBottomNavigationToolbarItemType.subscription)
-    }
-
-    @objc func didSelectBarButtonItemUpgrade(_ barButtonItem: UIBarButtonItem) {
-        self.customDelegate?.didSelectBarButtonItemWithType(barButtonItem,
-                                                            VHBottomNavigationToolbarItemType.upgrade)
     }
 
     @objc func didSelectBarButtonItemInfo(_ barButtonItem: UIBarButtonItem) {

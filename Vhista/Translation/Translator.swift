@@ -18,6 +18,7 @@ extension NSObject {
 
         manager.get(translationURI,
                     parameters: ["key": googleAPIKey, "source": "en", "target": targetLanguage, "q": toTranslateString],
+                    headers: nil,
                     progress: { (_) in },
                     success: { (task: URLSessionDataTask, response) in
 

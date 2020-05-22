@@ -45,7 +45,6 @@ class InfoViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        infoBodyView.reloadSubscriptionStates()
     }
 
     override func viewWillDisappear(_ animated: Bool) {

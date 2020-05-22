@@ -24,6 +24,41 @@
 
 import Foundation
 
+/// Class which implements the various `URLSessionDelegate` methods to connect various Alamofire features.
+open class SessionDelegate: NSObject {
+    private let fileManager: FileManager
+
+    weak var stateProvider: SessionStateProvider?
+    var eventMonitor: EventMonitor?
+
+    /// Creates an instance from the given `FileManager`.
+    ///
+    /// - Parameter fileManager: `FileManager` to use for underlying file management, such as moving downloaded files.
+    ///                          `.default` by default.
+    public init(fileManager: FileManager = .default) {
+        self.fileManager = fileManager
+    }
+
+    /// Internal method to find and cast requests while maintaining some integrity checking.
+    ///
+    /// - Parameters:
+    ///   - task: The `URLSessionTask` for which to find the associated `Request`.
+    ///   - type: The `Request` subclass type to cast any `Request` associate with `task`.
+    func request<R: Request>(for task: URLSessionTask, as type: R.Type) -> R? {
+        guard let provider = stateProvider else {
+            assertionFailure("StateProvider is nil.")
+            return nil
+        }
+
+        guard let request = provider.request(for: task) as? R else {
+            fatalError("Returned Request is not of expected type: \(R.self).")
+        }
+
+        return request
+    }
+}
+
+/// Type which provides various `Session` state values.
 protocol SessionStateProvider: AnyObject {
     var serverTrustManager: ServerTrustManager? { get }
     var redirectHandler: RedirectHandler? { get }
@@ -31,21 +66,12 @@ protocol SessionStateProvider: AnyObject {
 
     func request(for task: URLSessionTask) -> Request?
     func didGatherMetricsForTask(_ task: URLSessionTask)
-    func didCompleteTask(_ task: URLSessionTask)
+    func didCompleteTask(_ task: URLSessionTask, completion: @escaping () -> Void)
     func credential(for task: URLSessionTask, in protectionSpace: URLProtectionSpace) -> URLCredential?
     func cancelRequestsForSessionInvalidation(with error: Error?)
 }
 
-open class SessionDelegate: NSObject {
-    private let fileManager: FileManager
-
-    weak var stateProvider: SessionStateProvider?
-    var eventMonitor: EventMonitor?
-
-    public init(fileManager: FileManager = .default) {
-        self.fileManager = fileManager
-    }
-}
+// MARK: URLSessionDelegate
 
 extension SessionDelegate: URLSessionDelegate {
     open func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
@@ -55,9 +81,11 @@ extension SessionDelegate: URLSessionDelegate {
     }
 }
 
+// MARK: URLSessionTaskDelegate
+
 extension SessionDelegate: URLSessionTaskDelegate {
     /// Result of a `URLAuthenticationChallenge` evaluation.
-    typealias ChallengeEvaluation = (disposition: URLSession.AuthChallengeDisposition, credential: URLCredential?, error: Error?)
+    typealias ChallengeEvaluation = (disposition: URLSession.AuthChallengeDisposition, credential: URLCredential?, error: AFError?)
 
     open func urlSession(_ session: URLSession,
                          task: URLSessionTask,
@@ -69,9 +97,9 @@ extension SessionDelegate: URLSessionTaskDelegate {
         switch challenge.protectionSpace.authenticationMethod {
         case NSURLAuthenticationMethodServerTrust:
             evaluation = attemptServerTrustAuthentication(with: challenge)
-        case NSURLAuthenticationMethodHTTPBasic, NSURLAuthenticationMethodHTTPDigest:
-            evaluation = attemptHTTPAuthentication(for: challenge, belongingTo: task)
-        // case NSURLAuthenticationMethodClientCertificate:
+        case NSURLAuthenticationMethodHTTPBasic, NSURLAuthenticationMethodHTTPDigest, NSURLAuthenticationMethodNTLM,
+             NSURLAuthenticationMethodNegotiate, NSURLAuthenticationMethodClientCertificate:
+            evaluation = attemptCredentialAuthentication(for: challenge, belongingTo: task)
         default:
             evaluation = (.performDefaultHandling, nil, nil)
         }
@@ -83,13 +111,18 @@ extension SessionDelegate: URLSessionTaskDelegate {
         completionHandler(evaluation.disposition, evaluation.credential)
     }
 
+    /// Evaluates the server trust `URLAuthenticationChallenge` received.
+    ///
+    /// - Parameter challenge: The `URLAuthenticationChallenge`.
+    ///
+    /// - Returns:             The `ChallengeEvaluation`.
     func attemptServerTrustAuthentication(with challenge: URLAuthenticationChallenge) -> ChallengeEvaluation {
         let host = challenge.protectionSpace.host
 
         guard challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust,
             let trust = challenge.protectionSpace.serverTrust
-            else {
-                return (.performDefaultHandling, nil, nil)
+        else {
+            return (.performDefaultHandling, nil, nil)
         }
 
         do {
@@ -101,12 +134,19 @@ extension SessionDelegate: URLSessionTaskDelegate {
 
             return (.useCredential, URLCredential(trust: trust), nil)
         } catch {
-            return (.cancelAuthenticationChallenge, nil, error)
+            return (.cancelAuthenticationChallenge, nil, error.asAFError(or: .serverTrustEvaluationFailed(reason: .customEvaluationFailed(error: error))))
         }
     }
 
-    func attemptHTTPAuthentication(for challenge: URLAuthenticationChallenge,
-                                   belongingTo task: URLSessionTask) -> ChallengeEvaluation {
+    /// Evaluates the credential-based authentication `URLAuthenticationChallenge` received for `task`.
+    ///
+    /// - Parameters:
+    ///   - challenge: The `URLAuthenticationChallenge`.
+    ///   - task:      The `URLSessionTask` which received the challenge.
+    ///
+    /// - Returns:     The `ChallengeEvaluation`.
+    func attemptCredentialAuthentication(for challenge: URLAuthenticationChallenge,
+                                         belongingTo task: URLSessionTask) -> ChallengeEvaluation {
         guard challenge.previousFailureCount == 0 else {
             return (.rejectProtectionSpace, nil, nil)
         }
@@ -130,7 +170,7 @@ extension SessionDelegate: URLSessionTaskDelegate {
                                  totalBytesExpectedToSend: totalBytesExpectedToSend)
 
         stateProvider?.request(for: task)?.updateUploadProgress(totalBytesSent: totalBytesSent,
-                                                   totalBytesExpectedToSend: totalBytesExpectedToSend)
+                                                                totalBytesExpectedToSend: totalBytesExpectedToSend)
     }
 
     open func urlSession(_ session: URLSession,
@@ -138,8 +178,10 @@ extension SessionDelegate: URLSessionTaskDelegate {
                          needNewBodyStream completionHandler: @escaping (InputStream?) -> Void) {
         eventMonitor?.urlSession(session, taskNeedsNewBodyStream: task)
 
-        guard let request = stateProvider?.request(for: task) as? UploadRequest else {
-            fatalError("needNewBodyStream for request that isn't UploadRequest.")
+        guard let request = request(for: task, as: UploadRequest.self) else {
+            assertionFailure("needNewBodyStream did not find UploadRequest.")
+            completionHandler(nil)
+            return
         }
 
         completionHandler(request.inputStream())
@@ -170,9 +212,11 @@ extension SessionDelegate: URLSessionTaskDelegate {
     open func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         eventMonitor?.urlSession(session, task: task, didCompleteWithError: error)
 
-        stateProvider?.request(for: task)?.didCompleteTask(task, with: error)
+        let request = stateProvider?.request(for: task)
 
-        stateProvider?.didCompleteTask(task)
+        stateProvider?.didCompleteTask(task) {
+            request?.didCompleteTask(task, with: error.map { $0.asAFError(or: .sessionTaskFailed(error: $0)) })
+        }
     }
 
     @available(macOS 10.13, iOS 11.0, tvOS 11.0, watchOS 4.0, *)
@@ -181,12 +225,15 @@ extension SessionDelegate: URLSessionTaskDelegate {
     }
 }
 
+// MARK: URLSessionDataDelegate
+
 extension SessionDelegate: URLSessionDataDelegate {
     open func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         eventMonitor?.urlSession(session, dataTask: dataTask, didReceive: data)
 
-        guard let request = stateProvider?.request(for: dataTask) as? DataRequest else {
-            fatalError("dataTask received data for incorrect Request subclass: \(String(describing: stateProvider?.request(for: dataTask)))")
+        guard let request = request(for: dataTask, as: DataRequest.self) else {
+            assertionFailure("dataTask did not find DataRequest.")
+            return
         }
 
         request.didReceive(data: data)
@@ -206,6 +253,8 @@ extension SessionDelegate: URLSessionDataDelegate {
     }
 }
 
+// MARK: URLSessionDownloadDelegate
+
 extension SessionDelegate: URLSessionDownloadDelegate {
     open func urlSession(_ session: URLSession,
                          downloadTask: URLSessionDownloadTask,
@@ -215,9 +264,9 @@ extension SessionDelegate: URLSessionDownloadDelegate {
                                  downloadTask: downloadTask,
                                  didResumeAtOffset: fileOffset,
                                  expectedTotalBytes: expectedTotalBytes)
-
-        guard let downloadRequest = stateProvider?.request(for: downloadTask) as? DownloadRequest else {
-            fatalError("No DownloadRequest found for downloadTask: \(downloadTask)")
+        guard let downloadRequest = request(for: downloadTask, as: DownloadRequest.self) else {
+            assertionFailure("downloadTask did not find DownloadRequest.")
+            return
         }
 
         downloadRequest.updateDownloadProgress(bytesWritten: fileOffset,
@@ -234,9 +283,9 @@ extension SessionDelegate: URLSessionDownloadDelegate {
                                  didWriteData: bytesWritten,
                                  totalBytesWritten: totalBytesWritten,
                                  totalBytesExpectedToWrite: totalBytesExpectedToWrite)
-
-        guard let downloadRequest = stateProvider?.request(for: downloadTask) as? DownloadRequest else {
-            fatalError("No DownloadRequest found for downloadTask: \(downloadTask)")
+        guard let downloadRequest = request(for: downloadTask, as: DownloadRequest.self) else {
+            assertionFailure("downloadTask did not find DownloadRequest.")
+            return
         }
 
         downloadRequest.updateDownloadProgress(bytesWritten: bytesWritten,
@@ -246,15 +295,16 @@ extension SessionDelegate: URLSessionDownloadDelegate {
     open func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         eventMonitor?.urlSession(session, downloadTask: downloadTask, didFinishDownloadingTo: location)
 
-        guard let request = stateProvider?.request(for: downloadTask) as? DownloadRequest else {
-            fatalError("Download finished but either no request found or request wasn't DownloadRequest")
+        guard let request = request(for: downloadTask, as: DownloadRequest.self) else {
+            assertionFailure("downloadTask did not find DownloadRequest.")
+            return
         }
 
         guard let response = request.response else {
             fatalError("URLSessionDownloadTask finished downloading with no response.")
         }
 
-        let (destination, options) = (request.destination ?? DownloadRequest.defaultDestination)(location, response)
+        let (destination, options) = (request.destination)(location, response)
 
         eventMonitor?.request(request, didCreateDestinationURL: destination)
 
@@ -272,7 +322,7 @@ extension SessionDelegate: URLSessionDownloadDelegate {
 
             request.didFinishDownloading(using: downloadTask, with: .success(destination))
         } catch {
-            request.didFinishDownloading(using: downloadTask, with: .failure(error))
+            request.didFinishDownloading(using: downloadTask, with: .failure(.downloadedFileMoveFailed(error: error, source: location, destination: destination)))
         }
     }
 }

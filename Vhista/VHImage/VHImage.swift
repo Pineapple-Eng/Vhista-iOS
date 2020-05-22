@@ -14,7 +14,7 @@ struct VHImageSource {
 }
 
 class VHImage: NSObject {
-    private var image: UIImage!
+    private var image: UIImage?
     private var imageSource: String!
 
     init(image: UIImage, withSource source: String) {
@@ -23,7 +23,7 @@ class VHImage: NSObject {
         self.imageSource = source
     }
 
-    func getUIImage() -> UIImage {
+    func getUIImage() -> UIImage? {
         return self.image
     }
 }

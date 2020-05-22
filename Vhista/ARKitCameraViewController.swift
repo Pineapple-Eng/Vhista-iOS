@@ -56,7 +56,7 @@ VHCameraButtonDelegate {
     private let visionQueue = DispatchQueue(label: "com.juandavidcruz.Vhista.ARKitVision.serialVisionQueue")
 
     // Selected ImageView
-    var selectedImage: VHImage!
+    var selectedImage: VHImage?
     var selectedImageView: UIImageView!
     var selectedImageViewOverlay: UIView!
 
@@ -75,8 +75,7 @@ VHCameraButtonDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        bottomToolbar.setUpItems(showSubscriptionButton: true,
-                                 isSubscribed: SubscriptionManager.shared.isUserSubscribedToFullAccess())
+        bottomToolbar.setUpItems()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -184,24 +183,6 @@ VHCameraButtonDelegate {
                     completion(false)
                     return
                 }
-                if UIAccessibility.isVoiceOverRunning == true,
-                    let currentRegion = Locale.current.regionCode, currentRegion.uppercased() == "CO",
-                    let timeZoneAbbreviation = TimeZone.autoupdatingCurrent.abbreviation(),
-                    timeZoneAbbreviation == "GMT-5",
-                    TimeZone.autoupdatingCurrent.identifier.contains("Bogota") {
-                    recordAnalytics(analyticsEventName: AnalyticsConstants.PictureFreeColombia,
-                                    parameters: nil)
-                    completion(true)
-                    return
-                }
-                if !SubscriptionManager.shared.checkDeepSubscription() {
-                    self.updateUIForDeepAnalysisChange(willAnalyze: false)
-                    self.performSegue(withIdentifier: "ShowUpgradeView", sender: nil)
-                    UINotificationFeedbackGenerator().notificationOccurred(.error)
-                    self.pauseCurrentSession()
-                    completion(false)
-                    return
-                }
                 completion(true)
                 return
             } else {
@@ -212,15 +193,6 @@ VHCameraButtonDelegate {
                 return
             }
         })
-    }
-
-    func hitUpgradeAction(_ sender: Any) {
-        pauseCurrentSession()
-        if !SubscriptionManager.shared.isUserSubscribedToFullAccess() {
-            self.performSegue(withIdentifier: "ShowUpgradeView", sender: nil)
-        } else {
-            self.performSegue(withIdentifier: "ShowSubscriptionInfo", sender: nil)
-        }
     }
 
     // MARK: - Vision classification
@@ -323,7 +295,11 @@ extension ARKitCameraViewController {
 
     func showSelectedImage() {
         DispatchQueue.main.async {
-            self.selectedImageView.image = self.selectedImage.getUIImage()
+            guard let image = self.selectedImage?.getUIImage() else {
+                self.updateUIForDeepAnalysisChange(willAnalyze: false)
+                return
+            }
+            self.selectedImageView.image = image
             self.selectedImageView.isHidden = false
             self.selectedImageViewOverlay.isHidden = false
         }
@@ -352,8 +328,6 @@ extension ARKitCameraViewController {
         switch type {
         case .gallery:
             showPhotoPicker(barButtonItem)
-        case .subscription, .upgrade:
-            hitUpgradeAction(barButtonItem)
         case .info:
             showInfoVC(barButtonItem)
         }

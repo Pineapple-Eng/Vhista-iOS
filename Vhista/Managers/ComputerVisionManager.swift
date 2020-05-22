@@ -30,7 +30,7 @@ class ComputerVisionManager: NSObject {
                                    features: [String],
                                    details: [String]?,
                                    language: String?,
-                                   completion: @escaping (DataResponse<CVResponse>) -> Void) -> Request? {
+                                   completion: @escaping (DataResponse<CVResponse, AFError>) -> Void) -> UploadRequest? {
         guard var imageData = image.jpegData(compressionQuality: ComputerVisionManager.compressionQuality) else {
             print("🚨 Unable to get JPEG Data 🖼")
             return nil
@@ -61,7 +61,7 @@ class ComputerVisionManager: NSObject {
     }
 
     func stopComputerVisionRequest() {
-        afSession.cancelRequestsForSessionInvalidation(with: nil)
+        afSession.cancelAllRequests()
     }
 }
 
