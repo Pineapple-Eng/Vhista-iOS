@@ -31,6 +31,7 @@
 		0D95531E22B9FC6E00B17581 /* FastRecognizedContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D95531D22B9FC6E00B17581 /* FastRecognizedContentViewController.swift */; };
 		0D95532122BA3E5100B17581 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D95532022BA3E5100B17581 /* LogoView.swift */; };
 		0DA42CAE22D875F100B4A5FD /* FeaturesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA42CAD22D875F100B4A5FD /* FeaturesCollectionView.swift */; };
+		0DB05AFA24786D27007DF360 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0DB05AF924786D27007DF360 /* GoogleService-Info.plist */; };
 		0DB8A87D2134F3FB0005D168 /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB8A87C2134F3FB0005D168 /* ConfigurationManager.swift */; };
 		0DB8A87F2134F6670005D168 /* RemoteConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0DB8A87E2134F6670005D168 /* RemoteConfig.plist */; };
 		0DE59474230A23FD00A1D8F8 /* CameraShutterButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE59473230A23FD00A1D8F8 /* CameraShutterButtonView.swift */; };
@@ -51,7 +52,6 @@
 		2BF5EE691F46155B009E49D7 /* VhistaReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF5EE681F46155B009E49D7 /* VhistaReachabilityManager.swift */; };
 		509EA1ADEC909BE27562B9F0 /* Pods_Vhista.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F845BCE6AC50F38EECA282EC /* Pods_Vhista.framework */; };
 		63342CD820B0BE0900E397E6 /* SecureConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63342CD720B0BE0900E397E6 /* SecureConstants.swift */; };
-		63342CDA20B0BE6F00E397E6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63342CD920B0BE6F00E397E6 /* GoogleService-Info.plist */; };
 		63342CDC20B0BE9E00E397E6 /* Translator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63342CDB20B0BE9D00E397E6 /* Translator.swift */; };
 		63342CDE20B0BEAB00E397E6 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63342CDD20B0BEAB00E397E6 /* Analytics.swift */; };
 		63342CE420B0BF4700E397E6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63342CE320B0BF4700E397E6 /* Constants.swift */; };
@@ -93,6 +93,7 @@
 		0D95531D22B9FC6E00B17581 /* FastRecognizedContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastRecognizedContentViewController.swift; sourceTree = "<group>"; };
 		0D95532022BA3E5100B17581 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		0DA42CAD22D875F100B4A5FD /* FeaturesCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturesCollectionView.swift; sourceTree = "<group>"; };
+		0DB05AF924786D27007DF360 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0DB8A87C2134F3FB0005D168 /* ConfigurationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConfigurationManager.swift; path = Utilities/ConfigurationManager.swift; sourceTree = "<group>"; };
 		0DB8A87E2134F6670005D168 /* RemoteConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfig.plist; sourceTree = "<group>"; };
 		0DE59473230A23FD00A1D8F8 /* CameraShutterButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CameraShutterButtonView.swift; path = UI/BottomToolbar/CameraShutterButtonView.swift; sourceTree = "<group>"; };
@@ -117,7 +118,6 @@
 		2B75038D1F31936E007D4AFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2BF5EE681F46155B009E49D7 /* VhistaReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VhistaReachabilityManager.swift; path = Network/VhistaReachabilityManager.swift; sourceTree = "<group>"; };
 		63342CD720B0BE0900E397E6 /* SecureConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SecureConstants.swift; path = Utilities/SecureConstants.swift; sourceTree = "<group>"; };
-		63342CD920B0BE6F00E397E6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		63342CDB20B0BE9D00E397E6 /* Translator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Translator.swift; path = Translation/Translator.swift; sourceTree = "<group>"; };
 		63342CDD20B0BEAB00E397E6 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Analytics.swift; path = Analytics/Analytics.swift; sourceTree = "<group>"; };
 		63342CE320B0BF4700E397E6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Utilities/Constants.swift; sourceTree = "<group>"; };
@@ -408,7 +408,7 @@
 				2B75038C1F31936E007D4AFF /* LaunchScreen.storyboard */,
 				9A9AFD651F48CD5E00172469 /* Localizable.strings */,
 				0DB8A87E2134F6670005D168 /* RemoteConfig.plist */,
-				63342CD920B0BE6F00E397E6 /* GoogleService-Info.plist */,
+				0DB05AF924786D27007DF360 /* GoogleService-Info.plist */,
 				2B416BC71F6F28030029CB5A /* Info.plist */,
 				2B9638B71F328E31008DBBCF /* SupportingFiles */,
 			);
@@ -582,7 +582,7 @@
 				2B7503891F31936E007D4AFF /* Main.storyboard in Resources */,
 				0D5346F022C313C900103306 /* loading_beep.wav in Resources */,
 				0DB8A87F2134F6670005D168 /* RemoteConfig.plist in Resources */,
-				63342CDA20B0BE6F00E397E6 /* GoogleService-Info.plist in Resources */,
+				0DB05AFA24786D27007DF360 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
