@@ -35,7 +35,7 @@ class FeaturesManager: NSObject {
 //      Panoramic Feature - Adding in V4.0.1
         #if DEVELOPMENT
         let panoramicFeature = Feature(featureName: FeatureNames.panoramic,
-                                        imageName: LogoView.panoramicImageName)
+                                       imageName: LogoView.panoramicImageName)
         features.append(panoramicFeature)
         #endif
     }
