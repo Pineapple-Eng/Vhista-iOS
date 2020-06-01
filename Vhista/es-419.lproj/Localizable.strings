@@ -223,6 +223,12 @@
 
 "no_fast_recognition" = "Sin Reconocimiento Reciente";
 
+// Features
+
+"Image Recognition" = "Reconocer Imagen";
+
+"Text Recognition" = "Reconocer Texto";
+
 // DEV
 
 "donut" = "dona";

@@ -11,11 +11,13 @@ import UIKit
 
 extension ARKitCameraViewController {
     func setUpAccessibility() {
+        let feature = FeaturesManager.shared.getSelectedFeature()
         self.view.accessibilityElements = [
             featuresCollectionContentView as Any,
             shutterButtonView as Any
         ]
-        if fastRecognizedContentViewController != nil {
+        if feature.featureName == FeatureNames.contextual
+            && fastRecognizedContentViewController != nil {
             self.view.accessibilityElements?.append(fastRecognizedContentViewController as Any)
         }
         self.view.accessibilityElements?.append(bottomToolbar as Any)

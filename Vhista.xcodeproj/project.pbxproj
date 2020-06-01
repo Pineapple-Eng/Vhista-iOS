@@ -34,6 +34,7 @@
 		0DB05AFA24786D27007DF360 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0DB05AF924786D27007DF360 /* GoogleService-Info.plist */; };
 		0DB8A87D2134F3FB0005D168 /* ConfigurationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB8A87C2134F3FB0005D168 /* ConfigurationManager.swift */; };
 		0DB8A87F2134F6670005D168 /* RemoteConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0DB8A87E2134F6670005D168 /* RemoteConfig.plist */; };
+		0DD740F224844DE5007E09B6 /* ARKitCameraViewController+ImageClassification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD740F124844DE5007E09B6 /* ARKitCameraViewController+ImageClassification.swift */; };
 		0DE59474230A23FD00A1D8F8 /* CameraShutterButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE59473230A23FD00A1D8F8 /* CameraShutterButtonView.swift */; };
 		0DE59477230A4EF900A1D8F8 /* VHCameraButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE59476230A4EF900A1D8F8 /* VHCameraButton.swift */; };
 		0DE5947B230A744000A1D8F8 /* VhistaSoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE5947A230A744000A1D8F8 /* VhistaSoundManager.swift */; };
@@ -43,7 +44,6 @@
 		0DF0B016231AE60500EA4BC0 /* InfoFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF0B015231AE60500EA4BC0 /* InfoFooterView.swift */; };
 		0DF120FB211F507500177FC5 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0DF120FA211F507400177FC5 /* Inceptionv3.mlmodel */; };
 		0DF848A6230A0CA7004FDE5A /* VHBottomNavigationToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF848A5230A0CA7004FDE5A /* VHBottomNavigationToolbar.swift */; };
-		2B2C62431F6B2CCC00E9BAF7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B2C62421F6B2CCC00E9BAF7 /* StoreKit.framework */; };
 		2B71F0FE1F327150005F4219 /* VhistaSpeechManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B71F0FD1F327150005F4219 /* VhistaSpeechManager.swift */; };
 		2B7503841F31936E007D4AFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7503831F31936E007D4AFF /* AppDelegate.swift */; };
 		2B7503891F31936E007D4AFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B7503871F31936E007D4AFF /* Main.storyboard */; };
@@ -96,6 +96,7 @@
 		0DB05AF924786D27007DF360 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0DB8A87C2134F3FB0005D168 /* ConfigurationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConfigurationManager.swift; path = Utilities/ConfigurationManager.swift; sourceTree = "<group>"; };
 		0DB8A87E2134F6670005D168 /* RemoteConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfig.plist; sourceTree = "<group>"; };
+		0DD740F124844DE5007E09B6 /* ARKitCameraViewController+ImageClassification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARKitCameraViewController+ImageClassification.swift"; sourceTree = "<group>"; };
 		0DE59473230A23FD00A1D8F8 /* CameraShutterButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CameraShutterButtonView.swift; path = UI/BottomToolbar/CameraShutterButtonView.swift; sourceTree = "<group>"; };
 		0DE59476230A4EF900A1D8F8 /* VHCameraButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VHCameraButton.swift; path = UI/BottomToolbar/VHCameraButton.swift; sourceTree = "<group>"; };
 		0DE5947A230A744000A1D8F8 /* VhistaSoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VhistaSoundManager.swift; path = Sound/VhistaSoundManager.swift; sourceTree = "<group>"; };
@@ -150,7 +151,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B2C62431F6B2CCC00E9BAF7 /* StoreKit.framework in Frameworks */,
 				CC114CC651F176516099194B /* (null) in Frameworks */,
 				509EA1ADEC909BE27562B9F0 /* Pods_Vhista.framework in Frameworks */,
 			);
@@ -306,6 +306,14 @@
 				0D95532022BA3E5100B17581 /* LogoView.swift */,
 			);
 			name = LogoView;
+			sourceTree = "<group>";
+		};
+		0DD740F024844DC4007E09B6 /* CoreMLImageClassification */ = {
+			isa = PBXGroup;
+			children = (
+				0DD740F124844DE5007E09B6 /* ARKitCameraViewController+ImageClassification.swift */,
+			);
+			name = CoreMLImageClassification;
 			sourceTree = "<group>";
 		};
 		0DE59479230A732A00A1D8F8 /* Sound */ = {
@@ -483,6 +491,7 @@
 			children = (
 				6393B0A0204F0FF70040A6CF /* ARKitCameraViewController.swift */,
 				0D23BB7323127AFA00F032F6 /* ARKitCameraViewController+Accessibility.swift */,
+				0DD740F024844DC4007E09B6 /* CoreMLImageClassification */,
 				0DE5947D230A754000A1D8F8 /* Session */,
 				0D1C5AF922BF60080002C892 /* ARKit */,
 				0D1C5B0322BF67470002C892 /* NonARCamera */,
@@ -700,6 +709,7 @@
 				0D93683A22D868630040FD58 /* FeaturesCollectionViewCell.swift in Sources */,
 				2B71F0FE1F327150005F4219 /* VhistaSpeechManager.swift in Sources */,
 				63342CDC20B0BE9E00E397E6 /* Translator.swift in Sources */,
+				0DD740F224844DE5007E09B6 /* ARKitCameraViewController+ImageClassification.swift in Sources */,
 				0DF848A6230A0CA7004FDE5A /* VHBottomNavigationToolbar.swift in Sources */,
 				0D95532122BA3E5100B17581 /* LogoView.swift in Sources */,
 				2B7503841F31936E007D4AFF /* AppDelegate.swift in Sources */,
@@ -878,7 +888,7 @@
 				INFOPLIST_FILE = Vhista/Base.lproj/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 4.2.0;
+				MARKETING_VERSION = 4.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.juandavidcruz.Vhista;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -897,7 +907,7 @@
 				INFOPLIST_FILE = Vhista/Base.lproj/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 4.2.0;
+				MARKETING_VERSION = 4.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.juandavidcruz.Vhista;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

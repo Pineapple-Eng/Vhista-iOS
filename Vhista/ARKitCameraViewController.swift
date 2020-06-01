@@ -24,7 +24,7 @@ VHCameraButtonDelegate {
 
     // Fast Recognized Content View
     var fastRecognizedContentViewHeightContraint: NSLayoutConstraint!
-    @IBOutlet weak var fastRecognizedContentView: UIView!
+    var fastRecognizedContentView: UIView!
     var fastRecognizedContentViewController: FastRecognizedContentViewController?
 
     // Shutter Action Button
@@ -37,7 +37,6 @@ VHCameraButtonDelegate {
     var captureSession: AVCaptureSession!
     var videoLayer: AVCaptureVideoPreviewLayer!
     var cameraView: UIView!
-    var captureQueue: DispatchQueue!
     var stillImageOutput: AVCapturePhotoOutput!
     var shapeLayer: CAShapeLayer!
     // -- / Non AR Camera --
@@ -53,7 +52,7 @@ VHCameraButtonDelegate {
     // -- / AR Camera --
 
     // Queue for dispatching vision classification requests
-    private let visionQueue = DispatchQueue(label: "com.juandavidcruz.Vhista.ARKitVision.serialVisionQueue")
+    let visionQueue = DispatchQueue(label: "com.juandavidcruz.Vhista.ARKitVision.serialVisionQueue")
 
     // Selected ImageView
     var selectedImage: VHImage?
@@ -75,6 +74,7 @@ VHCameraButtonDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setUpObservers()
         bottomToolbar.setUpItems()
     }
 
@@ -87,6 +87,19 @@ VHCameraButtonDelegate {
         return .lightContent
     }
 
+    func setUpObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didChangeFeature(_:)),
+                                               name: FeaturesManager.ChangedFeature,
+                                               object: nil)
+    }
+
+    func removeObservers() {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: FeaturesManager.ChangedFeature,
+                                                  object: nil)
+    }
+
     func setUpUI() {
         // Features View
         featuresCollectionContentView = FeaturesCarouselContainerView(frame: .zero)
@@ -97,14 +110,25 @@ VHCameraButtonDelegate {
         featuresCollectionContentView.addSubview(featuresCollectionVC.view)
         featuresCollectionVC.didMove(toParent: self)
         featuresCollectionVC.setUpCollectionView()
+
+        // Fast Recognition
+        fastRecognizedContentView = UIView(frame: .zero)
+        self.view.addSubview(fastRecognizedContentView)
+        fastRecognizedContentViewController = FastRecognizedContentViewController()
+        addChild(fastRecognizedContentViewController!)
+        fastRecognizedContentView.addSubview(fastRecognizedContentViewController!.view)
+        fastRecognizedContentViewController?.didMove(toParent: self)
+
         // Bottom Toolbar
         bottomToolbar = VHBottomNavigationToolbar(frame: .zero)
         bottomToolbar.customDelegate = self
         self.view.addSubview(bottomToolbar)
+
         // Shutter View
         shutterButtonView = CameraShutterButtonView(frame: .zero)
         shutterButtonView.buttonDelegate = self
         self.view.addSubview(shutterButtonView)
+
         // Selected ImageView
         selectedImageView = UIImageView(frame: .zero)
         selectedImageView.isHidden = true
@@ -114,8 +138,9 @@ VHCameraButtonDelegate {
         selectedImageViewOverlay.isHidden = true
         selectedImageViewOverlay.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         self.view.addSubview(selectedImageViewOverlay)
-        // Constraints
+
         setUpUIConstraints()
+        setUpAccessibility()
     }
 
     override func viewDidLayoutSubviews() {
@@ -126,17 +151,10 @@ VHCameraButtonDelegate {
         }
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowRecognizedContentView" {
-            fastRecognizedContentViewController = segue.destination as? FastRecognizedContentViewController
-            // We noe have a FastRecognition VC, Add it to te Accessible elements array
-            setUpAccessibility()
-        }
-    }
-
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         pauseCurrentSession()
+        removeObservers()
     }
 
     func makeDeepAnalysis(_ sender: Any) {
@@ -198,7 +216,7 @@ VHCameraButtonDelegate {
     // MARK: - Vision classification
     // Vision classification request and model
     /// - Tag: ClassificationRequest
-    private lazy var classificationRequest: VNCoreMLRequest = {
+    lazy var classificationRequest: VNCoreMLRequest = {
         do {
             // Instantiate the model from its generated Swift class.
             let model = try VNCoreMLModel(for: Inceptionv3().model)
@@ -214,73 +232,14 @@ VHCameraButtonDelegate {
         }
     }()
 
-    private lazy var facesClassificationRequest: VNDetectFaceRectanglesRequest = {
+    lazy var facesClassificationRequest: VNDetectFaceRectanglesRequest = {
         return VNDetectFaceRectanglesRequest(completionHandler: self.handleFaceLandmarks)
     }()
 
-    func runVisionQueueWithRequestHandler(_ requestHandler: VNImageRequestHandler) {
-        visionQueue.async {
-            do {
-                // Release the pixel buffer when done, allowing the next buffer to be processed.
-                defer { self.currentBuffer = nil }
-                try requestHandler.perform([self.classificationRequest, self.facesClassificationRequest])
-            } catch {
-                print("Error: Vision request failed with error \"\(error)\"")
-            }
-        }
-    }
-
-    // Handle completion of the Vision request and choose results to display.
-    /// - Tag: ProcessClassifications
-    func processClassifications(for request: VNRequest, error: Error?) {
-        guard let results = request.results else {
-            print("Unable to classify image.\n\(error!.localizedDescription)")
-            return
-        }
-        // The `results` will always be `VNClassificationObservation`s, as specified by the Core ML model in this project.
-        guard let classifications = results as? [VNClassificationObservation] else {
-            return
-        }
-
-        // Classification results
-        var identifierString = ""
-        var confidence: VNConfidence = 0.0
-
-        // Show a label for the highest-confidence result (but only above a minimum confidence threshold).
-        if let bestResult = classifications.first(where: { result in result.confidence > inceptionV3RecognitionThreshold }) {
-            identifierString = String(bestResult.identifier)
-            confidence = bestResult.confidence
-        } else {
-            identifierString = ""
-            confidence = 0
-        }
-
-        DispatchQueue.main.async { [weak self] in
-            self?.displayClassifierResults(identifierString, confidence: confidence)
-        }
-    }
-
-    // Show the classification results in the UI.
-    private func displayClassifierResults(_ result: String, confidence: VNConfidence) {
-        guard !result.isEmpty else {
-            return // No object was classified.
-        }
-        let message = String(format: "Detected \(result) with %.2f", confidence * 100) + "% confidence"
-        print(message)
-
-        if arEnabled {
-            let hitTestResults = sceneView.hitTest(sceneView.center, types: .featurePoint)
-            guard let hitTestResult = hitTestResults.first else {
-                addStringToRead(result, "", isProtected: false, confidence: Double(confidence * 100))
-                return
-            }
-            addStringToRead(result, getLocalizedStringForDistance(hitTestResult.distance),
-                            isProtected: false,
-                            confidence: Double(confidence * 100))
-        } else {
-            addStringToRead(result, "", isProtected: false, confidence: Double(confidence * 100))
-        }
-    }
+    @available(iOS 13.0, *)
+    lazy var textClassificationRequest: VNRecognizeTextRequest = {
+        return VNRecognizeTextRequest(completionHandler: self.handleText)
+    }()
 }
 
 extension ARKitCameraViewController {
@@ -365,5 +324,24 @@ extension ARKitCameraViewController {
         infoVC.delegate = self
         pauseCurrentSession()
         self.present(infoVC, animated: true, completion: nil)
+    }
+}
+
+// MARK: - Changed Feature
+extension ARKitCameraViewController {
+    @objc func didChangeFeature(_ notification: Notification) {
+        configureViewForCurrentFeature()
+    }
+
+    func configureViewForCurrentFeature() {
+        switch FeaturesManager.shared.getSelectedFeature().featureName {
+        case FeatureNames.contextual:
+            print("Changing to Image Recognition")
+        case FeatureNames.text:
+            print("Changing to Text Recognition")
+        default:
+            return
+        }
+        setUpAccessibility()
     }
 }

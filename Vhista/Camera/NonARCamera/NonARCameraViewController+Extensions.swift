@@ -20,7 +20,6 @@ extension ARKitCameraViewController {
         setUpNonARCameraViewConstraints()
 
         captureSession = AVCaptureSession()
-        captureQueue = DispatchQueue(label: "captureQueue")
         stillImageOutput = AVCapturePhotoOutput()
         shapeLayer = CAShapeLayer()
 
@@ -43,7 +42,7 @@ extension ARKitCameraViewController {
             let input = try AVCaptureDeviceInput(device: camera)
 
             let videoOutput = AVCaptureVideoDataOutput()
-            videoOutput.setSampleBufferDelegate(self, queue: captureQueue)
+            videoOutput.setSampleBufferDelegate(self, queue: visionQueue)
             videoOutput.alwaysDiscardsLateVideoFrames = true
             videoOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA]
             captureSession.sessionPreset = .high

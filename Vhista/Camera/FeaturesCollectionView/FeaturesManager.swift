@@ -10,8 +10,16 @@ import Foundation
 
 class FeaturesManager: NSObject {
 
+    static let ChangedFeature: NSNotification.Name = NSNotification.Name(rawValue: "ChangedFeature")
+
     var features: [Feature]
-    var selectedFeature: Feature?
+    var selectedFeature: Feature? {
+        didSet {
+            NotificationCenter.default.post(name: FeaturesManager.ChangedFeature,
+                                            object: nil,
+                                            userInfo: nil)
+        }
+    }
 
     // MARK: - Initialization Method
     override init() {
@@ -32,12 +40,12 @@ class FeaturesManager: NSObject {
                                         imageName: LogoView.contextualImageName)
         features.append(contextualFeature)
 
-//      Panoramic Feature - Adding in V4.0.1
-        #if DEVELOPMENT
-        let panoramicFeature = Feature(featureName: FeatureNames.panoramic,
-                                       imageName: LogoView.panoramicImageName)
-        features.append(panoramicFeature)
-        #endif
+        if #available(iOS 13.0, *) {
+            let textFeature = Feature(featureName: FeatureNames.text,
+            imageName: LogoView.textImageName)
+
+            features.append(textFeature)
+        }
     }
 
     func getSelectedFeature() -> Feature {

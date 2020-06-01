@@ -52,16 +52,6 @@
                     <view key="view" contentMode="scaleToFill" id="4wM-gE-hjw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sxf-5T-nUb">
-                                <rect key="frame" x="0.0" y="740" width="414" height="107"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <segue destination="tne-YQ-mkO" kind="embed" identifier="ShowRecognizedContentView" id="9bc-Ie-Gz3"/>
-                                </connections>
-                            </containerView>
-                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="9dj-y7-ER9">
@@ -82,31 +72,10 @@
                             </constraints>
                         </view>
                     </navigationItem>
-                    <connections>
-                        <outlet property="fastRecognizedContentView" destination="Sxf-5T-nUb" id="VKk-6G-PGy"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DfH-IE-l8u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-875.36231884057975" y="-265.84821428571428"/>
-        </scene>
-        <!--Fast Recognized Content View Controller-->
-        <scene sceneID="xzJ-sI-gMJ">
-            <objects>
-                <viewController id="tne-YQ-mkO" customClass="FastRecognizedContentViewController" customModule="Vhista" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="rlT-J0-cGB"/>
-                        <viewControllerLayoutGuide type="bottom" id="N1Y-Cq-vxb"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="BuC-8H-ReT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="107"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Kj2-SS-b3e" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="17" y="-435"/>
         </scene>
     </scenes>
     <resources>

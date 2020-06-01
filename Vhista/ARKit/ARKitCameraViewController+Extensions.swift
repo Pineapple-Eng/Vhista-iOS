@@ -57,6 +57,23 @@ extension ARKitCameraViewController {
         }
     }
 
+    func handleText(request: VNRequest, error: Error?) {
+        if processingImage { return }
+        if #available(iOS 13.0, *) {
+            guard let textResults = request.results as? [VNRecognizedTextObservation],
+                let textCandidate = textResults.first?.topCandidates(1).first?.string,
+                let textConfidence = textResults.first?.topCandidates(1).first?.confidence else {
+                    return
+            }
+            DispatchQueue.main.async { [weak self] in
+                self?.displayClassifierResults(textCandidate,
+                                               confidence: textConfidence,
+                                               isProtected: true,
+                                               calculateDistance: false)
+            }
+        }
+    }
+
     func addStringToRead(_ stringRecognized: String, _ distanceString: String = "", isProtected: Bool, confidence: Double) {
         if !ClassificationsManager.shared.allowStringRecognized(stringRecognized: stringRecognized) { return }
         let stringRecognizedTranslated = translateModelString(pString: stringRecognized, targetLanguage: globalLanguage)

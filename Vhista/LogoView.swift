@@ -22,6 +22,7 @@ class LogoView: UIView {
     static let defaultImageName = "SmallTransparentLogo"
     static let contextualImageName = "eye.fill"
     static let panoramicImageName = "pano.fill"
+    static let textImageName = "doc.text.viewfinder"
 
     var logoImage: UIImage?
     var logoImageView = UIImageView()

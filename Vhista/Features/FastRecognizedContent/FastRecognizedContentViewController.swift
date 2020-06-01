@@ -35,11 +35,7 @@ class FastRecognizedContentViewController: UIViewController {
             self.accessibilityLabel = currentLabel + NSLocalizedString("confidence", comment: "") + String(Int(confidence!)) + "%"
         }
         DispatchQueue.main.async {
-            #if !DEVELOPMENT
             self.recognizedObjectsLabel.text = text
-            #else
-            self.recognizedObjectsLabel.text = NSLocalizedString("donut", comment: "")
-            #endif
             self.view.layoutIfNeeded()
         }
     }
@@ -48,7 +44,7 @@ class FastRecognizedContentViewController: UIViewController {
 extension FastRecognizedContentViewController {
     func setUpUI() {
         // General View
-            self.view.backgroundColor = .clear
+        self.view.backgroundColor = .clear
         // Components
         setUpRecognizedLabel()
     }

@@ -74,6 +74,7 @@ class FeaturesCollectionViewController: UICollectionViewController, UICollection
 
     func didSelectFeature(_ collectionView: UICollectionView,
                           didSelectItemAt indexPath: IndexPath) {
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
         let selectedFeature = FeaturesManager.shared.features[indexPath.item]
         FeaturesManager.shared.setSelectedFeature(selectedFeature)
         collectionView.scrollToItem(at: indexPath,

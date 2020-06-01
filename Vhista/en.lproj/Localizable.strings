@@ -223,6 +223,12 @@
 
 "no_fast_recognition" = "No Recent Recognition";
 
+// Features
+
+"Image Recognition" = "Image Recognition";
+
+"Text Recognition" = "Text Recognition";
+
 // DEV
 
 "donut" = "donut";
