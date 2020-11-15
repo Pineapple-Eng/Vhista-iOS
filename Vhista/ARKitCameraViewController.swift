@@ -219,7 +219,8 @@ VHCameraButtonDelegate {
     lazy var classificationRequest: VNCoreMLRequest = {
         do {
             // Instantiate the model from its generated Swift class.
-            let model = try VNCoreMLModel(for: Inceptionv3().model)
+            let modelConfiguration = MLModelConfiguration()
+            let model = try VNCoreMLModel(for: Inceptionv3(configuration: modelConfiguration).model)
             let request = VNCoreMLRequest(model: model, completionHandler: { [weak self] request, error in
                 self?.processClassifications(for: request, error: error)
             })
