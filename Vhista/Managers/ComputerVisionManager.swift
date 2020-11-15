@@ -6,8 +6,8 @@
 //  Copyright © Juan David Cruz Serrano & Vhista Inc. All rights reserved.
 //
 
-import Foundation
 import Alamofire
+import UIKit
 
 class ComputerVisionManager: NSObject {
 

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,14 +18,11 @@
 		0D1F29342332A03700A32831 /* VHRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1F29332332A03700A32831 /* VHRoundedButton.swift */; };
 		0D23BB71231232FD00F032F6 /* FeaturesAccessibilityElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D23BB70231232FD00F032F6 /* FeaturesAccessibilityElement.swift */; };
 		0D23BB7423127AFA00F032F6 /* ARKitCameraViewController+Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D23BB7323127AFA00F032F6 /* ARKitCameraViewController+Accessibility.swift */; };
-		0D24923D22E5459B0024BD52 /* ARKitCameraViewController+ContextualFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D24923C22E5459B0024BD52 /* ARKitCameraViewController+ContextualFeature.swift */; };
 		0D268653231B466E00A9354E /* VHCloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D268652231B466E00A9354E /* VHCloseButton.swift */; };
 		0D40E825230A890F006E5598 /* RecognizedContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D40E824230A88AA006E5598 /* RecognizedContentViewController.swift */; };
 		0D5346F022C313C900103306 /* loading_beep.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0D5346EF22C313C900103306 /* loading_beep.wav */; };
 		0D5346F522C5630F00103306 /* LoadingRippleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5346F422C5630F00103306 /* LoadingRippleView.swift */; };
 		0D59219B22C5991400BBAAFD /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D59219A22C5991400BBAAFD /* Feature.swift */; };
-		0D636F1A22E504E300E0F25A /* ComputerVisionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D636F1922E504E200E0F25A /* ComputerVisionManager.swift */; };
-		0D636F1D22E5271100E0F25A /* CVResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D636F1C22E5271100E0F25A /* CVResponse.swift */; };
 		0D93683822D8678C0040FD58 /* FeaturesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D93683722D8678C0040FD58 /* FeaturesManager.swift */; };
 		0D93683A22D868630040FD58 /* FeaturesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D93683922D868630040FD58 /* FeaturesCollectionViewCell.swift */; };
 		0D95531E22B9FC6E00B17581 /* FastRecognizedContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D95531D22B9FC6E00B17581 /* FastRecognizedContentViewController.swift */; };
@@ -55,6 +52,14 @@
 		63342CDC20B0BE9E00E397E6 /* Translator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63342CDB20B0BE9D00E397E6 /* Translator.swift */; };
 		63342CDE20B0BEAB00E397E6 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63342CDD20B0BEAB00E397E6 /* Analytics.swift */; };
 		63342CE420B0BF4700E397E6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63342CE320B0BF4700E397E6 /* Constants.swift */; };
+		6345D64F25612AE500DD12C5 /* AFNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = 6345D64E25612AE500DD12C5 /* AFNetworking */; };
+		6345D65325612B3300DD12C5 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 6345D65225612B3300DD12C5 /* Alamofire */; };
+		6345D66C25612BE300DD12C5 /* ComputerVisionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345D66A25612BE300DD12C5 /* ComputerVisionManager.swift */; };
+		6345D66D25612BE300DD12C5 /* CVResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345D66B25612BE300DD12C5 /* CVResponse.swift */; };
+		6345D67125612C1400DD12C5 /* ARKitCameraViewController+ContextualFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345D67025612C1400DD12C5 /* ARKitCameraViewController+ContextualFeature.swift */; };
+		6345D67625612D7400DD12C5 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6345D67525612D7400DD12C5 /* FirebaseAnalytics */; };
+		6345D67825612D7400DD12C5 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 6345D67725612D7400DD12C5 /* FirebaseRemoteConfig */; };
+		6345D67A25612D7400DD12C5 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6345D67925612D7400DD12C5 /* FirebaseCrashlytics */; };
 		6393B09B204E11A60040A6CF /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6393B09A204E11A60040A6CF /* UIViewController+Extensions.swift */; };
 		6393B09D204E2D280040A6CF /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6393B09C204E2D280040A6CF /* UIView+Extensions.swift */; };
 		6393B09F204F0E660040A6CF /* CGImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6393B09E204F0E660040A6CF /* CGImage+Extensions.swift */; };
@@ -80,14 +85,11 @@
 		0D1F29332332A03700A32831 /* VHRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VHRoundedButton.swift; sourceTree = "<group>"; };
 		0D23BB70231232FD00F032F6 /* FeaturesAccessibilityElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FeaturesAccessibilityElement.swift; path = Features/FeaturesCollectionView/FeaturesAccessibilityElement.swift; sourceTree = "<group>"; };
 		0D23BB7323127AFA00F032F6 /* ARKitCameraViewController+Accessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARKitCameraViewController+Accessibility.swift"; sourceTree = "<group>"; };
-		0D24923C22E5459B0024BD52 /* ARKitCameraViewController+ContextualFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ARKitCameraViewController+ContextualFeature.swift"; path = "../../../../../../../../System/Volumes/Data/Users/juan/Dropbox/Vhista/Development/Vhista-iOS/Vhista/Features/ARKitCameraViewController+ContextualFeature.swift"; sourceTree = "<group>"; };
 		0D268652231B466E00A9354E /* VHCloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VHCloseButton.swift; path = VHObjects/VHCloseButton/VHCloseButton.swift; sourceTree = "<group>"; };
 		0D40E824230A88AA006E5598 /* RecognizedContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizedContentViewController.swift; sourceTree = "<group>"; };
 		0D5346EF22C313C900103306 /* loading_beep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = loading_beep.wav; sourceTree = "<group>"; };
 		0D5346F422C5630F00103306 /* LoadingRippleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingRippleView.swift; sourceTree = "<group>"; };
 		0D59219A22C5991400BBAAFD /* Feature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
-		0D636F1922E504E200E0F25A /* ComputerVisionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ComputerVisionManager.swift; path = "../../../../../../../System/Volumes/Data/Users/juan/Dropbox/Vhista/Development/Vhista-iOS/Vhista/Managers/ComputerVisionManager.swift"; sourceTree = "<group>"; };
-		0D636F1C22E5271100E0F25A /* CVResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CVResponse.swift; path = "../../../../../../../System/Volumes/Data/Users/juan/Dropbox/Vhista/Development/Vhista-iOS/Vhista/Managers/CVResponse.swift"; sourceTree = "<group>"; };
 		0D93683722D8678C0040FD58 /* FeaturesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FeaturesManager.swift; path = Camera/FeaturesCollectionView/FeaturesManager.swift; sourceTree = "<group>"; };
 		0D93683922D868630040FD58 /* FeaturesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FeaturesCollectionViewCell.swift; path = Camera/FeaturesCollectionView/FeaturesCollectionViewCell.swift; sourceTree = "<group>"; };
 		0D95531D22B9FC6E00B17581 /* FastRecognizedContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastRecognizedContentViewController.swift; sourceTree = "<group>"; };
@@ -122,6 +124,9 @@
 		63342CDB20B0BE9D00E397E6 /* Translator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Translator.swift; path = Translation/Translator.swift; sourceTree = "<group>"; };
 		63342CDD20B0BEAB00E397E6 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Analytics.swift; path = Analytics/Analytics.swift; sourceTree = "<group>"; };
 		63342CE320B0BF4700E397E6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Utilities/Constants.swift; sourceTree = "<group>"; };
+		6345D66A25612BE300DD12C5 /* ComputerVisionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ComputerVisionManager.swift; path = Managers/ComputerVisionManager.swift; sourceTree = "<group>"; };
+		6345D66B25612BE300DD12C5 /* CVResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CVResponse.swift; path = Managers/CVResponse.swift; sourceTree = "<group>"; };
+		6345D67025612C1400DD12C5 /* ARKitCameraViewController+ContextualFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ARKitCameraViewController+ContextualFeature.swift"; sourceTree = "<group>"; };
 		6393B09A204E11A60040A6CF /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+Extensions.swift"; path = "Utilities/UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		6393B09C204E2D280040A6CF /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIView+Extensions.swift"; path = "Utilities/UIView+Extensions.swift"; sourceTree = "<group>"; };
 		6393B09E204F0E660040A6CF /* CGImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CGImage+Extensions.swift"; path = "Utilities/CGImage+Extensions.swift"; sourceTree = "<group>"; };
@@ -152,7 +157,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC114CC651F176516099194B /* (null) in Frameworks */,
+				6345D65325612B3300DD12C5 /* Alamofire in Frameworks */,
 				509EA1ADEC909BE27562B9F0 /* Pods_Vhista.framework in Frameworks */,
+				6345D67A25612D7400DD12C5 /* FirebaseCrashlytics in Frameworks */,
+				6345D67825612D7400DD12C5 /* FirebaseRemoteConfig in Frameworks */,
+				6345D67625612D7400DD12C5 /* FirebaseAnalytics in Frameworks */,
+				6345D64F25612AE500DD12C5 /* AFNetworking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,8 +204,8 @@
 		0D1C5AFD22BF61C50002C892 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				0D636F1922E504E200E0F25A /* ComputerVisionManager.swift */,
-				0D636F1C22E5271100E0F25A /* CVResponse.swift */,
+				6345D66A25612BE300DD12C5 /* ComputerVisionManager.swift */,
+				6345D66B25612BE300DD12C5 /* CVResponse.swift */,
 				6393B0A5204F23920040A6CF /* ClassificationsManager.swift */,
 				6393B0A7204F290B0040A6CF /* CameraManager.swift */,
 			);
@@ -238,7 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				0D59219722C595EC00BBAAFD /* FeaturesCollectionView */,
-				0D24923C22E5459B0024BD52 /* ARKitCameraViewController+ContextualFeature.swift */,
+				6345D67025612C1400DD12C5 /* ARKitCameraViewController+ContextualFeature.swift */,
 				0D40E823230A88A2006E5598 /* RecognizedContent */,
 				0D40E822230A8891006E5598 /* FastRecognizedContent */,
 			);
@@ -536,6 +546,13 @@
 			dependencies = (
 			);
 			name = Vhista;
+			packageProductDependencies = (
+				6345D64E25612AE500DD12C5 /* AFNetworking */,
+				6345D65225612B3300DD12C5 /* Alamofire */,
+				6345D67525612D7400DD12C5 /* FirebaseAnalytics */,
+				6345D67725612D7400DD12C5 /* FirebaseRemoteConfig */,
+				6345D67925612D7400DD12C5 /* FirebaseCrashlytics */,
+			);
 			productName = Vhista;
 			productReference = 2B7503801F31936E007D4AFF /* Vhista.app */;
 			productType = "com.apple.product-type.application";
@@ -571,6 +588,11 @@
 				"es-419",
 			);
 			mainGroup = 2B7503771F31936E007D4AFF;
+			packageReferences = (
+				6345D64D25612AE500DD12C5 /* XCRemoteSwiftPackageReference "AFNetworking" */,
+				6345D65125612B3300DD12C5 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				6345D67425612D7400DD12C5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 2B7503811F31936E007D4AFF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -627,32 +649,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\"\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		77F1BC3E8D28448FC2D6FAB1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Vhista/Pods-Vhista-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/HGRippleRadarView/HGRippleRadarView.framework",
-				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Vhista/Pods-Vhista-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HGRippleRadarView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Vhista/Pods-Vhista-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -668,6 +677,7 @@
 			files = (
 				0D268653231B466E00A9354E /* VHCloseButton.swift in Sources */,
 				0DE5947B230A744000A1D8F8 /* VhistaSoundManager.swift in Sources */,
+				6345D66C25612BE300DD12C5 /* ComputerVisionManager.swift in Sources */,
 				6393B0A8204F290B0040A6CF /* CameraManager.swift in Sources */,
 				6393B0A6204F23920040A6CF /* ClassificationsManager.swift in Sources */,
 				2BF5EE691F46155B009E49D7 /* VhistaReachabilityManager.swift in Sources */,
@@ -678,7 +688,6 @@
 				63342CD820B0BE0900E397E6 /* SecureConstants.swift in Sources */,
 				6393B09D204E2D280040A6CF /* UIView+Extensions.swift in Sources */,
 				0D1C5AFB22BF605C0002C892 /* ARKitCameraViewController+Extensions.swift in Sources */,
-				0D24923D22E5459B0024BD52 /* ARKitCameraViewController+ContextualFeature.swift in Sources */,
 				0D1E580522D431890005941C /* DarkModeManager.swift in Sources */,
 				0DE59474230A23FD00A1D8F8 /* CameraShutterButtonView.swift in Sources */,
 				0DB8A87D2134F3FB0005D168 /* ConfigurationManager.swift in Sources */,
@@ -687,7 +696,6 @@
 				6393B09B204E11A60040A6CF /* UIViewController+Extensions.swift in Sources */,
 				9A7AEDDD20FBD26D00430A25 /* DistanceManager.swift in Sources */,
 				0D93683822D8678C0040FD58 /* FeaturesManager.swift in Sources */,
-				0D636F1D22E5271100E0F25A /* CVResponse.swift in Sources */,
 				0DA42CAE22D875F100B4A5FD /* FeaturesCollectionView.swift in Sources */,
 				0D40E825230A890F006E5598 /* RecognizedContentViewController.swift in Sources */,
 				6393B0A1204F0FF70040A6CF /* ARKitCameraViewController.swift in Sources */,
@@ -695,10 +703,10 @@
 				0D0CEA7E230FBB870044C3B7 /* VHImage.swift in Sources */,
 				63342CDE20B0BEAB00E397E6 /* Analytics.swift in Sources */,
 				0DF120FB211F507500177FC5 /* Inceptionv3.mlmodel in Sources */,
-				0D636F1A22E504E300E0F25A /* ComputerVisionManager.swift in Sources */,
 				0DE59477230A4EF900A1D8F8 /* VHCameraButton.swift in Sources */,
 				6393B0A4204F10F80040A6CF /* LandingViewController.swift in Sources */,
 				63CB612B20AA2503004982EF /* UIImage+Extensions.swift in Sources */,
+				6345D67125612C1400DD12C5 /* ARKitCameraViewController+ContextualFeature.swift in Sources */,
 				0D23BB71231232FD00F032F6 /* FeaturesAccessibilityElement.swift in Sources */,
 				0D1F293023329A7500A32831 /* InfoBodyView.swift in Sources */,
 				0DE5947F230A756100A1D8F8 /* ARKitCameraViewController+Session.swift in Sources */,
@@ -708,6 +716,7 @@
 				0D59219B22C5991400BBAAFD /* Feature.swift in Sources */,
 				0D93683A22D868630040FD58 /* FeaturesCollectionViewCell.swift in Sources */,
 				2B71F0FE1F327150005F4219 /* VhistaSpeechManager.swift in Sources */,
+				6345D66D25612BE300DD12C5 /* CVResponse.swift in Sources */,
 				63342CDC20B0BE9E00E397E6 /* Translator.swift in Sources */,
 				0DD740F224844DE5007E09B6 /* ARKitCameraViewController+ImageClassification.swift in Sources */,
 				0DF848A6230A0CA7004FDE5A /* VHBottomNavigationToolbar.swift in Sources */,
@@ -871,7 +880,8 @@
 				LD_VERIFY_BITCODE = NO;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -887,7 +897,10 @@
 				DEVELOPMENT_TEAM = LS6M2TWH7D;
 				INFOPLIST_FILE = Vhista/Base.lproj/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 4.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.juandavidcruz.Vhista;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -906,7 +919,10 @@
 				DEVELOPMENT_TEAM = LS6M2TWH7D;
 				INFOPLIST_FILE = Vhista/Base.lproj/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 4.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.juandavidcruz.Vhista;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -937,6 +953,61 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6345D64D25612AE500DD12C5 /* XCRemoteSwiftPackageReference "AFNetworking" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AFNetworking/AFNetworking.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
+		6345D65125612B3300DD12C5 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.0;
+			};
+		};
+		6345D67425612D7400DD12C5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6345D64E25612AE500DD12C5 /* AFNetworking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6345D64D25612AE500DD12C5 /* XCRemoteSwiftPackageReference "AFNetworking" */;
+			productName = AFNetworking;
+		};
+		6345D65225612B3300DD12C5 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6345D65125612B3300DD12C5 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		6345D67525612D7400DD12C5 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6345D67425612D7400DD12C5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		6345D67725612D7400DD12C5 /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6345D67425612D7400DD12C5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
+		};
+		6345D67925612D7400DD12C5 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6345D67425612D7400DD12C5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2B7503781F31936E007D4AFF /* Project object */;
 }

@@ -6,8 +6,8 @@
 //  Copyright © 2017 Juan David Cruz. All rights reserved.
 //
 
-import Foundation
 import Firebase
+import UIKit
 
 struct AnalyticsConstants {
     static let TakenPicture = "taken_picture"
