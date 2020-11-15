@@ -7,15 +7,12 @@
 
 import UIKit
 
-
 /// Item object
-public class Item {
-    
+public struct Item {
     /// The unique key of the object
     public let uniqueKey: String
     /// The value of the object
     public let value: Any
-    
     /// A new item initialized with the unique key and value
     ///
     /// - Parameters:

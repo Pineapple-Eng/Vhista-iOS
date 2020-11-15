@@ -17,10 +17,9 @@ extension CGRect {
 struct Circle {
     var origin = CGPoint.zero
     var radius: CGFloat = 0
-    
+
     public init(origin: CGPoint, radius: CGFloat) {
         assert(radius >= 0, NSLocalizedString("Illegal radius value", comment: ""))
-        
         self.origin = origin
         self.radius = radius
     }
@@ -41,12 +40,10 @@ struct Geometry {
          to get coordinate from angle of circle
          https://www.mathsisfun.com/polar-cartesian-coordinates.html
          */
-        
-        let x = circle.radius * cos(angle) + circle.origin.x // cos(α) = x / radius
-        let y = circle.radius * sin(angle) + circle.origin.y // sin(α) = y / radius
-        let point = CGPoint(x: x, y: y)
-        
+        let xCircle = circle.radius * cos(angle) + circle.origin.x // cos(α) = x / radius
+        let yCircle = circle.radius * sin(angle) + circle.origin.y // sin(α) = y / radius
+        let point = CGPoint(x: xCircle, y: yCircle)
+
         return point
     }
-    
 }

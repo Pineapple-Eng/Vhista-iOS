@@ -1,4 +1,3 @@
-
 //  Drawer.swift
 //  HGNearbyUsers_Example
 //
@@ -20,14 +19,14 @@ struct Drawer {
         let layer = CAShapeLayer()
         layer.bounds = CGRect(x: 0, y: 0, width: radius*2, height: radius*2)
         layer.position = origin
-        
+
         let center = CGPoint(x: radius, y: radius)
         let path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: 2 * .pi, clockwise: true)
         layer.path = path.cgPath
-        
+
         return layer
     }
-    
+
     /// Creates a disk layer
     ///
     /// - Parameters:
@@ -41,7 +40,7 @@ struct Drawer {
 
         return diskLayer
     }
-    
+
     /// Creates a circle layer
     ///
     /// - Parameters:
@@ -54,7 +53,7 @@ struct Drawer {
         circleLayer.fillColor = UIColor.clear.cgColor
         circleLayer.strokeColor = color
         circleLayer.lineWidth = 1.0
-        
+
         return circleLayer
     }
 }

@@ -10,7 +10,6 @@ import UIKit
 
 /// Statics methods for CAAnimation
 public struct Animation {
-    
     /// Animation by changing the opacity
     ///
     /// - Parameters:
@@ -21,10 +20,10 @@ public struct Animation {
         let opacityAnimation = CABasicAnimation(keyPath: "opacity")
         opacityAnimation.fromValue = fromValue
         opacityAnimation.toValue = toValue
-        
+
         return opacityAnimation
     }
-    
+
     /// Animation by changing the scale using transform
     ///
     /// - Parameters:
@@ -35,10 +34,10 @@ public struct Animation {
         let transformAnimation = CABasicAnimation(keyPath: "transform")
         transformAnimation.fromValue = NSValue(caTransform3D: CATransform3DMakeScale(fromValue, fromValue, fromValue))
         transformAnimation.toValue = NSValue(caTransform3D: CATransform3DMakeScale(toValue, toValue, toValue))
-        
+
         return transformAnimation
     }
-    
+
     /// Animation by changing the color
     ///
     /// - Parameters:
@@ -50,10 +49,10 @@ public struct Animation {
         colorAnimation.fromValue = fromColor
         colorAnimation.toValue = toColor
         colorAnimation.autoreverses = true
-        
+
         return colorAnimation
     }
-    
+
     /// Animation by changing the scale using transform
     ///
     /// - Parameters:
@@ -61,7 +60,9 @@ public struct Animation {
     ///   - values: An array of objects that specify the keyframe values to use for the animation.
     ///   - duration: the duration of the animation, the default value is 0.3
     /// - Returns: a CAKeyframeAnimation object
-    public static func transform(times: [NSNumber] = [0.0, 0.5, 1.0], values: [CGFloat] = [0.0, 1.4, 1.0], duration: CFTimeInterval = 0.7) -> CAKeyframeAnimation {
+    public static func transform(times: [NSNumber] = [0.0, 0.5, 1.0],
+                                 values: [CGFloat] = [0.0, 1.4, 1.0],
+                                 duration: CFTimeInterval = 0.3) -> CAKeyframeAnimation {
         var transformValues = [NSValue]()
         values.forEach {
             transformValues.append(NSValue(caTransform3D: CATransform3DMakeScale($0, $0, 1.0)))
@@ -70,12 +71,12 @@ public struct Animation {
         transformAnimation.duration = duration
         transformAnimation.values = transformValues
         transformAnimation.keyTimes = times
-        transformAnimation.fillMode = kCAFillModeForwards
+        transformAnimation.autoreverses = false
+        transformAnimation.fillMode = .forwards
         transformAnimation.isRemovedOnCompletion = false
-        
         return transformAnimation
     }
-    
+
     /// Animation to hide views, using transform and changing the scale to 0.0
     ///
     /// - Returns: a CAKeyframeAnimation object
@@ -84,7 +85,7 @@ public struct Animation {
         hideAnimation.duration = 1.2
         return hideAnimation
     }
-    
+
     /// Allows multiple animations to be grouped and run concurrently.
     ///
     /// - Parameters:
@@ -95,7 +96,7 @@ public struct Animation {
         let animationGroup = CAAnimationGroup()
         animationGroup.animations = animations
         animationGroup.duration = duration
-        
+
         return animationGroup
     }
 }

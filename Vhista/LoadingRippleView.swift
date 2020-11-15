@@ -6,9 +6,7 @@
 //  Copyright © Juan David Cruz Serrano & Vhista Inc. All rights reserved.
 //
 
-import Foundation
 import UIKit
-import HGRippleRadarView
 
 class LoadingRippleView: UIView {
 

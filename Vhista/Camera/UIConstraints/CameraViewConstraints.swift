@@ -1,6 +1,7 @@
 import UIKit
 
 extension ARKitCameraViewController {
+    // swiftlint:disable function_body_length
     func setUpUIConstraints() {
         bottomToolbarViewBottomAnchorContraint = bottomToolbar.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         bottomToolbar.translatesAutoresizingMaskIntoConstraints = false
