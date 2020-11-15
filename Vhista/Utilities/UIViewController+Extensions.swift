@@ -21,7 +21,7 @@ extension UIViewController {
 }
 
 func getTopMostViewController() -> UIViewController? {
-    if var topController = UIApplication.shared.keyWindow?.rootViewController {
+    if var topController = UIApplication.shared.windows.first?.rootViewController {
         while let presentedViewController = topController.presentedViewController {
             topController = presentedViewController
         }
