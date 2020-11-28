@@ -7,12 +7,8 @@
 //
 
 import Foundation
-import FirebaseRemoteConfig
-import DeviceCheck
 
 class ConfigurationManager: NSObject {
-
-    let remoteConfig = RemoteConfig.remoteConfig()
 
     // MARK: - Initialization Method
     override init() {
@@ -25,17 +21,7 @@ class ConfigurationManager: NSObject {
     }()
 
     func serverAllowsRecognition(_ completition: @escaping (_ allowed: Bool) -> Void) {
-        remoteConfig.setDefaults(fromPlist: "RemoteConfig")
-        remoteConfig.fetchAndActivate { (status, error) in
-            if status == .successFetchedFromRemote || status == .successUsingPreFetchedData {
-                print("Config fetched!")
-                print(self.remoteConfig["deep_analysis_enabled"].boolValue)
-                completition(self.remoteConfig["deep_analysis_enabled"].boolValue)
-            } else {
-                print("Config not fetched")
-                print("Error: \(error?.localizedDescription ?? "No error available.")")
-                completition(true)
-            }
-        }
+        // TODO: Removed Firebase, add custom Vhista Logic.
+        completition(true)
     }
 }

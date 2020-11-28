@@ -9,7 +9,6 @@
 import UIKit
 import AVFoundation
 import AFNetworking
-import Firebase
 
 let manager = AFHTTPSessionManager(baseURL: URL(string: ""))
 
@@ -35,16 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Language not supported, use English instead")
             globalLanguage = "en-US"
         }
-
-        //SetUp Firebase
-        #if !DEVELOPMENT
-        FirebaseApp.configure()
-        #else
-        let filePath = Bundle.main.path(forResource: "CS-GoogleService-Info", ofType: "plist")
-        guard let fileopts = FirebaseOptions(contentsOfFile: filePath!)
-            else { assert(false, "Couldn't load config file") }
-        FirebaseApp.configure(options: fileopts)
-        #endif
 
         // Take control of audio only if using VoiceOver
         if UIAccessibility.isVoiceOverRunning {

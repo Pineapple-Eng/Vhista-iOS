@@ -135,7 +135,6 @@ extension ARKitCameraViewController {
                     settings.flashMode = .off
                 }
             }
-            settings.isAutoStillImageStabilizationEnabled = true
             stillImageOutput.capturePhoto(with: settings, delegate: self)
         }
     }
