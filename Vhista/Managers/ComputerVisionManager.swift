@@ -91,11 +91,11 @@ extension ComputerVisionManager {
 }
 
 extension ComputerVisionManager {
-
     struct CVRequestParameters {
         static let VisualFeatures = "visualFeatures"
         static let Language = "language"
     }
+
     struct CVFeatures {
         static let Adult = "Adult"
         static let Brands = "Brands"
