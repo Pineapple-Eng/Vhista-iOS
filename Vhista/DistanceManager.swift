@@ -12,15 +12,15 @@ import UIKit
 extension UIViewController {
     func getLocalizedStringForDistance(_ distance: CGFloat) -> String {
         if distance < 1.0 {
-            return String(format: "%.0f", distance*100) + " " + NSLocalizedString("centimeters", comment: "")
+            return String(format: "%.0f", distance*100) + " " + NSLocalizedString("Centimeters", comment: "")
         } else {
             let stringMeters = String(format: "%.1f", distance)
             if stringMeters.hasSuffix(".0") {
-                return  stringMeters.split(separator: ".")[0] + " " + NSLocalizedString("meters", comment: "")
+                return  stringMeters.split(separator: ".")[0] + " " + NSLocalizedString("Meters", comment: "")
             }
             let replacePointTranslation = stringMeters.replacingOccurrences(of: ".",
-                                                                            with: " " + NSLocalizedString("point", comment: "") + " ")
-            return  replacePointTranslation + " " + NSLocalizedString("meters", comment: "")
+                                                                            with: " " + NSLocalizedString("Point", comment: "") + " ")
+            return  replacePointTranslation + " " + NSLocalizedString("Meters", comment: "")
         }
     }
 }

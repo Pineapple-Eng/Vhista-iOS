@@ -18,33 +18,27 @@
 
 "Many_People" = " people";
 
-"text_copied" = "Copied!";
+"Text_Copied" = "Copied!";
 
-"copy_text" = "Copy Text";
+"Copy_Text" = "Copy Text";
 
-"share_taken_picture" = "Share, or Save Picture";
+"Share_Taken_Picture" = "Share, or Save Picture";
 
-"feature_picker" = "Feature Picker";
+"Feature_Picker" = "Feature Picker";
 
-"dismiss" = "Dismiss";
+"Dismiss" = "Dismiss";
 
-"made_with_love" = "Made with ❤️ in Colombia 🇨🇴";
+"Made_With_Love" = "Made with ❤️ in Colombia 🇨🇴";
 
-"made_with_love_ax" = "Made with love in Colombia";
+"Made_With_Love_Ax" = "Made with love in Colombia";
 
-"legal" = "Legal";
+"Take_Picture" = "Take Picture";
 
-"version" = "Version";
+"Choose_From_Library" = "Choose from Photo Library";
 
-"build" = "Build";
+"More_Information" = "More Information";
 
-"take_picture" = "Take Picture";
-
-"choose_from_library" = "Choose from Photo Library";
-
-"more_information" = "More Information";
-
-"cancel_recognition" = "Cancel Recognition";
+"Cancel_Recognition" = "Cancel Recognition";
 
 // Error Handling
 
@@ -70,17 +64,17 @@
 
 // Distances
 
-"meters" = "meters";
+"Meters" = "meters";
 
-"centimeters" = "centimeters";
+"Centimeters" = "centimeters";
 
-"point" = "point";
+"Point" = "point";
 
 // Recognition
 
-"confidence" = "Confidence: ";
+"Confidence" = "Confidence: ";
 
-"no_fast_recognition" = "No Recent Recognition";
+"No_Fast_Recognition" = "No Recent Recognition";
 
 // Features
 

@@ -83,6 +83,6 @@ extension VHCloseButton {
 
 extension VHCloseButton {
     func setUpAccessibility() {
-        self.accessibilityLabel = NSLocalizedString("dismiss", comment: "")
+        self.accessibilityLabel = NSLocalizedString("Dismiss", comment: "")
     }
 }

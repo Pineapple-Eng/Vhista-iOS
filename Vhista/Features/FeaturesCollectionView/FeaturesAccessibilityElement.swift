@@ -16,7 +16,7 @@ class FeaturesAccessibilityElement: UIAccessibilityElement {
 
     override var accessibilityLabel: String? {
         get {
-            return NSLocalizedString("feature_picker", comment: "")
+            return NSLocalizedString("Feature_Picker", comment: "")
         }
         set {
             super.accessibilityLabel = newValue

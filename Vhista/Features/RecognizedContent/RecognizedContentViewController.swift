@@ -66,7 +66,7 @@ class RecognizedContentViewController: UIViewController {
         var finalText = NSLocalizedString("Last_Recognition", comment: "") + captionText
         if let conf = confidence {
             finalText = (finalText + ". "
-                + NSLocalizedString("confidence", comment: "")
+                + NSLocalizedString("Confidence", comment: "")
                 + String(Int(conf*100)) + "%")
         }
         DispatchQueue.main.async {
@@ -248,7 +248,7 @@ extension RecognizedContentViewController {
                                             style: .plain,
                                             target: self,
                                             action: #selector(copyContextText))
-        copyTextItem.accessibilityLabel = NSLocalizedString("copy_text", comment: "")
+        copyTextItem.accessibilityLabel = NSLocalizedString("Copy_Text", comment: "")
         actionsToolbar.items?.append(copyTextItem)
 
         actionsToolbar.items?.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
@@ -261,7 +261,7 @@ extension RecognizedContentViewController {
                                             style: .plain,
                                             target: self,
                                             action: #selector(shareImage(_:)))
-        savePhotoItem.accessibilityLabel = NSLocalizedString("share_taken_picture", comment: "")
+        savePhotoItem.accessibilityLabel = NSLocalizedString("Share_Taken_Picture", comment: "")
         actionsToolbar.items?.append(savePhotoItem)
 
         actionsToolbar.items?.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
@@ -272,7 +272,7 @@ extension RecognizedContentViewController {
 
     @objc func copyContextText() {
         UIAccessibility.post(notification: .announcement,
-                             argument: NSLocalizedString("text_copied", comment: ""))
+                             argument: NSLocalizedString("Text_Copied", comment: ""))
         UIPasteboard.general.string = recognizedObjectsTextView.text
     }
 

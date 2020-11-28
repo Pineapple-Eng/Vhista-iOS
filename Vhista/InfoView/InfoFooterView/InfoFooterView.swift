@@ -33,8 +33,8 @@ extension InfoFooterView {
     }
 
     func setUpColombiaLabel() {
-        colombiaLabel = InfoFooterView.generateFootnoteLabel(text: NSLocalizedString("made_with_love", comment: ""))
-        colombiaLabel.accessibilityLabel = NSLocalizedString("made_with_love_ax", comment: "")
+        colombiaLabel = InfoFooterView.generateFootnoteLabel(text: NSLocalizedString("Made_With_Love", comment: ""))
+        colombiaLabel.accessibilityLabel = NSLocalizedString("Made_With_Love_Ax", comment: "")
         self.addSubview(colombiaLabel)
         colombiaLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -65,7 +65,7 @@ extension InfoFooterView {
                                 y: .zero,
                                 width: width,
                                 height: CGFloat.greatestFiniteMagnitude)
-        let labelColombia = self.generateFootnoteLabel(text: NSLocalizedString("made_with_love", comment: ""), frame: labelFrame)
+        let labelColombia = self.generateFootnoteLabel(text: NSLocalizedString("Made_With_Love", comment: ""), frame: labelFrame)
 
         return (InfoFooterView.footnoteItemsVerticalSpacing + labelColombia.frame.size.height
             + InfoFooterView.footnoteItemsVerticalSpacing)

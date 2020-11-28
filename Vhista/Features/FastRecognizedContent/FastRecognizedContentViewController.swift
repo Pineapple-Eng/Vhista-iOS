@@ -32,7 +32,7 @@ class FastRecognizedContentViewController: UIViewController {
         self.accessibilityLabel = NSLocalizedString("Last_Recognition", comment: "") + text
         if confidence != nil {
             let currentLabel = (self.accessibilityLabel ?? "") + ". "
-            self.accessibilityLabel = currentLabel + NSLocalizedString("confidence", comment: "") + String(Int(confidence!)) + "%"
+            self.accessibilityLabel = currentLabel + NSLocalizedString("Confidence", comment: "") + String(Int(confidence!)) + "%"
         }
         DispatchQueue.main.async {
             self.recognizedObjectsLabel.text = text
@@ -112,7 +112,7 @@ extension FastRecognizedContentViewController {
 extension FastRecognizedContentViewController {
     func setUpAccessibility() {
         self.shouldGroupAccessibilityChildren = true
-        self.accessibilityLabel = NSLocalizedString("no_fast_recognition", comment: "")
+        self.accessibilityLabel = NSLocalizedString("No_Fast_Recognition", comment: "")
         self.isAccessibilityElement = true
         #if DEVELOPMENT
         self.accessibilityCustomActions = [

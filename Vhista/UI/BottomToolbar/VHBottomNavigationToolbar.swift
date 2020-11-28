@@ -51,7 +51,7 @@ extension VHBottomNavigationToolbar {
                                               target: self,
                                               action: #selector(didSelectBarButtonItemGallery(_:)))
             galleryItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-            galleryItem.accessibilityLabel = NSLocalizedString("choose_from_library", comment: "")
+            galleryItem.accessibilityLabel = NSLocalizedString("Choose_From_Library", comment: "")
             self.items?.append(galleryItem)
         }
 
@@ -61,7 +61,7 @@ extension VHBottomNavigationToolbar {
                                        style: .plain,
                                        target: self,
                                        action: #selector(didSelectBarButtonItemInfo(_:)))
-        infoItem.accessibilityLabel = NSLocalizedString("more_information", comment: "")
+        infoItem.accessibilityLabel = NSLocalizedString("More_Information", comment: "")
         self.items?.append(infoItem)
     }
 }

@@ -163,9 +163,9 @@ class VHCameraButton: UIButton {
 extension VHCameraButton {
     func setUpAccessibility() {
         if self.isSelected {
-            self.accessibilityLabel = NSLocalizedString("cancel_recognition", comment: "")
+            self.accessibilityLabel = NSLocalizedString("Cancel_Recognition", comment: "")
         } else {
-            self.accessibilityLabel = NSLocalizedString("take_picture", comment: "")
+            self.accessibilityLabel = NSLocalizedString("Take_Picture", comment: "")
         }
     }
 }
