@@ -13,7 +13,7 @@ extension UIViewController {
     func showErrorAlertView(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
-        let actionClose = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""), style: .cancel, handler: nil)
+        let actionClose = UIAlertAction(title: NSLocalizedString("dismiss", comment: ""), style: .cancel, handler: nil)
         alertController.addAction(actionClose)
 
         self.present(alertController, animated: true, completion: nil)

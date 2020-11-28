@@ -29,7 +29,7 @@ class FastRecognizedContentViewController: UIViewController {
     }
 
     func updateWithText(_ text: String, confidence: Double?) {
-        self.accessibilityLabel = NSLocalizedString("LAST_RECOGNITION", comment: "") + text
+        self.accessibilityLabel = NSLocalizedString("Last_Recognition", comment: "") + text
         if confidence != nil {
             let currentLabel = (self.accessibilityLabel ?? "") + ". "
             self.accessibilityLabel = currentLabel + NSLocalizedString("confidence", comment: "") + String(Int(confidence!)) + "%"

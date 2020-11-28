@@ -63,7 +63,7 @@ class RecognizedContentViewController: UIViewController {
     }
 
     func update() {
-        var finalText = NSLocalizedString("LAST_RECOGNITION", comment: "") + captionText
+        var finalText = NSLocalizedString("Last_Recognition", comment: "") + captionText
         if let conf = confidence {
             finalText = (finalText + ". "
                 + NSLocalizedString("confidence", comment: "")

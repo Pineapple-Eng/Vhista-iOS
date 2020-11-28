@@ -9,8 +9,8 @@
 import Foundation
 
 struct FeatureNames {
-    static let contextual = NSLocalizedString("Image Recognition", comment: "")
-    static let text = NSLocalizedString("Text Recognition", comment: "")
+    static let contextual = NSLocalizedString("Image_Recognition", comment: "")
+    static let text = NSLocalizedString("Text_Recognition", comment: "")
 }
 
 struct Feature {

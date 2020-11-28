@@ -39,7 +39,7 @@ extension ARKitCameraViewController: RecognizedContentViewControllerDelegate, In
             let alertEmpty = UIAlertController(title: NSLocalizedString("No_Objects_Found", comment: ""),
                                                message: nil,
                                                preferredStyle: .alert)
-            let actionCancel = UIAlertAction(title: NSLocalizedString("Close_Action", comment: ""),
+            let actionCancel = UIAlertAction(title: NSLocalizedString("dismiss", comment: ""),
                                              style: .cancel) { (_) in
                 self.updateUIForDeepAnalysisChange(willAnalyze: false)
             }

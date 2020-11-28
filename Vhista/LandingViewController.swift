@@ -26,11 +26,11 @@ class LandingViewController: UIViewController {
         if launchedBefore {
             continueToApp()
         } else {
-            let alertPrivacy = UIAlertController(title: NSLocalizedString("TITLE_ALERT_PRIVACY", comment: ""),
-                                                 message: NSLocalizedString("MESSAGE_ALERT_PRIVACY", comment: ""),
+            let alertPrivacy = UIAlertController(title: NSLocalizedString("Title_Alert_Privacy", comment: ""),
+                                                 message: NSLocalizedString("Message_Alert_Privacy", comment: ""),
                                                  preferredStyle: .alert)
 
-            let actionClose = UIAlertAction(title: NSLocalizedString("CONTINUE", comment: ""),
+            let actionClose = UIAlertAction(title: NSLocalizedString("Continue", comment: ""),
                                             style: .default) { (_) in
                                                 self.continueToApp()
             }

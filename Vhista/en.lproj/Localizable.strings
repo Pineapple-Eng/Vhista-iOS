@@ -1,80 +1,18 @@
-/* 
-  Localizable.strings
-  Vhista
-
-  Created by Juan David Cruz Serrano on 8/2/17.
-  Copyright © 2017 juandavidcruz. All rights reserved.
-*/
-
 // Landing
 
-"TITLE_ALERT_PRIVACY" = "Important Information";
+"Title_Alert_Privacy" = "Important Information";
 
-"MESSAGE_ALERT_PRIVACY" = "Vhista Inc does not have access to, does not modify and has no record of any photo taken with this application. Your privacy is a priority for us.";
+"Message_Alert_Privacy" = "Vhista Inc does not have access to, does not modify and has no record of any photo taken with this application. Your privacy is a priority for us.";
 
-"CONTINUE" = "Continue";
+"Continue" = "Continue";
 
 // General
 
-"Greeting_Message"  = "Tap on the screen for a more accurate image analysis";
-
-"Processing_Image" = "Processing Image.";
-
 "No_Objects_Found" = "I have not found any objects in the image.";
 
-"Error_Getting_Objects" = "There was an error finding objects.";
-
-"LAST_RECOGNITION" = "Last recognition: ";
-
-"Canceling_Processing" = "Canceling Processing";
-
-"Found_In_Picture" = "I Found: ";
+"Last_Recognition" = "Last recognition: ";
 
 "Analizying_People" = "Analyzing People in the Image.";
-
-"No_People" = "I have not found faces in the image.";
-
-"Error_Getting_People" = "There was an error finding people.";
-
-"Number_People_Plural" = "There are XX people in the image.";
-
-"One_Person" = "There is a person in the image.";
-
-"First_Person" = "The first person ";
-
-"Next_Person" = "The next person ";
-
-"First_And_Only_Person" = "The person ";
-
-"Last_Person" = "The last person ";
-
-"Is_Male" = "is a man ";
-
-"Is_Female" = "is a woman ";
-
-"Has_Beard" = "with a beard, ";
-
-"Has_Mustache" = "who has a mustache, ";
-
-"Has_Glasses" = "who has glasses, ";
-
-"Is_Smiling" = "who is smiling.";
-
-"The_Person_Is" = "This person is ";
-
-"Angry" = "angry.";
-
-"Calm" = "calm.";
-
-"Confused" = "confused.";
-
-"Upset" = "upset.";
-
-"Happy" = "happy.";
-
-"Sad" = "sad.";
-
-"Surprised" = "surprised.";
 
 "One_Person" = " person";
 
@@ -118,18 +56,6 @@
 
 "Restart_Session" = "Restart Session";
 
-// Loading Texts
-
-"HUD_Processing_Image" = "Processing Image";
-
-"HUD_Reading_Response" = "Reading Response";
-
-"HUD_Processing_Response" = "Processing Response";
-
-"HUD_Searching_People" = "Searching People";
-
-"HUD_Describing_People" = "Describing People";
-
 // System
 
 "No_Camera" = "You need a device with a camera to use Vhista.";
@@ -142,80 +68,13 @@
 
 "Not_Reachable" = "You need internet access for this feature!";
 
-
-// Purchase
-
-"Subscribe_Nav_Title" = "Upgrade Vhista";
-
-"Subscribe_Title" = "Deep Analysis Limit Reached";
-
-"Subscribe_Message" = "Buy or restore %Title%. This %Price% monthly subscription will allow: %Description%";
-
-"Title_Nothing_To_Restore" = "Nothing to restore";
-
-"Message_Nothing_To_Restore" = "This subscription has not been purchased before with this Apple ID";
-
-"Title_Restore_Failed" = "Restore Failed";
-
-"Message_Restore_Failed" = "Could not restore purchase. Please try again later.";
-
-"Cancel_Action" = "Cancel";
-
-"Close_Action" = "Close";
-
-"Buy_Action" = "Buy Now!";
-
-"Restore_Action" = "Restore Purchase";
-
-"Service" = "Service";
-
-"Monthly" = "Length of Subscription: Monthly";
-
-"Price" = "Price";
-
-"Upgrade_Button_Title" = "Upgrade";
-
-"Show_Subscription_Button_Title" = "Subscription";
-
-"Title_Never_Purchased" = "Never Purchased";
-
-"Message_Never_Purchased" = "This subscription has never been purchased";
-
-"Title_Product_Expired" = "Subscription Expired";
-
-"Message_Product_Expired" = "This subscription is expired";
-
-"Free_Subscription_Confirmation_Title" = "You have obtained 5 more images!";
-
-"Free_Subscription_Confirmation_Body" = "Thank you very much for using Vhista. We want technology to be accessible to everyone, so, whenever you need, we will give you 5 more images. However, you can subscribe so that we can continue working on Vhista and many other cool projects.";
-
-"Free_Subscription_Still_On_Trial" = "You still have # free images";
-
-"Free_Subscription_Still_On_Trial_Single" = "You still have # free image";
-
-"Free_Subscription_Still_On_Trial_Body" = "In order to get 5 more free images, you must first use the free images that you already have.";
-
-
-// UI
-
-"Title_Button_Deep_Analysis" = "Deep Analysis";
-
-"Title_Button_Loading_Purchases" = "Showing Purchase Alerts";
-
-"Text_Subscription_Terms" = "You can see our Terms of Use at: https://vhista.com/terms/ and our privacy policy in https://vhista.com/privacy/\n\nPayment will be charged to iTunes Account at confirmation of purchase.\n\nSubscription automatically renews unless auto-renew is turned off at least 24-hours before the end of the current period\n\nAccount will be charged for renewal within 24-hours prior to the end of the current period, and identify the cost of the renewal\n\nSubscriptions may be managed by the user and auto-renewal may be turned off by going to the user’s Account Settings after purchase\n\nAny unused portion of a free trial period, if offered, will be forfeited when the user purchases a subscription to that publication, where applicable.";
-
-"Upgrade_Button_Accessibility_Hint" = "Press this button to show the purchase screen where you will be able to subscribe to Vhista for unlimited access.";
-
-"Subscription_Button_Accessibility_Hint" = "Press this button to learn about and manage your Vhista subscription.";
-
-
 // Distances
 
-"METERS" = "meters";
+"meters" = "meters";
 
-"CENTIMETERS" = "centimeters";
+"centimeters" = "centimeters";
 
-"POINT" = "point";
+"point" = "point";
 
 // Recognition
 
@@ -225,10 +84,6 @@
 
 // Features
 
-"Image Recognition" = "Image Recognition";
+"Image_Recognition" = "Image Recognition";
 
-"Text Recognition" = "Text Recognition";
-
-// DEV
-
-"donut" = "donut";
+"Text_Recognition" = "Text Recognition";
