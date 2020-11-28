@@ -40,6 +40,8 @@
 
 "Cancel_Recognition" = "Cancelar Reconocimiento";
 
+"Legal" = "Legal";
+
 // Error Handling
 
 "Deep_Analysis_Deactivated_Title" = "Servicio no disponible";
