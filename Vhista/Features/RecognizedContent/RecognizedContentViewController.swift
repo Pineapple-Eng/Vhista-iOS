@@ -124,7 +124,7 @@ extension RecognizedContentViewController {
         guard let view = self.view else {
             return
         }
-        let pickerVisualEffectView = UIVisualEffectView(effect: globalBlurEffect())
+        let pickerVisualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .systemChromeMaterial))
         pickerVisualEffectView.frame = self.view.frame
         self.view.insertSubview(pickerVisualEffectView, at: .zero)
         pickerVisualEffectView.translatesAutoresizingMaskIntoConstraints = false
@@ -173,7 +173,7 @@ extension RecognizedContentViewController {
 
     func setUpTextView() {
         recognizedObjectsTextView = UITextView(frame: .zero)
-        recognizedObjectsTextView.textColor = getLabelDarkColorIfSupported(color: .black)
+        recognizedObjectsTextView.textColor = .black
         recognizedObjectsTextView.isEditable = false
         recognizedObjectsTextView.isSelectable = false
         recognizedObjectsTextView.backgroundColor = .clear
@@ -195,7 +195,7 @@ extension RecognizedContentViewController {
 
     func setUpTagsLabel() {
         recognizedTagsLabel = UILabel(frame: .zero)
-        recognizedTagsLabel.textColor = getLabelDarkColorIfSupported(color: .darkGray)
+        recognizedTagsLabel.textColor = .darkGray
         recognizedTagsLabel.numberOfLines = 0
         recognizedTagsLabel.backgroundColor = .clear
         recognizedTagsLabel.textAlignment = .center
@@ -218,17 +218,17 @@ extension RecognizedContentViewController {
                                                                          height: CGFloat.greatestFiniteMagnitude))
         recognizedTextViewHeightContraint.constant = newSize.height
         if onlyShowTags {
-            recognizedTagsLabel.textColor = getLabelDarkColorIfSupported(color: .black)
+            recognizedTagsLabel.textColor = .black
             recognizedTagsLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         } else {
-            recognizedTagsLabel.textColor = getLabelDarkColorIfSupported(color: .darkGray)
+			recognizedTagsLabel.textColor = .darkGray
             recognizedTagsLabel.font = UIFont.preferredFont(forTextStyle: .body)
         }
     }
 
     func setUpToolbar() {
         actionsToolbar = UIToolbar()
-        actionsToolbar.tintColor = getLabelDarkColorIfSupported(color: .black)
+        actionsToolbar.tintColor = .black
         actionsToolbar.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(actionsToolbar)
         NSLayoutConstraint.activate([

@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Take control of audio only if using VoiceOver
         if UIAccessibility.isVoiceOverRunning {
             do {
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default)
+				try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default)
             } catch let error as NSError {
                 print("Error: Could not set audio category: \(error), \(error.userInfo)")
             }

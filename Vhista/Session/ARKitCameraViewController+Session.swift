@@ -23,11 +23,7 @@ extension ARKitCameraViewController {
 
     func resumeCurrentSession() {
         VhistaSpeechManager.shared.blockAllSpeech = false
-        if arEnabled {
-            arCameraViewDidAppear()
-        } else {
-            nonARCameraViewDidAppear()
-        }
+        arCameraViewDidAppear()
     }
 }
 

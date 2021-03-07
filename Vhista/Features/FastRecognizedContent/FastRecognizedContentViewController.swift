@@ -51,7 +51,7 @@ extension FastRecognizedContentViewController {
 
     func setUpRecognizedLabel() {
         recognizedObjectsLabel = UILabel()
-        recognizedObjectsLabel.textColor = getLabelDarkColorIfSupported(color: .black)
+        recognizedObjectsLabel.textColor = .black
         recognizedObjectsLabel.numberOfLines = .zero
         recognizedObjectsLabel.textAlignment = .center
         recognizedObjectsLabel.lineBreakMode = .byWordWrapping
@@ -73,7 +73,7 @@ extension FastRecognizedContentViewController {
         guard let view = self.view else {
             return
         }
-        let pickerVisualEffectView = UIVisualEffectView(effect: globalBlurEffect())
+        let pickerVisualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .systemChromeMaterial))
         pickerVisualEffectView.frame = self.view.frame
         pickerVisualEffectView.tag = FastRecognizedContentViewController.bgEffectViewTag
         for view in self.view.subviews where view.tag == FastRecognizedContentViewController.bgEffectViewTag {

@@ -32,7 +32,7 @@ class CameraShutterButtonView: UIView {
         self.clipsToBounds = true
         self.layer.cornerRadius = CameraShutterButtonView.buttonSize / 2
 
-        let bgVisualEffectView = UIVisualEffectView(effect: secondaryBlurEffect())
+		let bgVisualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterial))
         bgVisualEffectView.frame = self.frame
         self.insertSubview(bgVisualEffectView, at: .zero)
         bgVisualEffectView.translatesAutoresizingMaskIntoConstraints = false

@@ -47,7 +47,7 @@ extension InfoFooterView {
 extension InfoFooterView {
     static func generateFootnoteLabel(text: String? = "", frame: CGRect = .zero) -> UILabel {
         let label = UILabel(frame: frame)
-        label.textColor = getLabelDarkColorIfSupported(color: .black)
+        label.textColor = .black
         label.text = text
         label.textAlignment = .center
         label.lineBreakMode = .byWordWrapping

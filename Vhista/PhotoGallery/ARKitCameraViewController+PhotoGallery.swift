@@ -15,8 +15,8 @@ extension ARKitCameraViewController: UIImagePickerControllerDelegate, UINavigati
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         pickerController.allowsEditing = false
-        pickerController.navigationBar.tintColor = getLabelDarkColorIfSupported(color: .black)
-        pickerController.navigationController?.navigationBar.tintColor = getLabelDarkColorIfSupported(color: .black)
+        pickerController.navigationBar.tintColor = .black
+        pickerController.navigationController?.navigationBar.tintColor = .black
         pickerController.mediaTypes = ["public.image"]
         pickerController.sourceType = .photoLibrary
         pickerController.imageExportPreset = .compatible

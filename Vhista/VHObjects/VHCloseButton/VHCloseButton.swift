@@ -36,11 +36,7 @@ class VHCloseButton: UIButton {
 extension VHCloseButton {
     func setUpBackground() {
         circleBackgroundView = UIView(frame: .zero)
-        var color: UIColor = UIColor(white: 0.0, alpha: 0.1)
-        if #available(iOS 13.0, *) {
-            color = .lightGray
-        }
-        circleBackgroundView.backgroundColor = getLabelDarkColorIfSupported(color: color)
+		circleBackgroundView.backgroundColor = .lightGray
         circleBackgroundView.layer.cornerRadius = VHCloseButton.closeButtonSize/2
         circleBackgroundView.layer.masksToBounds = true
         circleBackgroundView.isUserInteractionEnabled = false
@@ -61,7 +57,7 @@ extension VHCloseButton {
                                                    height: VHCloseButton.xmarkImageSize))
         xmarkImageView.isUserInteractionEnabled = false
         xmarkImageView.contentMode = .scaleAspectFit
-        xmarkImageView.tintColor = getLabelDarkColorIfSupported(color: .black)
+        xmarkImageView.tintColor = .black
         var imageViewSize: CGFloat = VHCloseButton.xmarkImageSize
         if #available(iOS 13.0, *) {
             xmarkImageView.image = UIImage(systemName: VHCloseButton.systemImageName)

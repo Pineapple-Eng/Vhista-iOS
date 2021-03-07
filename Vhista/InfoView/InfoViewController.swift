@@ -74,7 +74,7 @@ extension InfoViewController {
         guard let view = self.view else {
             return
         }
-        let pickerVisualEffectView = UIVisualEffectView(effect: globalBlurEffect())
+        let pickerVisualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .systemChromeMaterial))
         pickerVisualEffectView.frame = self.view.frame
         self.view.insertSubview(pickerVisualEffectView, at: .zero)
         pickerVisualEffectView.translatesAutoresizingMaskIntoConstraints = false

@@ -44,11 +44,11 @@ extension VHRoundedButton {
     func setUpBackground() {
         switch self.customType {
         case VHRoundedButtonType.darkBackground:
-            self.backgroundColor = getLabelDarkColorIfSupported(color: .black)
-            self.setTitleColor(getLabelDarkColorIfSupported(color: .white), for: .normal)
+            self.backgroundColor = .black
+            self.setTitleColor(.white, for: .normal)
         default:
-            self.backgroundColor = getLabelDarkColorIfSupported(color: .black)
-            self.setTitleColor(getLabelDarkColorIfSupported(color: .white), for: .normal)
+            self.backgroundColor = .black
+            self.setTitleColor(.white, for: .normal)
         }
         self.clipsToBounds = true
         self.layer.cornerRadius = VHRoundedButton.bgViewCornerRadius

@@ -12,8 +12,6 @@
 		0D1C5AFB22BF605C0002C892 /* ARKitCameraViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C5AFA22BF605C0002C892 /* ARKitCameraViewController+Extensions.swift */; };
 		0D1C5B0022BF62850002C892 /* CameraViewConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C5AFF22BF62850002C892 /* CameraViewConstraints.swift */; };
 		0D1C5B0222BF64860002C892 /* ARKit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C5B0122BF64860002C892 /* ARKit+Extensions.swift */; };
-		0D1C5B0522BF67F10002C892 /* NonARCameraViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C5B0422BF67F10002C892 /* NonARCameraViewController+Extensions.swift */; };
-		0D1E580522D431890005941C /* DarkModeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1E580422D431880005941C /* DarkModeManager.swift */; };
 		0D1F293023329A7500A32831 /* InfoBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1F292F23329A7500A32831 /* InfoBodyView.swift */; };
 		0D1F29342332A03700A32831 /* VHRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1F29332332A03700A32831 /* VHRoundedButton.swift */; };
 		0D23BB71231232FD00F032F6 /* FeaturesAccessibilityElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D23BB70231232FD00F032F6 /* FeaturesAccessibilityElement.swift */; };
@@ -80,8 +78,6 @@
 		0D1C5AFA22BF605C0002C892 /* ARKitCameraViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ARKitCameraViewController+Extensions.swift"; path = "ARKit/ARKitCameraViewController+Extensions.swift"; sourceTree = "<group>"; };
 		0D1C5AFF22BF62850002C892 /* CameraViewConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CameraViewConstraints.swift; path = Camera/UIConstraints/CameraViewConstraints.swift; sourceTree = "<group>"; };
 		0D1C5B0122BF64860002C892 /* ARKit+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ARKit+Extensions.swift"; path = "Utilities/ARKit+Extensions.swift"; sourceTree = "<group>"; };
-		0D1C5B0422BF67F10002C892 /* NonARCameraViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "NonARCameraViewController+Extensions.swift"; path = "Camera/NonARCamera/NonARCameraViewController+Extensions.swift"; sourceTree = "<group>"; };
-		0D1E580422D431880005941C /* DarkModeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DarkModeManager.swift; path = Utilities/DarkModeManager.swift; sourceTree = "<group>"; };
 		0D1F292F23329A7500A32831 /* InfoBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoBodyView.swift; sourceTree = "<group>"; };
 		0D1F29332332A03700A32831 /* VHRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VHRoundedButton.swift; sourceTree = "<group>"; };
 		0D23BB70231232FD00F032F6 /* FeaturesAccessibilityElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FeaturesAccessibilityElement.swift; path = Features/FeaturesCollectionView/FeaturesAccessibilityElement.swift; sourceTree = "<group>"; };
@@ -212,14 +208,6 @@
 				0DF848A4230A0C5A004FDE5A /* BottomToolbar */,
 			);
 			name = BottomView;
-			sourceTree = "<group>";
-		};
-		0D1C5B0322BF67470002C892 /* NonARCamera */ = {
-			isa = PBXGroup;
-			children = (
-				0D1C5B0422BF67F10002C892 /* NonARCameraViewController+Extensions.swift */,
-			);
-			name = NonARCamera;
 			sourceTree = "<group>";
 		};
 		0D1F292E23329A4E00A32831 /* InfoBodyView */ = {
@@ -443,7 +431,6 @@
 		2B9638BC1F328E94008DBBCF /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				0D1E580422D431880005941C /* DarkModeManager.swift */,
 				63342CDB20B0BE9D00E397E6 /* Translator.swift */,
 				63342CD720B0BE0900E397E6 /* SecureConstants.swift */,
 				63342CE320B0BF4700E397E6 /* Constants.swift */,
@@ -514,7 +501,6 @@
 				0DD740F024844DC4007E09B6 /* CoreMLImageClassification */,
 				0DE5947D230A754000A1D8F8 /* Session */,
 				0D1C5AF922BF60080002C892 /* ARKit */,
-				0D1C5B0322BF67470002C892 /* NonARCamera */,
 				0D0CEA78230FB3DE0044C3B7 /* PhotoGallery */,
 				0D95531F22BA3D5F00B17581 /* LogoView */,
 				0D1C5AFE22BF61E80002C892 /* BottomView */,
@@ -650,11 +636,9 @@
 				0D1C5B0222BF64860002C892 /* ARKit+Extensions.swift in Sources */,
 				0D23BB7423127AFA00F032F6 /* ARKitCameraViewController+Accessibility.swift in Sources */,
 				6345D694256130BC00DD12C5 /* RadarViewProtocol.swift in Sources */,
-				0D1C5B0522BF67F10002C892 /* NonARCameraViewController+Extensions.swift in Sources */,
 				63342CD820B0BE0900E397E6 /* SecureConstants.swift in Sources */,
 				6393B09D204E2D280040A6CF /* UIView+Extensions.swift in Sources */,
 				0D1C5AFB22BF605C0002C892 /* ARKitCameraViewController+Extensions.swift in Sources */,
-				0D1E580522D431890005941C /* DarkModeManager.swift in Sources */,
 				0DE59474230A23FD00A1D8F8 /* CameraShutterButtonView.swift in Sources */,
 				0DB8A87D2134F3FB0005D168 /* ConfigurationManager.swift in Sources */,
 				0D0CEA7A230FB41A0044C3B7 /* ARKitCameraViewController+PhotoGallery.swift in Sources */,
@@ -795,7 +779,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_VERIFY_BITCODE = NO;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -851,7 +835,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_VERIFY_BITCODE = NO;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -870,7 +854,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = LS6M2TWH7D;
 				INFOPLIST_FILE = Vhista/Base.lproj/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -892,7 +876,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LS6M2TWH7D;
 				INFOPLIST_FILE = Vhista/Base.lproj/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

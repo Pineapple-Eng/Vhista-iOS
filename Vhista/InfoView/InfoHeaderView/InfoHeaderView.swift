@@ -57,7 +57,7 @@ extension InfoHeaderView {
 
     func setUpNameLabel() {
         nameLabel = UILabel()
-        nameLabel.textColor = getLabelDarkColorIfSupported(color: .black)
+        nameLabel.textColor = .black
         nameLabel.text = InfoHeaderView.nameLabelText
         nameLabel.textAlignment = .center
         nameLabel.lineBreakMode = .byTruncatingTail

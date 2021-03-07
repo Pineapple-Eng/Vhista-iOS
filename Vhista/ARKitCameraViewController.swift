@@ -64,11 +64,7 @@ VHCameraButtonDelegate {
         super.viewDidLoad()
         setUpUI()
         setUpAccessibility()
-        if arEnabled {
-            setUpSceneView()
-        } else {
-            setUpCamera()
-        }
+        setUpSceneView()
         VhistaSpeechManager.shared.parentARController = self
     }
 
@@ -146,9 +142,6 @@ VHCameraButtonDelegate {
     override func viewDidLayoutSubviews() {
         self.view.bringSubviewToFront(shutterButtonView)
         fastRecognizedContentView.translatesAutoresizingMaskIntoConstraints = false
-        if !arEnabled {
-            updateNonARCameraConnectionOrientationAndFrame()
-        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -174,11 +167,7 @@ VHCameraButtonDelegate {
 
         self.deepAnalysisPreChecks { (allowed) in
             if allowed {
-                if arEnabled {
-                    self.processARImageAnalysis()
-                } else {
-                    self.processNonARImageAnalysis()
-                }
+                self.processARImageAnalysis()
             }
         }
     }

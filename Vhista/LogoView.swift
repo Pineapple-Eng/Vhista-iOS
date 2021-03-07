@@ -53,7 +53,7 @@ class LogoView: UIView {
 
 extension LogoView {
     func setUpBackground() {
-        let visualEffectView = UIVisualEffectView(effect: globalBlurEffect())
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .systemChromeMaterial))
         visualEffectView.frame = self.frame
         visualEffectView.tag = LogoView.bgEffectViewTag
         for view in self.subviews where view.tag == LogoView.bgEffectViewTag {

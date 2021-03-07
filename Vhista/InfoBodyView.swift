@@ -70,7 +70,7 @@ extension InfoBodyView {
         guard let topVC = getTopMostViewController() else {
             return
         }
-        safariVC.preferredControlTintColor = getLabelDarkColorIfSupported(color: .black)
+        safariVC.preferredControlTintColor = .black
         topVC.present(safariVC, animated: true, completion: nil)
     }
 }
