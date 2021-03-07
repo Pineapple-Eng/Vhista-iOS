@@ -20,8 +20,7 @@ extension NSObject {
                     parameters: ["key": googleAPIKey, "source": "en", "target": targetLanguage, "q": toTranslateString],
                     headers: nil,
                     progress: { (_) in },
-                    success: { (task: URLSessionDataTask, response) in
-
+                    success: { (_, response) in
                         guard
                             let dictionaryResponse: NSDictionary = response as? NSDictionary,
                             let dictionaryData: NSDictionary = dictionaryResponse.object(forKey: "data") as? NSDictionary,

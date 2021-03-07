@@ -158,36 +158,35 @@ class FeaturesCarouselContainerView: UIView {
     var carouselAccessibilityElement: FeaturesAccessibilityElement?
     private var _accessibilityElements: [Any]?
     override var accessibilityElements: [Any]? {
+		get {
+
+			if FeaturesManager.shared.selectedFeature == nil {
+				return _accessibilityElements
+			}
+
+			if _previousFeature == FeaturesManager.shared.selectedFeature {
+				return _accessibilityElements
+			}
+			_previousFeature = FeaturesManager.shared.selectedFeature
+
+			let carouselAccessibilityElement: FeaturesAccessibilityElement
+			if let theCarouselAccessibilityElement = self.carouselAccessibilityElement {
+				carouselAccessibilityElement = theCarouselAccessibilityElement
+			} else {
+				carouselAccessibilityElement = FeaturesAccessibilityElement(
+					accessibilityContainer: self
+				)
+
+				carouselAccessibilityElement.accessibilityFrameInContainerSpace = collectionViewController.collectionView.frame
+				self.carouselAccessibilityElement = carouselAccessibilityElement
+			}
+
+			_accessibilityElements = [carouselAccessibilityElement]
+
+			return _accessibilityElements
+		}
         set {
             _accessibilityElements = newValue
-        }
-
-        get {
-
-            if FeaturesManager.shared.selectedFeature == nil {
-                return _accessibilityElements
-            }
-
-            if _previousFeature == FeaturesManager.shared.selectedFeature {
-                return _accessibilityElements
-            }
-            _previousFeature = FeaturesManager.shared.selectedFeature
-
-            let carouselAccessibilityElement: FeaturesAccessibilityElement
-            if let theCarouselAccessibilityElement = self.carouselAccessibilityElement {
-                carouselAccessibilityElement = theCarouselAccessibilityElement
-            } else {
-                carouselAccessibilityElement = FeaturesAccessibilityElement(
-                    accessibilityContainer: self
-                )
-
-                carouselAccessibilityElement.accessibilityFrameInContainerSpace = collectionViewController.collectionView.frame
-                self.carouselAccessibilityElement = carouselAccessibilityElement
-            }
-
-            _accessibilityElements = [carouselAccessibilityElement]
-
-            return _accessibilityElements
         }
     }
 }

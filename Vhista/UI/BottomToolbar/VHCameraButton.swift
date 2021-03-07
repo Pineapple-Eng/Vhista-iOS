@@ -33,19 +33,19 @@ class VHCameraButton: UIButton {
     }
 
     func setUp() {
-        //add a shape layer for the inner shape to be able to animate it
+        // Add a shape layer for the inner shape to be able to animate it
         self.pathLayer = CAShapeLayer()
 
-        //show the right shape for the current state of the control
+        // Show the right shape for the current state of the control
         self.pathLayer.path = self.currentInnerPath().cgPath
 
-        //don't use a stroke color, which would give a ring around the inner circle
+        // Don't use a stroke color, which would give a ring around the inner circle
         self.pathLayer.strokeColor = nil
 
-        //set the color for the inner shape
+        // Set the color for the inner shape
         self.pathLayer.fillColor = UIColor.white.cgColor
 
-        //add the path layer to the control layer so it gets drawn
+        // Add the path layer to the control layer so it gets drawn
         self.layer.addSublayer(self.pathLayer)
 
         self.setTitle("", for: UIControl.State.normal)
@@ -57,19 +57,19 @@ class VHCameraButton: UIButton {
 
     override var isSelected: Bool {
         didSet {
-            //change the inner shape to match the state
+            // Change the inner shape to match the state
             let morph = CABasicAnimation(keyPath: "path")
             morph.duration = animationDuration
             morph.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
 
-            //change the shape according to the current state of the control
+            // Change the shape according to the current state of the control
             morph.toValue = self.currentInnerPath().cgPath
 
-            //ensure the animation is not reverted once completed
+            // Ensure the animation is not reverted once completed
             morph.fillMode = CAMediaTimingFillMode.forwards
             morph.isRemovedOnCompletion = false
 
-            //add the animation
+            // Add the animation
             self.pathLayer.add(morph, forKey: "")
 
             self.buttonDelegate?.didChangeCameraButtonSelection(self, self.isSelected)
@@ -78,7 +78,7 @@ class VHCameraButton: UIButton {
 
     @objc func touchUpInside(sender: UIButton) {
         resetColor()
-        //change the state of the control to update the shape
+        // Change the state of the control to update the shape
         self.isSelected = !self.isSelected
         self.setUpAccessibility()
     }
@@ -88,15 +88,15 @@ class VHCameraButton: UIButton {
     }
 
     @objc func touchDown(sender: UIButton) {
-        //when the user touches the button, the inner shape should change transparency
-        //create the animation for the fill color
+        // When the user touches the button, the inner shape should change transparency
+        // Create the animation for the fill color
         let morph = CABasicAnimation(keyPath: "fillColor")
         morph.duration = animationDuration
 
-        //set the value we want to animate to
+        // Set the value we want to animate to
         morph.toValue = self.pathLayer.fillColor?.copy(alpha: 0.5)
 
-        //ensure the animation does not get reverted once completed
+        // Ensure the animation does not get reverted once completed
         morph.fillMode = CAMediaTimingFillMode.forwards
         morph.isRemovedOnCompletion = false
 
@@ -105,7 +105,7 @@ class VHCameraButton: UIButton {
     }
 
     override func draw(_ rect: CGRect) {
-        //always draw the outer ring, the inner control is drawn during the animations
+        // Always draw the outer ring, the inner control is drawn during the animations
         let outerRing = UIBezierPath(ovalIn: CGRect(x: 3, y: 3, width: 60, height: 60))
         outerRing.lineWidth = 6
         if #available(iOS 13.0, *) {
@@ -124,24 +124,24 @@ class VHCameraButton: UIButton {
     }
 
     func resetColor() {
-        //Create the animation to restore the color of the button
+        // Create the animation to restore the color of the button
         let colorChange = CABasicAnimation(keyPath: "fillColor")
         colorChange.duration = animationDuration
         colorChange.toValue = UIColor.white.cgColor
 
-        //make sure that the color animation is not reverted once the animation is completed
+        // Make sure that the color animation is not reverted once the animation is completed
         colorChange.fillMode = CAMediaTimingFillMode.forwards
         colorChange.isRemovedOnCompletion = false
 
-        //indicate which animation timing function to use, in this case ease in and ease out
+        // Indicate which animation timing function to use, in this case ease in and ease out
         colorChange.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
 
-        //add the animation
+        // Add the animation
         self.pathLayer.add(colorChange, forKey: "darkColor")
     }
 
     func currentInnerPath () -> UIBezierPath {
-        //choose the correct inner path based on the control state
+        // Choose the correct inner path based on the control state
         var returnPath: UIBezierPath
         if self.isSelected {
             returnPath = self.innerSquarePath()

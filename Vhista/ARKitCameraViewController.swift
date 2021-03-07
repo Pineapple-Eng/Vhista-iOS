@@ -45,7 +45,7 @@ VHCameraButtonDelegate {
     var sceneView: ARSCNView!
     var arConfiguration = ARWorldTrackingConfiguration()
     var previousFrameTimeInterval: TimeInterval!
-    //Still Image
+    // Still Image
     var persistentPixelBuffer: CVPixelBuffer?
     // The pixel buffer being held for analysis; used to serialize Vision requests.
     var currentBuffer: CVPixelBuffer?

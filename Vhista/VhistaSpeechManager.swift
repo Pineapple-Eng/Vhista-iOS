@@ -15,7 +15,7 @@ class VhistaSpeechManager: NSObject {
 
     var parentARController: ARKitCameraViewController?
 
-    //Speech Synthesizer
+    // Speech Synthesizer
     let speechSynthesizer = AVSpeechSynthesizer()
 
     var voice: AVSpeechSynthesisVoice!

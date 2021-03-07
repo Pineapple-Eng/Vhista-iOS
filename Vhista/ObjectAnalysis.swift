@@ -21,7 +21,7 @@ extension UIViewController {
         let image = AWSRekognitionImage()
         image!.bytes = UIImageJPEGRepresentation(sourceImage, 0.35)
 
-        //print("NUMBER OF BYTES:" +  String(describing: image?.bytes?.count))
+        // print("NUMBER OF BYTES:" +  String(describing: image?.bytes?.count))
 
         let request = AWSRekognitionDetectLabelsRequest()
 

@@ -12,7 +12,7 @@ import AVFoundation
 
 class VhistaSoundManager: NSObject {
 
-    //Setup player for loading sounds
+    // Setup player for loading sounds
     var player: AVAudioPlayer?
 
     // MARK: - Initialization Method

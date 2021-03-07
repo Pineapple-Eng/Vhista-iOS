@@ -126,7 +126,7 @@ extension FastRecognizedContentViewController {
 
 extension FastRecognizedContentViewController {
     @objc func muteRecognition() {
-        //TODO: Mute fast recognition
+        // TODO: Mute fast recognition
     }
 }
 

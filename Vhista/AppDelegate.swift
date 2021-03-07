@@ -26,10 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        //Listen For Network Changes
+        // Listen For Network Changes
         VhistaReachabilityManager.shared.startMonitoring()
 
-        //SetUp Global Language
+        // SetUp Global Language
         if !globalLanguage.contains("en-") && !globalLanguage.contains("es-") {
             print("Language not supported, use English instead")
             globalLanguage = "en-US"

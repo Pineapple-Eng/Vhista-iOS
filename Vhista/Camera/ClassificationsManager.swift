@@ -12,14 +12,14 @@ import Vision
 
 class ClassificationsManager: NSObject {
 
-    //Supplementary Variables Objects
+    // Supplementary Variables Objects
     var lastRecognition = ""
     var recognitionsAsText = [String]()
 
-    //Supplementary Variables Face LandMarks
+    // Supplementary Variables Face LandMarks
     var lastNumberOfFaces = 0
 
-    //Feedback Elements
+    // Feedback Elements
     var faceGenerator = UIImpactFeedbackGenerator(style: .heavy)
 
     // MARK: - Initialization Method

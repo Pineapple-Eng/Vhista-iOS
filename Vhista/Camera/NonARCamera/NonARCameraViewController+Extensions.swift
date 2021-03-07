@@ -108,7 +108,7 @@ extension ARKitCameraViewController {
         }
         shapeLayer.strokeColor = UIColor.red.cgColor
         shapeLayer.lineWidth = 2.0
-        //needs to filp coordinate system for Vision
+        // Needs to filp coordinate system for Vision
         shapeLayer.setAffineTransform(CGAffineTransform(scaleX: -1, y: -1))
         shapeLayer.frame = view.frame
         view.layer.addSublayer(shapeLayer)
