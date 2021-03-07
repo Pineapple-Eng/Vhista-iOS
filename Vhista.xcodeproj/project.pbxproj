@@ -11,7 +11,6 @@
 		0D0CEA7E230FBB870044C3B7 /* VHImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0CEA7D230FBB870044C3B7 /* VHImage.swift */; };
 		0D1C5AFB22BF605C0002C892 /* ARKitCameraViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C5AFA22BF605C0002C892 /* ARKitCameraViewController+Extensions.swift */; };
 		0D1C5B0022BF62850002C892 /* CameraViewConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C5AFF22BF62850002C892 /* CameraViewConstraints.swift */; };
-		0D1C5B0222BF64860002C892 /* ARKit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C5B0122BF64860002C892 /* ARKit+Extensions.swift */; };
 		0D1F293023329A7500A32831 /* InfoBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1F292F23329A7500A32831 /* InfoBodyView.swift */; };
 		0D1F29342332A03700A32831 /* VHRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1F29332332A03700A32831 /* VHRoundedButton.swift */; };
 		0D23BB71231232FD00F032F6 /* FeaturesAccessibilityElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D23BB70231232FD00F032F6 /* FeaturesAccessibilityElement.swift */; };
@@ -77,7 +76,6 @@
 		0D0CEA7D230FBB870044C3B7 /* VHImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VHImage.swift; path = VHImage/VHImage.swift; sourceTree = "<group>"; };
 		0D1C5AFA22BF605C0002C892 /* ARKitCameraViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ARKitCameraViewController+Extensions.swift"; path = "ARKit/ARKitCameraViewController+Extensions.swift"; sourceTree = "<group>"; };
 		0D1C5AFF22BF62850002C892 /* CameraViewConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CameraViewConstraints.swift; path = Camera/UIConstraints/CameraViewConstraints.swift; sourceTree = "<group>"; };
-		0D1C5B0122BF64860002C892 /* ARKit+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ARKit+Extensions.swift"; path = "Utilities/ARKit+Extensions.swift"; sourceTree = "<group>"; };
 		0D1F292F23329A7500A32831 /* InfoBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoBodyView.swift; sourceTree = "<group>"; };
 		0D1F29332332A03700A32831 /* VHRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VHRoundedButton.swift; sourceTree = "<group>"; };
 		0D23BB70231232FD00F032F6 /* FeaturesAccessibilityElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FeaturesAccessibilityElement.swift; path = Features/FeaturesCollectionView/FeaturesAccessibilityElement.swift; sourceTree = "<group>"; };
@@ -440,7 +438,6 @@
 				63CB612A20AA2503004982EF /* UIImage+Extensions.swift */,
 				9A7AEDDC20FBD26D00430A25 /* DistanceManager.swift */,
 				0DB8A87C2134F3FB0005D168 /* ConfigurationManager.swift */,
-				0D1C5B0122BF64860002C892 /* ARKit+Extensions.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -633,7 +630,6 @@
 				6393B0A6204F23920040A6CF /* ClassificationsManager.swift in Sources */,
 				2BF5EE691F46155B009E49D7 /* VhistaReachabilityManager.swift in Sources */,
 				0D1C5B0022BF62850002C892 /* CameraViewConstraints.swift in Sources */,
-				0D1C5B0222BF64860002C892 /* ARKit+Extensions.swift in Sources */,
 				0D23BB7423127AFA00F032F6 /* ARKitCameraViewController+Accessibility.swift in Sources */,
 				6345D694256130BC00DD12C5 /* RadarViewProtocol.swift in Sources */,
 				63342CD820B0BE0900E397E6 /* SecureConstants.swift in Sources */,

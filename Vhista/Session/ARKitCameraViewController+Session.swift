@@ -14,11 +14,7 @@ extension ARKitCameraViewController {
         VhistaSpeechManager.shared.stopSpeech(sender: self)
         VhistaSpeechManager.shared.blockAllSpeech = true
         // Pause the view's session
-        if arEnabled {
-            sceneView.session.pause()
-        } else {
-            VhistaSpeechManager.shared.blockAllSpeech = true
-        }
+		sceneView.session.pause()
     }
 
     func resumeCurrentSession() {

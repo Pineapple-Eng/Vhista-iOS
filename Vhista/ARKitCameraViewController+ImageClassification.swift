@@ -23,9 +23,9 @@ extension ARKitCameraViewController {
                         self.facesClassificationRequest
                     ]
                 case FeatureNames.text:
-                    if #available(iOS 13.0, *) {
-                        requests = [self.textClassificationRequest]
-                    } else { break }
+					requests = [
+						self.textClassificationRequest
+					]
                 default:
                     break
                 }
@@ -77,28 +77,21 @@ extension ARKitCameraViewController {
         let message = String(format: "Detected \(result) with %.2f", confidence * 100) + "% confidence"
         print(message)
 
-        if arEnabled {
-            if calculateDistance {
-                let hitTestResults = sceneView.hitTest(sceneView.center, types: .featurePoint)
-                guard let hitTestResult = hitTestResults.first else {
-                    addStringToRead(result, "", isProtected: isProtected, confidence: Double(confidence * 100))
-                    return
-                }
-                addStringToRead(result,
-                                getLocalizedStringForDistance(hitTestResult.distance),
-                                isProtected: isProtected,
-                                confidence: Double(confidence * 100))
-            } else {
-                addStringToRead(result,
-                                "",
-                                isProtected: isProtected,
-                                confidence: Double(confidence * 100))
-            }
-        } else {
-            addStringToRead(result,
-                            "",
-                            isProtected: isProtected,
-                            confidence: Double(confidence * 100))
-        }
+		if calculateDistance {
+			let hitTestResults = sceneView.hitTest(sceneView.center, types: .featurePoint)
+			guard let hitTestResult = hitTestResults.first else {
+				addStringToRead(result, "", isProtected: isProtected, confidence: Double(confidence * 100))
+				return
+			}
+			addStringToRead(result,
+							getLocalizedStringForDistance(hitTestResult.distance),
+							isProtected: isProtected,
+							confidence: Double(confidence * 100))
+		} else {
+			addStringToRead(result,
+							"",
+							isProtected: isProtected,
+							confidence: Double(confidence * 100))
+		}
     }
 }

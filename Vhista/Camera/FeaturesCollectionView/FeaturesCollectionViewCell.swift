@@ -32,18 +32,12 @@ class FeaturesCollectionViewCell: UICollectionViewCell {
 
     func configureCellWithFeature(_ feature: Feature) {
         self.feature = feature
-        var image = UIImage()
-        if #available(iOS 13.0, *) {
-            image = UIImage(systemName: feature.imageName) ?? UIImage()
-        } else {
-            image = UIImage(named: feature.imageName) ?? UIImage()
-        }
         if FeaturesManager.shared.getSelectedFeature().featureName == feature.featureName {
             nameLabel.text = feature.featureName
         } else {
             nameLabel.text = nil
         }
-        logoView.configureViewWithImage(image)
+        logoView.configureViewWithImage(UIImage(systemName: feature.imageName) ?? UIImage())
         self.isAccessibilityElement = true
         self.accessibilityLabel = feature.featureName
         self.shouldGroupAccessibilityChildren = true

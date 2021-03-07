@@ -59,12 +59,8 @@ extension VHCloseButton {
         xmarkImageView.contentMode = .scaleAspectFit
         xmarkImageView.tintColor = .black
         var imageViewSize: CGFloat = VHCloseButton.xmarkImageSize
-        if #available(iOS 13.0, *) {
-            xmarkImageView.image = UIImage(systemName: VHCloseButton.systemImageName)
-            imageViewSize = VHCloseButton.xmarkSystemImageSize
-        } else {
-            xmarkImageView.image = UIImage(named: VHCloseButton.systemImageName)
-        }
+		xmarkImageView.image = UIImage(systemName: VHCloseButton.systemImageName)
+		imageViewSize = VHCloseButton.xmarkSystemImageSize
         self.addSubview(xmarkImageView)
         self.bringSubviewToFront(xmarkImageView)
         xmarkImageView.translatesAutoresizingMaskIntoConstraints = false

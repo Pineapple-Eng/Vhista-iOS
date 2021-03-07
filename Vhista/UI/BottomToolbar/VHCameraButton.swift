@@ -108,11 +108,7 @@ class VHCameraButton: UIButton {
         // Always draw the outer ring, the inner control is drawn during the animations
         let outerRing = UIBezierPath(ovalIn: CGRect(x: 3, y: 3, width: 60, height: 60))
         outerRing.lineWidth = 6
-        if #available(iOS 13.0, *) {
-            UIColor.label.setStroke()
-        } else {
-            UIColor.white.setStroke()
-        }
+		UIColor.label.setStroke()
         outerRing.stroke()
     }
 

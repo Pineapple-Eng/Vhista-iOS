@@ -40,12 +40,10 @@ class FeaturesManager: NSObject {
                                         imageName: LogoView.contextualImageName)
         features.append(contextualFeature)
 
-        if #available(iOS 13.0, *) {
-            let textFeature = Feature(featureName: FeatureNames.text,
-            imageName: LogoView.textImageName)
+		let textFeature = Feature(featureName: FeatureNames.text,
+		imageName: LogoView.textImageName)
 
-            features.append(textFeature)
-        }
+		features.append(textFeature)
     }
 
     func getSelectedFeature() -> Feature {

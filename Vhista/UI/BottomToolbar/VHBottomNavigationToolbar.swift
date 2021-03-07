@@ -68,19 +68,11 @@ extension VHBottomNavigationToolbar {
 
 extension VHBottomNavigationToolbar {
     func getButtonItemGalleryImage() -> UIImage {
-        var image = UIImage(named: gallerySystemImageName)
-        if #available(iOS 13.0, *) {
-            image = UIImage(systemName: gallerySystemImageName) ?? image
-        }
-        return image ?? UIImage()
+        return UIImage(systemName: gallerySystemImageName) ?? UIImage()
     }
 
     func getButtonItemInfoImage() -> UIImage {
-        var image = UIImage(named: infoSystemImageName)
-        if #available(iOS 13.0, *) {
-            image = UIImage(systemName: infoSystemImageName) ?? image
-        }
-        return image ?? UIImage()
+        return UIImage(systemName: infoSystemImageName) ?? UIImage()
     }
 }
 

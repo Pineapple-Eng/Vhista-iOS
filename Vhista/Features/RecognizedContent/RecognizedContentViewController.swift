@@ -108,11 +108,7 @@ extension RecognizedContentViewController {
 
 extension RecognizedContentViewController {
     func setUpUI() {
-        if #available(iOS 13.0, *) {
-            setUpBackground()
-        } else {
-            self.view.backgroundColor = UIColor.white
-        }
+		setUpBackground()
         setUpCloseButton()
         setUpToolbar()
         setUpImageView()
@@ -240,11 +236,7 @@ extension RecognizedContentViewController {
         // Items
         actionsToolbar.items = [UIBarButtonItem]()
 
-        var copyTextImage = UIImage(named: RecognizedContentViewController.copyImageName)
-        if #available(iOS 13.0, *) {
-            copyTextImage = UIImage(systemName: RecognizedContentViewController.copyImageName) ?? copyTextImage
-        }
-        let copyTextItem = UIBarButtonItem(image: copyTextImage,
+        let copyTextItem = UIBarButtonItem(image: UIImage(systemName: RecognizedContentViewController.copyImageName),
                                             style: .plain,
                                             target: self,
                                             action: #selector(copyContextText))
@@ -253,11 +245,7 @@ extension RecognizedContentViewController {
 
         actionsToolbar.items?.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
 
-        var savePhotoImage = UIImage(named: RecognizedContentViewController.shareImageName)
-        if #available(iOS 13.0, *) {
-            savePhotoImage = UIImage(systemName: RecognizedContentViewController.shareImageName) ?? savePhotoImage
-        }
-        let savePhotoItem = UIBarButtonItem(image: savePhotoImage,
+        let savePhotoItem = UIBarButtonItem(image: UIImage(systemName: RecognizedContentViewController.shareImageName),
                                             style: .plain,
                                             target: self,
                                             action: #selector(shareImage(_:)))

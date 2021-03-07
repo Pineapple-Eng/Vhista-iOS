@@ -157,13 +157,11 @@ VHCameraButtonDelegate {
             return
         }
 
-        if arEnabled {
-            guard self.persistentPixelBuffer != nil else {
-                print("No Buffer \(String(describing: self.persistentPixelBuffer))")
-                self.updateUIForDeepAnalysisChange(willAnalyze: false)
-                return
-            }
-        }
+		guard self.persistentPixelBuffer != nil else {
+			print("No Buffer \(String(describing: self.persistentPixelBuffer))")
+			self.updateUIForDeepAnalysisChange(willAnalyze: false)
+			return
+		}
 
         self.deepAnalysisPreChecks { (allowed) in
             if allowed {
@@ -226,7 +224,6 @@ VHCameraButtonDelegate {
         return VNDetectFaceRectanglesRequest(completionHandler: self.handleFaceLandmarks)
     }()
 
-    @available(iOS 13.0, *)
     lazy var textClassificationRequest: VNRecognizeTextRequest = {
         return VNRecognizeTextRequest(completionHandler: self.handleText)
     }()
