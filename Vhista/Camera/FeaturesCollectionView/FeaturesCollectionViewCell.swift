@@ -1,10 +1,4 @@
-//
-//  FeaturesCollectionViewCell.swift
-//  Vhista
-//
-//  Created by Juan David Cruz Serrano on 7/12/19.
-//  Copyright © Juan David Cruz Serrano & Vhista Inc. All rights reserved.
-//
+//  Created by Juan David Cruz Serrano on 7/12/19. Copyright © Juan David Cruz Serrano & Vhista Inc. All rights reserved.
 
 import UIKit
 

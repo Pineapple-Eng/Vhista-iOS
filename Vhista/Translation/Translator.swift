@@ -1,10 +1,4 @@
-//
-//  Translator.swift
-//  Vhista
-//
-//  Created by Juan David Cruz Serrano on 3/2/17.
-//  Copyright © 2017 Juan David Cruz. All rights reserved.
-//
+//  Created by Juan David Cruz Serrano on 3/2/17. Copyright © 2017 Juan David Cruz. All rights reserved.
 // swiftlint:disable function_body_length file_length
 
 import Foundation

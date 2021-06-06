@@ -1,10 +1,4 @@
-//
-//  InfoHeaderView.swift
-//  Vhista
-//
-//  Created by Juan David Cruz Serrano on 8/31/19.
-//  Copyright © 2019 juandavidcruz. All rights reserved.
-//
+//  Created by Juan David Cruz Serrano on 8/31/19. Copyright © 2019 juandavidcruz. All rights reserved.
 
 import UIKit
 

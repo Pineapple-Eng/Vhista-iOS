@@ -1,10 +1,4 @@
-//
-//  DistanceManager.swift
-//  Vhista
-//
-//  Created by David Cruz on 7/15/18.
-//  Copyright © Juan David Cruz Serrano & Vhista Inc. All rights reserved.
-//
+//  Created by David Cruz on 7/15/18. Copyright © Juan David Cruz Serrano & Vhista Inc. All rights reserved.
 
 import Foundation
 import UIKit

@@ -1,10 +1,4 @@
-//
-//  VhistaSpeechManager.swift
-//  Vhista
-//
-//  Created by Juan David Cruz Serrano on 8/2/17.
-//  Copyright © Juan David Cruz Serrano & Vhista Inc. All rights reserved.
-//
+//  Created by Juan David Cruz Serrano on 8/2/17. Copyright © Juan David Cruz Serrano & Vhista Inc. All rights reserved.
 
 import UIKit
 import AVFoundation

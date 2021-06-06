@@ -1,10 +1,4 @@
-//
-//  ARKitCameraViewController+ImageClassification.swift
-//  Vhista
-//
-//  Created by Juan David Cruz Serrano on 5/31/20.
-//  Copyright © 2020 juandavidcruz. All rights reserved.
-//
+// Created by Juan David Cruz Serrano on 5/31/20. Copyright © 2020 juandavidcruz. All rights reserved.
 
 import UIKit
 import Vision

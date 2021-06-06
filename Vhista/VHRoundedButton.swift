@@ -1,10 +1,4 @@
-//
-//  VHRoundedButton.swift
-//  Vhista
-//
-//  Created by Juan David Cruz Serrano on 9/18/19.
-//  Copyright © 2019 juandavidcruz. All rights reserved.
-//
+//  Created by Juan David Cruz Serrano on 9/18/19. Copyright © 2019 juandavidcruz. All rights reserved.
 
 import Foundation
 import UIKit
