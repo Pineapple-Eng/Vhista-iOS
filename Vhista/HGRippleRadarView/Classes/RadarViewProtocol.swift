@@ -9,7 +9,7 @@
 import UIKit
 
 /// Responsible for providing the views required by a RadarView, if this protocol is not implemented the default view is used
-public protocol RadarViewDataSource: class {
+public protocol RadarViewDataSource: AnyObject {
     /// Asks for the view of a particular item
     ///
     /// - Parameters:
@@ -21,7 +21,7 @@ public protocol RadarViewDataSource: class {
 }
 
 /// Responsible to perform actions of the items of RadarView
-public protocol RadarViewDelegate: class {
+public protocol RadarViewDelegate: AnyObject {
     /// Tells the delegate that the specified item is selected.
     ///
     /// - Parameters:

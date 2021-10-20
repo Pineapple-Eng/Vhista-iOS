@@ -2,7 +2,7 @@
 
 import UIKit
 
-protocol RecognizedContentViewControllerDelegate: class {
+protocol RecognizedContentViewControllerDelegate: AnyObject {
     func willDismissRecognizedContentViewController(_ controller: RecognizedContentViewController)
 }
 

@@ -2,7 +2,7 @@
 
 import UIKit
 
-protocol InfoViewControllerDelegate: class {
+protocol InfoViewControllerDelegate: AnyObject {
     func willDismissInfoViewControllerr(_ controller: InfoViewController)
 }
 
