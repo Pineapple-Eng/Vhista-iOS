@@ -8,7 +8,6 @@ protocol VHBottomNavigationToolbarDelegate: AnyObject {
 
 enum VHBottomNavigationToolbarItemType {
     case gallery
-    case info
 }
 
 class VHBottomNavigationToolbar: UIToolbar {
@@ -49,14 +48,8 @@ extension VHBottomNavigationToolbar {
             self.items?.append(galleryItem)
         }
 
-        self.items?.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
-
-        let infoItem = UIBarButtonItem(image: getButtonItemInfoImage(),
-                                       style: .plain,
-                                       target: self,
-                                       action: #selector(didSelectBarButtonItemInfo(_:)))
-        infoItem.accessibilityLabel = NSLocalizedString("More_Information", comment: "")
-        self.items?.append(infoItem)
+        self.items?.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
+                                           target: nil, action: nil))
     }
 }
 
@@ -74,10 +67,5 @@ extension VHBottomNavigationToolbar {
     @objc func didSelectBarButtonItemGallery(_ barButtonItem: UIBarButtonItem) {
         self.customDelegate?.didSelectBarButtonItemWithType(barButtonItem,
                                                             VHBottomNavigationToolbarItemType.gallery)
-    }
-
-    @objc func didSelectBarButtonItemInfo(_ barButtonItem: UIBarButtonItem) {
-        self.customDelegate?.didSelectBarButtonItemWithType(barButtonItem,
-                                                            VHBottomNavigationToolbarItemType.info)
     }
 }

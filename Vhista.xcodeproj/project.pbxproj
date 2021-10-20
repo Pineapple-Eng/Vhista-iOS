@@ -11,7 +11,6 @@
 		0D0CEA7E230FBB870044C3B7 /* VHImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0CEA7D230FBB870044C3B7 /* VHImage.swift */; };
 		0D1C5AFB22BF605C0002C892 /* ARKitCameraViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C5AFA22BF605C0002C892 /* ARKitCameraViewController+Extensions.swift */; };
 		0D1C5B0022BF62850002C892 /* CameraViewConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1C5AFF22BF62850002C892 /* CameraViewConstraints.swift */; };
-		0D1F293023329A7500A32831 /* InfoBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1F292F23329A7500A32831 /* InfoBodyView.swift */; };
 		0D1F29342332A03700A32831 /* VHRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1F29332332A03700A32831 /* VHRoundedButton.swift */; };
 		0D23BB71231232FD00F032F6 /* FeaturesAccessibilityElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D23BB70231232FD00F032F6 /* FeaturesAccessibilityElement.swift */; };
 		0D23BB7423127AFA00F032F6 /* ARKitCameraViewController+Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D23BB7323127AFA00F032F6 /* ARKitCameraViewController+Accessibility.swift */; };
@@ -31,9 +30,6 @@
 		0DE59477230A4EF900A1D8F8 /* VHCameraButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE59476230A4EF900A1D8F8 /* VHCameraButton.swift */; };
 		0DE5947B230A744000A1D8F8 /* VhistaSoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE5947A230A744000A1D8F8 /* VhistaSoundManager.swift */; };
 		0DE5947F230A756100A1D8F8 /* ARKitCameraViewController+Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE5947E230A756100A1D8F8 /* ARKitCameraViewController+Session.swift */; };
-		0DF0B00E231ADDBC00EA4BC0 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF0B00D231ADDBC00EA4BC0 /* InfoViewController.swift */; };
-		0DF0B012231ADE1A00EA4BC0 /* InfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF0B011231ADE1A00EA4BC0 /* InfoHeaderView.swift */; };
-		0DF0B016231AE60500EA4BC0 /* InfoFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF0B015231AE60500EA4BC0 /* InfoFooterView.swift */; };
 		0DF120FB211F507500177FC5 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0DF120FA211F507400177FC5 /* Inceptionv3.mlmodel */; };
 		0DF848A6230A0CA7004FDE5A /* VHBottomNavigationToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF848A5230A0CA7004FDE5A /* VHBottomNavigationToolbar.swift */; };
 		2B71F0FE1F327150005F4219 /* VhistaSpeechManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B71F0FD1F327150005F4219 /* VhistaSpeechManager.swift */; };
@@ -76,7 +72,6 @@
 		0D0CEA7D230FBB870044C3B7 /* VHImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VHImage.swift; path = VHImage/VHImage.swift; sourceTree = "<group>"; };
 		0D1C5AFA22BF605C0002C892 /* ARKitCameraViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ARKitCameraViewController+Extensions.swift"; path = "ARKit/ARKitCameraViewController+Extensions.swift"; sourceTree = "<group>"; };
 		0D1C5AFF22BF62850002C892 /* CameraViewConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CameraViewConstraints.swift; path = Camera/UIConstraints/CameraViewConstraints.swift; sourceTree = "<group>"; };
-		0D1F292F23329A7500A32831 /* InfoBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoBodyView.swift; sourceTree = "<group>"; };
 		0D1F29332332A03700A32831 /* VHRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VHRoundedButton.swift; sourceTree = "<group>"; };
 		0D23BB70231232FD00F032F6 /* FeaturesAccessibilityElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FeaturesAccessibilityElement.swift; path = Features/FeaturesCollectionView/FeaturesAccessibilityElement.swift; sourceTree = "<group>"; };
 		0D23BB7323127AFA00F032F6 /* ARKitCameraViewController+Accessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ARKitCameraViewController+Accessibility.swift"; sourceTree = "<group>"; };
@@ -96,9 +91,6 @@
 		0DE59476230A4EF900A1D8F8 /* VHCameraButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VHCameraButton.swift; path = UI/BottomToolbar/VHCameraButton.swift; sourceTree = "<group>"; };
 		0DE5947A230A744000A1D8F8 /* VhistaSoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VhistaSoundManager.swift; path = Sound/VhistaSoundManager.swift; sourceTree = "<group>"; };
 		0DE5947E230A756100A1D8F8 /* ARKitCameraViewController+Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ARKitCameraViewController+Session.swift"; path = "Session/ARKitCameraViewController+Session.swift"; sourceTree = "<group>"; };
-		0DF0B00D231ADDBC00EA4BC0 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InfoViewController.swift; path = InfoView/InfoViewController.swift; sourceTree = "<group>"; };
-		0DF0B011231ADE1A00EA4BC0 /* InfoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InfoHeaderView.swift; path = InfoView/InfoHeaderView/InfoHeaderView.swift; sourceTree = "<group>"; };
-		0DF0B015231AE60500EA4BC0 /* InfoFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InfoFooterView.swift; path = InfoView/InfoFooterView/InfoFooterView.swift; sourceTree = "<group>"; };
 		0DF120FA211F507400177FC5 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = Inceptionv3.mlmodel; path = ../../../Models/Inceptionv3.mlmodel; sourceTree = "<group>"; };
 		0DF848A5230A0CA7004FDE5A /* VHBottomNavigationToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VHBottomNavigationToolbar.swift; path = UI/BottomToolbar/VHBottomNavigationToolbar.swift; sourceTree = "<group>"; };
 		2B416BC81F6F28130029CB5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Info.plist; sourceTree = "<group>"; };
@@ -206,14 +198,6 @@
 			name = BottomView;
 			sourceTree = "<group>";
 		};
-		0D1F292E23329A4E00A32831 /* InfoBodyView */ = {
-			isa = PBXGroup;
-			children = (
-				0D1F292F23329A7500A32831 /* InfoBodyView.swift */,
-			);
-			name = InfoBodyView;
-			sourceTree = "<group>";
-		};
 		0D1F29322332A02400A32831 /* VHRoundedButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -318,33 +302,6 @@
 				0DE5947E230A756100A1D8F8 /* ARKitCameraViewController+Session.swift */,
 			);
 			name = Session;
-			sourceTree = "<group>";
-		};
-		0DF0B00C231ADD6200EA4BC0 /* InfoView */ = {
-			isa = PBXGroup;
-			children = (
-				0DF0B00D231ADDBC00EA4BC0 /* InfoViewController.swift */,
-				0DF0B010231ADDE800EA4BC0 /* InfoHeaderView */,
-				0D1F292E23329A4E00A32831 /* InfoBodyView */,
-				0DF0B014231AE5DA00EA4BC0 /* InfoFooterView */,
-			);
-			name = InfoView;
-			sourceTree = "<group>";
-		};
-		0DF0B010231ADDE800EA4BC0 /* InfoHeaderView */ = {
-			isa = PBXGroup;
-			children = (
-				0DF0B011231ADE1A00EA4BC0 /* InfoHeaderView.swift */,
-			);
-			name = InfoHeaderView;
-			sourceTree = "<group>";
-		};
-		0DF0B014231AE5DA00EA4BC0 /* InfoFooterView */ = {
-			isa = PBXGroup;
-			children = (
-				0DF0B015231AE60500EA4BC0 /* InfoFooterView.swift */,
-			);
-			name = InfoFooterView;
 			sourceTree = "<group>";
 		};
 		0DF848A4230A0C5A004FDE5A /* BottomToolbar */ = {
@@ -499,7 +456,6 @@
 				0D0CEA78230FB3DE0044C3B7 /* PhotoGallery */,
 				0D95531F22BA3D5F00B17581 /* LogoView */,
 				0D1C5AFE22BF61E80002C892 /* BottomView */,
-				0DF0B00C231ADD6200EA4BC0 /* InfoView */,
 				0D1C5AFC22BF61AD0002C892 /* UIConstraints */,
 			);
 			name = UI;
@@ -654,9 +610,7 @@
 				6345D697256130BC00DD12C5 /* Animation.swift in Sources */,
 				6345D67125612C1400DD12C5 /* ARKitCameraViewController+ContextualFeature.swift in Sources */,
 				0D23BB71231232FD00F032F6 /* FeaturesAccessibilityElement.swift in Sources */,
-				0D1F293023329A7500A32831 /* InfoBodyView.swift in Sources */,
 				0DE5947F230A756100A1D8F8 /* ARKitCameraViewController+Session.swift in Sources */,
-				0DF0B00E231ADDBC00EA4BC0 /* InfoViewController.swift in Sources */,
 				6393B09F204F0E660040A6CF /* CGImage+Extensions.swift in Sources */,
 				0D95531E22B9FC6E00B17581 /* FastRecognizedContentViewController.swift in Sources */,
 				6345D696256130BC00DD12C5 /* Drawer.swift in Sources */,
@@ -671,8 +625,6 @@
 				0D95532122BA3E5100B17581 /* LogoView.swift in Sources */,
 				2B7503841F31936E007D4AFF /* AppDelegate.swift in Sources */,
 				63342CE420B0BF4700E397E6 /* Constants.swift in Sources */,
-				0DF0B012231ADE1A00EA4BC0 /* InfoHeaderView.swift in Sources */,
-				0DF0B016231AE60500EA4BC0 /* InfoFooterView.swift in Sources */,
 				6345D695256130BC00DD12C5 /* Geometry.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -3,7 +3,7 @@
 import Alamofire
 import UIKit
 
-extension ARKitCameraViewController: RecognizedContentViewControllerDelegate, InfoViewControllerDelegate {
+extension ARKitCameraViewController: RecognizedContentViewControllerDelegate {
 
     func startContextualRecognition() {
         guard let image = selectedImage?.getUIImage() else {
@@ -58,10 +58,4 @@ extension ARKitCameraViewController: RecognizedContentViewControllerDelegate, In
     func willDismissRecognizedContentViewController(_ controller: RecognizedContentViewController) {
         self.updateUIForDeepAnalysisChange(willAnalyze: false)
     }
-
-    // MARK: InfoViewControllerDelegate
-    func willDismissInfoViewControllerr(_ controller: InfoViewController) {
-        self.updateUIForDeepAnalysisChange(willAnalyze: false)
-    }
-
 }

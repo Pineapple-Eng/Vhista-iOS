@@ -268,8 +268,6 @@ extension ARKitCameraViewController {
         switch type {
         case .gallery:
             showPhotoPicker(barButtonItem)
-        case .info:
-            showInfoVC(barButtonItem)
         }
     }
 }
@@ -295,16 +293,6 @@ extension ARKitCameraViewController {
             VhistaSoundManager.shared.pauseLoadingSound()
             shutterButtonView.stopLoadingRippleView(parentView: self.view)
         }
-    }
-}
-
-// MARK: - Info View
-extension ARKitCameraViewController {
-    func showInfoVC(_ sender: Any) {
-        let infoVC = InfoViewController()
-        infoVC.delegate = self
-        pauseCurrentSession()
-        self.present(infoVC, animated: true, completion: nil)
     }
 }
 
