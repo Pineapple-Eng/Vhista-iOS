@@ -101,7 +101,6 @@
 		0DF0B015231AE60500EA4BC0 /* InfoFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InfoFooterView.swift; path = InfoView/InfoFooterView/InfoFooterView.swift; sourceTree = "<group>"; };
 		0DF120FA211F507400177FC5 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = Inceptionv3.mlmodel; path = ../../../Models/Inceptionv3.mlmodel; sourceTree = "<group>"; };
 		0DF848A5230A0CA7004FDE5A /* VHBottomNavigationToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VHBottomNavigationToolbar.swift; path = UI/BottomToolbar/VHBottomNavigationToolbar.swift; sourceTree = "<group>"; };
-		2B2C62421F6B2CCC00E9BAF7 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		2B416BC81F6F28130029CB5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Info.plist; sourceTree = "<group>"; };
 		2B416BC91F6F288B0029CB5A /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "es-419"; path = "es-419.lproj/Info.plist"; sourceTree = "<group>"; };
 		2B71F0FD1F327150005F4219 /* VhistaSpeechManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VhistaSpeechManager.swift; sourceTree = "<group>"; };
@@ -141,7 +140,6 @@
 		9A9AFD681F48CDCF00172469 /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		9AD2D53C1F48BC08008F470D /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		9AD2D53E1F48BF88008F470D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		9AD2D5401F48C03C008F470D /* AWSCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCore.framework; path = "../../../../Library/Developer/Xcode/DerivedData/Vhista-elzofiarndtfbmanixtdrekchpwm/Build/Products/Debug-iphonesimulator/AWSCore/AWSCore.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -510,8 +508,6 @@
 		A51939127B91783B411B1974 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2B2C62421F6B2CCC00E9BAF7 /* StoreKit.framework */,
-				9AD2D5401F48C03C008F470D /* AWSCore.framework */,
 				9AD2D53E1F48BF88008F470D /* AVFoundation.framework */,
 				9AD2D53C1F48BC08008F470D /* AVKit.framework */,
 			);
@@ -846,7 +842,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COREML_CODEGEN_LANGUAGE = Swift;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = LS6M2TWH7D;
 				INFOPLIST_FILE = Vhista/Base.lproj/Info.plist;
@@ -869,7 +865,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COREML_CODEGEN_LANGUAGE = Swift;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = LS6M2TWH7D;
 				INFOPLIST_FILE = Vhista/Base.lproj/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
