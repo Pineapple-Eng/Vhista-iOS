@@ -45,7 +45,7 @@ extension FastRecognizedContentViewController {
 
     func setUpRecognizedLabel() {
         recognizedObjectsLabel = UILabel()
-        recognizedObjectsLabel.textColor = .black
+        recognizedObjectsLabel.textColor = .label
         recognizedObjectsLabel.numberOfLines = .zero
         recognizedObjectsLabel.textAlignment = .center
         recognizedObjectsLabel.lineBreakMode = .byWordWrapping

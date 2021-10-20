@@ -52,7 +52,7 @@ extension FeaturesCollectionViewCell {
                                              constant: 4),
             logoView.heightAnchor.constraint(equalTo: logoView.widthAnchor)
         ])
-        logoView.tintColor = .black
+        logoView.tintColor = .label
     }
 
     func setUpNameLabel() {

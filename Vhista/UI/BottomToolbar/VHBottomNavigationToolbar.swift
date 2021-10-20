@@ -27,7 +27,7 @@ class VHBottomNavigationToolbar: UIToolbar {
     }
 
     func setUpUI() {
-        self.tintColor = .black
+        self.tintColor = .label
     }
 
     required init?(coder aDecoder: NSCoder) {

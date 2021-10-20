@@ -163,7 +163,7 @@ extension RecognizedContentViewController {
 
     func setUpTextView() {
         recognizedObjectsTextView = UITextView(frame: .zero)
-        recognizedObjectsTextView.textColor = .black
+        recognizedObjectsTextView.textColor = .label
         recognizedObjectsTextView.isEditable = false
         recognizedObjectsTextView.isSelectable = false
         recognizedObjectsTextView.backgroundColor = .clear
@@ -208,17 +208,17 @@ extension RecognizedContentViewController {
                                                                          height: CGFloat.greatestFiniteMagnitude))
         recognizedTextViewHeightContraint.constant = newSize.height
         if onlyShowTags {
-            recognizedTagsLabel.textColor = .black
+            recognizedTagsLabel.textColor = .label
             recognizedTagsLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         } else {
-			recognizedTagsLabel.textColor = .darkGray
+			recognizedTagsLabel.textColor = .secondaryLabel
             recognizedTagsLabel.font = UIFont.preferredFont(forTextStyle: .body)
         }
     }
 
     func setUpToolbar() {
         actionsToolbar = UIToolbar()
-        actionsToolbar.tintColor = .black
+        actionsToolbar.tintColor = .label
         actionsToolbar.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(actionsToolbar)
         NSLayoutConstraint.activate([
